@@ -1578,7 +1578,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** NER 是 token-level 序列標註,需要標出每個 token 是某實體的開頭(B)、內部(I)或非實體(O),BIO/BIOES 是業界標準。\n\n**其他選項為何錯:**\n- A. BoW 不保留順序。\n- B. ✓ 正解\n- C/D. 屬檢索/權重技術,非標註框架。\n\n**記憶要點:** NER = token-level sequence labeling + BIO/BIOES。",
+      "explanation": "**為什麼 B 是正解:** NER 是 token-level 序列標註,需要標出每個 token 是某實體的開頭(B)、內部(I)或非實體(O),BIO/BIOES 是業界標準。\n\n**其他選項為何錯:**\n- A. BoW 不保留順序。\n- B. ✓ 正解\n- C. 屬檢索/權重技術,非標註框架。\n- D. 屬檢索/權重技術,非標註框架。\n\n**記憶要點:** NER = token-level sequence labeling + BIO/BIOES。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -1739,7 +1739,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** OCR 對輸入影像角度與對比敏感,先做歪斜校正再二值化把文字從背景中乾淨切出,是公認最影響準確率的前處理。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C/D. 與 OCR 無益甚至有害。\n\n**記憶要點:** OCR 前處理黃金組合 = De-skew + Binarization + Denoise。",
+      "explanation": "**為什麼 A 是正解:** OCR 對輸入影像角度與對比敏感,先做歪斜校正再二值化把文字從背景中乾淨切出,是公認最影響準確率的前處理。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 與 OCR 無益甚至有害。\n- C. 與 OCR 無益甚至有害。\n- D. 與 OCR 無益甚至有害。\n\n**記憶要點:** OCR 前處理黃金組合 = De-skew + Binarization + Denoise。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -1854,7 +1854,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 文字到影像 diffusion model 把 prompt 經文本編碼器(常用 CLIP)變 embedding,再透過 cross-attention 注入 U-Net 的去噪過程,引導生成。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C. 經典 ML 模型無法產生 embedding 條件。\n- D. 只 tokenize 沒有 encode。\n\n**記憶要點:** Text2Image = Text Encoder(CLIP)+ U-Net Diffusion + Cross-Attention。",
+      "explanation": "**為什麼 A 是正解:** 文字到影像 diffusion model 把 prompt 經文本編碼器(常用 CLIP)變 embedding,再透過 cross-attention 注入 U-Net 的去噪過程,引導生成。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 經典 ML 模型無法產生 embedding 條件。\n- C. 經典 ML 模型無法產生 embedding 條件。\n- D. 只 tokenize 沒有 encode。\n\n**記憶要點:** Text2Image = Text Encoder(CLIP)+ U-Net Diffusion + Cross-Attention。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -1969,7 +1969,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** AI 導入評估第一步是釐清「為什麼要做、要解什麼問題、KPI 怎麼量」,沒清楚定義就買硬體/招人都是燒錢。\n\n**其他選項為何錯:**\n- A/C/D. 屬執行階段,且在沒有確認問題前都是浪費。\n- B. ✓ 正解\n\n**記憶要點:** AI 導入順序:Business problem → Success KPI → Feasibility → POC → Scale。",
+      "explanation": "**為什麼 B 是正解:** AI 導入評估第一步是釐清「為什麼要做、要解什麼問題、KPI 怎麼量」,沒清楚定義就買硬體/招人都是燒錢。\n\n**其他選項為何錯:**\n- A. 屬執行階段,且在沒有確認問題前都是浪費。\n- C. 屬執行階段,且在沒有確認問題前都是浪費。\n- D. 屬執行階段,且在沒有確認問題前都是浪費。\n- B. ✓ 正解\n\n**記憶要點:** AI 導入順序:Business problem → Success KPI → Feasibility → POC → Scale。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -2061,7 +2061,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** AI 三要素是資料、演算法、算力,資料策略決定後兩者方向。先清楚要哪些資料、能否合法取得、怎麼維護品質,才有後續模型可言。\n\n**其他選項為何錯:**\n- A/C/D. 屬基礎建設或人力問題,非資料策略本身。\n- B. ✓ 正解\n\n**記憶要點:** 資料策略 = What + Where + How(取得 / 標註 / 治理 / 安全)。",
+      "explanation": "**為什麼 B 是正解:** AI 三要素是資料、演算法、算力,資料策略決定後兩者方向。先清楚要哪些資料、能否合法取得、怎麼維護品質,才有後續模型可言。\n\n**其他選項為何錯:**\n- A. 屬基礎建設或人力問題,非資料策略本身。\n- C. 屬基礎建設或人力問題,非資料策略本身。\n- D. 屬基礎建設或人力問題,非資料策略本身。\n- B. ✓ 正解\n\n**記憶要點:** 資料策略 = What + Where + How(取得 / 標註 / 治理 / 安全)。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -2107,7 +2107,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** ML 專案的資料、評估指標與成效都在過程中持續學習與調整,適合短迭代;固定需求專案才適合瀑布。\n\n**其他選項為何錯:**\n- A. 高度規範環境傾向瀑布。\n- B. ✓ 正解\n- C/D. 固定範疇可瀑布。\n\n**記憶要點:** AI 不確定性高 → 短迭代 + 階段性 review。",
+      "explanation": "**為什麼 B 是正解:** ML 專案的資料、評估指標與成效都在過程中持續學習與調整,適合短迭代;固定需求專案才適合瀑布。\n\n**其他選項為何錯:**\n- A. 高度規範環境傾向瀑布。\n- B. ✓ 正解\n- C. 固定範疇可瀑布。\n- D. 固定範疇可瀑布。\n\n**記憶要點:** AI 不確定性高 → 短迭代 + 階段性 review。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -2222,7 +2222,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Prompt Injection 是 OWASP LLM Top 1 風險,典型攻擊就是在使用者輸入或 RAG 檢索內容中夾帶覆寫指令,讓模型違反原本約束。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C/D. 與 prompt injection 無直接關聯。\n\n**記憶要點:** OWASP LLM01 = Prompt Injection;Direct 來自使用者、Indirect 來自檢索內容。",
+      "explanation": "**為什麼 A 是正解:** Prompt Injection 是 OWASP LLM Top 1 風險,典型攻擊就是在使用者輸入或 RAG 檢索內容中夾帶覆寫指令,讓模型違反原本約束。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 與 prompt injection 無直接關聯。\n- C. 與 prompt injection 無直接關聯。\n- D. 與 prompt injection 無直接關聯。\n\n**記憶要點:** OWASP LLM01 = Prompt Injection;Direct 來自使用者、Indirect 來自檢索內容。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -2245,7 +2245,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** DAMA-DMBOK 定義的資料品質六維是業界標準,iPAS 也採此框架。\n\n**其他選項為何錯:**\n- A/C/D. 與資料品質無關。\n- B. ✓ 正解\n\n**記憶要點:** DQ 六維:完整 / 一致 / 準確 / 時效 / 唯一 / 有效。",
+      "explanation": "**為什麼 B 是正解:** DAMA-DMBOK 定義的資料品質六維是業界標準,iPAS 也採此框架。\n\n**其他選項為何錯:**\n- A. 與資料品質無關。\n- C. 與資料品質無關。\n- D. 與資料品質無關。\n- B. ✓ 正解\n\n**記憶要點:** DQ 六維:完整 / 一致 / 準確 / 時效 / 唯一 / 有效。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -2268,7 +2268,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 6 旋轉 180° 變 9,翻轉會改變標籤,屬於非 label-preserving 增強,不能盲目套用。\n\n**其他選項為何錯:**\n- A/C/D. 對多數任務皆是 label-preserving。\n- B. ✓ 正解\n\n**記憶要點:** Augmentation 必須 label-preserving,翻轉 6→9 / 字元類常踩坑。",
+      "explanation": "**為什麼 B 是正解:** 6 旋轉 180° 變 9,翻轉會改變標籤,屬於非 label-preserving 增強,不能盲目套用。\n\n**其他選項為何錯:**\n- A. 對多數任務皆是 label-preserving。\n- C. 對多數任務皆是 label-preserving。\n- D. 對多數任務皆是 label-preserving。\n- B. ✓ 正解\n\n**記憶要點:** Augmentation 必須 label-preserving,翻轉 6→9 / 字元類常踩坑。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -2383,7 +2383,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Pose Estimation 任務即偵測人體關鍵點/骨架,代表模型 OpenPose、HRNet、MediaPipe。\n\n**其他選項為何錯:**\n- A/C/D. 屬不同任務。\n- B. ✓ 正解\n\n**記憶要點:** Pose = Keypoints;Top-down(先偵測再估姿)vs Bottom-up(先抓 keypoints 再分人)。",
+      "explanation": "**為什麼 B 是正解:** Pose Estimation 任務即偵測人體關鍵點/骨架,代表模型 OpenPose、HRNet、MediaPipe。\n\n**其他選項為何錯:**\n- A. 屬不同任務。\n- C. 屬不同任務。\n- D. 屬不同任務。\n- B. ✓ 正解\n\n**記憶要點:** Pose = Keypoints;Top-down(先偵測再估姿)vs Bottom-up(先抓 keypoints 再分人)。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"
@@ -2452,7 +2452,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** EU AI Act 將「就業、教育、信用、執法、關鍵基礎設施」等涉及人權與機會的決策列為高風險,履歷篩選正屬其中。\n\n**其他選項為何錯:**\n- B/C/D. 通常屬有限或最低風險。\n- A. ✓ 正解\n\n**記憶要點:** EU AI Act 風險等級:Unacceptable → High → Limited → Minimal;招募/信用/司法常屬 High。",
+      "explanation": "**為什麼 A 是正解:** EU AI Act 將「就業、教育、信用、執法、關鍵基礎設施」等涉及人權與機會的決策列為高風險,履歷篩選正屬其中。\n\n**其他選項為何錯:**\n- B. 通常屬有限或最低風險。\n- C. 通常屬有限或最低風險。\n- D. 通常屬有限或最低風險。\n- A. ✓ 正解\n\n**記憶要點:** EU AI Act 風險等級:Unacceptable → High → Limited → Minimal;招募/信用/司法常屬 High。",
       "subject_code": "s1",
       "generated": true,
       "generated_by": "claude"

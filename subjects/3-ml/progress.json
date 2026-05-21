@@ -1361,7 +1361,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Type I=假陽性(冤枉好人),Type II=假陰性(放過壞人)。α 控制 Type I,β 控制 Type II,Power = 1−β。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C/D. 描述錯誤。\n\n**記憶要點:** Type I = 拒真(冤枉),Type II = 留偽(漏網)。",
+      "explanation": "**為什麼 A 是正解:** Type I=假陽性(冤枉好人),Type II=假陰性(放過壞人)。α 控制 Type I,β 控制 Type II,Power = 1−β。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 描述錯誤。\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** Type I = 拒真(冤枉),Type II = 留偽(漏網)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1407,7 +1407,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** PCA 找出資料變異最大的方向 = 共變異數矩陣最大特徵值對應的特徵向量,即第一主成分。\n\n**其他選項為何錯:**\n- A. QR 用於最小平方等。\n- B. ✓ 正解\n- C/D. 無關。\n\n**記憶要點:** PCA = Cov → Eigendecomposition → 取大特徵值的向量。",
+      "explanation": "**為什麼 B 是正解:** PCA 找出資料變異最大的方向 = 共變異數矩陣最大特徵值對應的特徵向量,即第一主成分。\n\n**其他選項為何錯:**\n- A. QR 用於最小平方等。\n- B. ✓ 正解\n- C. 無關。\n- D. 無關。\n\n**記憶要點:** PCA = Cov → Eigendecomposition → 取大特徵值的向量。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1430,7 +1430,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 D 是正解:** 物件偵測需要捲積網路與檢測頭,SVD 不是偵測器。\n\n**其他選項為何錯:**\n- A/B/C. SVD 經典應用。\n- D. ✓ 正解(不適用)\n\n**記憶要點:** SVD 三大應用:低秩近似、潛在因子、壓縮。",
+      "explanation": "**為什麼 D 是正解:** 物件偵測需要捲積網路與檢測頭,SVD 不是偵測器。\n\n**其他選項為何錯:**\n- A. SVD 經典應用。\n- B. SVD 經典應用。\n- C. SVD 經典應用。\n- D. ✓ 正解(不適用)\n\n**記憶要點:** SVD 三大應用:低秩近似、潛在因子、壓縮。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1453,7 +1453,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 學習率太大會在最小值附近跳來跳去甚至飛走,太小則訓練極慢且容易停在局部最小或鞍點。\n\n**其他選項為何錯:**\n- A/C/D. 描述不正確。\n- B. ✓ 正解\n\n**記憶要點:** LR 過大震盪、過小遲滯;善用 warmup + decay + Adam。",
+      "explanation": "**為什麼 B 是正解:** 學習率太大會在最小值附近跳來跳去甚至飛走,太小則訓練極慢且容易停在局部最小或鞍點。\n\n**其他選項為何錯:**\n- A. 描述不正確。\n- C. 描述不正確。\n- D. 描述不正確。\n- B. ✓ 正解\n\n**記憶要點:** LR 過大震盪、過小遲滯;善用 warmup + decay + Adam。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1499,7 +1499,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Batch GD 一次看全資料 → 梯度準但慢;SGD/Mini-batch 一次只看一小撮 → 快但雜訊大,常配合動量、學習率排程使用。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C/D. 描述錯誤。\n\n**記憶要點:** Batch=全準慢;SGD=少快吵;Mini-batch 是實務折衷。",
+      "explanation": "**為什麼 A 是正解:** Batch GD 一次看全資料 → 梯度準但慢;SGD/Mini-batch 一次只看一小撮 → 快但雜訊大,常配合動量、學習率排程使用。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 描述錯誤。\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** Batch=全準慢;SGD=少快吵;Mini-batch 是實務折衷。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1545,7 +1545,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Gini 是 CART 預設、Entropy 是 ID3/C4.5;二者皆衡量分裂後子節點純度提升。\n\n**其他選項為何錯:**\n- A. MSE 用於迴歸樹,Cross-Entropy 不直接用於分裂。\n- B. ✓ 正解\n- C/D. 屬其他任務評估。\n\n**記憶要點:** 分類樹的分裂指標 = Gini 或 Entropy;迴歸樹用 MSE/MAE。",
+      "explanation": "**為什麼 B 是正解:** Gini 是 CART 預設、Entropy 是 ID3/C4.5;二者皆衡量分裂後子節點純度提升。\n\n**其他選項為何錯:**\n- A. MSE 用於迴歸樹,Cross-Entropy 不直接用於分裂。\n- B. ✓ 正解\n- C. 屬其他任務評估。\n- D. 屬其他任務評估。\n\n**記憶要點:** 分類樹的分裂指標 = Gini 或 Entropy;迴歸樹用 MSE/MAE。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1568,7 +1568,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** KNN 是 lazy learner,訓練只存資料;預測要算與所有點距離,故 O(n·d) per query,大資料常加速結構如 KD-Tree。\n\n**其他選項為何錯:**\n- A. 反向。\n- B. ✓ 正解\n- C/D. 描述不對。\n\n**記憶要點:** KNN = 懶人學習,訓練快、預測慢。",
+      "explanation": "**為什麼 B 是正解:** KNN 是 lazy learner,訓練只存資料;預測要算與所有點距離,故 O(n·d) per query,大資料常加速結構如 KD-Tree。\n\n**其他選項為何錯:**\n- A. 反向。\n- B. ✓ 正解\n- C. 描述不對。\n- D. 描述不對。\n\n**記憶要點:** KNN = 懶人學習,訓練快、預測慢。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1591,7 +1591,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Kernel(如 RBF、Polynomial)用 K(x,y) = ⟨φ(x), φ(y)⟩ 隱式計算高維內積,使原空間非線性問題在隱式高維中變線性可分。\n\n**其他選項為何錯:**\n- A. 與參數量無直接關。\n- B. ✓ 正解\n- C/D. 無關。\n\n**記憶要點:** Kernel Trick = 隱式高維 + 直接算內積,免去座標轉換。",
+      "explanation": "**為什麼 B 是正解:** Kernel(如 RBF、Polynomial)用 K(x,y) = ⟨φ(x), φ(y)⟩ 隱式計算高維內積,使原空間非線性問題在隱式高維中變線性可分。\n\n**其他選項為何錯:**\n- A. 與參數量無直接關。\n- B. ✓ 正解\n- C. 無關。\n- D. 無關。\n\n**記憶要點:** Kernel Trick = 隱式高維 + 直接算內積,免去座標轉換。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1614,7 +1614,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Naive Bayes 假設 P(x₁,...,xₙ|y) = ∏ P(xᵢ|y),即特徵條件獨立 — 雖不真實但實務上對文本分類等任務仍有效。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C/D. 與「樸素」無關。\n\n**記憶要點:** Naive = 條件獨立假設;簡單快,反而在垃圾信過濾等任務不俗。",
+      "explanation": "**為什麼 A 是正解:** Naive Bayes 假設 P(x₁,...,xₙ|y) = ∏ P(xᵢ|y),即特徵條件獨立 — 雖不真實但實務上對文本分類等任務仍有效。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 與「樸素」無關。\n- C. 與「樸素」無關。\n- D. 與「樸素」無關。\n\n**記憶要點:** Naive = 條件獨立假設;簡單快,反而在垃圾信過濾等任務不俗。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1637,7 +1637,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Bagging(如 RF)主要減 variance、Boosting(如 GBM/XGBoost)主要減 bias。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C/D. 描述錯誤。\n\n**記憶要點:** Bagging=平行+減 variance;Boosting=序列+減 bias。",
+      "explanation": "**為什麼 A 是正解:** Bagging(如 RF)主要減 variance、Boosting(如 GBM/XGBoost)主要減 bias。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 描述錯誤。\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** Bagging=平行+減 variance;Boosting=序列+減 bias。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1660,7 +1660,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 D 是正解:** XGBoost 仍然是 boosting,只是在工程與正則化做了大量優化;不是改成 bagging。\n\n**其他選項為何錯:**\n- A/B/C. 皆為 XGBoost 真實改進。\n- D. ✓ 正解(錯誤敘述)\n\n**記憶要點:** XGBoost = GBDT + L1/L2 + 缺失值預設 + 並行特徵分裂。",
+      "explanation": "**為什麼 D 是正解:** XGBoost 仍然是 boosting,只是在工程與正則化做了大量優化;不是改成 bagging。\n\n**其他選項為何錯:**\n- A. 皆為 XGBoost 真實改進。\n- B. 皆為 XGBoost 真實改進。\n- C. 皆為 XGBoost 真實改進。\n- D. ✓ 正解(錯誤敘述)\n\n**記憶要點:** XGBoost = GBDT + L1/L2 + 缺失值預設 + 並行特徵分裂。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1683,7 +1683,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 D 是正解:** K-Means 有許多大規模/GPU 實作(如 Mini-Batch K-Means、FAISS k-means);其他三項皆是真實限制。\n\n**其他選項為何錯:**\n- A/B/C. K-Means 真實缺點。\n- D. ✓ 正解(不是限制)\n\n**記憶要點:** K-Means 困擾:K 要先給、初值敏感、離群敏感、凸形偏好。",
+      "explanation": "**為什麼 D 是正解:** K-Means 有許多大規模/GPU 實作(如 Mini-Batch K-Means、FAISS k-means);其他三項皆是真實限制。\n\n**其他選項為何錯:**\n- A. K-Means 真實缺點。\n- B. K-Means 真實缺點。\n- C. K-Means 真實缺點。\n- D. ✓ 正解(不是限制)\n\n**記憶要點:** K-Means 困擾:K 要先給、初值敏感、離群敏感、凸形偏好。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1798,7 +1798,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 同一 filter 滑過整張影像 → 參數大降、且不論物件在哪都能用同一組權重抽特徵(translation equivariance)。\n\n**其他選項為何錯:**\n- A. 反向。\n- B. ✓ 正解\n- C/D. 描述錯誤。\n\n**記憶要點:** CNN 三大特性:Local conn + Weight sharing + Pooling。",
+      "explanation": "**為什麼 B 是正解:** 同一 filter 滑過整張影像 → 參數大降、且不論物件在哪都能用同一組權重抽特徵(translation equivariance)。\n\n**其他選項為何錯:**\n- A. 反向。\n- B. ✓ 正解\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** CNN 三大特性:Local conn + Weight sharing + Pooling。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1821,7 +1821,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 殘差連接讓梯度可繞過幾層直接回傳,訓深網路時不再因「退化(degradation)」表現變差;ResNet-152、ResNet-50 之所以可行皆賴此設計。\n\n**其他選項為何錯:**\n- A/C/D. 與殘差連接目的不符。\n- B. ✓ 正解\n\n**記憶要點:** Residual = 直連旁路,使「身分映射」易學,深網不再退化。",
+      "explanation": "**為什麼 B 是正解:** 殘差連接讓梯度可繞過幾層直接回傳,訓深網路時不再因「退化(degradation)」表現變差;ResNet-152、ResNet-50 之所以可行皆賴此設計。\n\n**其他選項為何錯:**\n- A. 與殘差連接目的不符。\n- C. 與殘差連接目的不符。\n- D. 與殘差連接目的不符。\n- B. ✓ 正解\n\n**記憶要點:** Residual = 直連旁路,使「身分映射」易學,深網不再退化。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1867,7 +1867,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** LSTM 的三閘控+cell state 設計讓梯度沿 cell state 線性流動,大幅緩解長距離依賴的梯度消失。\n\n**其他選項為何錯:**\n- A. 三閘是核心。\n- B. ✓ 正解\n- C/D. 不正確。\n\n**記憶要點:** LSTM = 3 gates(input/forget/output)+ cell state;GRU 是 simplified 版。",
+      "explanation": "**為什麼 B 是正解:** LSTM 的三閘控+cell state 設計讓梯度沿 cell state 線性流動,大幅緩解長距離依賴的梯度消失。\n\n**其他選項為何錯:**\n- A. 三閘是核心。\n- B. ✓ 正解\n- C. 不正確。\n- D. 不正確。\n\n**記憶要點:** LSTM = 3 gates(input/forget/output)+ cell state;GRU 是 simplified 版。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1890,7 +1890,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** d_k 越大,點積數值越大,softmax 容易飽和導致梯度幾乎為 0,除以 √d_k 使其數值穩定。\n\n**其他選項為何錯:**\n- A. 是必要設計。\n- B. ✓ 正解\n- C/D. 描述錯誤。\n\n**記憶要點:** Scaled Dot-Product Attention 的「Scaled」就是 √d_k。",
+      "explanation": "**為什麼 B 是正解:** d_k 越大,點積數值越大,softmax 容易飽和導致梯度幾乎為 0,除以 √d_k 使其數值穩定。\n\n**其他選項為何錯:**\n- A. 是必要設計。\n- B. ✓ 正解\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** Scaled Dot-Product Attention 的「Scaled」就是 √d_k。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1936,7 +1936,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Adam = Momentum + RMSProp + bias correction;每個參數有自己的學習率,實務上常用。\n\n**其他選項為何錯:**\n- A/C/D. 描述錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Adam = 一階(momentum) + 二階(RMSProp) + bias 校正;常用 lr=1e-3。",
+      "explanation": "**為什麼 B 是正解:** Adam = Momentum + RMSProp + bias correction;每個參數有自己的學習率,實務上常用。\n\n**其他選項為何錯:**\n- A. 描述錯誤。\n- C. 描述錯誤。\n- D. 描述錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Adam = 一階(momentum) + 二階(RMSProp) + bias 校正;常用 lr=1e-3。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1959,7 +1959,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 D 是正解:** 多數 schedule 是「先大後小」精修,並非越大越好;太大會震盪/發散。\n\n**其他選項為何錯:**\n- A/B/C. 皆為標準 schedule 設計。\n- D. ✓ 正解(錯誤敘述)\n\n**記憶要點:** Warmup → Peak → Decay 是典型 LR schedule;Adam + warmup + cosine 是 Transformer 經典組合。",
+      "explanation": "**為什麼 D 是正解:** 多數 schedule 是「先大後小」精修,並非越大越好;太大會震盪/發散。\n\n**其他選項為何錯:**\n- A. 皆為標準 schedule 設計。\n- B. 皆為標準 schedule 設計。\n- C. 皆為標準 schedule 設計。\n- D. ✓ 正解(錯誤敘述)\n\n**記憶要點:** Warmup → Peak → Decay 是典型 LR schedule;Adam + warmup + cosine 是 Transformer 經典組合。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1982,7 +1982,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Gradient Clipping 是 RNN/Transformer 訓練常規,把過大的梯度範數縮回閾值,避免一次大跳偏離。\n\n**其他選項為何錯:**\n- A/C/D. 不切實際。\n- B. ✓ 正解\n\n**記憶要點:** Exploding gradient → Gradient Clipping(global norm 或 value);Vanishing → ResNet/LSTM/GELU 等。",
+      "explanation": "**為什麼 B 是正解:** Gradient Clipping 是 RNN/Transformer 訓練常規,把過大的梯度範數縮回閾值,避免一次大跳偏離。\n\n**其他選項為何錯:**\n- A. 不切實際。\n- C. 不切實際。\n- D. 不切實際。\n- B. ✓ 正解\n\n**記憶要點:** Exploding gradient → Gradient Clipping(global norm 或 value);Vanishing → ResNet/LSTM/GELU 等。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2028,7 +2028,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** 名義類別用 One-Hot;有序類別用 Ordinal;高基數類別常用 Target/Frequency Encoding;依特性選擇。\n\n**其他選項為何錯:**\n- A/B. 是數值縮放,不是類別編碼。\n- D. 無意義。\n- C. ✓ 正解\n\n**記憶要點:** 類別編碼三大類:Nominal=One-Hot、Ordinal=有序整數、High-cardinality=Target/Frequency。",
+      "explanation": "**為什麼 C 是正解:** 名義類別用 One-Hot;有序類別用 Ordinal;高基數類別常用 Target/Frequency Encoding;依特性選擇。\n\n**其他選項為何錯:**\n- A. 是數值縮放,不是類別編碼。\n- B. 是數值縮放,不是類別編碼。\n- D. 無意義。\n- C. ✓ 正解\n\n**記憶要點:** 類別編碼三大類:Nominal=One-Hot、Ordinal=有序整數、High-cardinality=Target/Frequency。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2051,7 +2051,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 D 是正解:** 任意亂數會引入雜訊與偏差,且未評估對模型的影響,屬反例。\n\n**其他選項為何錯:**\n- A/B/C. 為標準缺失值處理。\n- D. ✓ 正解(不建議)\n\n**記憶要點:** Missing 處理優先考慮 MCAR/MAR/MNAR,選對策略;勿亂塞亂數。",
+      "explanation": "**為什麼 D 是正解:** 任意亂數會引入雜訊與偏差,且未評估對模型的影響,屬反例。\n\n**其他選項為何錯:**\n- A. 為標準缺失值處理。\n- B. 為標準缺失值處理。\n- C. 為標準缺失值處理。\n- D. ✓ 正解(不建議)\n\n**記憶要點:** Missing 處理優先考慮 MCAR/MAR/MNAR,選對策略;勿亂塞亂數。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2097,7 +2097,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Stratified 保留類別比例,避免某 fold 出現某類別過少甚至缺失,評估更穩定。\n\n**其他選項為何錯:**\n- A/C/D. 與目的不符。\n- B. ✓ 正解\n\n**記憶要點:** 分類 + 不平衡 → 用 StratifiedKFold;時序資料 → 用 TimeSeriesSplit。",
+      "explanation": "**為什麼 B 是正解:** Stratified 保留類別比例,避免某 fold 出現某類別過少甚至缺失,評估更穩定。\n\n**其他選項為何錯:**\n- A. 與目的不符。\n- C. 與目的不符。\n- D. 與目的不符。\n- B. ✓ 正解\n\n**記憶要點:** 分類 + 不平衡 → 用 StratifiedKFold;時序資料 → 用 TimeSeriesSplit。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2120,7 +2120,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 時序資料隨機切會用「未來知識」訓練 → data leakage;必須訓 < 驗 < 測。\n\n**其他選項為何錯:**\n- A. 造成 data leakage。\n- B. ✓ 正解\n- C/D. 不可行。\n\n**記憶要點:** 時序 = 保時序 + 不隨機 + Rolling/Expanding。",
+      "explanation": "**為什麼 B 是正解:** 時序資料隨機切會用「未來知識」訓練 → data leakage;必須訓 < 驗 < 測。\n\n**其他選項為何錯:**\n- A. 造成 data leakage。\n- B. ✓ 正解\n- C. 不可行。\n- D. 不可行。\n\n**記憶要點:** 時序 = 保時序 + 不隨機 + Rolling/Expanding。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2212,7 +2212,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 簡單模型偏差大、方差小(欠擬合);複雜模型偏差小、方差大(過擬合);找到 sweet spot 是目標。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C. 描述錯誤。\n- D. Underfitting = 高 bias 而非高 variance。\n\n**記憶要點:** Under=高 bias、Over=高 variance;Regularization/CV 控管 tradeoff。",
+      "explanation": "**為什麼 A 是正解:** 簡單模型偏差大、方差小(欠擬合);複雜模型偏差小、方差大(過擬合);找到 sweet spot 是目標。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 描述錯誤。\n- C. 描述錯誤。\n- D. Underfitting = 高 bias 而非高 variance。\n\n**記憶要點:** Under=高 bias、Over=高 variance;Regularization/CV 控管 tradeoff。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2235,7 +2235,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** L1 的幾何形狀為菱形,角點落於座標軸 → 稀疏解;L2 圓形,只是收縮。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Lasso=L1=稀疏=特徵選擇;Ridge=L2=平滑=多重共線性;ElasticNet=兩者混合。",
+      "explanation": "**為什麼 A 是正解:** L1 的幾何形狀為菱形,角點落於座標軸 → 稀疏解;L2 圓形,只是收縮。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Lasso=L1=稀疏=特徵選擇;Ridge=L2=平滑=多重共線性;ElasticNet=兩者混合。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2258,7 +2258,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** 沒有標籤的分群是 unsupervised(K-Means、DBSCAN)。其他三項皆有明確標籤(房價、狗種、復發)。\n\n**其他選項為何錯:**\n- A/B/D. 監督式學習。\n- C. ✓ 正解\n\n**記憶要點:** 有 label = supervised;無 label = unsupervised;部份 label = semi-supervised。",
+      "explanation": "**為什麼 C 是正解:** 沒有標籤的分群是 unsupervised(K-Means、DBSCAN)。其他三項皆有明確標籤(房價、狗種、復發)。\n\n**其他選項為何錯:**\n- A. 監督式學習。\n- B. 監督式學習。\n- D. 監督式學習。\n- C. ✓ 正解\n\n**記憶要點:** 有 label = supervised;無 label = unsupervised;部份 label = semi-supervised。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2281,7 +2281,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** RF 不會改標籤;若改標籤就破壞了學習訊號。\n\n**其他選項為何錯:**\n- A/B/D. RF 真實設計。\n- C. ✓ 正解(不屬於)\n\n**記憶要點:** RF 兩大隨機:Bootstrap(資料)+ 特徵隨機子集(分裂)。",
+      "explanation": "**為什麼 C 是正解:** RF 不會改標籤;若改標籤就破壞了學習訊號。\n\n**其他選項為何錯:**\n- A. RF 真實設計。\n- B. RF 真實設計。\n- D. RF 真實設計。\n- C. ✓ 正解(不屬於)\n\n**記憶要點:** RF 兩大隨機:Bootstrap(資料)+ 特徵隨機子集(分裂)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2304,7 +2304,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** BN 透過減少 internal covariate shift,可用較大 LR 訓練、加速收斂、提供輕度正則化;γ、β 讓網路保留表達彈性。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C/D. 錯誤。\n\n**記憶要點:** BN = 每維 normalize + γβ 還原;RNN 通常用 LayerNorm。",
+      "explanation": "**為什麼 A 是正解:** BN 透過減少 internal covariate shift,可用較大 LR 訓練、加速收斂、提供輕度正則化;γ、β 讓網路保留表達彈性。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n\n**記憶要點:** BN = 每維 normalize + γβ 還原;RNN 通常用 LayerNorm。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2350,7 +2350,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** DP 透過 calibrated noise(雜訊規模與 sensitivity / ε 有關)保證單一資料點對輸出影響極小,具有 (ε,δ)-DP 數學保證。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C/D. 錯誤。\n\n**記憶要點:** DP = ε-差分隱私;經典機制:Laplace、Gaussian、Exponential。",
+      "explanation": "**為什麼 A 是正解:** DP 透過 calibrated noise(雜訊規模與 sensitivity / ε 有關)保證單一資料點對輸出影響極小,具有 (ε,δ)-DP 數學保證。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n\n**記憶要點:** DP = ε-差分隱私;經典機制:Laplace、Gaussian、Exponential。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2396,7 +2396,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Demographic Parity 要求各群體被「預測為正」的比例相同,不考慮真實標籤。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 三大公平準則:Demographic Parity、Equalized Odds、Predictive Parity;三者通常不可能同時滿足(不可能定理)。",
+      "explanation": "**為什麼 A 是正解:** Demographic Parity 要求各群體被「預測為正」的比例相同,不考慮真實標籤。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 三大公平準則:Demographic Parity、Equalized Odds、Predictive Parity;三者通常不可能同時滿足(不可能定理)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2419,7 +2419,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 弱勢族群代表性不足 → 模型對其學得不夠 → 預測偏差。經典案例:Joy Buolamwini 顯示商用人臉辨識對深膚色女性錯誤率高。\n\n**其他選項為何錯:**\n- B/C/D. 與資料偏見無關。\n- A. ✓ 正解\n\n**記憶要點:** Bias 來源:資料(代表性、標註)、演算法(目標、特徵)、部署(回饋迴路)。",
+      "explanation": "**為什麼 A 是正解:** 弱勢族群代表性不足 → 模型對其學得不夠 → 預測偏差。經典案例:Joy Buolamwini 顯示商用人臉辨識對深膚色女性錯誤率高。\n\n**其他選項為何錯:**\n- B. 與資料偏見無關。\n- C. 與資料偏見無關。\n- D. 與資料偏見無關。\n- A. ✓ 正解\n\n**記憶要點:** Bias 來源:資料(代表性、標註)、演算法(目標、特徵)、部署(回饋迴路)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2442,7 +2442,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 D 是正解:** 線性可分問題用線性模型即可達到完美分類,投入大型深度網路屬過度工程,且更易過擬合、難解釋。\n\n**其他選項為何錯:**\n- A/B/C. 都是線性可分問題的合適模型。\n- D. ✓ 正解(殺雞用牛刀)\n\n**記憶要點:** Occam's razor:簡單模型優先;線性可分問題用線性模型。",
+      "explanation": "**為什麼 D 是正解:** 線性可分問題用線性模型即可達到完美分類,投入大型深度網路屬過度工程,且更易過擬合、難解釋。\n\n**其他選項為何錯:**\n- A. 都是線性可分問題的合適模型。\n- B. 都是線性可分問題的合適模型。\n- C. 都是線性可分問題的合適模型。\n- D. ✓ 正解(殺雞用牛刀)\n\n**記憶要點:** Occam's razor:簡單模型優先;線性可分問題用線性模型。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2465,7 +2465,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Macro 平等對待每類別,小類別也有發言權;Micro 把所有預測一起算,大類別主導結果。Weighted 是按樣本數加權。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 不平衡多類別評估:Macro 看公平、Micro 看整體、Weighted 按比例。",
+      "explanation": "**為什麼 A 是正解:** Macro 平等對待每類別,小類別也有發言權;Micro 把所有預測一起算,大類別主導結果。Weighted 是按樣本數加權。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 不平衡多類別評估:Macro 看公平、Micro 看整體、Weighted 按比例。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2488,7 +2488,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 直接從資料/損失層面處理:Oversampling 增加少數類別代表性、Undersampling 減少多數類別、class_weight 對少數類加重損失。\n\n**其他選項為何錯:**\n- A. Accuracy 在不平衡時嚴重誤導。\n- B. ✓ 正解\n- C/D. 反例。\n\n**記憶要點:** 不平衡三招:Resampling(SMOTE/RUS)、Class weight、Threshold tuning。",
+      "explanation": "**為什麼 B 是正解:** 直接從資料/損失層面處理:Oversampling 增加少數類別代表性、Undersampling 減少多數類別、class_weight 對少數類加重損失。\n\n**其他選項為何錯:**\n- A. Accuracy 在不平衡時嚴重誤導。\n- B. ✓ 正解\n- C. 反例。\n- D. 反例。\n\n**記憶要點:** 不平衡三招:Resampling(SMOTE/RUS)、Class weight、Threshold tuning。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2534,7 +2534,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 對醫療(漏診代價高)應拉低閾值換 Recall;對冷郵件(誤判代價高)拉高閾值換 Precision。\n\n**其他選項為何錯:**\n- A/C/D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** 閾值 = Recall ↔ Precision 的拉桿;依業務代價選擇工作點。",
+      "explanation": "**為什麼 B 是正解:** 對醫療(漏診代價高)應拉低閾值換 Recall;對冷郵件(誤判代價高)拉高閾值換 Precision。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** 閾值 = Recall ↔ Precision 的拉桿;依業務代價選擇工作點。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2580,7 +2580,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** iForest 不算距離/密度,而是看「隨機切資料」時樣本多快被孤立,離群點通常很快(路徑短)。\n\n**其他選項為何錯:**\n- B. 反向。\n- C/D. 錯誤,iForest 是非監督的。\n- A. ✓ 正解\n\n**記憶要點:** iForest = 隨機切+路徑短=異常;高效、大資料友善。",
+      "explanation": "**為什麼 A 是正解:** iForest 不算距離/密度,而是看「隨機切資料」時樣本多快被孤立,離群點通常很快(路徑短)。\n\n**其他選項為何錯:**\n- B. 反向。\n- C. 錯誤,iForest 是非監督的。\n- D. 錯誤,iForest 是非監督的。\n- A. ✓ 正解\n\n**記憶要點:** iForest = 隨機切+路徑短=異常;高效、大資料友善。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2603,7 +2603,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** AE 學會壓縮+重建常態樣本,異常輸入因不在學過的流形上而重建誤差較大,以閾值切分異常。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** AE 異常偵測 = 重建誤差 > 閾值 → 異常;非監督。",
+      "explanation": "**為什麼 A 是正解:** AE 學會壓縮+重建常態樣本,異常輸入因不在學過的流形上而重建誤差較大,以閾值切分異常。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** AE 異常偵測 = 重建誤差 > 閾值 → 異常;非監督。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2626,7 +2626,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** OC-SVM 只用「正常樣本」學決策邊界(經 kernel 投影到 RKHS),outside = 異常,屬非監督/半監督。\n\n**其他選項為何錯:**\n- B. 不需異常標籤。\n- C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** OC-SVM = 學「常態包絡」、區分內/外。",
+      "explanation": "**為什麼 A 是正解:** OC-SVM 只用「正常樣本」學決策邊界(經 kernel 投影到 RKHS),outside = 異常,屬非監督/半監督。\n\n**其他選項為何錯:**\n- B. 不需異常標籤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** OC-SVM = 學「常態包絡」、區分內/外。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2649,7 +2649,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Transfer learning 借用大資料學到的通用特徵,小資料任務只需微調 = 更快收斂、更好泛化。\n\n**其他選項為何錯:**\n- A/C/D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Transfer = Pretrain(大) + Fine-tune(小);ImageNet/BERT/GPT 都是經典基底。",
+      "explanation": "**為什麼 B 是正解:** Transfer learning 借用大資料學到的通用特徵,小資料任務只需微調 = 更快收斂、更好泛化。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Transfer = Pretrain(大) + Fine-tune(小);ImageNet/BERT/GPT 都是經典基底。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2672,7 +2672,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 底層常是邊緣/紋理等通用特徵可重用;資料少時不要訓太多參數避免過擬合。\n\n**其他選項為何錯:**\n- A. 資料多 + 分佈差大 → 全量 fine-tune 較適合。\n- C/D. 與凍結無關。\n- B. ✓ 正解\n\n**記憶要點:** 資料少+像 → freeze 底層 + tune 頂層;資料多+不像 → 全量微調或重訓。",
+      "explanation": "**為什麼 B 是正解:** 底層常是邊緣/紋理等通用特徵可重用;資料少時不要訓太多參數避免過擬合。\n\n**其他選項為何錯:**\n- A. 資料多 + 分佈差大 → 全量 fine-tune 較適合。\n- C. 與凍結無關。\n- D. 與凍結無關。\n- B. ✓ 正解\n\n**記憶要點:** 資料少+像 → freeze 底層 + tune 頂層;資料多+不像 → 全量微調或重訓。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2695,7 +2695,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Train 時隨機丟、Inference 時全用(現代實作多用 inverted dropout 在訓練時除以 (1-p) 自動補償)。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B/C/D. 錯誤。\n\n**記憶要點:** Dropout train↔eval 不同;PyTorch 用 model.train() / model.eval() 切換。",
+      "explanation": "**為什麼 A 是正解:** Train 時隨機丟、Inference 時全用(現代實作多用 inverted dropout 在訓練時除以 (1-p) 自動補償)。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n\n**記憶要點:** Dropout train↔eval 不同;PyTorch 用 model.train() / model.eval() 切換。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2718,7 +2718,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Early Stopping 用驗證集監看,過了「patience」未改善即停;隱含的 regularization 是「限制有效訓練步數」。\n\n**其他選項為何錯:**\n- A/C/D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Early Stopping = Validation loss + patience + restore_best_weights。",
+      "explanation": "**為什麼 B 是正解:** Early Stopping 用驗證集監看,過了「patience」未改善即停;隱含的 regularization 是「限制有效訓練步數」。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Early Stopping = Validation loss + patience + restore_best_weights。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2741,7 +2741,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** SGD 下兩者等價;Adam 下因每參數調整學習率,把 L2 加在 loss 與直接 decay 權重結果不同 → AdamW 解此問題。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** AdamW = Adam + Decoupled WD,Transformer 訓練常用。",
+      "explanation": "**為什麼 A 是正解:** SGD 下兩者等價;Adam 下因每參數調整學習率,把 L2 加在 loss 與直接 decay 權重結果不同 → AdamW 解此問題。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** AdamW = Adam + Decoupled WD,Transformer 訓練常用。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2764,7 +2764,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** mini-batch 算的均值/變異是估計值,有 noise;這種雜訊作用類似 Dropout,提供輕度正則化。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** BN 副作用:加速收斂 + 輕度 regularization。",
+      "explanation": "**為什麼 A 是正解:** mini-batch 算的均值/變異是估計值,有 noise;這種雜訊作用類似 Dropout,提供輕度正則化。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** BN 副作用:加速收斂 + 輕度 regularization。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2787,7 +2787,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** SSL 用資料自帶結構造 task(MLM、SimCLR、MAE、CPC、BYOL),學通用表徵,常作為 pretraining。\n\n**其他選項為何錯:**\n- A/C/D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** SSL = 不標也能學;BERT/MAE/SimCLR 皆是經典例子。",
+      "explanation": "**為什麼 B 是正解:** SSL 用資料自帶結構造 task(MLM、SimCLR、MAE、CPC、BYOL),學通用表徵,常作為 pretraining。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** SSL = 不標也能學;BERT/MAE/SimCLR 皆是經典例子。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2810,7 +2810,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** SimCLR/MoCo 都採對比目標,key 是「同個 anchor 不同視角為正例,batch 內其他為負例」。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Contrastive Learning = 正例近 + 負例遠;Augmentation 是產生正例的關鍵。",
+      "explanation": "**為什麼 A 是正解:** SimCLR/MoCo 都採對比目標,key 是「同個 anchor 不同視角為正例,batch 內其他為負例」。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Contrastive Learning = 正例近 + 負例遠;Augmentation 是產生正例的關鍵。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2833,7 +2833,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Calibration 是「機率可信度」問題,深度模型常過度自信,需 Platt(logistic)、Isotonic、Temperature Scaling 校正。\n\n**其他選項為何錯:**\n- A/C/D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Calibration:Platt、Isotonic、Temperature Scaling;ECE/MCE 是常用指標。",
+      "explanation": "**為什麼 B 是正解:** Calibration 是「機率可信度」問題,深度模型常過度自信,需 Platt(logistic)、Isotonic、Temperature Scaling 校正。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Calibration:Platt、Isotonic、Temperature Scaling;ECE/MCE 是常用指標。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2856,7 +2856,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** ECE 量化「信心 vs 實際準確率」差距,經典實作分 10-20 桶。\n\n**其他選項為何錯:**\n- A/C/D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** ECE = Σ (|conf − acc| × n_bin / n_total);越小越校準。",
+      "explanation": "**為什麼 B 是正解:** ECE 量化「信心 vs 實際準確率」差距,經典實作分 10-20 桶。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** ECE = Σ (|conf − acc| × n_bin / n_total);越小越校準。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2879,7 +2879,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** LR Finder 從小到大線性掃 LR,記錄 loss → 損失下降最快、即將發散前的 LR 就是 peak LR 建議值。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** LR Finder = Range test;fastai 內建 lr_find()。",
+      "explanation": "**為什麼 A 是正解:** LR Finder 從小到大線性掃 LR,記錄 loss → 損失下降最快、即將發散前的 LR 就是 peak LR 建議值。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** LR Finder = Range test;fastai 內建 lr_find()。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2902,7 +2902,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** SGDR 用 cosine annealing + 多次 restart,每次 restart LR 拉回 peak,然後 cosine 降,讓優化器多次探索。\n\n**其他選項為何錯:**\n- A/C/D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** SGDR = Cosine + Warm Restart;對深度模型常見有效。",
+      "explanation": "**為什麼 B 是正解:** SGDR 用 cosine annealing + 多次 restart,每次 restart LR 拉回 peak,然後 cosine 降,讓優化器多次探索。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** SGDR = Cosine + Warm Restart;對深度模型常見有效。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2925,7 +2925,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** ROC = (FPR, TPR);PR 曲線才是 (Recall, Precision)。\n\n**其他選項為何錯:**\n- B. PR 曲線。\n- C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** ROC:X=FPR、Y=TPR;PR:X=Recall、Y=Precision。",
+      "explanation": "**為什麼 A 是正解:** ROC = (FPR, TPR);PR 曲線才是 (Recall, Precision)。\n\n**其他選項為何錯:**\n- B. PR 曲線。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** ROC:X=FPR、Y=TPR;PR:X=Recall、Y=Precision。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2948,7 +2948,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** K×K 矩陣,對角為 TP,off-diagonal 揭示哪些類常被混淆;per-class precision/recall/F1 由此可計算。\n\n**其他選項為何錯:**\n- A. 多類可用。\n- B. ✓ 正解\n- C/D. 錯誤。\n\n**記憶要點:** Confusion matrix = 多類診斷神器,看「誰被混成誰」。",
+      "explanation": "**為什麼 B 是正解:** K×K 矩陣,對角為 TP,off-diagonal 揭示哪些類常被混淆;per-class precision/recall/F1 由此可計算。\n\n**其他選項為何錯:**\n- A. 多類可用。\n- B. ✓ 正解\n- C. 錯誤。\n- D. 錯誤。\n\n**記憶要點:** Confusion matrix = 多類診斷神器,看「誰被混成誰」。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2971,7 +2971,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** RCT、Causal DAG、Do-calculus、合成對照等是因果推論工具,單純相關係數不足以證明因果。\n\n**其他選項為何錯:**\n- A/C/D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Causation 需 RCT / Causal model;Correlation 只是觀察。",
+      "explanation": "**為什麼 B 是正解:** RCT、Causal DAG、Do-calculus、合成對照等是因果推論工具,單純相關係數不足以證明因果。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Causation 需 RCT / Causal model;Correlation 只是觀察。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3040,7 +3040,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** H(X) ≥ 0;確定 = 0、均勻 = log(N);用於決策樹、KL 散度、交叉熵損失等基礎。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Entropy = 不確定性 = -Σ p log p;均勻最大、確定為 0。",
+      "explanation": "**為什麼 A 是正解:** H(X) ≥ 0;確定 = 0、均勻 = log(N);用於決策樹、KL 散度、交叉熵損失等基礎。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Entropy = 不確定性 = -Σ p log p;均勻最大、確定為 0。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3063,7 +3063,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** D_KL(P||Q) ≠ D_KL(Q||P),且不滿足三角不等式 → 非度量(metric)。常用於 VAE、Variational Inference、Cross-Entropy 推導。\n\n**其他選項為何錯:**\n- B. 不對稱,不是距離。\n- C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** KL = 相對熵;非對稱;Cross-Entropy = Entropy + KL。",
+      "explanation": "**為什麼 A 是正解:** D_KL(P||Q) ≠ D_KL(Q||P),且不滿足三角不等式 → 非度量(metric)。常用於 VAE、Variational Inference、Cross-Entropy 推導。\n\n**其他選項為何錯:**\n- B. 不對稱,不是距離。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** KL = 相對熵;非對稱;Cross-Entropy = Entropy + KL。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3086,7 +3086,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** ARIMA(p,d,q) = AR + I + MA;d 是差分階數,把非平穩變平穩才適用 AR/MA。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** ARIMA 三參:p(AR 階)、d(差分)、q(MA 階);SARIMA 加季節項。",
+      "explanation": "**為什麼 A 是正解:** ARIMA(p,d,q) = AR + I + MA;d 是差分階數,把非平穩變平穩才適用 AR/MA。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** ARIMA 三參:p(AR 階)、d(差分)、q(MA 階);SARIMA 加季節項。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3109,7 +3109,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** 用「未來」資料當特徵就是 data leakage,預測時不可得,離線評估會被嚴重高估。\n\n**其他選項為何錯:**\n- A/B/D. 標準時序特徵工程。\n- C. ✓ 正解(反例)\n\n**記憶要點:** 時序特徵:lag / rolling / calendar 皆可;絕不能用未來資訊。",
+      "explanation": "**為什麼 C 是正解:** 用「未來」資料當特徵就是 data leakage,預測時不可得,離線評估會被嚴重高估。\n\n**其他選項為何錯:**\n- A. 標準時序特徵工程。\n- B. 標準時序特徵工程。\n- D. 標準時序特徵工程。\n- C. ✓ 正解(反例)\n\n**記憶要點:** 時序特徵:lag / rolling / calendar 皆可;絕不能用未來資訊。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3132,7 +3132,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** STL / classical decomposition 都把時序分為 trend、season、residual;加性適合振幅穩定、乘性適合振幅隨值放大。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 時序分解:Trend + Season + Residual;Additive vs Multiplicative。",
+      "explanation": "**為什麼 A 是正解:** STL / classical decomposition 都把時序分為 trend、season、residual;加性適合振幅穩定、乘性適合振幅隨值放大。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 時序分解:Trend + Season + Residual;Additive vs Multiplicative。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3155,7 +3155,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** SHAP 將每個特徵視為玩家,以 Shapley value 公平分配「模型預測對基準的偏差」到各特徵,具理論保證(local accuracy、symmetry、missingness、consistency)。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** SHAP = Shapley + Additive;global summary + local explanation。",
+      "explanation": "**為什麼 A 是正解:** SHAP 將每個特徵視為玩家,以 Shapley value 公平分配「模型預測對基準的偏差」到各特徵,具理論保證(local accuracy、symmetry、missingness、consistency)。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** SHAP = Shapley + Additive;global summary + local explanation。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3178,7 +3178,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** LIME 對單一樣本做局部解釋:採樣鄰域 → 拿黑盒打分 → 用線性模型擬合 → 取線性係數作解釋。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** LIME = Local + Linear surrogate;與 SHAP 同屬 model-agnostic 解釋,但 LIME 不具 SHAP 的理論保證。",
+      "explanation": "**為什麼 A 是正解:** LIME 對單一樣本做局部解釋:採樣鄰域 → 拿黑盒打分 → 用線性模型擬合 → 取線性係數作解釋。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** LIME = Local + Linear surrogate;與 SHAP 同屬 model-agnostic 解釋,但 LIME 不具 SHAP 的理論保證。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3201,7 +3201,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** MDI 是訓練期累計,可能偏向高 cardinality 特徵;Permutation 是事後評估,較穩健但較慢。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Tree 重要性兩派:MDI(快、有偏)、Permutation(慢、穩健)。",
+      "explanation": "**為什麼 A 是正解:** MDI 是訓練期累計,可能偏向高 cardinality 特徵;Permutation 是事後評估,較穩健但較慢。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Tree 重要性兩派:MDI(快、有偏)、Permutation(慢、穩健)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3224,7 +3224,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Softmax 把 logits 變機率分佈;指數放大最大值差距,故有「贏者通吃」傾向,常配合 temperature 調整 sharpness。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Softmax = 機率分佈 + 贏者通吃;temperature 控銳度。",
+      "explanation": "**為什麼 A 是正解:** Softmax 把 logits 變機率分佈;指數放大最大值差距,故有「贏者通吃」傾向,常配合 temperature 調整 sharpness。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Softmax = 機率分佈 + 贏者通吃;temperature 控銳度。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3247,7 +3247,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** sigmoid'(x) ≤ 0.25,深層連乘後梯度 → 0;對策:ReLU 系列、ResNet、LSTM、適當初始化、BN。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Vanishing → ReLU + ResNet + 好初始化;Exploding → Gradient Clipping。",
+      "explanation": "**為什麼 A 是正解:** sigmoid'(x) ≤ 0.25,深層連乘後梯度 → 0;對策:ReLU 系列、ResNet、LSTM、適當初始化、BN。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Vanishing → ReLU + ResNet + 好初始化;Exploding → Gradient Clipping。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3270,7 +3270,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 文字 BoW 稀疏 + 條件獨立假設在文字下「夠好用」,NB 訓練幾乎只需計算詞頻機率。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Naive Bayes 文字分類 baseline 強而快;Multinomial NB 處理計數、Bernoulli NB 處理 binary。",
+      "explanation": "**為什麼 A 是正解:** 文字 BoW 稀疏 + 條件獨立假設在文字下「夠好用」,NB 訓練幾乎只需計算詞頻機率。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Naive Bayes 文字分類 baseline 強而快;Multinomial NB 處理計數、Bernoulli NB 處理 binary。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3293,7 +3293,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** k 越大、群組越大、重識別風險越低,但通常會降低資料效用 — k-匿名仍有 attribute disclosure 等弱點,需 l-diversity / t-closeness 補強。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** k-Anonymity → l-Diversity → t-Closeness → Differential Privacy,愈嚴格愈強。",
+      "explanation": "**為什麼 A 是正解:** k 越大、群組越大、重識別風險越低,但通常會降低資料效用 — k-匿名仍有 attribute disclosure 等弱點,需 l-diversity / t-closeness 補強。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** k-Anonymity → l-Diversity → t-Closeness → Differential Privacy,愈嚴格愈強。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3316,7 +3316,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Secure Aggregation 透過 secret sharing / masking,使 server 只能得到 aggregate,不知道任何單一 client update 內容。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** FL 隱私三件套:Local training + Secure Aggregation + Differential Privacy。",
+      "explanation": "**為什麼 A 是正解:** Secure Aggregation 透過 secret sharing / masking,使 server 只能得到 aggregate,不知道任何單一 client update 內容。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** FL 隱私三件套:Local training + Secure Aggregation + Differential Privacy。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3339,7 +3339,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Equalized Odds 同時要求 TPR 與 FPR 在各群一致;Equal Opportunity 是其放寬版,只看 TPR。\n\n**其他選項為何錯:**\n- B. 是 Demographic Parity。\n- C/D. 不是 Equalized Odds 定義。\n- A. ✓ 正解\n\n**記憶要點:** Equalized Odds = 同 TPR + 同 FPR;Equal Opportunity = 同 TPR(更鬆)。",
+      "explanation": "**為什麼 A 是正解:** Equalized Odds 同時要求 TPR 與 FPR 在各群一致;Equal Opportunity 是其放寬版,只看 TPR。\n\n**其他選項為何錯:**\n- B. 是 Demographic Parity。\n- C. 不是 Equalized Odds 定義。\n- D. 不是 Equalized Odds 定義。\n- A. ✓ 正解\n\n**記憶要點:** Equalized Odds = 同 TPR + 同 FPR;Equal Opportunity = 同 TPR(更鬆)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3362,7 +3362,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 4/5 規則(80% 規則)是美國 EEOC 對招聘等決策的法律標準,常用於檢測模型潛在歧視。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 4/5 Rule:Disadvantaged / Advantaged < 0.8 → adverse impact 警訊。",
+      "explanation": "**為什麼 A 是正解:** 4/5 規則(80% 規則)是美國 EEOC 對招聘等決策的法律標準,常用於檢測模型潛在歧視。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 4/5 Rule:Disadvantaged / Advantaged < 0.8 → adverse impact 警訊。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3385,7 +3385,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Counterfactual Fairness 以因果圖為基礎,要求「改變敏感屬性」不影響預測 — 是個體層面的因果性概念。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Counterfactual Fairness:做因果反事實實驗,改種族後預測仍同。",
+      "explanation": "**為什麼 A 是正解:** Counterfactual Fairness 以因果圖為基礎,要求「改變敏感屬性」不影響預測 — 是個體層面的因果性概念。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Counterfactual Fairness:做因果反事實實驗,改種族後預測仍同。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3408,7 +3408,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** LightGBM 用 leaf-wise(挑損失下降最多的葉子分裂)+ histogram,速度與記憶體優於 XGBoost level-wise;但 leaf-wise 容易過擬合,需限制 max_depth/num_leaves。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** LightGBM = leaf-wise + histogram + 原生類別;深度需控制。",
+      "explanation": "**為什麼 A 是正解:** LightGBM 用 leaf-wise(挑損失下降最多的葉子分裂)+ histogram,速度與記憶體優於 XGBoost level-wise;但 leaf-wise 容易過擬合,需限制 max_depth/num_leaves。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** LightGBM = leaf-wise + histogram + 原生類別;深度需控制。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3431,7 +3431,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** RF 的機率是「投票比例」,容易偏向 0.5 區間,實務上常用 CalibratedClassifierCV 校準。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** RF/Boosting/NB/NN 多需 calibration;Sklearn CalibratedClassifierCV 一行搞定。",
+      "explanation": "**為什麼 A 是正解:** RF 的機率是「投票比例」,容易偏向 0.5 區間,實務上常用 CalibratedClassifierCV 校準。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** RF/Boosting/NB/NN 多需 calibration;Sklearn CalibratedClassifierCV 一行搞定。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3454,7 +3454,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Target encoding 直接用 label 訊息,若不做 OOF 容易把 label 漏進特徵,驗證/測試估計嚴重高估。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Target Encoding:OOF + Smoothing(加先驗均值)是常見保命招。",
+      "explanation": "**為什麼 A 是正解:** Target encoding 直接用 label 訊息,若不做 OOF 容易把 label 漏進特徵,驗證/測試估計嚴重高估。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Target Encoding:OOF + Smoothing(加先驗均值)是常見保命招。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3477,7 +3477,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 1×1 卷積 = 對每個位置的所有通道做 1 個 fully-connected,可極大改變通道數,常用於 bottleneck(ResNet)、Inception。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 1×1 conv = 通道線性組合;ResNet bottleneck 與 Inception 的關鍵元件。",
+      "explanation": "**為什麼 A 是正解:** 1×1 卷積 = 對每個位置的所有通道做 1 個 fully-connected,可極大改變通道數,常用於 bottleneck(ResNet)、Inception。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 1×1 conv = 通道線性組合;ResNet bottleneck 與 Inception 的關鍵元件。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3500,7 +3500,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** BERT(encoder)輸出 token 表徵 → 接 head;GPT(decoder)以續寫方式做任務,搭配 instruction tuning / few-shot 等。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** BERT = Encoder + Head;GPT = Decoder + Prompt;BART/T5 是 Encoder-Decoder。",
+      "explanation": "**為什麼 A 是正解:** BERT(encoder)輸出 token 表徵 → 接 head;GPT(decoder)以續寫方式做任務,搭配 instruction tuning / few-shot 等。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** BERT = Encoder + Head;GPT = Decoder + Prompt;BART/T5 是 Encoder-Decoder。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3523,7 +3523,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** SBERT 把 BERT 包成 Siamese,以 cosine + MSE/Triplet 在 STS 等資料上微調,輸出可直接做相似度檢索。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** RAG 檢索的「句向量」首選不是 raw BERT [CLS],而是 SBERT / instructor 系列。",
+      "explanation": "**為什麼 A 是正解:** SBERT 把 BERT 包成 Siamese,以 cosine + MSE/Triplet 在 STS 等資料上微調,輸出可直接做相似度檢索。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** RAG 檢索的「句向量」首選不是 raw BERT [CLS],而是 SBERT / instructor 系列。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3546,7 +3546,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** FAISS、Milvus、Qdrant 都支援這些 ANN 演算法;HNSW 通用,IVF/PQ 適合超大資料庫的記憶體壓縮。\n\n**其他選項為何錯:**\n- B/C/D. 與向量檢索無關。\n- A. ✓ 正解\n\n**記憶要點:** ANN 三招:HNSW(圖)、IVF(分群)、PQ(量化壓縮)。",
+      "explanation": "**為什麼 A 是正解:** FAISS、Milvus、Qdrant 都支援這些 ANN 演算法;HNSW 通用,IVF/PQ 適合超大資料庫的記憶體壓縮。\n\n**其他選項為何錯:**\n- B. 與向量檢索無關。\n- C. 與向量檢索無關。\n- D. 與向量檢索無關。\n- A. ✓ 正解\n\n**記憶要點:** ANN 三招:HNSW(圖)、IVF(分群)、PQ(量化壓縮)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3569,7 +3569,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Logistic = log loss + 機率輸出;SVM = hinge loss + 最大邊界,雖可用 Platt scaling 推機率但不原生。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Logistic ↔ Log loss / Probabilities;SVM ↔ Hinge loss / Margin。",
+      "explanation": "**為什麼 A 是正解:** Logistic = log loss + 機率輸出;SVM = hinge loss + 最大邊界,雖可用 Platt scaling 推機率但不原生。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Logistic ↔ Log loss / Probabilities;SVM ↔ Hinge loss / Margin。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3592,7 +3592,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Permutation 是「事後」評估,不需重訓:打亂 X、看效能掉多少。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Permutation Importance = 不重訓的模型敏感度量;對 correlated features 仍需小心。",
+      "explanation": "**為什麼 A 是正解:** Permutation 是「事後」評估,不需重訓:打亂 X、看效能掉多少。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Permutation Importance = 不重訓的模型敏感度量;對 correlated features 仍需小心。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3615,7 +3615,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Hold-out 簡單但結果受切分影響;CV 對小資料更穩、更善用樣本,但訓練 K 次成本高。\n\n**其他選項為何錯:**\n- B/C/D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Small data → CV;Large data → Hold-out 即夠;時序則用 TimeSeriesSplit。",
+      "explanation": "**為什麼 A 是正解:** Hold-out 簡單但結果受切分影響;CV 對小資料更穩、更善用樣本,但訓練 K 次成本高。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Small data → CV;Large data → Hold-out 即夠;時序則用 TimeSeriesSplit。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
