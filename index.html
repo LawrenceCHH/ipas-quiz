@@ -474,16 +474,20 @@ function translateExplanation(md, displayOrder) {
 
   // Pass 1: rewrite "為什麼 X 是" (the "why is X correct" header)
   let out = md.replace(/為什麼\s+([A-D])\s+是/g, (_, L) => `為什麼 ${map[L]} 是`);
-  // Pass 2: rewrite bullet items "- X." or joined "- X./Y."
-  out = out.replace(/^(\s*-\s+)([A-D])\.(\s*\/\s*([A-D])\.)?/gm, (_, prefix, L1, slashGrp, L2) => {
-    let res = prefix + map[L1] + ".";
-    if (L2) res += "/" + map[L2] + ".";
-    return res;
+  // Pass 2: rewrite the leading letter group on bullet items. Supports any
+  // number of letters joined by "/" with optional intermediate dots and
+  // whitespace, e.g. "- A.", "- A/B.", "- A/B/C.", "- A./B./C.".
+  out = out.replace(/^(\s*-\s+)((?:[A-D]\.?\s*\/\s*)*[A-D])\./gm, (_, prefix, group) => {
+    // Extract [A-D] tokens from the captured group, remap each, then sort
+    // so the joined group reads alphabetically (e.g. "B/D/C" → "B/C/D").
+    const remapped = (group.match(/[A-D]/g) || []).map(L => map[L]).sort();
+    return prefix + remapped.join("/") + ".";
   });
 
-  // Pass 3: sort the consecutive bullet block by the new letter so the list reads A→D again
+  // Pass 3: sort the consecutive bullet block by its first letter so the list reads A→D again.
+  // Allow joined-letter bullets like "- B/D/C." (capture only the first letter for sorting).
   const lines = out.split("\n");
-  const bulletRe = /^\s*-\s+([A-D])\./;
+  const bulletRe = /^\s*-\s+([A-D])[\.\/]/;
   const result = [];
   let buffer = [];
   const flush = () => {
