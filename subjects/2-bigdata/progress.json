@@ -1313,6 +1313,2306 @@
       "verification_needed": null,
       "explanation": "**為什麼 B 是正解:** 由 shape 資訊 (10000, 32, 32, 3) 可知測試集確實有 10,000 筆 32×32 彩色影像。\n\n**其他選項為何錯:**\n- A. 訓練集為 50,000 筆 (shape 第一維是 50000),非 100,000。\n- B. ✓ 正解\n- C. 由 `type(x_train)` 顯示為 `numpy.ndarray`,並非 Pandas DataFrame。\n- D. 想得到 [0,1] 浮點區間,應該轉為 `float32` 後再除以 255.0;轉成 `int32` 後除法會因為整數除法或精度問題出錯。\n\n**記憶要點:** 影像 normalize 通常 `astype('float32') / 255.0`。",
       "image": "shared/images/sample-s2-114-09-q15-p7.png"
+    },
+    {
+      "id": "gen-claude-s2-q1",
+      "topic": "Analytics/Methods",
+      "question_text": "某零售業者欲對顧客購物籃進行關聯規則分析。已知商品 A 出現在 40% 的交易中，商品 B 出現在 30% 的交易中，A 和 B 同時出現在 18% 的交易中。請問規則「A → B」的提升度（Lift）最接近哪個值？",
+      "options": {
+        "A": "1.50",
+        "B": "0.60",
+        "C": "2.00",
+        "D": "0.45"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 72,
+        "evidence": "Lift = Confidence / P(B) = (P(A∩B)/P(A)) / P(B)"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nLift = Confidence(A→B) / P(B)。Confidence = P(A∩B) / P(A) = 0.18 / 0.40 = 0.45。Lift = 0.45 / 0.30 = 1.50。Lift > 1 代表 A 與 B 的出現具有正相關性。\n\n**其他選項為何錯:**\n- D. 0.45 是 Confidence 值，不是 Lift\n- A. ✓ 正解\n- B. 0.60 無意義計算結果\n- C. 2.00 混淆了分子分母關係\n\n**記憶要點:** Lift = P(A∩B) / (P(A)×P(B)) = Confidence / P(後件)；Lift > 1 正相關，= 1 獨立，< 1 負相關。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q2",
+      "topic": "Analytics/Methods",
+      "question_text": "某電商平台對 10 萬名用戶進行 K-means 分群，分成 5 群後發現某一群的群內平方和（Within-Cluster Sum of Squares, WCSS）遠高於其他群。以下哪個處理方式最合適？",
+      "options": {
+        "A": "對該群再進行子分群，或增加 K 值重新分群",
+        "B": "改用 DBSCAN 演算法，因為它不需要指定 K 值",
+        "C": "移除 WCSS 最高的群，僅保留其餘四群",
+        "D": "增加迭代次數，讓演算法收斂更完全"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 73,
+        "evidence": "K-means 透過最小化群內距離平方和進行分群"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n某群 WCSS 異常高，表示該群內部差異太大，可能包含多個自然子群。最直接的解法是增加 K 值（拆分該群）或對該群單獨再分群，降低群內異質性。\n\n**其他選項為何錯:**\n- D. 增加迭代次數只能讓演算法收斂，不能解決 K 值選擇不當的問題\n- A. ✓ 正解\n- B. 改用 DBSCAN 是策略轉變，但未必是最優解，且題目問最合適處理方式\n- C. 移除某群不是有效的分群策略，會丟失部分用戶資料\n\n**記憶要點:** WCSS 高 = 群內異質性高 = K 太小或初始質心不佳 → 增加 K 或重新初始化。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q3",
+      "topic": "Analytics/Methods",
+      "question_text": "某物流公司想利用時間序列分析預測未來三個月的包裹量。資料顯示每年年底有明顯尖峰，整體呈現上升趨勢。以下哪個 ARIMA 模型組合最能同時捕捉趨勢與季節性？",
+      "options": {
+        "A": "ARIMA(1,0,0)",
+        "B": "ARIMA(0,1,0)",
+        "C": "SARIMA(1,1,1)(1,1,1)[12]",
+        "D": "ARIMA(2,2,2)"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 74,
+        "evidence": "時間序列分解：趨勢、季節性、週期性與隨機成分"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n資料同時具有趨勢（上升）和季節性（年底尖峰），需要 Seasonal ARIMA (SARIMA)。SARIMA(1,1,1)(1,1,1)[12] 的非季節部分處理趨勢，季節部分[12] 處理年度週期。\n\n**其他選項為何錯:**\n- A. ARIMA(1,0,0) 是簡單 AR(1)，無法處理趨勢或季節性\n- B. ARIMA(0,1,0) 只做一階差分去趨勢，無法捕捉季節性\n- C. ✓ 正解\n- D. ARIMA(2,2,2) 過度差分且無季節性參數\n\n**記憶要點:** SARIMA = ARIMA + 季節參數 [s]；年度資料用 [12]，季度用 [4]。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q4",
+      "topic": "Analytics/Methods",
+      "question_text": "某銀行以關聯規則分析信用卡消費模式，設定最小支持度（min_support）= 0.05、最小信賴度（min_confidence）= 0.6。若某規則的 Support = 0.04，該規則會被？",
+      "options": {
+        "A": "過濾掉，因為未達最小支持度門檻",
+        "B": "提升 Confidence 後再判斷是否保留",
+        "C": "轉換為逆向規則後重新評估",
+        "D": "保留，因為 Confidence 可能超過 0.6"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 72,
+        "evidence": "Support = P(A∩B)，Apriori 演算法先以最小支持度過濾候選項目集"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nApriori 演算法首先過濾未達最小支持度的項目集，Support = 0.04 < min_support = 0.05，該規則直接被剪枝（pruning），不論 Confidence 高低。\n\n**其他選項為何錯:**\n- D. 錯誤；支持度不足的規則在 Apriori 中會先被剔除，不進入 Confidence 計算\n- A. ✓ 正解\n- B. Confidence 是後續計算，不影響 Support 門檻的過濾\n- C. 逆向規則有不同 Support，但原規則仍被過濾\n\n**記憶要點:** Apriori 的「反單調性」：若項目集支持度不足，其所有超集支持度也不足，可安全剪枝。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q5",
+      "topic": "Analytics/Methods",
+      "question_text": "某醫療機構利用 DBSCAN 演算法對患者就醫行為進行分群。若將參數 ε（鄰域半徑）設定過大，可能導致什麼問題？",
+      "options": {
+        "A": "產生過多雜訊點（noise points）",
+        "B": "群數過多，分群過於細緻",
+        "C": "原本應分開的群被合併成同一群",
+        "D": "演算法無法收斂，進入無限迴圈"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 73,
+        "evidence": "DBSCAN 以密度為基礎，ε 控制鄰域範圍"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\nε 過大時，每個點的鄰域涵蓋更多點，本來密度較低的「橋接」區域也變成核心點，導致原本應為不同群的點被連接，合併成一個大群（under-clustering）。\n\n**其他選項為何錯:**\n- A. ε 過大會減少雜訊點（更多點被包含在群內），而非增加\n- B. ε 過大會導致群數減少，而非增多\n- C. ✓ 正解\n- D. DBSCAN 無收斂問題，它是確定性演算法\n\n**記憶要點:** ε 大 → 鄰域大 → 群合併（under-clustering）；ε 小 → 鄰域小 → 群破碎、雜訊多（over-clustering）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q6",
+      "topic": "Analytics/Methods",
+      "question_text": "某連鎖餐廳分析各分店的月營業額，發現資料高度右偏（正偏態）。若使用階層式分群（Hierarchical Clustering）且採用「完整連結」（Complete Linkage）策略，兩群之間的距離定義為何？",
+      "options": {
+        "A": "兩群中所有點對距離的平均值",
+        "B": "兩群質心之間的距離",
+        "C": "兩群中最近的兩點之間的距離",
+        "D": "兩群中最遠的兩點之間的距離"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 73,
+        "evidence": "階層式分群的連結方式：Single, Complete, Average, Ward"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n完整連結（Complete Linkage / Maximum Linkage）定義群間距離為兩群中距離最遠的點對之距離。這種策略傾向產生較緊密、球形的群。\n\n**其他選項為何錯:**\n- A. 這是平均連結（Average Linkage）的定義\n- B. 這是質心連結（Centroid Linkage）的定義\n- C. 這是單一連結（Single Linkage / Minimum Linkage）的定義\n- D. ✓ 正解\n\n**記憶要點:** Single=最近點距離（鏈式效應風險），Complete=最遠點距離（緊密群），Average=平均距離（折衷），Ward=最小化群內方差（常用）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q7",
+      "topic": "Analytics/Methods",
+      "question_text": "某電信公司以客戶通話時長、資料用量等特徵建立 K-means 分群模型。在決定最佳 K 值時，分析師使用「手肘法」（Elbow Method）。當 K 從 3 增加到 4 時，WCSS 從 1200 降至 900；從 4 增加到 5 時，WCSS 從 900 降至 870。應選擇哪個 K 值？",
+      "options": {
+        "A": "K = 4，因為此時 WCSS 下降幅度出現明顯轉折",
+        "B": "K = 5，因為 WCSS 仍在下降",
+        "C": "K = 6，因為需要繼續測試才能確定",
+        "D": "K = 3，因為這是最小的 K"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 73,
+        "evidence": "手肘法（Elbow Method）選擇 WCSS 下降幅度開始平緩的 K 值"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nK=3→4 時 WCSS 下降 300（25%），K=4→5 時僅下降 30（3.3%），下降幅度急劇縮小，形成「手肘」。手肘法選擇邊際效益開始大幅減少的 K 值，即 K=4。\n\n**其他選項為何錯:**\n- D. K=3 時 WCSS 仍有大幅下降空間，分群效果不佳\n- A. ✓ 正解\n- B. K=5 的邊際改善極小（3.3%），增加複雜度不值得\n- C. 不需要繼續測試，手肘已明顯出現在 K=4\n\n**記憶要點:** 手肘法 = 找 WCSS 下降「由陡轉平」的轉折點，即邊際改善開始不顯著的 K。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q8",
+      "topic": "Analytics/Methods",
+      "question_text": "某超市資料科學家對購物籃資料進行關聯規則挖掘，發現規則「麵包 → 牛奶」的 Lift = 0.7。對此規則的正確解讀是？",
+      "options": {
+        "A": "購買麵包的顧客比未購買麵包的顧客較不可能購買牛奶",
+        "B": "麵包與牛奶之間不存在任何關聯",
+        "C": "牛奶的銷售量是麵包的 0.7 倍",
+        "D": "購買麵包的顧客比未購買麵包的顧客更可能購買牛奶"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 72,
+        "evidence": "Lift < 1 表示兩項目之間存在負相關"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nLift = Confidence(麵包→牛奶) / P(牛奶)。Lift = 0.7 < 1，表示在購買麵包的條件下購買牛奶的機率低於牛奶的基礎購買率，兩者呈負相關。\n\n**其他選項為何錯:**\n- D. Lift > 1 才表示正相關，購買前件會增加後件購買率\n- A. ✓ 正解\n- B. Lift = 1 才表示獨立（無關聯），0.7 是有關聯但為負相關\n- C. Lift 不反映銷售量比例關係\n\n**記憶要點:** Lift > 1 = 正相關（互補品），Lift = 1 = 獨立，Lift < 1 = 負相關（替代品）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q9",
+      "topic": "Analytics/Methods",
+      "question_text": "某房地產公司對全台城市的房價進行時間序列分析，發現每年第二季（Q2）房價均會上升。這種現象屬於時間序列的哪個成分？",
+      "options": {
+        "A": "季節性成分（Seasonality）",
+        "B": "週期性成分（Cyclicality）",
+        "C": "不規則成分（Irregular/Noise）",
+        "D": "趨勢成分（Trend）"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 74,
+        "evidence": "時間序列四大成分：趨勢、季節性、週期性、不規則"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n季節性成分（Seasonality）是指在固定、已知的時間週期內重複出現的規律，例如每年 Q2 房價上升。這與趨勢（長期方向）和週期性（不固定長度的波動）不同。\n\n**其他選項為何錯:**\n- D. 趨勢是資料長期的上升或下降方向，不是週期重複\n- A. ✓ 正解\n- B. 週期性成分的週期長度不固定（通常超過一年），如景氣循環\n- C. 不規則成分是無法預測的隨機波動\n\n**記憶要點:** 季節性 = 固定週期（月/季/年）重複；週期性 = 不固定長度的長波動（如景氣循環）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q10",
+      "topic": "Analytics/Methods",
+      "question_text": "某保險公司針對理賠資料進行分群分析，希望找出異常理賠行為。以下哪種演算法最適合，因為它能自動識別離群點而不需預先指定群數？",
+      "options": {
+        "A": "DBSCAN",
+        "B": "階層式分群（Ward 連結）",
+        "C": "主成分分析（PCA）",
+        "D": "K-means（K=5）"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 73,
+        "evidence": "DBSCAN 自動識別雜訊點，無需預設群數"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nDBSCAN（Density-Based Spatial Clustering of Applications with Noise）不需指定群數，自動將低密度區域的點標記為雜訊點（noise points），適合異常偵測場景。\n\n**其他選項為何錯:**\n- D. K-means 需預設 K 值，且所有點都被強制分入某群，無離群點概念\n- A. ✓ 正解\n- B. 階層式分群需切割樹狀圖決定群數，且無自動離群點識別\n- C. PCA 是降維技術，不是分群演算法\n\n**記憶要點:** DBSCAN 三種點：核心點（Core）、邊界點（Border）、雜訊點（Noise）—雜訊點即離群點。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q11",
+      "topic": "Analytics/Methods",
+      "question_text": "某電商平台進行 RFM 分析（Recency, Frequency, Monetary），其中「Frequency」欄位的值域為 1–500 次，「Monetary」欄位為 100–500,000 元。若直接套用 K-means，哪個特徵會主導分群結果，為何？",
+      "options": {
+        "A": "Monetary，因為其數值範圍遠大於其他特徵",
+        "B": "Frequency，因為次數比金額更具區分力",
+        "C": "三者同等重要，K-means 自動平衡",
+        "D": "Recency，因為時間資料最重要"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 57,
+        "evidence": "特徵縮放對距離計算的影響，數值範圍大的特徵主導歐氏距離"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nK-means 使用歐氏距離，距離計算受特徵的數值範圍影響。Monetary 範圍為 100–500,000（跨度 499,900），遠大於 Frequency 的 1–500（跨度 499），因此 Monetary 會主導距離計算，使分群幾乎只反映消費金額差異。\n\n**其他選項為何錯:**\n- D. Recency 數值範圍未知但通常不是最大的\n- A. ✓ 正解\n- B. Frequency 範圍僅 499，遠小於 Monetary\n- C. K-means 不會自動平衡，需手動標準化\n\n**記憶要點:** 使用 K-means 前必須標準化（Min-Max 或 Z-score），否則大範圍特徵會主導距離計算。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q12",
+      "topic": "Analytics/Methods",
+      "question_text": "某股票分析師對個股收盤價進行移動平均分析。「指數移動平均（EMA）」與「簡單移動平均（SMA）」最主要的差異是什麼？",
+      "options": {
+        "A": "EMA 對近期資料賦予較高權重，對市場變化反應更靈敏",
+        "B": "SMA 只使用最近 N 天資料，而 EMA 使用全部歷史資料",
+        "C": "EMA 消除了時間序列中的季節性成分",
+        "D": "EMA 計算速度更快，適合大數據環境"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 74,
+        "evidence": "移動平均：SMA 等權，EMA 指數加權近期資料"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nEMA（指數移動平均）對近期數據給予指數遞減的較高權重，使其對最新資訊反應更快；SMA（簡單移動平均）對窗口內所有數據等權處理。\n\n**其他選項為何錯:**\n- D. 計算速度不是兩者的主要差異\n- A. ✓ 正解\n- B. SMA 使用最近 N 天（正確），但 EMA 雖理論上使用全部歷史但舊資料權重趨近於零，這是次要特點\n- C. EMA 不處理季節性，那是 STL 分解等方法的功能\n\n**記憶要點:** SMA = 等權平均（反應慢），EMA = 近期加權（反應快），適合趨勢追蹤。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q13",
+      "topic": "Analytics/Methods",
+      "question_text": "某市場研究公司對消費者進行問卷調查，想找出不同年齡層對產品類別的偏好差異。研究員選擇對應分析（Correspondence Analysis）。以下哪個說法最準確描述此方法的用途？",
+      "options": {
+        "A": "用於視覺化類別變數間的關聯結構",
+        "B": "用於建立年齡層對銷售額的回歸預測模型",
+        "C": "用於測試兩個類別變數是否獨立",
+        "D": "用於將高維連續特徵降維至二維空間"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 75,
+        "evidence": "對應分析用於分析類別資料的關聯性並以低維圖形呈現"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n對應分析（Correspondence Analysis）是一種多變量統計技術，專門用於視覺化交叉表（列聯表）中類別變數之間的關聯結構，透過低維散點圖展示類別間的相似性。\n\n**其他選項為何錯:**\n- D. PCA 用於連續特徵降維，對應分析專注於類別變數\n- A. ✓ 正解\n- B. 回歸分析才是建立預測模型的方法\n- C. 卡方獨立性檢定才是測試類別變數是否獨立的方法\n\n**記憶要點:** 對應分析 = 類別版 PCA，將列聯表中的行列關係視覺化於低維圖。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q14",
+      "topic": "Analytics/Methods",
+      "question_text": "某物聯網平台針對工廠設備的感測器數據建立異常偵測系統。工程師選用孤立森林（Isolation Forest）演算法。孤立森林識別異常點的核心原理是什麼？",
+      "options": {
+        "A": "異常點在隨機決策樹中需要較少的分割次數才能被孤立",
+        "B": "異常點的密度顯著低於其鄰域中的正常點",
+        "C": "異常點的重構誤差在自編碼器中明顯高於正常點",
+        "D": "異常點距群中心的歐氏距離明顯大於正常點"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 73,
+        "evidence": "異常偵測方法：基於密度、距離、統計模型等方法"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n孤立森林（Isolation Forest）的原理：異常點因為特徵值偏離正常範圍，在隨機選取特徵和分割值的決策樹中，只需極少次分割（短路徑長度）即可被孤立出來；正常點則需要較多分割。路徑長度越短，異常分數越高。\n\n**其他選項為何錯:**\n- D. 這是基於距離的異常偵測方法（如 k-NN 異常偵測）的原理\n- A. ✓ 正解\n- B. 這是 LOF（Local Outlier Factor）的原理\n- C. 這是自編碼器（Autoencoder）異常偵測的原理\n\n**記憶要點:** Isolation Forest = 孤立樹；異常點容易孤立（路徑短），正常點難孤立（路徑長）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q15",
+      "topic": "Analytics/Methods",
+      "question_text": "某零售業者想找出「購買尿布的顧客也常購買啤酒」這類關聯。在 Apriori 演算法中，以下哪個步驟順序是正確的？",
+      "options": {
+        "A": "計算 Support → 過濾低支持度項目集 → 計算 Confidence → 過濾低信賴度規則",
+        "B": "生成所有可能規則 → 計算 Support → 計算 Confidence → 計算 Lift",
+        "C": "計算 Confidence → 計算 Support → 生成頻繁項目集",
+        "D": "計算 Lift → 計算 Confidence → 計算 Support → 過濾"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 72,
+        "evidence": "Apriori 演算法：先找頻繁項目集（最小支持度），再生成強規則（最小信賴度）"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nApriori 演算法標準流程：(1) 計算所有項目的 Support，過濾低於 min_support 的項目；(2) 逐步擴展頻繁項目集（1-項目集→2-項目集→…）；(3) 對頻繁項目集生成規則，計算 Confidence，過濾低於 min_confidence 的規則；(4) 可選計算 Lift。\n\n**其他選項為何錯:**\n- D. 順序錯誤，Lift 是最後計算的\n- A. ✓ 正解\n- B. 先生成所有規則會計算量爆炸，Apriori 的關鍵是先剪枝\n- C. Confidence 依賴 Support，不可先計算\n\n**記憶要點:** Apriori = 先 Support 剪枝（頻繁項目集），再 Confidence 過濾規則，最後可計算 Lift 評估實用性。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q16",
+      "topic": "Analytics/Methods",
+      "question_text": "某航空公司對旅客的航班延誤資料進行聚類分析，希望探索資料中的自然群組。以下哪個特性是 K-means 演算法的固有限制？",
+      "options": {
+        "A": "K-means 假設群的形狀為球形（凸形），對非球形群效果差",
+        "B": "K-means 每次執行結果完全相同，缺乏隨機性",
+        "C": "K-means 要求所有特徵必須是類別型資料",
+        "D": "K-means 無法處理超過 1,000 筆以上的資料"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 73,
+        "evidence": "K-means 限制：需預設 K、假設球形群、對離群值敏感"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nK-means 最小化群內歐氏距離，這等同假設每個群為球形（各向同性）。對於半月形、環形等非球形分佈，K-means 效果極差，此時 DBSCAN 或 Gaussian Mixture Model 更適合。\n\n**其他選項為何錯:**\n- D. K-means 可擴展至百萬筆資料（Mini-batch K-means）\n- A. ✓ 正解\n- B. K-means 使用隨機初始化，每次結果可能不同（需設定 random_state 固定）\n- C. K-means 要求連續型數值特徵，類別型資料需先編碼\n\n**記憶要點:** K-means 三大限制：需設定 K、假設球形群、對離群值敏感。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q17",
+      "topic": "Analytics/Methods",
+      "question_text": "某製造業工廠利用多元迴歸分析建立產品缺陷率的預測模型。模型的 R² = 0.85。若此模型用於預測訓練集以外的新資料，以下哪個說法最可能正確？",
+      "options": {
+        "A": "新資料的 R² 可能低於 0.85，因為訓練集的擬合程度通常優於測試集",
+        "B": "新資料的 R² 將高於 0.85，因為新資料消除了訓練雜訊",
+        "C": "R² 在新資料上無意義，需改用 RMSE 評估",
+        "D": "新資料的 R² 將等於 0.85，因為模型已完全學習規律"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 76,
+        "evidence": "模型泛化能力：訓練集 R² 通常高於測試集（過擬合風險）"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n訓練集的 R² 反映模型對已見資料的擬合程度，通常高估了模型的真實預測能力。在新資料（測試集）上，模型性能通常下降，R² 會低於訓練集的值，這是過擬合（overfitting）的表現。\n\n**其他選項為何錯:**\n- D. 模型不可能完全學習所有規律，新資料有未見過的變異\n- A. ✓ 正解\n- B. 新資料不會提高 R²，通常相反\n- C. R² 在測試集上仍有意義，是重要的模型評估指標\n\n**記憶要點:** 訓練 R² > 測試 R² → 過擬合；用交叉驗證（Cross-Validation）估計真實泛化能力。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q18",
+      "topic": "FeatureEng",
+      "question_text": "某人力資源部門建立員工離職預測模型，其中「職位等級」欄位的值為：實習生、專員、主任、經理、副總、總監（具有明確順序）。以下哪種編碼方式最合適？",
+      "options": {
+        "A": "One-Hot 編碼，因為職位是類別型資料",
+        "B": "目標編碼（Target Encoding），以離職率替代職位名稱",
+        "C": "標籤編碼（Label Encoding），因為職位具有明確的順序關係",
+        "D": "二元編碼（Binary Encoding），減少維度"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 57,
+        "evidence": "Label Encoding 適用於具有順序關係的類別特徵（Ordinal）"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n職位等級具有明確的順序（實習生 < 專員 < 主任 < 經理 < 副總 < 總監），屬於序數（Ordinal）類別特徵。Label Encoding 賦予有意義的數字序列（0,1,2,3,4,5），保留了順序資訊。\n\n**其他選項為何錯:**\n- A. One-Hot 會建立 6 個二元特徵，且丟失順序資訊，浪費維度\n- B. 目標編碼適合高基數名目類別特徵，且有 data leakage 風險\n- C. ✓ 正解\n- D. 二元編碼不保留有意義的順序關係\n\n**記憶要點:** 有順序 → Label Encoding；無順序（名目）且類別少 → One-Hot；無順序且類別多 → Target Encoding。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q19",
+      "topic": "FeatureEng",
+      "question_text": "某醫院建立糖尿病預測模型，訓練資料中「血糖值」欄位有少量離群值（值域通常 70-400，但有幾筆超過 1000）。下列哪種特徵縮放方法對這些離群值最不敏感？",
+      "options": {
+        "A": "Min-Max 正規化（最小-最大縮放）",
+        "B": "Z-score 標準化（均值為 0，標準差為 1）",
+        "C": "Robust Scaling（以中位數和 IQR 縮放）",
+        "D": "對數轉換（Log Transformation）後再標準化"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 57,
+        "evidence": "Robust Scaling 使用中位數和四分位距，對離群值不敏感"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\nRobust Scaling 使用中位數（代替均值）和 IQR（代替標準差）進行縮放：X' = (X - median) / IQR。中位數和 IQR 是離群值不敏感的統計量，不會被少數極端值扭曲。\n\n**其他選項為何錯:**\n- A. Min-Max 使用最小值和最大值，極端離群值會將所有正常值壓縮到接近 0 或 1 的狹窄範圍\n- B. Z-score 使用均值和標準差，都受離群值影響\n- C. ✓ 正解\n- D. 對數轉換有效但不是「縮放方法」分類中的選項，且需要正值\n\n**記憶要點:** Robust Scaling = 中位數 + IQR = 抗離群值；Min-Max = 易受離群值扭曲；Z-score = 中等受影響。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q20",
+      "topic": "FeatureEng",
+      "question_text": "某電商平台有一個「商品類別」欄位，包含 800 個不同類別（高基數）。若使用 One-Hot 編碼，將產生什麼主要問題？",
+      "options": {
+        "A": "產生 800 個稀疏二元特徵，導致維度詛咒（Curse of Dimensionality）",
+        "B": "One-Hot 編碼會破壞特徵的順序資訊",
+        "C": "One-Hot 編碼只適用於二元分類問題",
+        "D": "模型無法處理類別型特徵，必須改用數值型"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 57,
+        "evidence": "One-Hot 編碼在高基數特徵上導致維度爆炸"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n800 個類別的 One-Hot 編碼會產生 800 個二元特徵，且每筆資料只有 1 個為 1、799 個為 0（極度稀疏）。高維稀疏特徵空間導致維度詛咒，增加計算成本，降低模型效能。高基數類別特徵宜改用 Target Encoding 或 Embedding。\n\n**其他選項為何錯:**\n- D. 模型（如決策樹、邏輯回歸）可以處理類別型特徵，問題在維度\n- A. ✓ 正解\n- B. One-Hot 編碼沒有順序概念，適用名目類別特徵（沒有順序）\n- C. One-Hot 不限於二元分類，可用於多分類\n\n**記憶要點:** One-Hot 對高基數（類別數多）特徵產生維度爆炸，改用 Target Encoding 或 Frequency Encoding。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q21",
+      "topic": "FeatureEng",
+      "question_text": "某資料科學家對房價預測模型進行特徵選擇，使用過濾法（Filter Method）。以下哪個指標最適合用於過濾法中衡量特徵與目標變數的相關性？",
+      "options": {
+        "A": "交叉驗證分數（Cross-Validation Score）",
+        "B": "特徵重要性（Feature Importance from Random Forest）",
+        "C": "皮爾森相關係數（Pearson Correlation Coefficient）",
+        "D": "遞迴特徵消除（Recursive Feature Elimination）得分"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 58,
+        "evidence": "特徵選擇方法：過濾法使用統計指標（相關係數、互資訊），不依賴模型"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n過濾法（Filter Method）不依賴任何機器學習模型，直接使用統計指標（皮爾森相關係數、Spearman 相關係數、互資訊、卡方統計量等）衡量特徵與目標的關係，計算效率高。\n\n**其他選項為何錯:**\n- A. 交叉驗證分數依賴模型，屬於包裝法（Wrapper Method）\n- B. 隨機森林特徵重要性依賴模型，屬於嵌入法（Embedded Method）\n- C. ✓ 正解\n- D. RFE 是包裝法（Wrapper Method），依賴模型迭代\n\n**記憶要點:** 過濾法=統計指標（相關係數/互資訊）；包裝法=模型評估子集（RFE）；嵌入法=訓練時內建選擇（Lasso/RF重要性）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q22",
+      "topic": "FeatureEng",
+      "question_text": "某金融機構建立信用評分模型，將「月收入」和「月支出」兩個特徵衍生為「每月儲蓄率 = (月收入 - 月支出) / 月收入」。這屬於特徵工程的哪個技術？",
+      "options": {
+        "A": "特徵衍生（Feature Derivation / Feature Construction）",
+        "B": "特徵選擇（Feature Selection）",
+        "C": "特徵編碼（Feature Encoding）",
+        "D": "特徵縮放（Feature Scaling）"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 58,
+        "evidence": "特徵衍生：從現有特徵透過數學運算創造新特徵"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n特徵衍生（Feature Derivation/Construction）是從現有特徵透過數學運算、組合或領域知識創造新的、更有意義的特徵。「儲蓄率」結合了收入和支出的相對關係，提供了比兩者各自更豐富的資訊。\n\n**其他選項為何錯:**\n- D. 特徵縮放改變特徵數值範圍，不創造新特徵\n- A. ✓ 正解\n- B. 特徵選擇從現有特徵中選取子集，不創造新特徵\n- C. 特徵編碼將類別型轉換為數值，不創造新的語義特徵\n\n**記憶要點:** 特徵衍生 = 「現有特徵 → 新特徵」（數學運算/業務邏輯）；比原始特徵更能表達業務含義。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q23",
+      "topic": "FeatureEng",
+      "question_text": "某資料科學家對訓練資料集進行 Min-Max 正規化，將特徵縮放至 [0, 1]。在應用於測試集時，應使用哪組統計量？",
+      "options": {
+        "A": "訓練集的最小值和最大值，保持縮放一致性",
+        "B": "訓練集和測試集合並後的最小值和最大值",
+        "C": "每次預測時動態計算當前批次的最小值和最大值",
+        "D": "測試集的最小值和最大值，確保測試集也在 [0, 1] 範圍內"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 57,
+        "evidence": "特徵縮放必須僅以訓練集統計量進行，避免資料洩漏"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n資料前處理的黃金規則：縮放參數（min、max、mean、std）必須從訓練集計算，然後套用到訓練集和測試集。若使用測試集自身的統計量，會造成「資料洩漏」（data leakage），高估模型性能。\n\n**其他選項為何錯:**\n- D. 使用測試集自身統計量導致資料洩漏，模型在部署時無法使用未知數據的統計量\n- A. ✓ 正解\n- B. 混合統計量同樣導致資料洩漏\n- C. 動態計算批次統計量在生產環境中不穩定且造成資料洩漏\n\n**記憶要點:** Fit on train, transform both → 縮放器 fit 訓練集，transform 訓練集和測試集，防止資料洩漏。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q24",
+      "topic": "FeatureEng",
+      "question_text": "某機器學習工程師使用嵌入法（Embedded Method）進行特徵選擇，選用 Lasso 迴歸（L1 正則化）。Lasso 進行特徵選擇的機制是什麼？",
+      "options": {
+        "A": "將不重要特徵的係數縮減至恰好為零，實現稀疏解",
+        "B": "對每個特徵子集建立模型並比較交叉驗證分數",
+        "C": "以隨機森林評估特徵重要性後排序並截斷",
+        "D": "計算每個特徵與目標的皮爾森相關係數，移除低相關特徵"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 58,
+        "evidence": "Lasso (L1 正則化) 可將不重要特徵係數壓縮至零，執行特徵選擇"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nLasso（Least Absolute Shrinkage and Selection Operator）在損失函數中加入 L1 正則化項（|w| 的和），L1 懲罰的幾何特性使得部分特徵係數恰好收縮為 0，達到特徵選擇效果，留下稀疏解。\n\n**其他選項為何錯:**\n- D. 這是過濾法（Filter Method）的描述\n- A. ✓ 正解\n- B. 這是包裝法（Wrapper Method）的描述\n- C. 隨機森林特徵重要性也屬於嵌入法，但不是 Lasso 的機制\n\n**記憶要點:** L1（Lasso）= 稀疏解 = 特徵選擇；L2（Ridge）= 係數縮小但不為零 = 特徵壓縮。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q25",
+      "topic": "FeatureEng",
+      "question_text": "某資料科學家對包含 50 個特徵的資料集使用主成分分析（PCA）進行降維，保留解釋 95% 方差的主成分。在執行 PCA 之前，哪個前處理步驟是必要的？",
+      "options": {
+        "A": "對所有數值特徵進行標準化（Standardization）",
+        "B": "移除所有缺失值的列",
+        "C": "將目標變數納入 PCA 計算",
+        "D": "對所有特徵進行 One-Hot 編碼"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 59,
+        "evidence": "PCA 前必須標準化，避免高方差特徵主導主成分方向"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nPCA 基於特徵的方差和協方差矩陣。若特徵未標準化，量綱大（如收入：萬元單位）的特徵方差遠大於量綱小（如年齡：個位數）的特徵，PCA 會被高方差特徵主導，主成分方向失去意義。標準化確保每個特徵在 PCA 中有平等的影響力。\n\n**其他選項為何錯:**\n- D. PCA 處理數值型特徵，One-Hot 是針對類別特徵的前處理，不是 PCA 的必要步驟\n- A. ✓ 正解\n- B. 移除缺失值重要但不是「PCA 必要」的特定步驟（可用插補代替）\n- C. PCA 是無監督降維，不使用目標變數\n\n**記憶要點:** PCA 前必須標準化 → 因為 PCA 對尺度敏感，高方差（大數值）特徵會主導主成分。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q26",
+      "topic": "FeatureEng",
+      "question_text": "某零售公司在建立銷售預測模型時，欲對「銷售日期」特徵進行特徵工程。以下哪種做法能最有效地捕捉時間的週期性（如星期幾、月份）而不丟失順序資訊？",
+      "options": {
+        "A": "將日期轉換為自 2000 年 1 月 1 日起的天數（整數）",
+        "B": "對「星期幾」進行 One-Hot 編碼（7 個二元特徵）",
+        "C": "將週期性特徵進行正弦/餘弦轉換（sin/cos encoding）",
+        "D": "將日期捨去至月份精度（如 2024-03）"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 58,
+        "evidence": "週期性特徵工程：正弦餘弦編碼保留週期性連續關係"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n週期性特徵（如星期幾 0-6）存在「星期日（6）和星期一（0）應該相近」的問題，整數編碼讓模型誤以為它們距離最遠。正弦/餘弦轉換將週期映射到圓上：sin(2π×day/7) 和 cos(2π×day/7)，保留了週期連續性（星期日和星期一在圓上相鄰）。\n\n**其他選項為何錯:**\n- A. 天數整數保留順序但不能表達週期性（周期會被拉成線性）\n- B. One-Hot 丟失週期鄰接關係（星期一和星期日被視為無關）\n- C. ✓ 正解\n- D. 捨去精度損失大量資訊\n\n**記憶要點:** 週期性特徵 → sin/cos 轉換；既保留週期性，又讓「週期末尾」和「週期開始」保持距離近。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q27",
+      "topic": "FeatureEng",
+      "question_text": "某資料科學家建立客戶流失預測模型，在訓練資料上使用目標編碼（Target Encoding）將「地區」欄位替換為該地區的平均流失率。以下哪個風險是目標編碼最需要防範的？",
+      "options": {
+        "A": "目標洩漏（Target Leakage）導致模型過擬合",
+        "B": "無法處理訓練集中未出現的新地區",
+        "C": "計算時間過長，不適合大型資料集",
+        "D": "產生過多稀疏特徵"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 57,
+        "evidence": "Target Encoding 存在資料洩漏風險，通常需搭配交叉驗證或平滑處理"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n目標編碼直接使用目標變數的統計量（平均流失率）替換特徵，若使用整個訓練集計算（包含自己的行），模型會學到「目標幫自己預測目標」的捷徑，導致嚴重過擬合（訓練集表現好，測試集差）。解決方法：K-fold 交叉驗證計算或加入平滑（Smoothing）。\n\n**其他選項為何錯:**\n- D. 目標編碼將類別壓縮為一個數值，不產生稀疏特徵（這是 One-Hot 的問題）\n- A. ✓ 正解\n- B. 新類別（Unseen Category）是問題但通常透過全局均值處理，不是「最需防範」的風險\n- C. 計算成本低，不是主要問題\n\n**記憶要點:** Target Encoding 危險 = 目標洩漏 → 用 K-fold OOF（Out-Of-Fold）計算或加平滑 α。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q28",
+      "topic": "FeatureEng",
+      "question_text": "某氣象局對未來降雨量建立預測模型，輸入特徵包括溫度（°C）、濕度（%）、氣壓（hPa）。若這些特徵間存在多重共線性，以下哪種特徵處理方法最能直接解決此問題？",
+      "options": {
+        "A": "主成分分析（PCA）進行降維",
+        "B": "目標編碼（Target Encoding）",
+        "C": "移除缺失值",
+        "D": "Min-Max 正規化"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 59,
+        "evidence": "PCA 透過線性轉換產生不相關的主成分，消除多重共線性"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nPCA 將原始特徵轉換為線性不相關的主成分（Principal Components），主成分之間相關係數為 0，直接消除多重共線性。在線性回歸中，多重共線性使係數估計不穩定，PCA 後的主成分特徵可解決此問題。\n\n**其他選項為何錯:**\n- D. Min-Max 正規化只改變數值範圍，不消除特徵間的相關性\n- A. ✓ 正解\n- B. 目標編碼用於類別型特徵，與多重共線性無關\n- C. 移除缺失值解決資料完整性問題，與多重共線性無關\n\n**記憶要點:** 多重共線性 → PCA（產生不相關主成分）或 VIF 分析後移除高共線性特徵或使用 Ridge 迴歸。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q29",
+      "topic": "FeatureEng",
+      "question_text": "某資料科學家在建立詐欺偵測模型時發現，訓練資料中正常交易佔 99%，詐欺交易僅佔 1%（嚴重不平衡）。以下哪種資料層面的處理方式屬於「過採樣」（Oversampling）技術？",
+      "options": {
+        "A": "使用 SMOTE（Synthetic Minority Over-sampling Technique）合成少數類別樣本",
+        "B": "在損失函數中給少數類別更高的懲罰權重",
+        "C": "使用 Ensemble 方法（如 EasyEnsemble）從多數類別中隨機抽樣",
+        "D": "隨機刪除多數類別樣本至少數類別相同比例"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 58,
+        "evidence": "不平衡資料處理：欠採樣、過採樣（SMOTE）、成本敏感學習"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nSMOTE（合成少數類別過採樣技術）透過在少數類別樣本的近鄰之間插值合成新樣本，屬於過採樣技術。它不是簡單複製現有少數類別樣本，而是生成新的合成樣本。\n\n**其他選項為何錯:**\n- D. 這是「欠採樣」（Undersampling/Down-sampling）技術\n- A. ✓ 正解\n- B. 這是「成本敏感學習」（Cost-Sensitive Learning），在損失函數層面處理，不是採樣\n- C. EasyEnsemble 結合欠採樣和集成，屬於混合方法\n\n**記憶要點:** 過採樣 = 增加少數類別（SMOTE 合成）；欠採樣 = 減少多數類別（Random Under-sampling）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q30",
+      "topic": "FeatureEng",
+      "question_text": "某資料科學家在特徵選擇時，使用「包裝法（Wrapper Method）」的遞迴特徵消除（RFE）。包裝法相較於過濾法的主要缺點是什麼？",
+      "options": {
+        "A": "包裝法只能用於線性模型",
+        "B": "包裝法選出的特徵無法解釋",
+        "C": "包裝法不考慮特徵與目標變數的相關性",
+        "D": "包裝法需要反覆訓練模型，計算成本高"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 58,
+        "evidence": "包裝法計算成本高，每次子集評估需完整訓練模型"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n包裝法（如 RFE）針對每個特徵子集都需完整訓練和評估模型，若有 50 個特徵，每步移除 1 個需訓練 50 次；加上交叉驗證計算量龐大。過濾法只計算統計指標，無需訓練模型，速度快得多。\n\n**其他選項為何錯:**\n- C. 包裝法透過模型性能隱式考慮特徵-目標關係，這不是缺點\n- D. ✓ 正解\n- A. RFE 可以使用任何可計算特徵重要性的模型（SVM、RF 等）\n- B. 包裝法的可解釋性取決於所用模型，不是固有缺點\n\n**記憶要點:** 過濾法（快、獨立於模型）< 嵌入法（訓練時選）< 包裝法（反覆訓練、最精確但最慢）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q31",
+      "topic": "FeatureEng",
+      "question_text": "某電商平台在建立推薦系統時，需要對用戶 ID（共 500 萬個不同用戶）進行特徵表示。以下哪種方法最適合？",
+      "options": {
+        "A": "Label Encoding（整數 0 到 4,999,999）",
+        "B": "One-Hot Encoding（500 萬維稀疏向量）",
+        "C": "Embedding 嵌入（低維稠密向量）",
+        "D": "Frequency Encoding（用用戶出現頻率替代 ID）"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 57,
+        "evidence": "高基數類別特徵在深度學習中使用 Embedding 向量表示"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\nEmbedding 嵌入將高基數類別（500 萬用戶 ID）映射到低維（如 128 維）稠密連續向量，向量空間中相似用戶距離近，能捕捉語義關係。深度學習推薦系統（如矩陣分解、神經協同過濾）的標準做法。\n\n**其他選項為何錯:**\n- A. Label Encoding 給用戶 ID 賦予無意義的整數大小關係\n- B. 500 萬維 One-Hot 向量計算記憶體爆炸，完全不可行\n- C. ✓ 正解\n- D. Frequency Encoding 有意義但損失個體資訊，不適合推薦系統\n\n**記憶要點:** 超高基數類別（用戶ID/商品ID）→ Embedding（可訓練的低維稠密向量），是深度學習推薦系統的標配。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q32",
+      "topic": "FeatureEng",
+      "question_text": "某資料工程師發現客戶年齡特徵呈現嚴重右偏分佈（positive skew），大量客戶集中在 20-30 歲，少數高齡客戶拉高了分佈尾部。哪種轉換最能使此分佈接近常態？",
+      "options": {
+        "A": "Z-score 標準化（X - mean / std）",
+        "B": "Min-Max 正規化至 [0, 1]",
+        "C": "對數轉換（Log Transformation）",
+        "D": "Robust Scaling（中位數縮放）"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 57,
+        "evidence": "對數轉換適用於右偏分佈，壓縮大值、延伸小值"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n對數轉換（Log(X) 或 Log(X+1)）能壓縮右偏分佈的長尾，使分佈更接近常態。對數轉換將乘法關係轉換為加法關係，對大值（高齡離群值）的壓縮效果遠大於對小值的壓縮，有效減少偏態。\n\n**其他選項為何錯:**\n- A. Z-score 改變尺度但不改變分佈形狀，偏態依然存在\n- B. Min-Max 同樣不改變分佈形狀\n- C. ✓ 正解\n- D. Robust Scaling 也不改變分佈形狀，只改變中心和尺度\n\n**記憶要點:** 右偏 → 對數轉換；左偏 → 平方或指數轉換；目的是使分佈更對稱（接近常態）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q33",
+      "topic": "Analytics/EDA",
+      "question_text": "某市場研究公司對 1,000 名消費者的月支出進行探索性資料分析（EDA）。箱形圖顯示：Q1 = 8,000 元、Q3 = 20,000 元，一個資料點為 42,000 元。根據 Tukey 定義，此資料點是否為離群值？",
+      "options": {
+        "A": "需要更多資料才能判斷，單一閾值不足",
+        "B": "否，離群值定義需要 Z-score > 3，此處 Z-score 未知",
+        "C": "否，42,000 元低於 Q3 的兩倍，不算離群值",
+        "D": "是，42,000 元超過 Q3 + 1.5 × IQR = 38,000 元"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 18,
+        "evidence": "Tukey 離群值：Q3 + 1.5×IQR 為上限，Q1 - 1.5×IQR 為下限"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nIQR = Q3 - Q1 = 20,000 - 8,000 = 12,000。上限 = Q3 + 1.5 × IQR = 20,000 + 1.5 × 12,000 = 20,000 + 18,000 = 38,000。42,000 > 38,000，屬於 Tukey 定義的離群值。\n\n**其他選項為何錯:**\n- C. 離群值不是以 Q3 的兩倍定義，而是 Q3 + 1.5×IQR\n- D. ✓ 正解\n- A. Tukey 定義是確定性的，不需要更多資料\n- B. IQR 方法是箱形圖離群值的標準定義，Z-score 是另一種方法\n\n**記憶要點:** IQR = Q3 - Q1；上限 = Q3 + 1.5×IQR；下限 = Q1 - 1.5×IQR；超出範圍為離群值（箱形圖上顯示為點）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q34",
+      "topic": "Analytics/EDA",
+      "question_text": "某資料分析師繪製兩個連續變數的散佈圖（Scatter Plot），發現資料點呈現「越往右上角，資料越密集，但整體雲形向右傾斜」的模式。這最可能代表什麼？",
+      "options": {
+        "A": "兩變數呈負線性相關（r < 0）",
+        "B": "兩變數存在 U 型非線性關係",
+        "C": "兩變數完全無關（r ≈ 0）",
+        "D": "兩變數呈正線性相關（r > 0）"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 75,
+        "evidence": "散佈圖方向反映兩變數相關方向"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n散佈圖中資料點「向右上角傾斜」表示當 X 增大時 Y 也趨於增大，這是正線性相關的特徵（相關係數 r > 0）。\n\n**其他選項為何錯:**\n- C. 無關係時散佈圖沒有明顯方向性（雲形水平）\n- D. ✓ 正解\n- A. 負相關時雲形向右下角傾斜\n- B. U 型關係的散佈圖呈現拋物線形狀，而非傾斜的雲形\n\n**記憶要點:** 散佈圖向右上 → 正相關（r > 0）；向右下 → 負相關（r < 0）；無方向 → 無線性相關（r ≈ 0）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q35",
+      "topic": "Analytics/EDA",
+      "question_text": "某零售公司進行 EDA，發現「客戶年齡」特徵有 8% 的缺失值。分析師決定直接刪除含缺失值的列。以下哪種情況下此做法風險最高？",
+      "options": {
+        "A": "缺失值為 MCAR（完全隨機缺失），與其他變數無關",
+        "B": "缺失值為 MAR（隨機缺失），與其他觀測變數有關",
+        "C": "缺失值為 MNAR（非隨機缺失），與缺失值本身有關",
+        "D": "缺失值均勻分佈在所有年齡段"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 52,
+        "evidence": "MNAR（非隨機缺失）直接刪除會產生系統性偏差"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\nMNAR（Missing Not At Random）表示缺失的原因與缺失值本身有關（如高齡客戶不願填寫年齡）。直接刪除 MNAR 資料會系統性地移除特定族群，導致樣本偏差，分析結果無法代表真實人口。\n\n**其他選項為何錯:**\n- A. MCAR 時直接刪除是有效的（雖然損失樣本量），不會產生偏差\n- B. MAR 時直接刪除可能有偏，但可透過插補修正，風險低於 MNAR\n- C. ✓ 正解\n- D. 均勻分佈等同於 MCAR，直接刪除無偏差\n\n**記憶要點:** MCAR（完全隨機）→ 刪除安全；MAR（與觀測值有關）→ 插補較好；MNAR（與自身有關）→ 刪除有系統偏差，風險最高。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q36",
+      "topic": "Analytics/EDA",
+      "question_text": "某資料分析師在 EDA 中發現「月銷售額」的直方圖呈現嚴重右偏（正偏態），平均值為 50,000 元，中位數為 32,000 元。在報告集中趨勢時，應優先選用哪個指標？",
+      "options": {
+        "A": "眾數，因為代表最常見的銷售額",
+        "B": "幾何平均數，因為銷售額是比例性資料",
+        "C": "平均值（50,000 元），因為使用全部資料",
+        "D": "中位數（32,000 元），因為較不受極端值影響"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 15,
+        "evidence": "右偏分佈下中位數比平均值更能代表典型值"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n右偏分佈中，少數高銷售額的分店拉高了平均值，使平均值（50,000）遠高於大多數分店的實際情況。中位數（32,000）是第 50 百分位數，不受極端高值影響，更能代表「典型」分店的銷售額。\n\n**其他選項為何錯:**\n- C. 在偏態分佈下，平均值被少數極端值拉偏，不代表典型情況\n- D. ✓ 正解\n- A. 眾數（最頻繁值）通常用於離散資料，且對連續資料意義不穩定\n- B. 幾何平均適用於比例或增長率，不是銷售額的首選\n\n**記憶要點:** 對稱分佈用均值；偏態分佈（有極端值）用中位數；中位數 = 抗極端值的集中趨勢代表。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q37",
+      "topic": "Analytics/EDA",
+      "question_text": "某醫療資料分析師使用相關性熱圖（Correlation Heatmap）分析 20 個生化指標之間的關係，發現指標 A 與指標 B 的 Pearson 相關係數為 0.95。這對後續的迴歸分析有何影響？",
+      "options": {
+        "A": "高相關表示兩個特徵都非常重要，應保留",
+        "B": "Pearson r = 0.95 表示因果關係，A 導致 B",
+        "C": "無影響，迴歸模型可自動處理高相關特徵",
+        "D": "可能引起多重共線性問題，使係數估計不穩定"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 75,
+        "evidence": "高相關特徵在迴歸中引起多重共線性"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n特徵間相關係數接近 1（或 -1）時，在線性迴歸中會產生多重共線性（Multicollinearity）問題：矩陣近似奇異，係數估計方差極大，導致係數值不穩定、解釋困難。處理方式：移除其中一個、使用 PCA 降維、使用 Ridge 迴歸。\n\n**其他選項為何錯:**\n- C. 迴歸模型不能自動處理多重共線性，會導致係數估計失真\n- D. ✓ 正解\n- A. 高相關特徵攜帶重複資訊，通常只需保留其中一個\n- B. 相關性不代表因果關係（Correlation ≠ Causation）\n\n**記憶要點:** 相關熱圖找高相關對（|r| > 0.9）→ 多重共線性風險 → VIF 診斷 → 移除或 PCA。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q38",
+      "topic": "Analytics/EDA",
+      "question_text": "某資料分析師進行 EDA 時，想比較五個不同城市的房價分佈（中位數、四分位距、離群值）。以下哪種圖表最能一次呈現所有這些資訊？",
+      "options": {
+        "A": "長條圖（Bar Chart），各城市顯示平均房價",
+        "B": "折線圖（Line Chart），連接各城市平均值",
+        "C": "箱形圖（Box Plot），各城市一個箱",
+        "D": "圓餅圖（Pie Chart），各城市佔總銷售比例"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 75,
+        "evidence": "箱形圖同時呈現中位數、Q1、Q3、IQR、離群值，適合多組比較"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n箱形圖（Box Plot）一個圖形同時顯示：中位數（中央線）、Q1 和 Q3（箱的上下邊）、IQR（箱的高度）、鬚（非離群值的延伸範圍）、離群值（個別點）。並排多個城市的箱形圖可直觀比較所有這些分佈特性。\n\n**其他選項為何錯:**\n- A. 長條圖只顯示單一統計量（平均值），無法呈現分佈形狀和離群值\n- B. 折線圖用於時間序列，不適合比較不同組的分佈\n- C. ✓ 正解\n- D. 圓餅圖顯示佔比，不顯示分佈資訊\n\n**記憶要點:** 比較多組分佈 → 箱形圖；可同時看到中位數、IQR（分散程度）和離群值。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q39",
+      "topic": "Analytics/EDA",
+      "question_text": "某電商公司對 100 萬筆交易資料進行 EDA，計算所有數值型特徵的描述性統計。以下哪種情況表明某特徵可能需要進一步調查？",
+      "options": {
+        "A": "平均值 ≈ 中位數（差異 < 5%）",
+        "B": "最大值恰好是最小值的整數倍",
+        "C": "標準差遠大於平均值（變異係數 CV > 1）",
+        "D": "資料呈現完美常態分佈"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 16,
+        "evidence": "變異係數 CV = std / mean，CV > 1 表示資料高度分散，可能有離群值"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n變異係數（CV = 標準差 / 平均值）> 1 表示資料的變異程度遠超過平均值本身，通常意味著資料高度分散、存在離群值，或資料本身就是高度異質性的（如收入資料）。這種特徵需要進一步探索：繪製分佈圖、檢查離群值、考慮是否需要轉換。\n\n**其他選項為何錯:**\n- A. 平均值 ≈ 中位數 → 分佈接近對稱，正常情況\n- B. 最大值是最小值的整數倍 → 可能是正常的業務邏輯（如不同定價層次）\n- C. ✓ 正解\n- D. 完美常態分佈 → 理想情況，無需特別調查\n\n**記憶要點:** CV = std/mean；CV > 1 = 高度分散（如薪資、銷售額），需深入調查分佈。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q40",
+      "topic": "Analytics/EDA",
+      "question_text": "某資料科學家在 EDA 中使用配對圖（Pair Plot）分析多個特徵之間的兩兩關係。對角線上的子圖通常顯示什麼？",
+      "options": {
+        "A": "兩個特徵之間的散佈圖",
+        "B": "每個特徵與目標變數的折線圖",
+        "C": "每個特徵自身的分佈（直方圖或 KDE）",
+        "D": "兩個特徵之間的 Pearson 相關係數"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 75,
+        "evidence": "配對圖（Pair Plot）：非對角線為散佈圖，對角線為各特徵分佈"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n配對圖（Pair Plot / Scatter Matrix）中：非對角線位置顯示每對特徵的散佈圖；對角線位置（特徵與自身）沒有意義的散佈圖，通常替換為該特徵的單變數分佈（直方圖或 KDE 核密度估計）。\n\n**其他選項為何錯:**\n- A. 散佈圖在非對角線位置\n- B. 折線圖不是配對圖的標準元素\n- C. ✓ 正解\n- D. 相關係數是數字，有些進階配對圖會在對角線或上三角顯示，但標準配對圖顯示分佈\n\n**記憶要點:** 配對圖 = 對角線（單變數分佈）+ 非對角線（兩兩散佈圖），快速掃描多變數關係。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q41",
+      "topic": "Analytics/EDA",
+      "question_text": "某銀行對客戶的信用評分資料（0–850 分）進行 EDA，發現平均值 = 620，標準差 = 85，偏度（Skewness）= -0.8。關於此分佈的描述，哪個最正確？",
+      "options": {
+        "A": "分佈對稱，平均值 ≈ 中位數 ≈ 眾數",
+        "B": "右偏（正偏態），少數客戶信用評分極低",
+        "C": "左偏（負偏態），多數客戶信用評分偏高，少數極低",
+        "D": "左偏（負偏態），多數客戶信用評分偏低，少數極高"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 17,
+        "evidence": "偏度 < 0 為左偏（負偏），分佈尾部延伸至左方"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n偏度 = -0.8 < 0，表示左偏（負偏態）：資料的主體集中在較高值，分佈的尾部向左延伸（少數極低分）。信用評分分佈左偏符合現實：大多數客戶信用良好（高分集中），少數信用極差的客戶形成左尾。\n\n**其他選項為何錯:**\n- A. 對稱時偏度 ≈ 0，-0.8 不算對稱\n- B. 右偏時偏度 > 0，此處偏度 < 0\n- C. ✓ 正解\n- D. 描述錯誤：左偏是「多數集中在右（高值），長尾在左（低值）」，選項 C 才是正確描述\n\n**記憶要點:** 偏度 > 0 = 右偏（正偏），長尾在右；偏度 < 0 = 左偏（負偏），長尾在左，主體集中在右（高值）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q42",
+      "topic": "Analytics/EDA",
+      "question_text": "某資料分析師對電商訂單資料進行 EDA，發現「訂單金額」欄位中有 0.5% 的值為負數（退款記錄）。應如何處理？",
+      "options": {
+        "A": "直接刪除，負數是錯誤資料",
+        "B": "以平均值插補，填補為正常訂單金額",
+        "C": "理解業務含義後決定：若代表退款則可能是有效資料",
+        "D": "將所有負數取絕對值，強制轉換為正數"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 52,
+        "evidence": "EDA 中異常值處理需先理解業務含義，而非機械性處理"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\nEDA 中發現「異常」值時，首先要理解業務含義。訂單金額為負數可能代表合法的退款/退貨記錄，這是有效業務資料而非錯誤。盲目刪除或替換會損失重要業務資訊。正確做法：與業務專家確認含義，再決定是否分開建模、保留或過濾。\n\n**其他選項為何錯:**\n- A. 若負數代表退款，刪除會損失有效資料\n- B. 以平均值插補扭曲了退款記錄的業務含義\n- C. ✓ 正解\n- D. 取絕對值會消除退款與正常訂單的區別，破壞資料語義\n\n**記憶要點:** EDA 中「先理解業務」→ 不要機械處理異常值；「負值」可能是有意義的業務狀態（退款、信用調整）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q43",
+      "topic": "Analytics/EDA",
+      "question_text": "某資料分析師對 10 個連續特徵計算相關係數矩陣，以熱圖呈現。若熱圖的顏色方案為藍色（-1）到紅色（+1），且對角線為深紅色，則對角線的值代表什麼？",
+      "options": {
+        "A": "每個特徵的標準差（對角線方差）",
+        "B": "每個特徵的特徵重要性分數",
+        "C": "每個特徵與目標變數的相關係數",
+        "D": "每個特徵自身與自身的相關係數（= 1）"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 75,
+        "evidence": "相關係數矩陣對角線元素為 1（自相關）"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n相關係數矩陣（Correlation Matrix）中，元素 (i,j) 是特徵 i 與特徵 j 的 Pearson 相關係數。對角線元素 (i,i) 是特徵 i 與自身的相關係數，恆等於 1。因此對角線在熱圖中顯示最深的紅色（+1）。\n\n**其他選項為何錯:**\n- C. 相關係數矩陣是特徵間兩兩相關，目標變數需要額外計算\n- D. ✓ 正解\n- A. 對角線是協方差矩陣的方差（對相關矩陣為 1，對協方差矩陣為各特徵方差）\n- B. 特徵重要性不在相關矩陣中\n\n**記憶要點:** 相關矩陣對角線 = 1（自相關）；非對角線 = 特徵間 Pearson r；矩陣對稱（r(i,j) = r(j,i)）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q44",
+      "topic": "Analytics/EDA",
+      "question_text": "某資料科學家在 EDA 過程中對類別特徵「城市」（有 50 個不同值）繪製頻率分佈。發現「台北市」出現次數占總樣本的 65%，其他城市均低於 5%。這種現象在機器學習中可能帶來什麼問題？",
+      "options": {
+        "A": "無問題，多數類別佔多數是正常的",
+        "B": "應移除「城市」特徵，因為不平衡類別無法使用",
+        "C": "需要使用 Z-score 標準化此特徵",
+        "D": "模型可能偏向預測「台北市」相關的結果，對其他城市預測效果差"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 52,
+        "evidence": "類別不平衡會導致模型偏向多數類別"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n類別頻率嚴重不平衡（台北市 65%，其他 < 5% 各）時，模型訓練以台北市樣本為主，學習的規律可能不適用於稀少城市，導致對少數城市的預測準確率低。解決方式：分層抽樣、分別建模、或過採樣少數城市。\n\n**其他選項為何錯:**\n- C. Z-score 標準化適用於數值型特徵，類別特徵不適用\n- D. ✓ 正解\n- A. 雖然不平衡是常見現象，但嚴重不平衡（65% vs 各 < 5%）確實會帶來建模問題\n- B. 移除特徵是損失資訊的極端做法，應先嘗試其他方法\n\n**記憶要點:** 類別嚴重不平衡 → 模型偏向多數類別 → 分層抽樣 / 分別建模 / 重採樣。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q45",
+      "topic": "BigData/Storage",
+      "question_text": "某企業想建立一個儲存系統，需同時支援：結構化 SQL 查詢、ACID 交易保證、以及對 PB 級原始日誌文件（JSON/Parquet）的直接查詢。以下哪種架構最符合需求？",
+      "options": {
+        "A": "傳統關聯式資料庫（RDBMS，如 PostgreSQL）",
+        "B": "資料湖（Data Lake，如 Amazon S3）",
+        "C": "資料湖屋（Data Lakehouse，如 Delta Lake）",
+        "D": "文件型 NoSQL 資料庫（如 MongoDB）"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 64,
+        "evidence": "資料湖屋結合 Data Lake 的彈性儲存與 Data Warehouse 的 ACID 與 SQL 支援"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n資料湖屋（Data Lakehouse）結合了資料湖（低成本儲存多種格式原始資料）和資料倉儲（ACID 交易、SQL 查詢）的優點。Delta Lake、Apache Iceberg、Apache Hudi 等技術在資料湖上層加入交易日誌，實現 ACID 保證和 Schema 管理。\n\n**其他選項為何錯:**\n- A. RDBMS 不適合 PB 級非結構化原始資料儲存，擴展困難\n- B. 資料湖缺乏原生 ACID 支援和 Schema 管理\n- C. ✓ 正解\n- D. MongoDB 不支援複雜 SQL 分析查詢和 PB 級規模\n\n**記憶要點:** Data Lake = 彈性多格式（缺 ACID）；Data Warehouse = ACID SQL（缺彈性）；Lakehouse = 兩者兼備（Delta Lake/Iceberg/Hudi）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q46",
+      "topic": "BigData/Storage",
+      "question_text": "某社群平台需要儲存用戶與用戶之間的追蹤關係（A 追蹤 B、B 追蹤 C 等）以及每個關係的建立時間。以下哪種資料庫最適合此場景？",
+      "options": {
+        "A": "鍵值資料庫（Key-Value Store，如 Redis）",
+        "B": "列族資料庫（Column-Family，如 HBase）",
+        "C": "關聯式資料庫（RDBMS）",
+        "D": "圖形資料庫（Graph Database，如 Neo4j）"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 63,
+        "evidence": "圖形資料庫專為節點（實體）和邊（關係）的儲存與查詢設計"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n圖形資料庫以節點（Node，代表用戶）和邊（Edge，代表追蹤關係）為核心資料模型，邊可附帶屬性（建立時間）。對於「誰追蹤了誰」、「朋友的朋友」等圖遍歷查詢，圖形資料庫比關聯式資料庫的多次 JOIN 效率高得多。\n\n**其他選項為何錯:**\n- C. RDBMS 可以實現（用關係表），但多跳關係查詢需多次 JOIN，效能差\n- D. ✓ 正解\n- A. 鍵值資料庫適合簡單查找，不適合複雜關係遍歷\n- B. 列族資料庫適合時間序列和寬表，不是圖關係的最佳選擇\n\n**記憶要點:** 社交關係/知識圖譜/推薦系統（關係查詢）→ 圖形資料庫（Neo4j）；節點=實體，邊=關係，屬性=附加資訊。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q47",
+      "topic": "BigData/Storage",
+      "question_text": "在 ACID 特性中，「隔離性（Isolation）」的主要目的是什麼？",
+      "options": {
+        "A": "確保交易中的所有操作要麼全部成功，要麼全部回滾",
+        "B": "確保資料庫始終處於有效狀態，不違反完整性約束",
+        "C": "確保並發執行的多個交易不會相互干擾",
+        "D": "確保已提交的交易即使系統崩潰也不會丟失"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 62,
+        "evidence": "ACID：Atomicity（原子性）、Consistency（一致性）、Isolation（隔離性）、Durability（持久性）"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n隔離性（Isolation）保證並發（同時進行）的多個交易彼此不可見，一個交易的中間狀態對其他交易是隔離的，防止髒讀（Dirty Read）、不可重複讀（Non-repeatable Read）和幻讀（Phantom Read）問題。\n\n**其他選項為何錯:**\n- A. 這是原子性（Atomicity）的定義\n- B. 這是一致性（Consistency）的定義\n- C. ✓ 正解\n- D. 這是持久性（Durability）的定義\n\n**記憶要點:** ACID 四字訣：Atomicity(全或無) → Consistency(有效狀態) → Isolation(並發隔離) → Durability(永久保存)。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q48",
+      "topic": "BigData/Storage",
+      "question_text": "某 IoT 公司每天從 10 萬個設備收集感測器數據，資料格式各異（JSON、CSV、二進位），且未來可能新增更多設備和格式。長期儲存應選擇哪種方案？",
+      "options": {
+        "A": "關聯式資料庫，因為 ACID 保證確保資料正確性",
+        "B": "Redis 快取，因為高吞吐量需要低延遲儲存",
+        "C": "資料倉儲（Data Warehouse），因為提供結構化查詢",
+        "D": "資料湖（Data Lake），因為支援多格式原始資料且成本低"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 64,
+        "evidence": "資料湖以 Schema-on-Read 方式儲存各種格式原始資料，彈性高且成本低"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n資料湖以「Schema-on-Read」方式儲存，任何格式的原始資料都可先入湖，等需要分析時再定義 Schema。成本低（物件儲存如 S3），擴展性強（PB 級），符合 IoT 多格式、大量資料的長期儲存需求。\n\n**其他選項為何錯:**\n- C. 資料倉儲採 Schema-on-Write，需事先定義 Schema，不適合格式多樣的原始資料\n- D. ✓ 正解\n- A. 關聯式資料庫不適合 PB 級非結構化儲存\n- B. Redis 是記憶體快取，不適合長期大量儲存\n\n**記憶要點:** Data Lake = Schema-on-Read（先存後解析）= 多格式原始資料長期儲存；適合 IoT、日誌、機器學習原始資料。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q49",
+      "topic": "BigData/Storage",
+      "question_text": "某企業的 Hadoop HDFS 系統採用「資料局部性（Data Locality）」原則。這個原則的核心概念是什麼？",
+      "options": {
+        "A": "確保每個資料區塊有多個副本（預設 3 個）",
+        "B": "優先處理本地時區產生的資料",
+        "C": "將熱門資料複製到多個節點，提高讀取速度",
+        "D": "將計算任務移動到資料所在節點，減少網路傳輸"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 65,
+        "evidence": "資料局部性：移動計算而非移動資料，將 Map 任務分配到儲存對應資料的節點"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nHDFS 的資料局部性原則：在分散式計算中，資料傳輸代價高昂。Hadoop MapReduce 盡量將計算任務（Map Task）分配到存有對應資料副本的節點上執行（「移動計算到資料」），避免大量資料通過網路傳輸，大幅提升效能。\n\n**其他選項為何錯:**\n- C. 複製副本是容錯機制（Replication Factor），不是資料局部性的定義\n- D. ✓ 正解\n- A. 三副本是 HDFS 的容錯策略，不是資料局部性\n- B. 時區與資料局部性無關\n\n**記憶要點:** 資料局部性 = 「計算跟著資料走」（Move Computation to Data），而非「資料跟著計算走」，減少網路 I/O 瓶頸。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q50",
+      "topic": "BigData/Storage",
+      "question_text": "某電商平台需要一個資料庫來儲存用戶的購物車資訊（user_id → 購物車清單），需要極高的讀寫吞吐量和低延遲，資料結構簡單。以下哪種資料庫最合適？",
+      "options": {
+        "A": "PostgreSQL（關聯式資料庫）",
+        "B": "Neo4j（圖形資料庫）",
+        "C": "Redis（鍵值資料庫）",
+        "D": "Apache Cassandra（列族資料庫）"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 63,
+        "evidence": "鍵值資料庫以 Key-Value 對儲存，提供極低延遲的讀寫，適合快取和會話儲存"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n購物車 = 用戶 ID（Key）對應購物車清單（Value），是典型的鍵值（Key-Value）資料模型。Redis 作為記憶體鍵值資料庫提供微秒級延遲，支援多種資料結構（List、Hash 可直接儲存購物車），適合高頻讀寫的購物車場景。\n\n**其他選項為何錯:**\n- A. PostgreSQL 適合複雜關係查詢，對高吞吐量簡單查找有額外開銷\n- B. Neo4j 用於複雜關係圖，購物車不需要圖結構\n- C. ✓ 正解\n- D. Cassandra 更適合時間序列和寬表，Redis 對此場景更輕量快速\n\n**記憶要點:** 鍵值（Key-Value）資料庫（Redis/DynamoDB）= 高吞吐量、低延遲的簡單查找；適合快取、會話、購物車。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q51",
+      "topic": "BigData/Storage",
+      "question_text": "某企業評估是否將資料倉儲遷移至資料湖屋架構。資料湖屋相較於傳統資料倉儲的主要優勢是什麼？",
+      "options": {
+        "A": "資料湖屋的查詢速度比傳統資料倉儲快 10 倍以上",
+        "B": "資料湖屋不需要資料工程師，AI 自動管理所有資料",
+        "C": "資料湖屋完全取消了 Schema 定義，任何查詢皆可執行",
+        "D": "資料湖屋可在低成本物件儲存上同時支援 BI 分析和機器學習原始資料"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 64,
+        "evidence": "Data Lakehouse 在低成本物件儲存上提供 BI 和 ML 工作負載的統一平台"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n資料湖屋（Lakehouse）的核心價值：以 S3/ADLS 等低成本物件儲存取代昂貴的資料倉儲儲存，透過 Delta Lake/Iceberg 元數據層增加 ACID 交易和 Schema 演化能力，同時支援 SQL BI 分析（結構化）和 ML 模型訓練（原始特徵）的統一平台。\n\n**其他選項為何錯:**\n- C. 湖屋仍然有 Schema 管理（Schema Evolution），只是比傳統倉儲更彈性\n- D. ✓ 正解\n- A. 查詢速度取決於引擎和配置，不保證快 10 倍\n- B. 仍需資料工程師維護資料管道和質量\n\n**記憶要點:** Lakehouse = Lake 的低成本彈性 + Warehouse 的 ACID 和 SQL = 統一 BI 和 ML 的現代資料平台。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q52",
+      "topic": "BigData/Storage",
+      "question_text": "某企業的 MongoDB 叢集中儲存了大量用戶行為日誌（JSON 格式，每筆約 2KB，每天新增 1 億筆）。若需要對過去 30 天的資料進行聚合分析，MongoDB 相較於 RDBMS 的優勢是什麼？",
+      "options": {
+        "A": "MongoDB 的 SQL 查詢比 PostgreSQL 更快",
+        "B": "MongoDB 自動對所有欄位建立索引，查詢無需優化",
+        "C": "MongoDB 支援完整的 ACID 跨文件交易",
+        "D": "MongoDB 的文件模型與 JSON 日誌結構天然匹配，無需 ETL 轉換"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 63,
+        "evidence": "文件型 NoSQL（MongoDB）以 JSON/BSON 格式儲存，適合半結構化資料"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nMongoDB 以 BSON（Binary JSON）為儲存格式，JSON 日誌可直接寫入而不需要解析成關聯式表格。RDBMS 儲存 JSON 需要先做 Schema 設計和 ETL，而 MongoDB 的文件模型可直接存取巢狀結構，靈活處理 Schema 變化。\n\n**其他選項為何錯:**\n- C. MongoDB 4.0+ 支援多文件 ACID 交易，但跨 Shard 的 ACID 仍有限制，且這不是相較 RDBMS 的優勢\n- D. ✓ 正解\n- A. MongoDB 不使用 SQL（使用 MQL），且並非所有查詢都比 PostgreSQL 快\n- B. MongoDB 不自動對所有欄位建索引，需手動設計索引\n\n**記憶要點:** MongoDB 優勢 = JSON/文件天然匹配（無需 ETL）+ Schema 彈性（新欄位隨時加）；適合半結構化資料和快速迭代的應用。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q53",
+      "topic": "Privacy",
+      "question_text": "某醫院欲與研究機構共享患者資料進行疾病研究，但需保護個人隱私。研究機構希望在不解密的情況下對加密資料進行統計計算。以下哪種技術最符合此需求？",
+      "options": {
+        "A": "k-匿名化（k-Anonymity）",
+        "B": "聯邦學習（Federated Learning）",
+        "C": "差分隱私（Differential Privacy）",
+        "D": "同態加密（Homomorphic Encryption）"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 88,
+        "evidence": "同態加密允許在加密狀態下執行計算，解密後得到正確結果"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n同態加密（Homomorphic Encryption）的核心特性：允許對密文（加密資料）直接進行數學運算（加法、乘法），計算結果解密後等同於對明文進行相同計算。研究機構永遠不接觸原始資料，只對加密資料計算，解密結果得到正確統計數據。\n\n**其他選項為何錯:**\n- C. 差分隱私在輸出結果上加入隨機噪音，不解決「計算過程中接觸資料」的問題\n- D. ✓ 正解\n- A. k-匿名化是對資料進行去識別化，共享的是處理後的資料（非加密運算）\n- B. 聯邦學習在本地訓練模型，共享梯度而非資料，適合 ML 訓練場景\n\n**記憶要點:** 同態加密 = 密文上計算 = 「黑盒子裡做運算」，資料提供方保持加密，計算方得到結果但看不到原始資料。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q54",
+      "topic": "Privacy",
+      "question_text": "某政府機關要發布人口普查資料供學術研究使用。資料採用「k-匿名化（k-Anonymity）」處理，k = 5。以下哪個說法正確描述 k-匿名化的保護機制？",
+      "options": {
+        "A": "資料集中每種敏感屬性的比例不超過 1/k",
+        "B": "每次查詢結果會加入至少 k 個隨機噪音值",
+        "C": "每個人的敏感屬性（如疾病）被加密，只有授權人員可解密",
+        "D": "每筆記錄在準識別符組合上至少與其他 4 筆記錄相同"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 88,
+        "evidence": "k-匿名化：每個準識別符組合至少出現 k 次，使個體無法被唯一識別"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nk-匿名化（k=5）要求：對於資料集中的任意一筆記錄，在準識別符（Quasi-Identifier，如年齡、性別、郵遞區號）的組合上，至少還有 4 筆其他記錄與其相同。這使攻擊者無法確定哪筆記錄屬於哪個個體（至少 1/k 的不確定性）。\n\n**其他選項為何錯:**\n- C. 描述的是加密，不是 k-匿名化\n- D. ✓ 正解\n- A. 描述的是 l-多樣性（l-Diversity）的相關概念\n- B. 描述的是差分隱私（Differential Privacy）的機制\n\n**記憶要點:** k-匿名化 = 準識別符組合至少出現 k 次（個體「隱藏在人群中」）；弱點：同群組內敏感屬性可能均相同（改進：l-多樣性）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q55",
+      "topic": "Privacy",
+      "question_text": "某科技公司採用「差分隱私（Differential Privacy）」保護用戶資料，設定隱私預算 ε = 0.1。若將 ε 提高至 10，對隱私保護和資料效用的影響是什麼？",
+      "options": {
+        "A": "ε 不影響隱私程度，只影響計算速度",
+        "B": "ε = 10 表示資料被加密 10 次，保護更強",
+        "C": "ε 越大，隱私保護越強，資料效用越低",
+        "D": "ε 越大，隱私保護越弱，資料效用越高"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 88,
+        "evidence": "差分隱私的隱私預算 ε：ε 越小，隱私保護越強（噪音越大），效用越低"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n差分隱私中，隱私預算 ε 控制加入噪音的大小：ε 越小（如 0.1），加入的噪音越大，隱私保護越強但資料效用越低（結果失真越嚴重）；ε 越大（如 10），噪音越小，資料效用越高但隱私保護越弱。存在隱私-效用的根本 trade-off。\n\n**其他選項為何錯:**\n- C. 方向錯誤，ε 越大保護越弱（不是越強）\n- D. ✓ 正解\n- A. ε 直接決定隱私程度（噪音大小）\n- B. ε 是數學隱私預算，不是加密次數\n\n**記憶要點:** ε 小 → 隱私強（噪音大，效用低）；ε 大 → 效用高（噪音小，隱私弱）。ε-differential privacy 是嚴格的數學保護定義。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q56",
+      "topic": "Privacy",
+      "question_text": "某企業實施「零信任架構（Zero Trust Architecture）」管控員工對資料的存取。以下哪個原則最核心地體現了零信任的理念？",
+      "options": {
+        "A": "所有資料一律加密，且每個請求都需要兩步驟驗證",
+        "B": "資料存取日誌保留 7 年，以供事後審計",
+        "C": "企業內網的所有裝置和用戶預設信任，外部連線需驗證",
+        "D": "無論用戶位置（內網或外網），持續驗證身份且僅授予最小必要權限"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 89,
+        "evidence": "零信任：永不信任、始終驗證；最小權限原則；持續監控"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n零信任架構的核心原則：「永不信任，始終驗證（Never Trust, Always Verify）」。不論用戶在內網或外網，每次存取都需驗證身份，且依最小權限原則（Least Privilege）只授予完成任務所需的最小存取權。這顛覆了傳統「內網安全」的假設。\n\n**其他選項為何錯:**\n- C. 這是傳統邊界安全模型（內網信任）的描述，與零信任相反\n- D. ✓ 正解\n- A. 加密和 2FA 是零信任的技術工具，但不是核心定義原則\n- B. 日誌保留是合規要求，不是零信任的核心理念\n\n**記憶要點:** 零信任三原則：(1) 持續驗證身份（Never Trust）；(2) 最小權限（Least Privilege）；(3) 假設已被入侵（Assume Breach）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q57",
+      "topic": "Privacy",
+      "question_text": "某健康科技公司想讓多家醫院在不共享患者原始資料的情況下共同訓練疾病預測模型。以下哪種技術最適合實現此目標？",
+      "options": {
+        "A": "同態加密後集中訓練",
+        "B": "資料本地化（Data Localization）",
+        "C": "k-匿名化後集中訓練",
+        "D": "聯邦學習（Federated Learning）"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 88,
+        "evidence": "聯邦學習：各節點本地訓練，只共享模型參數（梯度），不共享原始資料"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n聯邦學習（Federated Learning）的機制：各醫院在本地用自己的患者資料訓練模型，只將模型更新（梯度/參數）傳送至中央伺服器聚合，原始患者資料永遠不離開醫院。最終得到一個由多家醫院資料共同訓練的全局模型，同時保護各機構的資料隱私。\n\n**其他選項為何錯:**\n- C. k-匿名化後仍需集中，且在傳輸過程中存在風險\n- D. ✓ 正解\n- A. 同態加密計算開銷極大，目前實際訓練深度學習模型仍不現實\n- B. 資料本地化是法規合規概念（資料不出境），不是多機構聯合學習方案\n\n**記憶要點:** 聯邦學習 = 資料不動、模型動（梯度聚合）；適合醫療/金融多機構協作，解決資料孤島問題。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q58",
+      "topic": "Privacy",
+      "question_text": "某企業的存取控制系統允許資料擁有者自行決定誰可以存取其資料，並可授予或撤銷權限。這屬於哪種存取控制模型？",
+      "options": {
+        "A": "角色型存取控制（RBAC）",
+        "B": "屬性型存取控制（ABAC）",
+        "C": "自主存取控制（DAC）",
+        "D": "政策型存取控制（PBAC）"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 89,
+        "evidence": "DAC（Discretionary Access Control）：資源擁有者自主決定存取權限"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n自主存取控制（DAC，Discretionary Access Control）的特點：資源的擁有者自行決定誰有存取權，可自由授予或撤銷權限。Unix 檔案系統的傳統權限模型（擁有者設定 rwx 給其他用戶）就是 DAC 的典型應用。\n\n**其他選項為何錯:**\n- A. RBAC 由管理員定義角色和權限，用戶透過角色獲得權限（不是擁有者自主決定）\n- B. ABAC 以屬性（用戶屬性、資源屬性、環境屬性）動態決定存取\n- C. ✓ 正解\n- D. PBAC 以集中管理的策略規則控制存取\n\n**記憶要點:** DAC = 擁有者自主（discretionary）授權；RBAC = 角色決定；ABAC = 屬性動態決定（最細粒度）；PBAC = 集中政策管理。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q59",
+      "topic": "Privacy",
+      "question_text": "某金融機構在台灣收集的客戶資料，依法規要求必須儲存在台灣境內的伺服器，不得傳輸至境外。這屬於哪種資料隱私保護措施？",
+      "options": {
+        "A": "假名化（Pseudonymization）",
+        "B": "資料最小化（Data Minimization）",
+        "C": "差分隱私（Differential Privacy）",
+        "D": "資料本地化（Data Localization）"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 89,
+        "evidence": "資料本地化：要求特定資料儲存於特定地理區域，受當地法律保護"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\n資料本地化（Data Localization / Data Residency）是法規要求，規定特定類型的資料（如個人資料、金融資料）必須儲存在特定地理位置（如國內），不得傳輸至境外，確保資料受當地法律管轄和保護。\n\n**其他選項為何錯:**\n- C. 差分隱私是在資料輸出上加噪音的技術方法，不是地理限制\n- D. ✓ 正解\n- A. 假名化以代號替換識別符，不涉及地理限制\n- B. 資料最小化是只收集必要資料的原則，不涉及儲存地點\n\n**記憶要點:** 資料本地化 = 資料「不出境」= 法規合規要求；歐盟 GDPR、中國資料安全法均有相關規定。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q60",
+      "topic": "Privacy",
+      "question_text": "某企業實施 RBAC（角色型存取控制），設定「資料分析師」角色可讀取分析資料庫，但不可修改或刪除。「行銷主管」可讀取和匯出報表，但不可存取原始資料。以下哪個說法最準確描述 RBAC 的優勢？",
+      "options": {
+        "A": "RBAC 可依即時情境（時間、位置）動態調整存取權限",
+        "B": "RBAC 不需要管理員介入，用戶自行設定所需權限",
+        "C": "每個用戶的權限可以完全個人化，無需與他人相同",
+        "D": "透過角色集中管理權限，新增用戶只需指派角色，降低管理複雜度"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 89,
+        "evidence": "RBAC 以角色為中心集中管理權限，簡化大型組織的存取控制"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nRBAC 的核心優勢：權限附加在「角色」而非個別用戶。新增員工只需指派角色即獲得對應權限；員工離職或調職只需更改角色；更改角色定義即批量更新所有該角色用戶的權限。大幅降低大型組織的權限管理複雜度。\n\n**其他選項為何錯:**\n- C. RBAC 是統一角色權限，不是完全個人化（個人化是 ABAC 的特點）\n- D. ✓ 正解\n- A. 依情境動態調整是 ABAC 的特點\n- B. RBAC 仍需管理員設計角色和指派，不是自助式\n\n**記憶要點:** RBAC 優勢 = 角色集中管理（新增/調動只需改角色）；適合職能明確的大型組織；ABAC 更細粒度但更複雜。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q61",
+      "topic": "BigData/Processing",
+      "question_text": "某串流媒體平台需要對用戶的即時播放行為進行分析，要求延遲低於 100 毫秒，且需要按事件發生時間（Event Time）處理亂序事件。以下哪個處理框架最合適？",
+      "options": {
+        "A": "Hadoop MapReduce，因為其批次處理能力最強",
+        "B": "Apache Spark Streaming（微批次），因為支援機器學習整合",
+        "C": "Apache Flink，因為支援真正的事件時間（Event Time）處理和低延遲串流",
+        "D": "Apache Airflow，因為可以設定排程定時處理"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 66,
+        "evidence": "Apache Flink 支援真實串流處理和事件時間語義，延遲極低"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\nApache Flink 是真正的串流處理引擎（非微批次），原生支援事件時間（Event Time）語義和 Watermark 機制處理亂序事件，可達毫秒級延遲。適合需要精確事件時間語義的金融交易、即時監控等場景。\n\n**其他選項為何錯:**\n- A. Hadoop MapReduce 是批次處理，延遲通常為分鐘至小時級別\n- B. Spark Streaming 是微批次（Micro-batch），最低延遲通常秒級，不是真正串流；事件時間支援較 Flink 弱\n- C. ✓ 正解\n- D. Apache Airflow 是工作流程排程器，不是串流處理引擎\n\n**記憶要點:** Flink = 真正串流（毫秒）+ Event Time；Spark Streaming = 微批次（秒級）；MapReduce = 批次（分鐘/小時）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q62",
+      "topic": "BigData/Processing",
+      "question_text": "某資料工程師比較 Apache Spark 和 Hadoop MapReduce 的性能。Spark 在迭代計算（如機器學習訓練）中比 MapReduce 快 10-100 倍的主要原因是什麼？",
+      "options": {
+        "A": "Spark 的程式碼由 Scala 編寫，比 MapReduce 的 Java 執行更快",
+        "B": "Spark 自動將資料壓縮，減少儲存和傳輸量",
+        "C": "Spark 使用更先進的 CPU 架構，計算能力更強",
+        "D": "Spark 將中間計算結果保留在記憶體（RAM）中，避免反覆讀寫硬碟"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 66,
+        "evidence": "Spark 以記憶體計算（In-Memory Computing）避免 MapReduce 的磁碟 I/O 瓶頸"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nHadoop MapReduce 每個 Map-Reduce 階段的輸出都寫入 HDFS 磁碟，下一階段再從磁碟讀取，磁碟 I/O 是主要瓶頸。Spark 使用 RDD（Resilient Distributed Dataset）和 DAG 執行引擎，中間結果保留在 RAM，只有最終輸出才寫入磁碟，對迭代計算（ML）性能提升極大。\n\n**其他選項為何錯:**\n- C. 硬體架構是集群管理的，Spark/MapReduce 都在相同硬體上運行\n- D. ✓ 正解\n- A. 執行語言不是主要效能差異（都最終在 JVM 上）\n- B. 壓縮是附帶功能，不是主要性能差異原因\n\n**記憶要點:** Spark 快的原因 = In-Memory Computing（記憶體計算）= 避免 MapReduce 的磁碟 I/O 瓶頸；迭代計算受益最大。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q63",
+      "topic": "BigData/Processing",
+      "question_text": "某資料團隊需要建立一個複雜的資料管道：每日凌晨從多個來源抓取資料，進行清洗、轉換、驗證，最終載入資料倉儲，各步驟有相依關係。以下哪個工具最適合管理此工作流程？",
+      "options": {
+        "A": "Apache Kafka，因為支援即時資料串流傳輸",
+        "B": "Apache Flink，因為支援低延遲處理",
+        "C": "Apache Spark，因為處理大量資料最快",
+        "D": "Apache Airflow，因為支援 Python DAG 定義複雜工作流程和排程"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 67,
+        "evidence": "Apache Airflow 以 Python DAG 定義任務依賴關係和排程，用於複雜資料管道管理"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nApache Airflow 是工作流程管理平台，以 Python 程式碼定義 DAG（有向無環圖）描述任務間的相依關係和執行順序，支援排程（Cron）、重試機制、依賴管理、監控介面，是 ETL 管道編排的行業標準工具。\n\n**其他選項為何錯:**\n- C. Spark 是計算引擎，不是工作流程排程工具\n- D. ✓ 正解\n- A. Kafka 是訊息佇列/串流平台，不是工作流程排程工具\n- B. Flink 是串流計算引擎，不是工作流程排程工具\n\n**記憶要點:** Airflow = 工作流程排程（DAG、Cron、依賴管理）；Spark/Flink = 計算引擎；Kafka = 訊息佇列。它們常搭配使用而非競爭。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q64",
+      "topic": "BigData/Processing",
+      "question_text": "某開發團隊希望建立一個資料管道，在不同的執行環境（本地開發、Google Cloud、AWS）上運行，希望避免被特定雲端廠商鎖定（Vendor Lock-in）。以下哪個框架最能實現此目標？",
+      "options": {
+        "A": "AWS Glue，因為與 AWS 生態系統整合最好",
+        "B": "Hadoop MapReduce，因為是開源的不受廠商限制",
+        "C": "Apache Spark，因為有最多的生態系統支援",
+        "D": "Apache Beam，因為提供統一的程式模型可在多種執行器上運行"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 67,
+        "evidence": "Apache Beam 提供統一程式模型，可在 Spark、Flink、Cloud Dataflow 等不同執行器上運行"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nApache Beam 定義了統一的資料處理程式模型（Pipeline API），寫一次程式碼可在不同執行器（Runner）上運行：Apache Spark、Apache Flink、Google Cloud Dataflow、Apache Samza 等，真正實現可攜性（Portability），避免廠商鎖定。\n\n**其他選項為何錯:**\n- C. Spark 雖廣泛使用，但程式碼需針對 Spark API 撰寫，換引擎需重寫\n- D. ✓ 正解\n- A. AWS Glue 與 AWS 深度綁定，是廠商鎖定的例子\n- B. MapReduce 是特定 Hadoop 計算模型，可攜性低\n\n**記憶要點:** Beam = 統一抽象層（Write once, run anywhere）；Runner 可以是 Spark、Flink、GCP Dataflow；解決廠商鎖定問題。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q65",
+      "topic": "BigData/Processing",
+      "question_text": "某資料科學家在 Apache Spark 中對 RDD 進行操作，呼叫了 `map()` 和 `filter()` 兩個轉換（Transformation），再呼叫 `count()` 動作（Action）。以下哪個說法正確描述 Spark 的惰性求值（Lazy Evaluation）？",
+      "options": {
+        "A": "每個 RDD 操作完成後立即將結果寫入磁碟",
+        "B": "`count()` 會先等待 `map()` 和 `filter()` 各自完成後再執行",
+        "C": "`map()` 和 `filter()` 在被呼叫時立即執行計算",
+        "D": "`map()` 和 `filter()` 只記錄執行計劃，直到 `count()` 被呼叫才真正執行"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 66,
+        "evidence": "Spark 惰性求值：Transformation 只建立執行計劃（DAG），Action 觸發實際執行"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nSpark 的惰性求值（Lazy Evaluation）：Transformation（map、filter、flatMap 等）只將操作添加到 DAG 執行計劃，不立即執行。直到遇到 Action（count、collect、save 等）時，Spark 才優化整個 DAG 並執行計算。這允許 Spark 優化執行計劃（如合併多個轉換、Pipeline 化處理）。\n\n**其他選項為何錯:**\n- C. Transformation 不立即執行，這是 Spark 惰性求值的核心機制\n- D. ✓ 正解\n- A. 中間結果不立即寫磁碟，這正是 Spark 比 MapReduce 快的原因\n- B. count() 不是等待前面完成，而是觸發整個 DAG 的執行\n\n**記憶要點:** Spark 懶計算：Transformation（懶）= 只記計劃；Action（觸發）= 開始執行 DAG；優點 = Spark 可優化整體執行計劃。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q66",
+      "topic": "BigData/Processing",
+      "question_text": "某資料工程師比較 Apache Airflow 和 Kubeflow 在 ML 管道方面的用途。以下哪個說法最準確區分兩者？",
+      "options": {
+        "A": "兩者功能完全相同，只是程式語言不同",
+        "B": "Kubeflow 只能在 Google Cloud 上運行，Airflow 可在任何環境運行",
+        "C": "Airflow 是 Kubernetes 原生的，Kubeflow 適合一般 ETL 管道",
+        "D": "Kubeflow 專為機器學習工作流（訓練、調參、部署）設計，Airflow 是通用資料管道排程工具"
+      },
+      "correct_answer": "D",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 67,
+        "evidence": "Kubeflow 為 ML 工作流設計（訓練、Hyperparameter Tuning、Serving），基於 Kubernetes"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:**\nKubeflow 是 Kubernetes 原生的機器學習平台，專注於 ML Pipeline：模型訓練、超參數調整（Katib）、模型服務（KFServing）、實驗追蹤。Airflow 是通用工作流程排程工具，不限於 ML，適合各種 ETL、報表、資料同步管道。\n\n**其他選項為何錯:**\n- C. Airflow 和 Kubeflow 的特性描述互換了\n- D. ✓ 正解\n- A. 兩者功能和適用場景明顯不同\n- B. Kubeflow 可在任何 Kubernetes 環境運行（包括 AWS、Azure、本地）\n\n**記憶要點:** Kubeflow = ML 專用管道（K8s 原生）；Airflow = 通用 ETL 排程（DAG Python）；MLflow = 實驗追蹤；三者常互補使用。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q67",
+      "topic": "Stats/Descriptive",
+      "question_text": "某工廠生產了 7 個零件，品質分數依序為：82, 85, 88, 90, 92, 95, 150。請問此資料集的平均數、中位數和眾數中，哪個最能代表「典型」零件的品質？",
+      "options": {
+        "A": "平均數，因為使用了所有數據",
+        "B": "中位數，因為不受 150 這個極端值影響",
+        "C": "眾數，因為代表最常見的品質分數",
+        "D": "三者相同，均可使用"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 15,
+        "evidence": "中位數對極端值不敏感，在偏態分佈中比平均數更具代表性"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n平均數 = (82+85+88+90+92+95+150)/7 = 682/7 ≈ 97.4，被 150 拉高，高於 6 個數據點，不代表典型值。中位數 = 排序後第 4 個值 = 90，有 3 個值在其上下，代表典型品質。此資料有一個明顯離群值（150），中位數最具代表性。\n\n**其他選項為何錯:**\n- A. 平均數 ≈ 97.4，高於 6/7 的資料，不代表典型\n- B. ✓ 正解\n- C. 此資料無重複值，無眾數\n- D. 三者不相同（平均≈97.4，中位數=90，無眾數）\n\n**記憶要點:** 有極端值（離群值）時 → 中位數比平均數更能代表典型值；平均數易被極端值拉偏。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q68",
+      "topic": "Stats/Descriptive",
+      "question_text": "某投資基金連續 4 年的年報酬率為：+10%、+20%、-15%、+25%。計算這 4 年的平均年報酬率，應使用哪種平均數？",
+      "options": {
+        "A": "算術平均數（Arithmetic Mean）",
+        "B": "幾何平均數（Geometric Mean）",
+        "C": "調和平均數（Harmonic Mean）",
+        "D": "加權平均數（Weighted Mean），以投資金額為權重"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 15,
+        "evidence": "幾何平均數適用於比率、增長率等乘法關係的平均計算"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n投資報酬率是複利計算（乘法關係）：1.10 × 1.20 × 0.85 × 1.25 = 1.4025，4 年總報酬率 40.25%。幾何平均數 = (1.10 × 1.20 × 0.85 × 1.25)^(1/4) - 1 ≈ 8.8%，代表每年複利等效報酬。算術平均 = (10+20-15+25)/4 = 10%，高估了實際複利報酬。\n\n**其他選項為何錯:**\n- A. 算術平均適合加法性質的資料，報酬率是乘法性質（複利），算術平均高估\n- B. ✓ 正解\n- C. 調和平均適用於速度、倍率等倒數關係（如平均速度）\n- D. 若各年投入金額相同，不需要加權\n\n**記憶要點:** 比率/增長率/複利 → 幾何平均；速度/效率（固定量/單位）→ 調和平均；一般量 → 算術平均。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q69",
+      "topic": "Stats/Descriptive",
+      "question_text": "某班級 30 名學生的考試成績呈現峰度（Kurtosis）= 1.5。對此分佈形狀的正確描述是？",
+      "options": {
+        "A": "超峰態（Leptokurtic），比常態分佈有更厚的尾部",
+        "B": "常峰態（Mesokurtic），與常態分佈形狀相似",
+        "C": "低峰態（Platykurtic），比常態分佈有更薄的尾部、更平坦的峰",
+        "D": "無法判斷，峰度只能與偏度一起解讀"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 17,
+        "evidence": "峰度：Leptokurtic(>3)、Mesokurtic(≈3)、Platykurtic(<3)"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n以常態分佈的峰度（= 3）為基準：峰度 = 1.5 < 3，屬於低峰態（Platykurtic）。低峰態分佈比常態分佈更平坦（峰較低），尾部較薄（極端值較少），資料分佈較均勻。\n\n**其他選項為何錯:**\n- A. Leptokurtic 需峰度 > 3（高峰、厚尾），1.5 < 3 不符合\n- B. Mesokurtic 是峰度 ≈ 3（常態分佈），1.5 遠小於 3\n- C. ✓ 正解\n- D. 峰度可以獨立解讀，無需與偏度搭配\n\n**記憶要點:** 峰度 > 3 = Leptokurtic（尖峰厚尾）；≈ 3 = Mesokurtic（常態）；< 3 = Platykurtic（平峰薄尾）。「Lepto」= 細長（尖峰），「Platy」= 扁平（寬峰）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q70",
+      "topic": "Stats/Descriptive",
+      "question_text": "某調查公司對 200 名受訪者的收入資料計算四分位數，得到 Q1 = 40,000、Q2 = 55,000、Q3 = 80,000。哪個說法正確？",
+      "options": {
+        "A": "IQR = Q3 - Q1 = 40,000，50% 的受訪者收入在此範圍內",
+        "B": "IQR = Q3 - Q2 = 25,000，代表上半部資料的分散程度",
+        "C": "IQR = Q2 - Q1 = 15,000，代表下半部資料的分散程度",
+        "D": "IQR = Q3 + Q1 = 120,000，代表收入的總範圍"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 16,
+        "evidence": "IQR = Q3 - Q1，涵蓋中間 50% 的資料範圍"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\nIQR（四分位距）= Q3 - Q1 = 80,000 - 40,000 = 40,000。IQR 涵蓋了資料第 25 百分位到第 75 百分位，即中間 50% 的受訪者的收入分佈範圍，是衡量資料中段分散程度的穩健指標。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. IQR 定義是 Q3 - Q1，不是 Q3 - Q2\n- C. Q2 - Q1 不是 IQR 的定義\n- D. IQR 是差，不是和\n\n**記憶要點:** IQR = Q3 - Q1 = 中間 50% 資料的範圍；箱形圖的「箱」高度就是 IQR；IQR 對離群值不敏感（中位數的同系統指標）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q71",
+      "topic": "Stats/Descriptive",
+      "question_text": "某資料分析師計算兩組資料的變異數（Variance）：A 組 σ² = 100，B 組 σ² = 400。若要比較兩組的相對分散程度（考慮各組平均值不同），應使用哪個指標？",
+      "options": {
+        "A": "直接比較變異數，B 組（400）比 A 組（100）分散程度更大",
+        "B": "比較標準差，B 組（20）比 A 組（10）分散",
+        "C": "計算變異係數（CV = 標準差 / 平均數），考慮各組平均值的差異",
+        "D": "計算四分位距（IQR），變異數無法比較分散程度"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 16,
+        "evidence": "變異係數（CV）為相對分散程度，可跨不同量綱或均值的資料集比較"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n若 A 組平均值 = 5，CV_A = 10/5 = 200%；B 組平均值 = 200，CV_B = 20/200 = 10%。儘管 B 組標準差（20）更大，但相對於其均值，B 組反而更集中（CV 小）。變異係數（CV）是無量綱的相對分散指標，適合跨組或跨量綱比較。\n\n**其他選項為何錯:**\n- A. 絕對值的變異數比較忽略了均值差異，不公平\n- B. 比較標準差也是絕對比較，未考慮均值\n- C. ✓ 正解\n- D. IQR 也是絕對指標，同樣未解決均值不同的問題\n\n**記憶要點:** 不同量綱或均值 → 用 CV（變異係數）比較相對分散程度；CV = std/mean，越大越分散（相對）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q72",
+      "topic": "Stats/Descriptive",
+      "question_text": "某企業員工薪資資料中，Q1 = 45,000、中位數 = 55,000、Q3 = 70,000、最小值 = 30,000、最大值 = 200,000。在箱形圖中，上方鬚（Upper Whisker）的位置應該是？",
+      "options": {
+        "A": "200,000（資料最大值）",
+        "B": "70,000 + 1.5 × (70,000 - 45,000) = 107,500，但不超過實際資料最大非離群值",
+        "C": "70,000 + 標準差",
+        "D": "中位數 + 2 × IQR = 55,000 + 50,000 = 105,000"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 18,
+        "evidence": "箱形圖鬚的範圍：Q3 + 1.5×IQR，超出此範圍的點為離群值"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\nIQR = Q3 - Q1 = 70,000 - 45,000 = 25,000。上限 = Q3 + 1.5 × IQR = 70,000 + 37,500 = 107,500。上方鬚延伸至不超過 107,500 的最大實際資料值（非離群值的最大值）。最大值 200,000 > 107,500，屬離群值，在箱形圖上以獨立點標示。\n\n**其他選項為何錯:**\n- A. 最大值 200,000 > 上限，是離群值，不應作為鬚的終點\n- B. ✓ 正解\n- C. 箱形圖鬚不使用標準差\n- D. 公式錯誤，鬚的長度是 1.5×IQR，不是 2×IQR\n\n**記憶要點:** 箱形圖鬚 = Q3 + 1.5×IQR（上）和 Q1 - 1.5×IQR（下）的「實際資料點」；超出的為離群值（圓點）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q73",
+      "topic": "Stats/Hypothesis",
+      "question_text": "某藥廠測試新藥是否有效，設定 H₀：新藥無效，H₁：新藥有效，顯著水準 α = 0.05。臨床試驗結果顯示 p-value = 0.03。以下哪個結論正確？",
+      "options": {
+        "A": "接受 H₀，因為 p-value < 0.05 表示結果不可靠",
+        "B": "拒絕 H₀，p-value = 0.03 < α = 0.05，有統計顯著性",
+        "C": "無法做結論，需要更多資料",
+        "D": "接受 H₁，新藥肯定有效"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 36,
+        "evidence": "p-value < α 則拒絕 H₀，結果具統計顯著性"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\np-value = 0.03 < α = 0.05，意味著若 H₀ 為真，觀察到此結果的機率僅 3%，低於可接受的錯誤率 5%。因此拒絕 H₀，結論為「有統計顯著證據顯示新藥有效」。\n\n**其他選項為何錯:**\n- A. p-value < α 應拒絕 H₀（不是接受），方向錯誤\n- B. ✓ 正解\n- C. p-value 已提供足夠統計證據做出結論\n- D. 「接受 H₁」的說法不嚴謹；應說「拒絕 H₀」，且統計顯著不等於實際上肯定有效（需考慮效果量和臨床顯著性）\n\n**記憶要點:** p-value < α → 拒絕 H₀（統計顯著）；p-value ≥ α → 無法拒絕 H₀（不顯著）；注意：「拒絕 H₀」≠「H₁ 肯定正確」。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q74",
+      "topic": "Stats/Hypothesis",
+      "question_text": "某研究員進行假設檢定，設定 α = 0.05。若實際上 H₀ 為假（新藥真的有效），但檢定結果未能拒絕 H₀，這屬於什麼錯誤？",
+      "options": {
+        "A": "第一型錯誤（Type I Error），因為做出了錯誤的結論",
+        "B": "第二型錯誤（Type II Error），錯誤地保留了假的虛無假設",
+        "C": "顯著水準設定錯誤，應降低 α",
+        "D": "這不是錯誤，是正確的統計推論"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 35,
+        "evidence": "第二型錯誤（β）：H₀ 為假時未能拒絕 H₀（偽陰性，False Negative）"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n第二型錯誤（Type II Error / β 錯誤）：H₀ 為假（新藥真的有效），但統計檢定未能拒絕 H₀（結論為無效）。這是「偽陰性」（False Negative）錯誤，機率為 β，而統計檢定力（Power）= 1 - β。\n\n**其他選項為何錯:**\n- A. 第一型錯誤是 H₀ 為真時錯誤地拒絕（偽陽性），與此情境相反\n- B. ✓ 正解\n- C. 降低 α 只會增加 β（Type II Error），不是解法\n- D. 這確實是一個統計錯誤（雖然統計推論程序本身可能正確）\n\n**記憶要點:** Type I（α）= H₀ 真卻拒絕（偽陽性）；Type II（β）= H₀ 假卻保留（偽陰性）；Power（1-β）= 正確拒絕假的 H₀ 的能力。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q75",
+      "topic": "Stats/Hypothesis",
+      "question_text": "某研究想比較三個城市（台北、台中、高雄）居民的平均月收入是否有顯著差異，各組樣本來自常態分佈且方差同質。應選擇哪種統計檢定方法？",
+      "options": {
+        "A": "獨立樣本 t 檢定（Independent t-test）",
+        "B": "配對樣本 t 檢定（Paired t-test）",
+        "C": "單因子變異數分析（One-Way ANOVA）",
+        "D": "卡方獨立性檢定（Chi-Square Test of Independence）"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 37,
+        "evidence": "ANOVA 用於比較三個或以上獨立組別的均值差異"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n比較三個獨立組別的連續型數值（月收入）均值差異，且滿足常態和方差同質假設，應使用單因子 ANOVA（Analysis of Variance）。若使用多次 t 檢定（3 次），會膨脹整體第一型錯誤率（Family-wise Error Rate），ANOVA 同時比較所有組別避免此問題。\n\n**其他選項為何錯:**\n- A. 獨立樣本 t 檢定只比較兩個組別，不能直接比較三個\n- B. 配對 t 檢定用於同一對象的前後比較，此處是三個獨立城市\n- C. ✓ 正解\n- D. 卡方檢定用於類別型資料（頻率），月收入是連續型資料\n\n**記憶要點:** 比較組數 ≥ 3 的均值 → ANOVA；只有 2 組 → t 檢定；類別資料頻率 → 卡方；非常態或小樣本 → Kruskal-Wallis。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q76",
+      "topic": "Stats/Hypothesis",
+      "question_text": "某製造廠測試新舊兩種生產方法的良品率，新方法良品率 92%（n=50），舊方法 88%（n=50），p-value = 0.38。工廠主管決定不採用新方法。這個決策在統計上是否正確？",
+      "options": {
+        "A": "正確，因為 92% 和 88% 的差異太小，不具實際意義",
+        "B": "正確，因為 p-value = 0.38 > α = 0.05，無統計顯著差異，不能拒絕 H₀",
+        "C": "錯誤，p-value > 0.05 代表新方法確定無效",
+        "D": "錯誤，應以商業效益而非 p-value 決定是否採用"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 35,
+        "evidence": "p-value ≥ α 無法拒絕 H₀，但不代表 H₀ 一定為真"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\np-value = 0.38 > α = 0.05，無法拒絕 H₀（H₀：兩方法良品率無差異）。在統計上，無充分證據顯示新舊方法有顯著差異。不採用新方法（維持現狀）是合理的統計決策。\n\n**其他選項為何錯:**\n- A. 理由不完整，需要統計檢定而非直覺判斷差異大小\n- B. ✓ 正解\n- C. 錯誤解讀：p-value > 0.05 只說明「無足夠證據反對 H₀」，不代表新方法確定無效\n- D. 商業效益重要，但統計判斷應先於商業決策，且決策本身邏輯正確\n\n**記憶要點:** 不能拒絕 H₀ ≠ H₀ 為真；只是沒有足夠統計證據。樣本量太小也可能導致無法偵測真實差異（Statistical Power 不足）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q77",
+      "topic": "Stats/Hypothesis",
+      "question_text": "某研究員想分析不同教育程度（國中、高中、大學、研究所）的受訪者對某政策的支持程度（量表 1-5 分，偏序數資料，非常態分佈）是否有差異。應選哪種檢定方法？",
+      "options": {
+        "A": "單因子 ANOVA（One-Way ANOVA）",
+        "B": "Kruskal-Wallis 檢定",
+        "C": "卡方適合度檢定（Chi-Square Goodness-of-Fit）",
+        "D": "Mann-Whitney U 檢定"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 38,
+        "evidence": "Kruskal-Wallis 為 ANOVA 的無母數替代方法，適用三組以上非常態資料"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n4 個獨立組別（教育程度），依變數為 1-5 分的量表資料（非常態分佈）。ANOVA 需要常態假設，此處不符合。Kruskal-Wallis 是 ANOVA 的無母數替代方法，比較三個以上獨立組別的中位數差異，不需常態假設。\n\n**其他選項為何錯:**\n- A. ANOVA 需要資料符合常態分佈，量表資料常不符合此假設\n- B. ✓ 正解\n- C. 卡方適合度檢定用於單一類別變數的觀察頻率與期望頻率比較\n- D. Mann-Whitney U 只比較兩個獨立組別，此處有 4 個組別\n\n**記憶要點:** 非常態 + 2 組 → Mann-Whitney U；非常態 + ≥3 組 → Kruskal-Wallis；常態 + 2 組 → t 檢定；常態 + ≥3 組 → ANOVA。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q78",
+      "topic": "Stats/Hypothesis",
+      "question_text": "某電商平台想驗證「顧客滿意度評分（1-10分）與再次購買次數（次/年）之間是否存在線性相關」。資料分析顯示滿意度分數大致呈常態分佈。應選哪種相關性檢定？",
+      "options": {
+        "A": "Spearman 等級相關係數（Spearman's ρ）",
+        "B": "Pearson 積差相關係數（Pearson's r）",
+        "C": "卡方獨立性檢定（Chi-Square Independence Test）",
+        "D": "Mann-Whitney U 檢定"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 37,
+        "evidence": "Pearson r 用於兩個連續型常態分佈變數的線性相關性檢定"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n兩個變數（滿意度、購買次數）均為連續型，滿意度近似常態分佈，且目的是檢定線性相關，Pearson 積差相關係數（Pearson r）是最適當的選擇，直接量化線性關聯強度（-1 到 +1）。\n\n**其他選項為何錯:**\n- A. Spearman ρ 是 Pearson r 的無母數替代，適用於非常態或序數資料；題目說「大致常態」，Pearson 更精確\n- B. ✓ 正解\n- C. 卡方獨立性檢定用於兩個類別型變數的獨立性，不適用連續型資料\n- D. Mann-Whitney 比較兩組中位數差異，不是相關性檢定\n\n**記憶要點:** 線性相關 + 常態 → Pearson r；線性相關 + 非常態或序數 → Spearman ρ；類別 × 類別獨立性 → 卡方。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q79",
+      "topic": "Stats/Probability",
+      "question_text": "某客服中心平均每小時接到 8 通投訴電話，且投訴事件相互獨立。若要計算「某小時內恰好接到 5 通投訴電話」的機率，應使用哪種機率分佈？",
+      "options": {
+        "A": "二項分佈（Binomial Distribution）",
+        "B": "卜瓦松分佈（Poisson Distribution）",
+        "C": "常態分佈（Normal Distribution）",
+        "D": "指數分佈（Exponential Distribution）"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 26,
+        "evidence": "卜瓦松分佈用於計算固定時間/空間內事件發生次數的機率，平均發生率為 λ"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n卜瓦松分佈適用條件：固定時間/空間內，計算事件發生次數（離散），事件相互獨立，平均發生率 λ 固定。本題 λ = 8，計算 P(X=5) = e^(-8) × 8^5 / 5! 的機率。\n\n**其他選項為何錯:**\n- A. 二項分佈需要固定試驗次數 n 和成功機率 p；投訴電話次數無「上限 n」\n- B. ✓ 正解\n- C. 常態分佈是連續型，不適用於離散計數\n- D. 指數分佈計算「事件間等待時間」（連續），不是「次數」\n\n**記憶要點:** Poisson = 單位時間/空間內事件計數；λ = 平均次數；適用場景：電話次數、缺陷數、到達率等。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q80",
+      "topic": "Stats/Probability",
+      "question_text": "某銀行 ATM 故障後，平均需等待 30 分鐘才有技術人員修復。若修復時間服從指數分佈，請問「等待時間超過 1 小時」的機率最接近哪個值？（e^(-2) ≈ 0.135）",
+      "options": {
+        "A": "0.5（50%）",
+        "B": "0.368（36.8%）",
+        "C": "0.135（13.5%）",
+        "D": "0.865（86.5%）"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 27,
+        "evidence": "指數分佈：P(X > t) = e^(-λt)，λ = 1/μ"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n指數分佈：平均等待時間 μ = 30 分鐘，λ = 1/30。P(X > 60) = e^(-λ × 60) = e^(-60/30) = e^(-2) ≈ 0.135 = 13.5%。等待超過 1 小時（2 個平均等待時間）的機率約 13.5%。\n\n**其他選項為何錯:**\n- A. 0.5 是 P(X > 0.693×μ)，不是 1 小時\n- B. 0.368 是 e^(-1) = P(X > 30 分鐘)（等待超過一個均值）\n- C. ✓ 正解\n- D. 0.865 = 1 - e^(-2) 是 P(X ≤ 60)（等待不超過 1 小時的機率）\n\n**記憶要點:** 指數分佈 P(X > t) = e^(-λt)，λ = 1/均值；無記憶性（Memoryless）是指數分佈的獨特性質。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q81",
+      "topic": "Stats/Probability",
+      "question_text": "某工廠生產線上，某零件的直徑服從常態分佈 N(50mm, 4mm²)（μ=50, σ²=4, σ=2）。若規格要求直徑在 46mm 到 54mm 之間，根據常態分佈的 68-95-99.7 規則，符合規格的零件比例約為多少？",
+      "options": {
+        "A": "68%",
+        "B": "95%",
+        "C": "99.7%",
+        "D": "50%"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 24,
+        "evidence": "常態分佈：μ±σ 涵蓋 68%，μ±2σ 涵蓋 95%，μ±3σ 涵蓋 99.7%"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\nμ = 50, σ = 2。規格範圍 46 到 54 = μ - 2σ 到 μ + 2σ = 50 - 4 到 50 + 4。根據 68-95-99.7 規則，μ ± 2σ 範圍內涵蓋約 95% 的資料，因此符合規格的零件約佔 95%。\n\n**其他選項為何錯:**\n- A. 68% 是 μ ± 1σ = 48 到 52 的比例，範圍不夠\n- B. ✓ 正解\n- C. 99.7% 是 μ ± 3σ = 44 到 56，範圍更大\n- D. 50% 無對應的標準差倍數規則\n\n**記憶要點:** 常態分佈三法則：±1σ ≈ 68%；±2σ ≈ 95%；±3σ ≈ 99.7%；這是品質管制（6-Sigma）的統計基礎。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q82",
+      "topic": "Stats/Probability",
+      "question_text": "某問卷調查發現，受訪者中 30% 有購買某品牌的習慣。若隨機抽取 10 名受訪者，恰好 4 名有購買習慣的機率應使用哪種分佈計算？其期望值為何？",
+      "options": {
+        "A": "卜瓦松分佈，期望值 λ = 3",
+        "B": "二項分佈（n=10, p=0.3），期望值 E(X) = np = 3",
+        "C": "常態分佈，期望值 μ = 4",
+        "D": "均勻分佈，期望值 = (0 + 10) / 2 = 5"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 25,
+        "evidence": "二項分佈：n 次獨立試驗，每次成功機率 p，期望值 E(X) = np，方差 Var(X) = np(1-p)"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n二項分佈條件：固定試驗次數 n=10，每次獨立試驗，成功機率 p=0.3 固定，計算恰好 k=4 次成功的機率。期望值 E(X) = np = 10 × 0.3 = 3（平均 10 人中有 3 人有購買習慣）。方差 = np(1-p) = 10 × 0.3 × 0.7 = 2.1。\n\n**其他選項為何錯:**\n- A. 卜瓦松分佈適用於單位時間內的計數（無固定 n），此處有固定 n=10\n- B. ✓ 正解\n- C. 常態分佈是連續型，且 n=10 太小（n 很大且 p 接近 0.5 時才近似常態）\n- D. 均勻分佈各值機率相等，不符合此問題設定\n\n**記憶要點:** 二項分佈：固定 n 次試驗，每次 p；E(X) = np；Var(X) = np(1-p)；n 大且 p 不極端時可近似卜瓦松或常態。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q83",
+      "topic": "Stats/Probability",
+      "question_text": "某醫院對某疾病的診斷測試，已知：盛行率（疾病真實存在的機率）= 1%，測試靈敏度（Sensitivity）= 99%，特異度（Specificity）= 95%。若某人測試結果為陽性，實際患病的機率（陽性預測值）最接近哪個值？",
+      "options": {
+        "A": "99%",
+        "B": "95%",
+        "C": "約 16.7%",
+        "D": "約 50%"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 23,
+        "evidence": "貝氏定理：後驗機率 = 先驗機率 × 似然率"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n用貝氏定理（Bayes' Theorem）：假設 10,000 人。患病 100 人（1%），健康 9,900 人。真陽性 = 100 × 99% = 99。偽陽性 = 9,900 × 5% = 495（特異度 95% → 偽陽性率 5%）。所有陽性 = 99 + 495 = 594。陽性預測值（PPV）= 99 / 594 ≈ 16.7%。低盛行率導致大量偽陽性稀釋真陽性。\n\n**其他選項為何錯:**\n- A. 99% 是靈敏度，不是陽性預測值\n- B. 95% 是特異度，不是陽性預測值\n- C. ✓ 正解\n- D. 50% 高估了陽性預測值，忽略了低盛行率的稀釋效應\n\n**記憶要點:** 貝氏定理在醫學診斷中的應用：低盛行率 → 即使測試準確，陽性預測值仍可能很低（偽陽性多）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q84",
+      "topic": "Stats/Probability",
+      "question_text": "某統計學教材說明「中央極限定理（Central Limit Theorem）」的應用。以下哪個說法最準確描述此定理？",
+      "options": {
+        "A": "無論原始資料的分佈為何，樣本均值的分佈會隨著樣本量增大而趨近常態分佈",
+        "B": "中央極限定理只適用於本身呈常態分佈的資料",
+        "C": "只要樣本量 ≥ 10，樣本均值就服從完美的常態分佈",
+        "D": "中央極限定理保證大樣本的標準差等於母體標準差"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 24,
+        "evidence": "中央極限定理：無論母體分佈，大樣本（通常 n ≥ 30）的樣本均值近似常態分佈"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n中央極限定理（CLT）的核心：從任何母體（無論是偏態、二項、均勻等）抽取足夠大的隨機樣本（通常 n ≥ 30），樣本均值的分佈會趨近於均值為 μ、標準差為 σ/√n 的常態分佈。這使得大量統計推論方法得以應用。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. CLT 的強大之處正在於不限原始分佈形狀\n- C. 需要 n ≥ 30（一般建議），不是 ≥ 10；且是近似，非完美常態\n- D. 樣本均值的標準差（標準誤）= σ/√n，不等於母體標準差\n\n**記憶要點:** CLT = 任何分佈的大樣本均值 → 常態；標準誤 = σ/√n（n 越大，均值估計越精確）；n ≥ 30 通常足夠。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q85",
+      "topic": "Stats/Regression",
+      "question_text": "某房仲業者建立線性迴歸模型預測房價，使用坪數（X₁）、屋齡（X₂）兩個特徵。模型係數：截距 = 500 萬，β₁ = 15（萬/坪），β₂ = -3（萬/年）。若某房屋坪數 30 坪、屋齡 10 年，預測房價為何？",
+      "options": {
+        "A": "950 萬",
+        "B": "920 萬",
+        "C": "980 萬",
+        "D": "500 萬"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 78,
+        "evidence": "多元線性迴歸：Y = β₀ + β₁X₁ + β₂X₂ + ... + ε"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n線性迴歸方程：Y = β₀ + β₁×X₁ + β₂×X₂ = 500 + 15×30 + (-3)×10 = 500 + 450 - 30 = 920 萬元。\n\n**其他選項為何錯:**\n- A. 950 = 500 + 450，未扣除屋齡效果 (-30)\n- B. ✓ 正解\n- C. 980 計算有誤\n- D. 500 只是截距，未代入特徵值\n\n**記憶要點:** 多元迴歸 Y = β₀ + Σ(βᵢ × Xᵢ)；負係數代表該特徵每增加一單位，預測值下降 |βᵢ|；本題屋齡係數 -3 代表每增加 1 年房價降 3 萬。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q86",
+      "topic": "Stats/Regression",
+      "question_text": "某資料科學家建立多元線性迴歸模型，訓練集 R² = 0.92，但在測試集上 R² = 0.45。診斷此問題的最可能原因是什麼？",
+      "options": {
+        "A": "模型欠擬合（Underfitting），特徵太少",
+        "B": "模型過擬合（Overfitting），模型過度記憶訓練資料噪音",
+        "C": "訓練集和測試集的資料分佈差異太大（分佈偏移）",
+        "D": "R² 的計算公式在測試集和訓練集上不同，比較無意義"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 79,
+        "evidence": "訓練集 R² 遠高於測試集 R²，是過擬合的典型表現"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n訓練集 R² = 0.92（優）但測試集 R² = 0.45（差），典型的過擬合（Overfitting）症狀：模型過度學習訓練資料的噪音和特殊規律，對未見資料的泛化能力差。解決方法：減少特徵、正則化（Ridge/Lasso）、增加訓練資料、交叉驗證。\n\n**其他選項為何錯:**\n- A. 欠擬合的表現是訓練集和測試集的 R² 都很低，不是訓練高測試低\n- B. ✓ 正解\n- C. 資料分佈偏移也會導致此現象，但題目未提及，過擬合是最常見的直接原因\n- D. R² 公式在訓練和測試集上相同（都是 1 - SS_res / SS_tot）\n\n**記憶要點:** 訓練 R² >> 測試 R² → 過擬合；訓練 R² ≈ 測試 R²（都低）→ 欠擬合；訓練 ≈ 測試（都高）→ 良好擬合。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q87",
+      "topic": "Stats/Regression",
+      "question_text": "某保險公司想預測「客戶是否會投訴」（二元結果：是/否），使用的自變數包括年齡、收入、保單金額等連續型特徵。以下哪種迴歸方法最適合？",
+      "options": {
+        "A": "多元線性迴歸（Multiple Linear Regression）",
+        "B": "邏輯迴歸（Logistic Regression）",
+        "C": "Lasso 迴歸（L1 正則化線性迴歸）",
+        "D": "多項式迴歸（Polynomial Regression）"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 78,
+        "evidence": "邏輯迴歸用於預測二元類別結果，輸出機率值（0 到 1 之間）"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n邏輯迴歸（Logistic Regression）專為二元分類設計，透過 Sigmoid 函數將線性組合轉換為 0 到 1 之間的機率值，適合預測「是/否」的結果。線性迴歸的輸出可能超出 [0,1] 範圍，不適合二元結果預測。\n\n**其他選項為何錯:**\n- A. 線性迴歸輸出連續值，預測二元結果會超出 [0,1] 範圍，不合適\n- B. ✓ 正解\n- C. Lasso 迴歸是含正則化的線性迴歸，仍輸出連續值，不適合二元分類\n- D. 多項式迴歸是線性迴歸的特殊形式，同樣不適合二元分類\n\n**記憶要點:** 二元分類 → 邏輯迴歸（輸出機率）；連續值預測 → 線性迴歸；多分類 → 多項式邏輯迴歸（Softmax）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q88",
+      "topic": "Stats/Regression",
+      "question_text": "某資料科學家建立線性迴歸模型，殘差分析顯示殘差（Residuals）呈現明顯的異方差性（Heteroscedasticity）：隨著預測值增大，殘差的變異數也增大。這個問題對模型有何影響？",
+      "options": {
+        "A": "無影響，OLS 係數估計仍然是最佳線性無偏估計（BLUE）",
+        "B": "係數估計仍無偏，但標準誤估計不正確，導致假設檢定結論不可靠",
+        "C": "模型的 R² 會降低到 0，失去所有解釋力",
+        "D": "模型需要全部重建，現有係數完全無效"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 79,
+        "evidence": "異方差性不影響係數無偏性，但使標準誤估計失真，影響 t 檢定和 F 檢定"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n異方差性（Heteroscedasticity）違反 OLS 的同方差假設（Gauss-Markov 條件之一）：OLS 係數仍然是無偏估計（Unbiased），但不再是最有效率的（不是 BLUE）。更重要的是，標準誤估計偏差，導致 t 值和 F 值不準確，假設檢定結論（顯著性）可能錯誤。解決：使用穩健標準誤（Robust Standard Errors）或 WLS。\n\n**其他選項為何錯:**\n- A. 異方差使 OLS 不再是 BLUE（不是最有效率）\n- B. ✓ 正解\n- C. R² 不會降為 0，係數和 R² 不受異方差影響\n- D. 係數估計仍有效（無偏），不需全部重建\n\n**記憶要點:** 異方差 → 係數仍無偏但標準誤失真 → t 檢定/F 檢定不可靠 → 用穩健標準誤修正。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q89",
+      "topic": "Stats/Regression",
+      "question_text": "某零售公司建立線性迴歸模型評估廣告投放（電視、網路、雜誌）對銷售的影響。Ridge 迴歸（L2 正則化）相較於普通 OLS 的主要優勢是什麼？",
+      "options": {
+        "A": "Ridge 迴歸自動將不重要特徵的係數縮減至零，實現特徵選擇",
+        "B": "Ridge 迴歸透過縮小係數大小來減少過擬合，對多重共線性更穩健",
+        "C": "Ridge 迴歸不需要資料標準化，可直接套用不同量綱特徵",
+        "D": "Ridge 迴歸的計算速度比 OLS 快 10 倍"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 79,
+        "evidence": "Ridge 迴歸（L2 正則化）縮小係數幅度，減少方差（過擬合）和多重共線性影響"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\nRidge 迴歸在損失函數加入 L2 懲罰（λΣβ²），將所有係數向 0 縮小（但不歸零），有效控制係數幅度，減少過擬合（降低方差）。對多重共線性（如電視和網路廣告可能高度相關），Ridge 比 OLS 的係數估計更穩定。\n\n**其他選項為何錯:**\n- A. 這是 Lasso（L1 正則化）的特點，Ridge 係數縮小但不歸零\n- B. ✓ 正解\n- C. Ridge 迴歸同樣需要特徵標準化，否則不同量綱的正則化不公平\n- D. Ridge 不一定比 OLS 快，計算複雜度相近\n\n**記憶要點:** Lasso（L1）= 係數可歸零（特徵選擇）；Ridge（L2）= 係數縮小不歸零（多重共線性/過擬合）；Elastic Net = L1 + L2 的結合。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q90",
+      "topic": "Viz/Tools",
+      "question_text": "某資料分析師欲呈現公司 2020–2024 年各季度的銷售額，並同時顯示年度趨勢。以下哪種圖表最能同時呈現時間趨勢和各季度的個別數值？",
+      "options": {
+        "A": "圓餅圖（Pie Chart），每年一個圓餅",
+        "B": "折線圖（Line Chart），X 軸為季度，Y 軸為銷售額",
+        "C": "樹狀圖（Treemap），以面積大小代表銷售額",
+        "D": "散佈圖（Scatter Plot），X 軸為季度編號，Y 軸為銷售額"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 75,
+        "evidence": "折線圖最適合展示時間序列資料的趨勢變化"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n折線圖是時間序列資料的標準視覺化工具：X 軸為時間（各季度），Y 軸為銷售額，折線的走向直觀呈現趨勢（上升/下降），各資料點顯示個別季度數值，可用不同顏色的折線區分年度，同時滿足兩個需求。\n\n**其他選項為何錯:**\n- A. 圓餅圖顯示組成比例，無法展示時間趨勢；多個圓餅難以比較趨勢\n- B. ✓ 正解\n- C. 樹狀圖顯示階層比例關係，不適合時間序列\n- D. 散佈圖適合兩個連續變數的相關性分析，季度編號是類別，應連接成線\n\n**記憶要點:** 時間序列 → 折線圖；組成比例 → 圓餅/堆疊長條；分佈比較 → 箱形圖；相關性 → 散佈圖。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q91",
+      "topic": "Viz/Tools",
+      "question_text": "根據 Edward Tufte 的資料視覺化原則，「資料墨水比（Data-Ink Ratio）」的概念是什麼？以下哪個設計最符合此原則？",
+      "options": {
+        "A": "在圖表中使用盡可能多的顏色和裝飾，讓圖表更吸引人",
+        "B": "最大化用於呈現資料資訊的墨水比例，最小化非必要裝飾元素",
+        "C": "確保每個圖表都有漸層背景和 3D 效果，增加視覺立體感",
+        "D": "每個資料點都應標示確切數值，讓讀者不需估算"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 75,
+        "evidence": "Tufte 資料墨水比：最大化資料呈現、最小化非資料裝飾（Chartjunk）"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\nTufte 的 Data-Ink Ratio 原則：圖表中每一滴「墨水」（像素/線條）都應服務於資料呈現，去除所有不傳遞資訊的裝飾（Chart Junk）：多餘的格線、3D 效果、陰影、不必要的顏色。Data-Ink Ratio = 資料墨水 / 總墨水，應盡量最大化。\n\n**其他選項為何錯:**\n- A. 過多顏色和裝飾正是 Tufte 批評的「Chart Junk」\n- B. ✓ 正解\n- C. 漸層背景和 3D 效果是典型的低 Data-Ink Ratio 設計（非資料墨水）\n- D. 標示所有數值有時有用，但 Tufte 強調的是整體比例，不是此具體做法\n\n**記憶要點:** Tufte 原則 = 越簡潔越好；移除格線/3D/陰影/多餘顏色；每個視覺元素必須承載資料資訊。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q92",
+      "topic": "Viz/Tools",
+      "question_text": "某資料分析師想同時呈現全台 22 個縣市的人口數量、GDP、和面積三個變數的關係。以下哪種圖表最適合一次呈現三個連續變數？",
+      "options": {
+        "A": "折線圖，三條線各代表一個變數",
+        "B": "泡泡圖（Bubble Chart）：X 軸為 GDP、Y 軸為人口、泡泡大小為面積",
+        "C": "堆疊長條圖，三個變數疊加在一起",
+        "D": "雷達圖（Radar Chart），每個縣市一個多邊形"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 75,
+        "evidence": "泡泡圖（Bubble Chart）以 X、Y 軸和泡泡大小同時呈現三個變數"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n泡泡圖（Bubble Chart）是散佈圖的延伸，能同時編碼三個連續變數：X 軸位置、Y 軸位置、泡泡大小（第三個變數）。22 個縣市各一個泡泡，可直觀看出人口、GDP、面積三者的關係模式。\n\n**其他選項為何錯:**\n- A. 折線圖三條線各自表達一個變數的趨勢，無法呈現三者同時的關係\n- B. ✓ 正解\n- C. 堆疊長條圖適合組成比例，三個不同量綱的變數疊加沒有意義\n- D. 雷達圖適合多變數的剖面比較（評分），不是三個連續變數關係\n\n**記憶要點:** 泡泡圖 = 散佈圖 + 大小維度 = 同時呈現 3 個連續變數；第 4 個變數可用顏色編碼。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q93",
+      "topic": "Viz/Tools",
+      "question_text": "某資料分析師在 Power BI 中建立儀表板，想讓使用者點選不同地區後，所有圖表自動篩選顯示該地區的資料。此功能稱為什麼？",
+      "options": {
+        "A": "資料鑽取（Drill-Through）",
+        "B": "交叉篩選/互動篩選（Cross-Filtering / Interactive Filtering）",
+        "C": "資料標準化（Data Normalization）",
+        "D": "資料集成（Data Integration）"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 76,
+        "evidence": "互動式儀表板：交叉篩選讓視覺元素相互連動，點選一個圖表篩選其他圖表"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n交叉篩選（Cross-Filtering）是商業智慧工具（Power BI、Tableau）的核心互動功能：點選某個視覺元素（如地圖上的地區）會自動篩選同一頁面或報表上其他所有圖表，使各視覺元素同步顯示該地區的資料，讓使用者互動探索資料。\n\n**其他選項為何錯:**\n- A. Drill-Through 是點選某筆資料後跳轉到更詳細的報表頁面，不是同頁篩選\n- B. ✓ 正解\n- C. 資料標準化是前處理方法，與視覺化互動無關\n- D. 資料集成是整合多個資料來源，與視覺化互動無關\n\n**記憶要點:** 交叉篩選 = 儀表板元件互動連動；Drill-Through = 跳至詳細頁；Drill-Down = 從高層到低層（如年→季→月）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q94",
+      "topic": "Viz/Tools",
+      "question_text": "某分析師想用圖表呈現「各產品線在總營收中的組成比例，且同時顯示每個產品線內各子類別的比例」。以下哪種圖表最適合展示這種階層性比例資訊？",
+      "options": {
+        "A": "折線圖（Line Chart）",
+        "B": "樹狀圖（Treemap）",
+        "C": "散佈圖（Scatter Plot）",
+        "D": "箱形圖（Box Plot）"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 76,
+        "evidence": "樹狀圖以巢狀矩形呈現階層性資料的組成比例"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n樹狀圖（Treemap）以巢狀矩形呈現階層性資料：外層矩形代表頂層類別（產品線），面積反映其比例；內層矩形代表子類別，面積反映子類別在父類別中的比例。非常適合呈現「整體-部分-子部分」的多層次比例結構。\n\n**其他選項為何錯:**\n- A. 折線圖呈現時間趨勢，不表達比例或階層\n- B. ✓ 正解\n- C. 散佈圖呈現兩變數的相關性，不表達比例或階層\n- D. 箱形圖呈現分佈（中位數、IQR），不表達組成比例\n\n**記憶要點:** Treemap = 階層比例（巢狀矩形）；圓餅圖 = 單層比例；旭日圖（Sunburst）= 階層比例（圓形版）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q95",
+      "topic": "ML/Basics",
+      "question_text": "某資料科學家面對一個客戶流失預測問題，資料集有 100 個特徵但只有 500 筆樣本，且有很多特徵彼此高度相關。以下哪種模型策略最合適？",
+      "options": {
+        "A": "深度神經網路（Deep Neural Network, 10 層），因為層數越多表達能力越強",
+        "B": "正則化線性模型（如 Elastic Net），搭配特徵選擇，適合高維小樣本",
+        "C": "K-means 分群，因為客戶流失是無監督學習問題",
+        "D": "決策樹（不限深度），因為可以自動處理高相關特徵"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 80,
+        "evidence": "高維小樣本場景（p >> n）適合正則化方法防止過擬合"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n100 特徵、500 樣本（p > n），且高多重共線性，是高維小樣本（high-dimensional）場景。深度模型參數量大，嚴重過擬合；不限深度的決策樹也會過擬合。Elastic Net（L1+L2）同時做特徵選擇（L1）和係數縮減（L2），適合此場景。\n\n**其他選項為何錯:**\n- A. 深度神經網路需要大量樣本，500 筆嚴重不足，過擬合風險極高\n- B. ✓ 正解\n- C. 客戶流失預測是有監督學習（有標籤：流失/未流失），不是無監督\n- D. 不限深度決策樹會完全過擬合訓練資料（記住每個樣本）\n\n**記憶要點:** 小樣本 + 高維 → 正則化（Lasso/Ridge/Elastic Net）；大樣本 + 複雜關係 → 深度學習/Ensemble；有標籤 → 監督學習。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q96",
+      "topic": "ML/Basics",
+      "question_text": "某機器學習工程師說「我們的模型在訓練集上準確率 99%，但在生產環境中效果很差」。下列哪種現象最可能是根本原因？",
+      "options": {
+        "A": "模型使用了太少的神經網路層數",
+        "B": "訓練資料和生產資料存在分佈偏移（Distribution Shift / Covariate Shift）",
+        "C": "模型的學習率（Learning Rate）設定過高",
+        "D": "訓練時間太短，模型尚未完全收斂"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 81,
+        "evidence": "資料分佈偏移是模型在訓練集表現好但實際部署效果差的常見原因"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n分佈偏移（Distribution Shift）：訓練資料的分佈與生產環境資料的分佈不一致。常見原因：訓練資料是歷史資料，但用戶行為/市場環境已改變；訓練資料有選樣偏差（Sampling Bias）。模型學到了訓練分佈的規律，但無法泛化到不同的生產分佈。\n\n**其他選項為何錯:**\n- A. 層數不足會導致訓練集表現也差（欠擬合），不是訓練好生產差\n- B. ✓ 正解\n- C. 學習率影響訓練收斂速度，不是訓練-生產差距的根本原因\n- D. 訓練準確率 99% 說明模型已收斂，不是未收斂的問題\n\n**記憶要點:** 訓練集好、生產差 → 兩大原因：(1) 過擬合（模型記住訓練雜訊）；(2) 分佈偏移（訓練/生產資料分佈不同）。監控模型性能漂移是 MLOps 的重要工作。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q97",
+      "topic": "ML/Basics",
+      "question_text": "某機器學習團隊要決定模型的超參數（Hyperparameters），如決策樹的最大深度、正則化係數 λ 等。以下哪種方法是正確的超參數調整流程？",
+      "options": {
+        "A": "在測試集上嘗試不同超參數組合，選擇測試集表現最好的",
+        "B": "在訓練集上嘗試不同超參數，選擇訓練集 loss 最低的",
+        "C": "使用驗證集（或交叉驗證）調整超參數，測試集只用於最終評估",
+        "D": "超參數不影響模型性能，不需要調整"
+      },
+      "correct_answer": "C",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 81,
+        "evidence": "超參數調整應在驗證集上進行，測試集保留用於最終評估，避免資訊洩漏"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:**\n正確的資料分割和評估流程：訓練集（模型學習參數）、驗證集（超參數調整）、測試集（最終評估，只用一次）。若在測試集上調整超參數，測試集資訊洩漏到模型選擇中，測試集的評估結果會高估真實泛化能力。\n\n**其他選項為何錯:**\n- A. 在測試集上調整超參數導致資料洩漏，高估模型表現\n- B. 在訓練集上選擇超參數會選出最過擬合的配置\n- C. ✓ 正解\n- D. 超參數（如樹深度、λ、K值）顯著影響模型性能和泛化能力\n\n**記憶要點:** 三分法：Train（學習）→ Validation（調超參）→ Test（最終評估，只用一次）；測試集是模型的「最終考試」，不能用於調整。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q98",
+      "topic": "BigData/Cleaning",
+      "question_text": "某資料清洗工程師在處理電商訂單資料時，發現同一位客戶的姓名以不同格式出現：「王小明」、「王 小明」（中間有空格）、「王小明 」（尾部有空格）。這種資料問題屬於哪個類別？",
+      "options": {
+        "A": "結構性錯誤（Structural Errors），資料格式不一致",
+        "B": "邏輯性錯誤（Logical Errors），資料違反業務邏輯",
+        "C": "缺失值（Missing Values），部分欄位空白",
+        "D": "重複值（Duplicates），同一記錄出現多次"
+      },
+      "correct_answer": "A",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 52,
+        "evidence": "資料品質問題類型：結構性錯誤包含格式不一致、空白字元、大小寫差異"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:**\n多餘的空白字元（前置/後置/中間空格）、大小寫不一致、特殊字元差異等屬於「結構性錯誤（Structural Errors）」或「格式不一致（Inconsistency）」問題。處理方法：字串修剪（strip/trim）、標準化處理、正規表達式清洗。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 邏輯性錯誤是違反業務規則（如年齡 = -5），空格問題不違反邏輯\n- C. 欄位有值（只是格式問題），不是缺失值\n- D. 雖然三筆記錄代表同一人，但問題根源是格式不一致，而非重複（清理格式後才能判斷是否重複）\n\n**記憶要點:** 資料問題五類：缺失（NULL）→ 重複（Duplicate）→ 格式/結構不一致（空格/大小寫）→ 邏輯錯誤（業務規則違反）→ 離群值（統計極端）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q99",
+      "topic": "BigData/Cleaning",
+      "question_text": "某資料工程師評估資料集的品質，計算各項指標。「唯一性比率（Uniqueness Rate）」= 90% 代表什麼意義？",
+      "options": {
+        "A": "90% 的欄位有填入值，10% 為空值",
+        "B": "90% 的記錄在主鍵欄位上是唯一的，10% 為重複記錄",
+        "C": "90% 的資料值在允許的業務邏輯範圍內",
+        "D": "90% 的欄位值落在正常統計範圍內，10% 為離群值"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 53,
+        "evidence": "資料品質指標：Uniqueness Rate = 唯一記錄數 / 總記錄數，反映重複程度"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\n唯一性比率（Uniqueness Rate）= 唯一記錄數 / 總記錄數。90% 表示有 10% 的記錄存在重複（Duplicates）。這是評估資料去重需求的指標，若 Uniqueness Rate < 1，表示存在重複記錄需要清洗。\n\n**其他選項為何錯:**\n- A. 描述的是完整性比率（Completeness Rate = 非空值比例）\n- B. ✓ 正解\n- C. 描述的是一致性比率（Consistency Rate = 符合業務規則的比例）\n- D. 描述的是與離群值相關的指標，不是唯一性\n\n**記憶要點:** 資料品質五大指標：完整性（非空）、唯一性（不重複）、一致性（符合規則）、準確性（正確值）、時效性（最新）。Uniqueness Rate 衡量重複程度。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
+    },
+    {
+      "id": "gen-claude-s2-q100",
+      "topic": "ROC/AUC",
+      "question_text": "某醫院建立糖尿病風險篩查模型，得到 ROC 曲線下面積（AUC）= 0.85。另一家醫院的模型 AUC = 0.72。以下哪個說法最準確？",
+      "options": {
+        "A": "AUC = 0.85 的模型準確率（Accuracy）一定高於 AUC = 0.72 的模型",
+        "B": "AUC = 0.85 的模型對任意隨機選取的一位患者和一位健康者，正確將患者排名更高的機率為 85%",
+        "C": "AUC = 0.72 的模型只比隨機猜測（AUC = 0.5）略好，沒有實用價值",
+        "D": "AUC = 1.0 才是好模型，AUC = 0.85 代表模型有嚴重問題"
+      },
+      "correct_answer": "B",
+      "source": {
+        "file": "subjects/2-bigdata/study-guide.pdf",
+        "page": 82,
+        "evidence": "AUC 的機率解釋：隨機選一個正例和一個負例，模型將正例排名高於負例的機率"
+      },
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:**\nAUC（Area Under ROC Curve）的統計解釋（Wilcoxon-Mann-Whitney 統計量）：隨機選取一個正例（患者）和一個負例（健康者），模型給正例的預測分數高於負例的機率。AUC = 0.85 表示此機率為 85%，是衡量模型排名能力（Discriminative Ability）的指標，與分類閾值無關。\n\n**其他選項為何錯:**\n- A. AUC 和 Accuracy 衡量不同面向，AUC 高不一定 Accuracy 高（取決於閾值和類別分佈）\n- B. ✓ 正解\n- C. AUC = 0.72 在多數應用中屬於「尚可」水準，不是「沒有實用價值」\n- D. AUC = 1.0 在真實應用中常意味著過擬合或資料洩漏；AUC = 0.85 是良好表現\n\n**記憶要點:** AUC = 機率解釋（正例分數 > 負例分數的機率）；AUC > 0.9 優秀；0.8-0.9 良好；0.7-0.8 尚可；0.5 = 隨機。ROC 曲線 X 軸 = FPR，Y 軸 = TPR（Sensitivity）。",
+      "subject_code": "s2",
+      "generated": true,
+      "generated_by": "claude"
     }
   ],
   "rounds": [],
