@@ -985,6 +985,61 @@ function renderHistory() {
   `;
 }
 
+// ======== CONFETTI ========
+// Lightweight inline confetti. Spawns a fixed-position canvas overlay, animates ~150
+// gravity-driven particles for ~3.5s, then removes itself. Honors prefers-reduced-motion.
+function launchConfetti() {
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const canvas = document.createElement("canvas");
+  canvas.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:9999";
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext("2d");
+  const colors = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444", "#818cf8", "#34d399", "#fcd34d"];
+  const particles = [];
+  for (let i = 0; i < 150; i++) {
+    particles.push({
+      x: canvas.width / 2 + (Math.random() - 0.5) * 240,
+      y: canvas.height / 3,
+      vx: (Math.random() - 0.5) * 14,
+      vy: -Math.random() * 9 - 4,
+      size: Math.random() * 6 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.35
+    });
+  }
+  const start = performance.now();
+  const duration = 3500;
+  function frame(now) {
+    const elapsed = now - start;
+    const fade = Math.max(0, 1 - elapsed / duration);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let onScreen = 0;
+    for (const p of particles) {
+      p.vx *= 0.99;
+      p.vy = p.vy * 0.99 + 0.3;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.rotSpeed;
+      if (p.y < canvas.height + 50) {
+        onScreen++;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.globalAlpha = fade;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        ctx.restore();
+      }
+    }
+    if (onScreen > 0 && elapsed < duration) requestAnimationFrame(frame);
+    else canvas.remove();
+  }
+  requestAnimationFrame(frame);
+}
+
 // ======== ACTIONS ========
 function onSubjectChange() {
   const sel = document.getElementById("subject-filter").value;
@@ -1051,6 +1106,9 @@ function nextQuestion() {
     state.round.completed = new Date().toISOString();
     appendRound(state.round);
     state.view = "results";
+    const total = state.round.responses.length;
+    const correct = state.round.responses.filter(x => x.is_correct).length;
+    if (total > 0 && correct / total > 0.7) launchConfetti();
   }
   render();
 }
