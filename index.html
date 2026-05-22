@@ -447,6 +447,44 @@ function shuffle(arr) {
   return a;
 }
 
+// Spaced-repetition boost: each unresolved wrong adds WRONG_BOOST to a question's pick weight.
+// Wrong once → weight 5; wrong twice → weight 9. A later correct answer resolves the entry.
+const WRONG_BOOST = 4;
+
+// q_id → unresolved wrong count across all history. Iterates chronologically so a correct answer
+// clears the entry; a subsequent wrong starts the count over.
+function getWrongCountMap() {
+  const map = new Map();
+  getRounds().forEach(r => {
+    r.responses.forEach(resp => {
+      if (resp.is_correct) map.delete(resp.q_id);
+      else map.set(resp.q_id, (map.get(resp.q_id) || 0) + 1);
+    });
+  });
+  return map;
+}
+
+// Weighted sampling without replacement. weights must be positive and match items 1:1.
+function weightedSampleNoReplace(items, weights, k) {
+  const pool = items.slice();
+  const w = weights.slice();
+  const picked = [];
+  while (picked.length < k && pool.length > 0) {
+    let total = 0;
+    for (let i = 0; i < w.length; i++) total += w[i];
+    let r = Math.random() * total;
+    let idx = 0;
+    for (; idx < pool.length - 1; idx++) {
+      r -= w[idx];
+      if (r <= 0) break;
+    }
+    picked.push(pool[idx]);
+    pool.splice(idx, 1);
+    w.splice(idx, 1);
+  }
+  return picked;
+}
+
 function pickQuestions(subjectFilter, topicFilter, count) {
   let pool = poolForSubject(subjectFilter);
   if (topicFilter && topicFilter !== "all") {
@@ -456,7 +494,9 @@ function pickQuestions(subjectFilter, topicFilter, count) {
       pool = pool.filter(q => q.topic.startsWith(topicFilter + "/") || q.topic === topicFilter);
     }
   }
-  return shuffle(pool).slice(0, Math.min(count, pool.length));
+  const wrongMap = getWrongCountMap();
+  const weights = pool.map(q => 1 + WRONG_BOOST * (wrongMap.get(q.id) || 0));
+  return weightedSampleNoReplace(pool, weights, Math.min(count, pool.length));
 }
 
 function escapeHtml(s) {
@@ -629,7 +669,7 @@ function renderHome() {
         return `
           <div class="summary-section">
             <h3>累計答錯題目（${cumWrongs.length} 題未訂正）</h3>
-            <p class="note" style="margin:-4px 0 12px;">答對後會自動從清單移除。點 💡 看解析展開該題。</p>
+            <p class="note" style="margin:-4px 0 12px;">下一回合會優先抽到這些題（錯越多次權重越高）。答對一次後自動移除清單。點 💡 看解析。</p>
             ${cumWrongs.map(w => renderMissItem(w.q, w.resp, { open: false, wrongCount: w.count })).join("")}
           </div>` ;
       })()}
