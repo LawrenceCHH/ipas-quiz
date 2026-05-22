@@ -1312,10 +1312,10 @@
       "topic": "NLP/Sentiment",
       "question_text": "某連鎖餐飲業者欲將「情感分析(Sentiment Analysis)」應用於 Google 評論監控,以即時偵測門市口碑變化。下列哪一種模型輸出最能直接支援「自動分配給門市經理優先處理」的工作流?",
       "options": {
-        "A": "輸出每則評論的詞性標註(POS Tagging)結果",
-        "B": "輸出每則評論的「正面/中性/負面」極性標籤與信心分數",
-        "C": "輸出每則評論的關鍵詞 TF-IDF 分數矩陣",
-        "D": "輸出評論文本的語言別與字數統計"
+        "A": "輸出每則評論的詞性標註(POS)結果",
+        "B": "輸出每則評論的正負情感極性與信心分數",
+        "C": "輸出每則評論的關鍵詞 TF-IDF 分數",
+        "D": "輸出每則評論的語言別與字數統計"
       },
       "correct_answer": "B",
       "source": {
@@ -1336,9 +1336,9 @@
       "question_text": "下列哪一項情境最不適合直接套用一般情感分析(Sentiment Analysis)模型,須額外搭配「情緒分類(Emotion Classification)」或「立場偵測(Stance Detection)」模型才能正確處理?",
       "options": {
         "A": "判斷顧客對新口味飲料的喜好傾向",
-        "B": "監測社群貼文對某政策的「支持 / 反對 / 中立」立場",
-        "C": "判斷飯店評論為「滿意」或「不滿意」",
-        "D": "分析購物網站商品評論的星等分佈"
+        "B": "判斷貼文對某政策的支持反對立場",
+        "C": "判斷飯店評論為滿意或不滿意傾向",
+        "D": "判斷網路商品評論的星等分佈"
       },
       "correct_answer": "B",
       "source": {
@@ -1358,10 +1358,10 @@
       "topic": "NLP/Tokenization",
       "question_text": "在中文 NLP 流程中導入「子詞切分(Subword Tokenization,如 BPE、WordPiece、SentencePiece)」的主要優點為何?",
       "options": {
-        "A": "可以完全避免任何詞彙表外(Out-of-Vocabulary, OOV)的情況,且不增加序列長度",
-        "B": "在控制詞彙表大小的前提下,將罕見詞拆解為高頻子詞,降低 OOV 風險並提升 embedding 共享",
-        "C": "讓模型能直接以字元為單位學習,完全取代詞向量",
-        "D": "可以將所有中文詞自動翻譯為英文後再進行 tokenize"
+        "A": "可徹底避免 OOV 且不會拉長序列長度",
+        "B": "限制詞表並拆罕見詞以降低 OOV 風險",
+        "C": "以字元為單位完全取代詞向量訓練",
+        "D": "把中文詞翻成英文後再做斷詞切分"
       },
       "correct_answer": "B",
       "source": {
@@ -1381,10 +1381,10 @@
       "topic": "NLP/Tokenization",
       "question_text": "某團隊使用 Jieba 進行中文斷詞後,發現「冠狀病毒疫苗」常被拆為「冠狀」、「病毒」、「疫苗」三個詞,導致下游分類效果不佳。下列何者為最直接且成本最低的改善方法?",
       "options": {
-        "A": "改用 character-level 模型避免任何斷詞",
-        "B": "在 Jieba 中加入自訂詞典(user dictionary)將「冠狀病毒疫苗」列為複合詞",
-        "C": "重新訓練一個全新的中文 BERT 模型",
-        "D": "將文本全部翻譯成英文後再 tokenize"
+        "A": "改用字元級模型完全跳過斷詞步驟",
+        "B": "在斷詞器中加入自訂詞典登錄複合詞",
+        "C": "從頭重新訓練一個專屬中文預訓練模型",
+        "D": "把全文翻成英文後再做英文斷詞"
       },
       "correct_answer": "B",
       "source": {
@@ -1404,10 +1404,10 @@
       "topic": "NLP/Embedding",
       "question_text": "關於「靜態詞向量(Static Word Embedding,如 Word2Vec、GloVe)」與「語境化詞向量(Contextual Word Embedding,如 BERT、ELMo)」,下列何者敘述最正確?",
       "options": {
-        "A": "靜態詞向量對同一個詞在不同句子中產生不同向量",
-        "B": "語境化詞向量無法處理一詞多義(polysemy)的情境",
-        "C": "靜態詞向量在「bank(銀行)」與「bank(河岸)」會給出相同向量,語境化詞向量則依上下文不同而異",
-        "D": "兩者在語意相似度任務上表現完全相同"
+        "A": "靜態詞向量對同一詞會依句子不同產生不同向量",
+        "B": "語境化詞向量無法處理一詞多義的情境",
+        "C": "靜態詞向量無視語境而語境化會隨上下文改變",
+        "D": "兩者在語意相似度任務的表現完全相同"
       },
       "correct_answer": "C",
       "source": {
@@ -1427,10 +1427,10 @@
       "topic": "NLP/Embedding",
       "question_text": "下列關於 Word2Vec 兩種訓練架構 CBOW 與 Skip-gram 的敘述,何者正確?",
       "options": {
-        "A": "CBOW 用中心詞預測上下文;Skip-gram 用上下文預測中心詞",
-        "B": "CBOW 用上下文預測中心詞;Skip-gram 用中心詞預測上下文",
-        "C": "兩者都用中心詞預測中心詞",
-        "D": "兩者皆需配合 self-attention 才能訓練"
+        "A": "CBOW 用中心詞預測 Skip-gram 用上下文預測",
+        "B": "CBOW 用上下文預測 Skip-gram 用中心詞預測",
+        "C": "兩者皆同樣以中心詞去預測該中心詞自己本身",
+        "D": "兩者皆需搭配自注意力機制才能完成整個訓練"
       },
       "correct_answer": "B",
       "source": {
@@ -1450,10 +1450,10 @@
       "topic": "NLP/Transformer",
       "question_text": "在標準 Transformer 編碼器(Encoder)中,「位置編碼(Positional Encoding)」存在的主要目的為何?",
       "options": {
-        "A": "增加模型參數量以提升表達能力",
-        "B": "彌補 self-attention 本身不具備序列順序資訊的缺陷",
-        "C": "加快訓練收斂速度",
-        "D": "替代 token embedding 以節省記憶體"
+        "A": "增加模型參數量以提升整體表達能力",
+        "B": "補足自注意力本身缺乏的序列順序資訊",
+        "C": "加快模型在訓練階段的整體收斂速度",
+        "D": "替代詞向量嵌入層以節省記憶體用量"
       },
       "correct_answer": "B",
       "source": {
@@ -1473,10 +1473,10 @@
       "topic": "NLP/Transformer",
       "question_text": "Transformer 中 Multi-Head Attention(多頭注意力)相較於單頭注意力的主要優勢為何?",
       "options": {
-        "A": "完全去除 softmax 運算以加速",
-        "B": "讓不同 head 在不同子空間(subspace)同時關注不同關係(語法、長距離、主題等),提升表徵多樣性",
-        "C": "強制所有 head 必須輸出相同結果以提高一致性",
-        "D": "可以省略殘差連接(Residual Connection)"
+        "A": "完全去除歸一化指數運算以加速注意力",
+        "B": "讓多頭在不同子空間關注不同的關係",
+        "C": "強制所有頭輸出相同結果以提升一致性",
+        "D": "可省略殘差連接以減少網路整體深度"
       },
       "correct_answer": "B",
       "source": {
@@ -1496,10 +1496,10 @@
       "topic": "NLP/BERT-vs-GPT",
       "question_text": "下列關於 BERT 與 GPT 預訓練目標的對比,何者最正確?",
       "options": {
-        "A": "BERT 採因果語言模型(Causal LM);GPT 採遮罩語言模型(MLM)",
-        "B": "BERT 採遮罩語言模型(MLM)+ NSP;GPT 採因果語言模型(自迴歸)",
-        "C": "兩者都採 MLM 但 GPT 使用更大的詞彙表",
-        "D": "兩者都採因果語言模型,只差在資料量"
+        "A": "BERT 採因果 LM,GPT 採遮罩 LM",
+        "B": "BERT 採遮罩 LM,GPT 採因果 LM",
+        "C": "兩者皆採 MLM 但 GPT 詞表更大",
+        "D": "兩者皆採因果 LM 只差訓練資料量"
       },
       "correct_answer": "B",
       "source": {
@@ -1519,10 +1519,10 @@
       "topic": "NLP/RAG",
       "question_text": "某公司導入「檢索增強生成(Retrieval-Augmented Generation, RAG)」系統,以解決 LLM 對企業內部最新政策不熟悉的問題。下列何者最能直接說明 RAG 解決幻覺(hallucination)的核心機制?",
       "options": {
-        "A": "在生成階段強迫 LLM 使用更高的 temperature 以增加創造性",
-        "B": "在生成前先以向量檢索企業知識庫,將相關段落作為上下文一併輸入 LLM,讓回答基於真實資料",
-        "C": "在 LLM 輸出後使用正規表達式過濾敏感詞",
-        "D": "用更大的模型參數量取代知識檢索"
+        "A": "提高採樣溫度以讓生成更具創造性",
+        "B": "先檢索企業知識庫再作為上下文輸入",
+        "C": "於模型輸出後用正則表達式過濾敏感詞",
+        "D": "改用更大參數模型以直接取代知識檢索"
       },
       "correct_answer": "B",
       "source": {
@@ -1542,10 +1542,10 @@
       "topic": "NLP/RAG",
       "question_text": "下列關於 RAG 系統檢索品質的敘述,何者最正確?",
       "options": {
-        "A": "Chunk 大小不影響檢索效果",
-        "B": "Chunk 太小會丟失上下文,太大則稀釋向量語意,需在 200-800 tokens 間調整",
-        "C": "向量索引一定要使用 cosine similarity,其他度量都會失敗",
-        "D": "Top-K 設為 1 永遠優於 K=5"
+        "A": "Chunk 大小完全不影響檢索效果",
+        "B": "Chunk 大小過大或過小都會傷檢索",
+        "C": "向量索引必用 cosine 否則一定失敗",
+        "D": "Top-K 設為 1 永遠優於 K 大於 5"
       },
       "correct_answer": "B",
       "source": {
@@ -1565,10 +1565,10 @@
       "topic": "NLP/NER",
       "question_text": "某保險業導入命名實體辨識(Named Entity Recognition, NER)從理賠書面文件抽取「保戶姓名、保單編號、就醫院所、診斷代碼」。下列哪一項是該任務最常採用的標註框架?",
       "options": {
-        "A": "Bag-of-Words 標註",
-        "B": "BIO/BIOES 序列標註",
-        "C": "Cosine Similarity 比對",
-        "D": "TF-IDF 權重排序"
+        "A": "Bag-of-Words 詞袋頻次標註法",
+        "B": "BIO 或 BIOES 序列邊界標註法",
+        "C": "Cosine Similarity 餘弦比對法",
+        "D": "TF-IDF 詞頻反文檔權重排序法"
       },
       "correct_answer": "B",
       "source": {
@@ -1588,10 +1588,10 @@
       "topic": "NLP/Translation",
       "question_text": "下列關於神經機器翻譯(Neural Machine Translation, NMT)的敘述,何者最正確?",
       "options": {
-        "A": "NMT 一律使用 RNN + attention,Transformer 並未取代它",
-        "B": "現代 NMT 主要以 Transformer encoder-decoder 為主流,訓練目標為最大化目標語句的條件機率",
-        "C": "NMT 不需要平行語料,只需單語語料即可訓練",
-        "D": "BLEU 分數越低代表翻譯品質越好"
+        "A": "NMT 至今仍以遞迴網路加注意力機制做為主流架構",
+        "B": "NMT 以 Transformer 為主訓練目標是最大化條件機率",
+        "C": "NMT 完全不需任何平行語料只靠單語語料即可訓練",
+        "D": "NMT 評估指標 BLEU 分數越低代表翻譯品質越好"
       },
       "correct_answer": "B",
       "source": {
@@ -1611,10 +1611,10 @@
       "topic": "NLP/Hallucination",
       "question_text": "下列哪一個方法「最不能」直接降低 LLM 幻覺(hallucination)風險?",
       "options": {
-        "A": "導入 Retrieval-Augmented Generation(RAG)以基於可信文件回答",
-        "B": "為回答加上 citations 並要求模型只引用檢索到的段落",
-        "C": "提高 temperature 與 top-p 以增加生成隨機性",
-        "D": "對特定領域進行微調(Fine-tuning)或 RLHF 校準"
+        "A": "導入檢索增強生成以可信文件作依據",
+        "B": "要求模型加入引文標註可追溯來源段落",
+        "C": "提高採樣溫度與 top-p 以加強隨機性",
+        "D": "對特定領域進行微調或人類回饋對齊"
       },
       "correct_answer": "C",
       "source": {
@@ -1634,10 +1634,10 @@
       "topic": "CV/Classification",
       "question_text": "某零售商在進行商品圖像分類(Image Classification),希望同一張圖只回傳「最可能的一個類別」。下列哪個層最適合作為網路最後輸出層?",
       "options": {
-        "A": "Sigmoid 多輸出(每類別獨立)",
-        "B": "Softmax 多類別輸出",
-        "C": "ReLU 啟動",
-        "D": "Batch Normalization"
+        "A": "Sigmoid 多輸出層作為最後一層",
+        "B": "Softmax 單標籤輸出作為最後一層",
+        "C": "ReLU 啟動函數作為最後一層",
+        "D": "BatchNorm 正規化作為最後一層"
       },
       "correct_answer": "B",
       "source": {
@@ -1657,10 +1657,10 @@
       "topic": "CV/Detection",
       "question_text": "下列關於 YOLO(You Only Look Once)系列物件偵測模型的敘述,何者最正確?",
       "options": {
-        "A": "YOLO 是 two-stage detector,依賴 region proposal",
-        "B": "YOLO 是 one-stage detector,直接從整張圖一次回歸 bounding box 與類別,推論速度快",
-        "C": "YOLO 無法用於即時(real-time)場景",
-        "D": "YOLO 僅能用於人臉辨識"
+        "A": "YOLO 為兩階段偵測需先做候選區域提案",
+        "B": "YOLO 為單階段偵測直接回歸位置與類別",
+        "C": "YOLO 因推論延遲過大不適合即時偵測",
+        "D": "YOLO 設計上僅能用於人臉辨識的場景"
       },
       "correct_answer": "B",
       "source": {
@@ -1680,10 +1680,10 @@
       "topic": "CV/Detection",
       "question_text": "物件偵測的非極大值抑制(Non-Maximum Suppression, NMS)主要功用為何?",
       "options": {
-        "A": "讓網路在訓練階段更穩定收斂",
-        "B": "在推論階段合併同一物件被重複偵測的多個 bounding box,只保留分數最高且 IoU 較小的框",
-        "C": "把所有 bounding box 不論信心都保留",
-        "D": "用於資料增強"
+        "A": "在訓練階段穩定參數收斂的方法",
+        "B": "推論期合併同物件重複框只留最高分",
+        "C": "保留所有偵測框不論其信心高低",
+        "D": "用於訓練前的影像資料增強步驟"
       },
       "correct_answer": "B",
       "source": {
@@ -1703,10 +1703,10 @@
       "topic": "CV/Segmentation",
       "question_text": "下列何者「最能區別」語意分割(Semantic Segmentation)與實例分割(Instance Segmentation)?",
       "options": {
-        "A": "語意分割逐像素標類別但「不區分」同類別不同個體;實例分割「區分」同類別的每個個體",
-        "B": "語意分割只能用於黑白影像;實例分割只能用於彩色影像",
-        "C": "兩者完全相同,只是名稱不同",
-        "D": "實例分割不需要任何 mask"
+        "A": "語意分割不分同類個體,實例分割區分個體",
+        "B": "語意分割只能用於黑白,實例分割只能彩色",
+        "C": "語意分割與實例分割完全相同只是名稱不同",
+        "D": "語意分割需要 mask,實例分割完全不需要"
       },
       "correct_answer": "A",
       "source": {
@@ -1726,10 +1726,10 @@
       "topic": "CV/OCR",
       "question_text": "某企業導入 OCR(Optical Character Recognition)處理客戶上傳的中華民國身分證影像。下列哪一項是 OCR 流程中「最常見且影響準確率最大的前處理步驟」?",
       "options": {
-        "A": "影像旋轉校正(Skew Correction)+ 二值化(Binarization)",
-        "B": "GIF 動畫播放",
-        "C": "影像 RGB 加噪",
-        "D": "完全不做前處理"
+        "A": "影像歪斜校正搭配影像二值化處理",
+        "B": "讓影像以 GIF 動畫格式逐張播放",
+        "C": "在 RGB 三通道分別加入高斯雜訊",
+        "D": "略過所有前處理直接送入 OCR 引擎"
       },
       "correct_answer": "A",
       "source": {
@@ -1749,10 +1749,10 @@
       "topic": "CV/ViT",
       "question_text": "Vision Transformer(ViT)與 CNN 的根本差異為何?",
       "options": {
-        "A": "ViT 完全不使用 attention",
-        "B": "ViT 將影像切成 patch 後當作 token 序列送入 Transformer,放棄卷積的局部偏置(locality bias)",
-        "C": "ViT 只能處理灰階影像",
-        "D": "ViT 在小資料集上一定優於 CNN"
+        "A": "ViT 完全不使用任何注意力機制運算",
+        "B": "ViT 將影像切塊當作 token 序列輸入",
+        "C": "ViT 在設計上只能處理單通道灰階影像",
+        "D": "ViT 在小規模資料集上一定優於傳統 CNN"
       },
       "correct_answer": "B",
       "source": {
@@ -1772,10 +1772,10 @@
       "topic": "GenAI/GAN",
       "question_text": "在標準 GAN(Generative Adversarial Network)的訓練中,生成器(Generator)與判別器(Discriminator)的關係最接近下列何者?",
       "options": {
-        "A": "兩者目標一致,皆最小化分類錯誤",
-        "B": "Generator 嘗試生成以假亂真樣本欺騙 Discriminator;Discriminator 嘗試區分真假,屬 min-max 博弈",
-        "C": "Generator 與 Discriminator 共享同一組權重",
-        "D": "兩者不對抗,而是合作壓縮影像"
+        "A": "兩者目標一致皆在最小化分類錯誤",
+        "B": "生成器產生假樣本判別器分辨真假",
+        "C": "生成器與判別器共享同一組網路權重",
+        "D": "兩者不對抗而是合作壓縮影像資料"
       },
       "correct_answer": "B",
       "source": {
@@ -1795,10 +1795,10 @@
       "topic": "GenAI/GAN",
       "question_text": "GAN 訓練中出現「Mode Collapse(模式崩塌)」最典型的現象為何?",
       "options": {
-        "A": "Generator 輸出的影像種類極為單一,無法覆蓋資料分佈的多種模式",
-        "B": "Discriminator 永遠無法分辨真假",
-        "C": "梯度爆炸導致訓練停止",
-        "D": "影像解析度過高使 GPU 記憶體耗盡"
+        "A": "生成器輸出影像種類極為單一缺乏多樣性",
+        "B": "判別器永遠完全無法分辨真實與生成樣本",
+        "C": "因為發生梯度爆炸導致訓練過程中途停止",
+        "D": "因影像解析度過高而耗盡顯示卡記憶體用量"
       },
       "correct_answer": "A",
       "source": {
@@ -1818,10 +1818,10 @@
       "topic": "GenAI/Diffusion",
       "question_text": "下列關於擴散模型(Diffusion Model)生成流程的敘述,何者最正確?",
       "options": {
-        "A": "前向過程加噪、反向過程去噪;最終由純高斯雜訊逐步還原成真實影像",
-        "B": "擴散模型不需要 U-Net 或其他去噪網路",
-        "C": "擴散模型一次性從 latent 生成最終影像,沒有迭代步驟",
-        "D": "擴散模型只能生成黑白影像"
+        "A": "前向加噪反向去噪由純雜訊還原為影像",
+        "B": "擴散模型完全不需 U-Net 等去噪網路架構",
+        "C": "擴散模型由潛向量一次性生成最終影像",
+        "D": "擴散模型本質上只能生成黑白單色影像"
       },
       "correct_answer": "A",
       "source": {
@@ -1841,10 +1841,10 @@
       "topic": "GenAI/Diffusion",
       "question_text": "Stable Diffusion 與 DALL·E 系列等「文字到影像(Text-to-Image)」模型,通常需要結合下列哪一個組件以實作「文字條件」?",
       "options": {
-        "A": "文本編碼器(Text Encoder,如 CLIP text encoder)以將提示詞轉成 embedding,再經 cross-attention 注入 UNet",
-        "B": "傳統的 SVM 文字分類器",
-        "C": "Random Forest",
-        "D": "BPE Tokenizer 即可,無需任何語言模型"
+        "A": "以文本編碼器經交叉注意力注入提示詞",
+        "B": "以支援向量機分類器作為文字條件來源",
+        "C": "以隨機森林分類器作為文字條件來源",
+        "D": "僅以 BPE 分詞器即可而不需語言模型"
       },
       "correct_answer": "A",
       "source": {
@@ -1864,10 +1864,10 @@
       "topic": "GenAI/PromptEngineering",
       "question_text": "下列哪一個技巧最能幫助 LLM 在「需要多步推理的數學或邏輯題」上提升正確率?",
       "options": {
-        "A": "Zero-shot 直接問答",
-        "B": "Chain-of-Thought(CoT)提示,要求模型「逐步思考」並輸出推理過程",
-        "C": "把問題改成全大寫",
-        "D": "降低 max_tokens 限制長度"
+        "A": "零樣本直接問答而不提供任何示範範例",
+        "B": "思維鏈提示要求模型逐步寫出推理過程",
+        "C": "將題目文字全部改為英文大寫的形式",
+        "D": "限制最大輸出長度以縮短模型的回答"
       },
       "correct_answer": "B",
       "source": {
@@ -1887,10 +1887,10 @@
       "topic": "GenAI/FineTuning",
       "question_text": "下列關於 PEFT(Parameter-Efficient Fine-Tuning,如 LoRA)的敘述,何者最正確?",
       "options": {
-        "A": "PEFT 必須更新模型全部參數",
-        "B": "LoRA 在每層注入低秩(low-rank)可訓練矩陣,凍結原權重,以極少參數達成接近全微調效果",
-        "C": "PEFT 只能用於 CV 模型,不適用 LLM",
-        "D": "PEFT 訓練成本一定高於完整微調"
+        "A": "PEFT 必須更新原模型的全部參數",
+        "B": "LoRA 注入低秩矩陣並凍結原權重",
+        "C": "PEFT 只適用於 CV 不能用於 LLM",
+        "D": "PEFT 的訓練成本一定高於全微調"
       },
       "correct_answer": "B",
       "source": {
@@ -1910,10 +1910,10 @@
       "topic": "Multimodal/Fusion",
       "question_text": "在多模態學習中,「中期融合(Mid Fusion / Hybrid Fusion)」與早期、晚期融合的最大差別為何?",
       "options": {
-        "A": "中期融合是在輸入層拼接原始資料",
-        "B": "中期融合在中間隱藏層(深層特徵層)透過 attention 或閘控機制動態結合不同模態特徵",
-        "C": "中期融合僅在最終決策輸出處平均不同模態結果",
-        "D": "中期融合不需要訓練"
+        "A": "中期融合在原始資料輸入層拼接",
+        "B": "中期融合在中間隱藏層動態結合",
+        "C": "中期融合在最終決策層平均結果",
+        "D": "中期融合完全不需要任何訓練"
       },
       "correct_answer": "B",
       "source": {
@@ -1933,10 +1933,10 @@
       "topic": "Multimodal/CLIP",
       "question_text": "OpenAI 提出的 CLIP(Contrastive Language-Image Pre-training)模型訓練目標為何?",
       "options": {
-        "A": "回歸影像像素",
-        "B": "對齊圖像 embedding 與其對應文字 embedding(正例配對),拉開不匹配配對(負例)的對比學習",
-        "C": "直接生成新影像",
-        "D": "做監督式影像分類"
+        "A": "對影像每個像素值進行回歸預測",
+        "B": "對齊圖文嵌入向量的對比式學習",
+        "C": "直接由文字生成全新的影像作品",
+        "D": "以固定類別做監督式影像分類"
       },
       "correct_answer": "B",
       "source": {
@@ -1957,9 +1957,9 @@
       "question_text": "企業評估是否導入 AI 解決方案時,下列哪一項應該「最先」執行?",
       "options": {
         "A": "立即購買 GPU 並組建內部 ML 平台",
-        "B": "盤點具體業務痛點與量化的成功指標(KPI),以判斷 AI 是否為合適手段",
-        "C": "招募 10 位 ML 博士",
-        "D": "與所有供應商簽長期合約"
+        "B": "盤點業務痛點與量化的成功 KPI 指標",
+        "C": "招募十位專職機器學習博士進團隊",
+        "D": "與所有供應商簽訂長期採購合約書"
       },
       "correct_answer": "B",
       "source": {
@@ -1979,10 +1979,10 @@
       "topic": "AI/Adoption",
       "question_text": "下列關於 AI Proof-of-Concept(PoC)目的的描述,何者最正確?",
       "options": {
-        "A": "PoC 目的是立即交付產線可用的正式系統",
-        "B": "PoC 目的是在「有限投入」下驗證技術可行性、資料可用性、初步效益,以決定是否進一步投資",
-        "C": "PoC 必須以最大規模、全功能展開",
-        "D": "PoC 完成後即可結案,不需後續評估"
+        "A": "PoC 目的是立即交付產線正式系統",
+        "B": "PoC 目的是在有限投入下驗證可行性",
+        "C": "PoC 必須以最大規模全功能展開",
+        "D": "PoC 完成後即可結案無需後續評估"
       },
       "correct_answer": "B",
       "source": {
@@ -2003,9 +2003,9 @@
       "question_text": "某企業評估「自建 vs. 採購 SaaS AI 服務」決策時,下列哪一項是「最不重要」的考量?",
       "options": {
         "A": "資料隱私與資料外流風險",
-        "B": "TCO(Total Cost of Ownership)與營運成本",
+        "B": "TCO 與整體營運成本評估",
         "C": "團隊既有技術能力與可維護性",
-        "D": "辦公室咖啡機品牌"
+        "D": "辦公室咖啡機的品牌選擇"
       },
       "correct_answer": "D",
       "source": {
@@ -2025,10 +2025,10 @@
       "topic": "AI/Adoption",
       "question_text": "某零售業希望將「AI 預測補貨」優先導入。從 ROI 角度,下列哪一項判斷最合理?",
       "options": {
-        "A": "ROI 與資料品質、預測準確度、實際補貨節省金額三者皆無關",
-        "B": "ROI 應評估「節省的庫存成本 + 缺貨損失減少」與「資料、模型、部署成本」之比,需明確的基準線(baseline)",
-        "C": "ROI 越高代表模型一定越複雜",
-        "D": "ROI 評估通常在模型上線兩年後再做即可"
+        "A": "ROI 與資料品質與預測準確度三者無關",
+        "B": "ROI 應比較節省金額與整體投入並設基準線",
+        "C": "ROI 越高即代表模型架構必定越複雜",
+        "D": "ROI 應在模型上線兩年後再進行評估"
       },
       "correct_answer": "B",
       "source": {
@@ -2048,10 +2048,10 @@
       "topic": "AI/Planning",
       "question_text": "在 AI 專案規劃中,「資料策略(Data Strategy)」最應該優先回答下列哪一個問題?",
       "options": {
-        "A": "公司應該換哪一家雲端服務商",
-        "B": "需要哪些資料、來源在哪、如何取得授權、如何標註與治理",
-        "C": "辦公室要不要重新裝潢",
-        "D": "團隊應該用哪一種程式語言"
+        "A": "公司應該採用哪一家雲端服務商",
+        "B": "需要哪些資料與如何取得授權治理",
+        "C": "辦公室是否要重新規劃內部裝潢",
+        "D": "團隊應該採用哪一種主程式語言"
       },
       "correct_answer": "B",
       "source": {
@@ -2071,10 +2071,10 @@
       "topic": "AI/Planning",
       "question_text": "下列關於 AI 專案「跨部門利害關係人(Stakeholder)管理」的敘述,何者最正確?",
       "options": {
-        "A": "AI 專案只需要技術部門參與即可成功",
-        "B": "業務、IT、法務、資安、HR 等部門皆可能影響或受影響,需識別關鍵利害關係人並設定溝通節奏",
-        "C": "利害關係人愈少愈好,直接交付即可",
-        "D": "法務與資安在 PoC 階段完全不必介入"
+        "A": "AI 專案僅需技術部門參與即可成功",
+        "B": "業務法務資安等部門皆應提早參與",
+        "C": "利害關係人越少越好以加速交付",
+        "D": "法務與資安在 PoC 階段無需介入"
       },
       "correct_answer": "B",
       "source": {
@@ -2095,9 +2095,9 @@
       "question_text": "下列哪一項 AI 專案「最不適合採用瀑布式(Waterfall)生命週期」,而應採用迭代式(Iterative / Agile)?",
       "options": {
         "A": "需求極為固定且法規嚴格的核能控制系統",
-        "B": "首次以新型 LLM + RAG 建立企業內部知識問答,需求與資料逐步釐清",
-        "C": "從供應商採購現成 SaaS 並直接導入,合約條款穩定",
-        "D": "純粹只是更新公司網站文案"
+        "B": "首次以大型語言模型加檢索建企業問答",
+        "C": "從供應商採購現成軟體服務後直接導入",
+        "D": "純粹只是更新公司官網行銷文案而已"
       },
       "correct_answer": "B",
       "source": {
@@ -2117,10 +2117,10 @@
       "topic": "Risk/Privacy",
       "question_text": "下列哪一項做法「最直接」符合「資料最小化(Data Minimization)」原則?",
       "options": {
-        "A": "盡可能收集越多越好,以備未來模型訓練之需",
-        "B": "在進入訓練前移除或假名化與目標無關的個人資料欄位,僅保留必要特徵",
-        "C": "將完整身分證字號明碼存於訓練集",
-        "D": "把所有個人資料公開分享給第三方"
+        "A": "盡可能多收集資料以備未來訓練之需",
+        "B": "事前移除無關欄位並對必要欄位假名化",
+        "C": "將完整身分證字號明碼存於訓練集中",
+        "D": "將個人資料公開分享給第三方使用"
       },
       "correct_answer": "B",
       "source": {
@@ -2140,10 +2140,10 @@
       "topic": "Risk/Compliance",
       "question_text": "下列關於台灣《個人資料保護法》(個資法)的敘述,何者最正確?",
       "options": {
-        "A": "蒐集個資不需告知當事人特定目的",
-        "B": "蒐集、處理、利用個資皆需「特定目的」與相應「合法事由」,且應告知當事人",
-        "C": "個資法不適用於 AI 模型訓練",
-        "D": "當事人不可以行使資料更正或刪除權"
+        "A": "蒐集個資時無需告知當事人特定目的",
+        "B": "蒐集處理利用個資皆需目的與告知義務",
+        "C": "個資法完全不適用於 AI 模型訓練情境",
+        "D": "當事人無權行使資料更正或刪除權利"
       },
       "correct_answer": "B",
       "source": {
@@ -2163,10 +2163,10 @@
       "topic": "Risk/Compliance",
       "question_text": "GDPR 對「自動化決策(Automated Decision-Making)」的特別規範為何?",
       "options": {
-        "A": "完全禁止任何自動化決策",
-        "B": "當事人有權「不被完全自動化決策所制約」,且資料控管者需提供救濟機制與人為審查管道",
-        "C": "自動化決策可任意進行無需告知",
-        "D": "GDPR 不涉及自動化決策議題"
+        "A": "GDPR 全面禁止任何自動化決策行為",
+        "B": "當事人有權拒絕純自動化決策且可救濟",
+        "C": "自動化決策可任意實施而無需告知",
+        "D": "GDPR 完全未涉及自動化決策議題"
       },
       "correct_answer": "B",
       "source": {
@@ -2186,10 +2186,10 @@
       "topic": "Risk/Copyright",
       "question_text": "企業使用生成式 AI 產出行銷文案時,下列關於著作權的敘述,何者「最不正確」?",
       "options": {
-        "A": "輸入端若使用未授權第三方著作可能構成侵權",
-        "B": "輸出端可能因模型訓練資料含有他人著作而存在再現風險",
-        "C": "美國 USCO 立場是「純由 AI 生成」的作品不獲著作權保護;人類創造性介入則可能受保護",
-        "D": "只要是由 AI 生成的作品,所有國家都明文承認其著作權"
+        "A": "輸入端若用未授權第三方著作可能侵權",
+        "B": "輸出端可能因訓練資料含他人著作而再現",
+        "C": "美國 USCO 立場是純 AI 生成不獲保護",
+        "D": "AI 生成作品在所有國家皆獲著作權保護"
       },
       "correct_answer": "D",
       "source": {
@@ -2209,10 +2209,10 @@
       "topic": "Risk/Security",
       "question_text": "下列何者為 LLM 應用中最常見的「Prompt Injection」攻擊類型?",
       "options": {
-        "A": "直接攻擊:使用者在 prompt 內嵌指令覆寫系統指示(如「忽略上面所有指示...」)",
-        "B": "雙重加密保護法",
-        "C": "在影像中加入像素水印",
-        "D": "硬體層級的中間人攻擊"
+        "A": "在 prompt 內嵌指令覆寫原系統指示",
+        "B": "對通訊內容進行雙重加密保護攻擊",
+        "C": "在影像中加入肉眼難察的像素水印",
+        "D": "硬體層攔截封包的中間人攻擊手段"
       },
       "correct_answer": "A",
       "source": {
@@ -2232,8 +2232,8 @@
       "topic": "Data/Preprocessing",
       "question_text": "在 AI 專案資料前處理階段,「資料品質(Data Quality)」最常用的六大維度為何?",
       "options": {
-        "A": "顏色、字型、長度、亮度、對比度、檔名",
-        "B": "完整性、一致性、準確性、時效性、唯一性、有效性(Completeness, Consistency, Accuracy, Timeliness, Uniqueness, Validity)",
+        "A": "顏色、字型、長度、亮度、對比、檔名",
+        "B": "完整、一致、準確、時效、唯一、有效",
         "C": "成本、收益、風險、機會、優勢、劣勢",
         "D": "速度、儲存、頻寬、延遲、輸入、輸出"
       },
@@ -2255,10 +2255,10 @@
       "topic": "Data/Augmentation",
       "question_text": "下列哪一項影像資料增強(Image Augmentation)「最可能改變類別標籤」,因此使用時須格外小心?",
       "options": {
-        "A": "輕微旋轉 5°",
-        "B": "水平翻轉一張「6 與 9 手寫數字」分類資料集的影像",
-        "C": "亮度微調 ±5%",
-        "D": "增加少量高斯雜訊"
+        "A": "將整張影像輕微旋轉 5 度角",
+        "B": "對手寫 6 與 9 的影像水平翻轉",
+        "C": "對影像亮度做正負 5% 微調",
+        "D": "對影像加入少量高斯雜訊擾動"
       },
       "correct_answer": "B",
       "source": {
@@ -2278,10 +2278,10 @@
       "topic": "Deploy/MLOps",
       "question_text": "MLOps 中的「Model Registry」最主要的職責為何?",
       "options": {
-        "A": "監控網路流量",
-        "B": "管理模型版本、metadata、stage(staging/production)以及審核流程",
-        "C": "管理硬體採購清單",
-        "D": "替代 Git 倉庫"
+        "A": "監控生產環境的網路流量與封包",
+        "B": "管理模型版本與發布階段及審核流程",
+        "C": "管理硬體採購清單與資產序號",
+        "D": "替代 Git 程式碼倉庫的版本控管"
       },
       "correct_answer": "B",
       "source": {
@@ -2301,10 +2301,10 @@
       "topic": "Deploy/MLOps",
       "question_text": "下列關於 MLOps 「藍綠部署(Blue-Green Deployment)」與「金絲雀發布(Canary Release)」的差異敘述,何者最正確?",
       "options": {
-        "A": "兩者完全相同",
-        "B": "藍綠部署同時維護兩套環境,一次性全量切換;金絲雀則逐步將流量灰度發送到新版本,可即時回滾",
-        "C": "金絲雀發布只能用於資料庫變更",
-        "D": "藍綠部署必須先停機"
+        "A": "藍綠部署與金絲雀發布完全相同",
+        "B": "藍綠一次切流金絲雀則漸進灰度切換",
+        "C": "金絲雀發布僅能用於資料庫變更場景",
+        "D": "藍綠部署上線時必須先暫停服務停機"
       },
       "correct_answer": "B",
       "source": {
@@ -2324,10 +2324,10 @@
       "topic": "Data/Drift",
       "question_text": "下列關於「資料漂移(Data Drift)」與「概念漂移(Concept Drift)」的差異,何者最正確?",
       "options": {
-        "A": "兩者沒有差別",
-        "B": "Data Drift 是輸入特徵分佈 P(X) 改變;Concept Drift 是輸入-標籤關係 P(Y|X) 改變",
-        "C": "Data Drift 不會影響模型表現",
-        "D": "Concept Drift 是指模型權重隨機重置"
+        "A": "資料漂移與概念漂移在定義上完全相同",
+        "B": "資料漂移指特徵分佈變概念漂移指條件機率變",
+        "C": "資料漂移完全不會影響模型在線上的表現",
+        "D": "概念漂移是指模型權重在訓練中被隨機重置"
       },
       "correct_answer": "B",
       "source": {
@@ -2347,10 +2347,10 @@
       "topic": "NLP/Summarization",
       "question_text": "下列何者最能區分「抽取式摘要(Extractive)」與「生成式摘要(Abstractive)」?",
       "options": {
-        "A": "抽取式直接複製原文句子;生成式可改寫並產生原文中未出現的詞句",
-        "B": "兩者皆只能複製原文",
-        "C": "抽取式必須使用 LLM",
-        "D": "生成式不需要訓練"
+        "A": "抽取式直接拼貼原句,生成式可改寫造新句",
+        "B": "抽取式與生成式皆只能逐字複製原文句子",
+        "C": "抽取式必須採用大型語言模型才能執行",
+        "D": "生成式摘要完全不需要任何模型訓練"
       },
       "correct_answer": "A",
       "source": {
@@ -2370,10 +2370,10 @@
       "topic": "CV/Pose",
       "question_text": "下列何者最能正確描述「人體姿態估計(Human Pose Estimation)」?",
       "options": {
-        "A": "預測影像中的天氣狀態",
-        "B": "估計人體關鍵點(Keypoints)位置(如肩、肘、腕、髖、膝、踝),可分 2D 或 3D",
-        "C": "辨識文字內容",
-        "D": "分割語意區域"
+        "A": "預測影像中當下的天氣狀態資訊",
+        "B": "估計人體各關鍵點的二維或三維位置",
+        "C": "辨識影像或單據中所含的文字內容",
+        "D": "對影像中的語意區域進行像素分割"
       },
       "correct_answer": "B",
       "source": {
@@ -2393,10 +2393,10 @@
       "topic": "NLP/LLM-Eval",
       "question_text": "下列關於評估生成式 LLM 輸出品質的方法,何者「最不可信於」開放式生成任務(如自由回答 QA)?",
       "options": {
-        "A": "BLEU(對文字生成的 n-gram 重疊率)",
-        "B": "Perplexity(困惑度)",
-        "C": "Human evaluation / pairwise comparison(人類兩兩比較)",
-        "D": "LLM-as-a-judge 搭配 rubric 評分"
+        "A": "BLEU 以 n-gram 重疊率衡量生成品質",
+        "B": "Perplexity 困惑度衡量語言模型擬合度",
+        "C": "Human evaluation 人工兩兩比對品質",
+        "D": "LLM-as-a-judge 搭配 rubric 評分機制"
       },
       "correct_answer": "A",
       "source": {
@@ -2416,10 +2416,10 @@
       "topic": "GenAI/RAG",
       "question_text": "在 RAG pipeline 中,加入「Reranker(重排序模型,如 Cross-Encoder)」的主要效益為何?",
       "options": {
-        "A": "降低向量資料庫儲存成本",
-        "B": "對初步檢索(Bi-Encoder)的 Top-K 結果做更精細的相關性重排,提升精確度",
-        "C": "完全取代向量檢索",
-        "D": "減少 LLM 推論延遲"
+        "A": "降低向量資料庫的整體儲存成本",
+        "B": "對召回的前 K 結果重排提升精度",
+        "C": "完全取代既有的向量檢索流程",
+        "D": "減少語言模型整體的推論延遲"
       },
       "correct_answer": "B",
       "source": {
@@ -2440,9 +2440,9 @@
       "question_text": "歐盟 AI Act 將 AI 系統分為四個風險等級,下列哪一項「最可能」被歸類為「高風險(High-risk)」?",
       "options": {
         "A": "用於招募篩選履歷的 AI 系統",
-        "B": "影音平台的個性化內容推薦",
-        "C": "客服聊天機器人提供 FAQ",
-        "D": "電子郵件垃圾信過濾"
+        "B": "影音平台的個性化內容推薦系統",
+        "C": "客服聊天機器人回答常見 FAQ",
+        "D": "電子郵件的垃圾信過濾系統"
       },
       "correct_answer": "A",
       "source": {
@@ -2462,10 +2462,10 @@
       "topic": "NLP/Sentiment",
       "question_text": "某電商企業希望利用情感分析（Sentiment Analysis）追蹤新品上市後的社群留言，並在負面情緒升高時通知客服團隊。下列何者最符合此技術在該情境中的核心用途?",
       "options": {
-        "A": "將每則留言翻譯成英文，以利海外團隊閱讀",
-        "B": "判斷留言表達的是正面、負面或中立等情緒傾向",
-        "C": "自動產生促銷圖片，提升商品點擊率",
-        "D": "把顧客依購買金額分成不同價格區間"
+        "A": "將每則留言翻譯成英文供海外團隊閱讀",
+        "B": "判斷留言所表達的正面負面或中立情緒",
+        "C": "自動產生促銷圖片以提升商品點擊轉換",
+        "D": "依據顧客購買金額分為不同價格區間"
       },
       "correct_answer": "B",
       "source": {
@@ -2485,10 +2485,10 @@
       "topic": "NLP/Tokenization",
       "question_text": "某保險公司要分析中文理賠敘述，發現句子沒有像英文一樣用空白清楚分隔詞彙。若要先做分詞（Tokenization）以利後續命名實體辨識，下列作法何者最適合?",
       "options": {
-        "A": "直接依照每個中文字逐字切開，避免任何語意判斷",
-        "B": "使用斷詞字典或模型輔助切詞，將句子轉為可處理的詞彙單位",
-        "C": "先刪除所有名詞與動詞，再進行分類",
-        "D": "將所有句子轉成圖片，再用物件偵測處理"
+        "A": "依每個中文字逐字切開不做語意判斷",
+        "B": "用斷詞字典或模型切出可處理詞彙單位",
+        "C": "先刪除句中所有名詞與動詞再行分類",
+        "D": "將句子轉成圖片後用物件偵測處理"
       },
       "correct_answer": "B",
       "source": {
@@ -2508,10 +2508,10 @@
       "topic": "NLP/Embedding",
       "question_text": "某銀行客服系統需判斷句子中的「bank」是指金融機構還是河岸，團隊考慮導入語境型詞嵌入（Contextualized Word Embeddings）。下列何者最能解釋此選擇?",
       "options": {
-        "A": "每個詞在任何語境中都應固定為同一個向量，避免模型產生差異",
-        "B": "詞向量會依上下文動態改變，能處理多義詞與語意歧義",
-        "C": "只要統計詞頻，就能完整理解所有上下文語意",
-        "D": "先將文字轉成高解析度影像，再由 CNN 判斷語意"
+        "A": "詞在任何語境中皆對應同一固定向量",
+        "B": "詞向量會依上下文變化以處理多義詞",
+        "C": "僅靠詞頻統計即可完整理解語意脈絡",
+        "D": "把文字轉為高解析影像並用 CNN 判斷"
       },
       "correct_answer": "B",
       "source": {
@@ -2531,10 +2531,10 @@
       "topic": "NLP/Transformer",
       "question_text": "某法務科技公司要分析長篇合約條款，發現傳統遞迴模型在長距離語意關聯上表現不佳。若改採 Transformer 架構，下列哪一項是主要技術理由?",
       "options": {
-        "A": "Transformer 依序逐字讀取，因此可完全避免平行運算",
-        "B": "Transformer 以自注意力機制（Self-Attention Mechanism）同時考慮序列中的詞彙關聯",
-        "C": "Transformer 主要依靠邊界框標註來定位句子位置",
-        "D": "Transformer 只能用於影像分類，無法處理文字"
+        "A": "Transformer 依序逐字讀取因此無法平行",
+        "B": "Transformer 以自注意力同時關聯所有詞彙",
+        "C": "Transformer 依靠邊界框標註以定位句子",
+        "D": "Transformer 僅能用於影像而非文字處理"
       },
       "correct_answer": "B",
       "source": {
@@ -2554,10 +2554,10 @@
       "topic": "NLP/Transformer",
       "question_text": "某客服平台分析長句「產品雖然送修三次仍無法開機，因此我要求退貨」時，希望模型聚焦於影響意圖判斷的關鍵詞。下列何者最符合注意力機制（Attention Mechanism）的功能?",
       "options": {
-        "A": "將所有詞彙視為完全等重，避免模型偏向關鍵字",
-        "B": "只保留句子的第一個詞，讓模型降低計算量",
-        "C": "根據詞與詞的關聯程度分配權重，讓模型聚焦重要上下文",
-        "D": "將句子轉換成資料表主鍵，移除語意資訊"
+        "A": "將所有詞彙視為完全等重以避免模型偏向",
+        "B": "只保留句子第一個詞以降低整體計算量",
+        "C": "依詞與詞的關聯程度分配權重突顯重點",
+        "D": "把句子轉為資料表主鍵以移除語意資訊"
       },
       "correct_answer": "C",
       "source": {
@@ -2577,10 +2577,10 @@
       "topic": "NLP/RAG",
       "question_text": "某醫療客服系統需回答最新藥品使用規範，團隊擔心大型語言模型只依內部參數生成而知識過時。若導入檢索增強生成（Retrieval-Augmented Generation, RAG），下列流程何者最適合?",
       "options": {
-        "A": "先從外部知識庫檢索相關文件，再結合語言模型生成答案",
-        "B": "只增加模型參數量，不連接任何外部資料來源",
-        "C": "刪除所有醫療文獻，避免模型受到資料干擾",
-        "D": "將所有問題轉成影像後交給 OCR 系統回覆"
+        "A": "先檢索外部知識庫再讓模型生成答案",
+        "B": "僅增加模型參數量而不連接外部資料",
+        "C": "刪除全部醫療文獻以避免資料的干擾",
+        "D": "把所有問題轉成影像並交給 OCR 處理"
       },
       "correct_answer": "A",
       "source": {
@@ -2600,10 +2600,10 @@
       "topic": "NLP/NER",
       "question_text": "某律師事務所要從判決書中自動擷取法院名稱、當事人、地點與案件編號，並轉成結構化欄位。下列哪一項自然語言處理技術最符合需求?",
       "options": {
-        "A": "命名實體辨識（Named Entity Recognition, NER）",
-        "B": "影像分割（Image Segmentation）",
-        "C": "語音合成（Text-to-Speech, TTS）",
-        "D": "資料庫正規化（Database Normalization）"
+        "A": "命名實體辨識(Named Entity Recognition)",
+        "B": "影像分割任務(Image Segmentation)",
+        "C": "語音合成技術(Text-to-Speech, TTS)",
+        "D": "資料庫正規化(Database Normalization)"
       },
       "correct_answer": "A",
       "source": {
@@ -2623,10 +2623,10 @@
       "topic": "NLP/Summarization",
       "question_text": "某證券公司每天需閱讀大量市場新聞，並為交易員產生短版重點摘要。下列哪一項最符合文字生成與總結（Text Generation & Summarization）的導入重點?",
       "options": {
-        "A": "只計算新聞字數，避免模型理解內容",
-        "B": "產生能保留主旨且語意一致的摘要，並注意事實正確性",
-        "C": "把所有新聞轉成隨機向量，不提供可讀文字",
-        "D": "以車牌辨識模型找出新聞中的公司名稱"
+        "A": "只計算新聞字數而不理解任何內容",
+        "B": "產生保留主旨並注意事實正確的摘要",
+        "C": "將新聞轉為隨機向量不可讀的形式",
+        "D": "用車牌辨識模型找出新聞中的公司名"
       },
       "correct_answer": "B",
       "source": {
@@ -2646,10 +2646,10 @@
       "topic": "NLP/Translation",
       "question_text": "某跨國客服中心希望讓台灣客服即時理解日文與英文客訴內容，並提供一致的回覆草稿。下列哪一項最符合機器翻譯（Machine Translation）的應用價值與限制?",
       "options": {
-        "A": "可協助跨語言客服，但專業術語仍需特別驗證",
-        "B": "只能辨識圖片中的文字位置，無法處理語言轉換",
-        "C": "只適合計算顧客消費金額，不適合文字處理",
-        "D": "會自動消除所有法規與隱私風險，因此不需審查"
+        "A": "可協助跨語言客服但專業術語需驗證",
+        "B": "只能辨識圖片中文字位置無法做翻譯",
+        "C": "僅能計算顧客消費金額不處理文字",
+        "D": "自動解決所有法規隱私風險無需審查"
       },
       "correct_answer": "A",
       "source": {
@@ -2669,10 +2669,10 @@
       "topic": "NLP/Summarization",
       "question_text": "某媒體公司導入大型語言模型撰寫短文，想同時評估自動摘要是否涵蓋關鍵內容，以及創意文案是否自然流暢。下列評估搭配何者最合理?",
       "options": {
-        "A": "摘要用 ROUGE（Recall-Oriented Understudy for Gisting Evaluation），創意文案可加入人工評估",
-        "B": "所有生成任務只看 GPU 使用率即可",
-        "C": "摘要品質只能用影像 IOU 衡量",
-        "D": "創意文案只能用資料庫交易筆數評估"
+        "A": "摘要用 ROUGE 評分創意文案搭人工評估",
+        "B": "所有生成任務皆只看 GPU 使用率即可",
+        "C": "摘要品質一律只能用影像 IoU 衡量",
+        "D": "創意文案僅用資料庫交易筆數評估"
       },
       "correct_answer": "A",
       "source": {
@@ -2692,10 +2692,10 @@
       "topic": "NLP/General",
       "question_text": "某客服機器人收到使用者輸入後，需要先理解需求，再產生自然語言回覆。若以自然語言理解（Natural Language Understanding, NLU）與自然語言生成（Natural Language Generation, NLG）分工，下列何者正確?",
       "options": {
-        "A": "NLU 負責判讀語意與意圖，NLG 負責產生自然語言回覆",
-        "B": "NLU 負責訓練 GPU，NLG 負責調整資料庫索引",
-        "C": "NLU 只能處理圖片，NLG 只能處理感測器資料",
-        "D": "NLU 與 NLG 都只用於容器編排，與語言任務無關"
+        "A": "NLU 負責語意意圖判讀,NLG 產出回覆語句",
+        "B": "NLU 負責訓練 GPU,NLG 負責調整資料庫索引",
+        "C": "NLU 只能處理圖片資料,NLG 只能處理感測器",
+        "D": "NLU 與 NLG 皆用於容器編排與語言任務無關"
       },
       "correct_answer": "A",
       "source": {
@@ -2715,10 +2715,10 @@
       "topic": "CV/Detection",
       "question_text": "某零售平台要自動判斷上傳商品照片是鞋子、包包或外套，不需要標出商品在照片中的位置。下列哪一項電腦視覺任務最適合?",
       "options": {
-        "A": "影像分類（Image Classification）",
-        "B": "物件偵測（Object Detection）",
-        "C": "實例分割（Instance Segmentation）",
-        "D": "姿態估計（Pose Estimation）"
+        "A": "影像分類(Image Classification)",
+        "B": "物件偵測(Object Detection)",
+        "C": "實例分割(Instance Segmentation)",
+        "D": "姿態估計(Pose Estimation)"
       },
       "correct_answer": "A",
       "source": {
@@ -2738,10 +2738,10 @@
       "topic": "NLP/Summarization",
       "question_text": "某工廠希望在即時影像中找出輸送帶上的瑕疵零件，並以邊界框標示位置與類別。下列哪一項技術最符合需求?",
       "options": {
-        "A": "資料庫交易分析（Transaction Analysis）",
-        "B": "物件偵測（Object Detection）",
-        "C": "語音辨識（Automatic Speech Recognition, ASR）",
-        "D": "文本摘要（Text Summarization）"
+        "A": "資料庫交易分析(Transaction Analysis)",
+        "B": "影像物件偵測(Object Detection)",
+        "C": "語音轉文字技術(Speech Recognition)",
+        "D": "文字摘要生成(Text Summarization)"
       },
       "correct_answer": "B",
       "source": {
@@ -2761,10 +2761,10 @@
       "topic": "NLP/Tokenization",
       "question_text": "某醫院希望在 MRI 影像中精準圈出腫瘤區域，讓醫師看到每個像素是否屬於病灶。下列哪一項最符合此需求?",
       "options": {
-        "A": "影像分割（Image Segmentation）",
-        "B": "文字分詞（Tokenization）",
-        "C": "顧客分群（Customer Segmentation）",
-        "D": "機器翻譯（Machine Translation）"
+        "A": "影像分割(Image Segmentation)",
+        "B": "文字分詞(Text Tokenization)",
+        "C": "顧客分群(Customer Segmentation)",
+        "D": "機器翻譯(Machine Translation)"
       },
       "correct_answer": "A",
       "source": {
@@ -2784,10 +2784,10 @@
       "topic": "CV/OCR",
       "question_text": "某物流公司要從掃描的出貨單中擷取品名、地址與追蹤編號，並需要標出文字區塊與正確字串。下列哪一項最適合?",
       "options": {
-        "A": "光學字元辨識（Optical Character Recognition, OCR）",
-        "B": "姿態估計（Pose Estimation）",
-        "C": "擴散模型（Diffusion Models）",
-        "D": "強化式學習（Reinforcement Learning）"
+        "A": "光學字元辨識(Optical Character Recognition)",
+        "B": "人體姿態估計(Human Pose Estimation)",
+        "C": "擴散生成模型(Diffusion Generative Model)",
+        "D": "強化式學習(Reinforcement Learning)"
       },
       "correct_answer": "A",
       "source": {
@@ -2807,10 +2807,10 @@
       "topic": "NLP/Transformer",
       "question_text": "某健身 App 要判斷使用者深蹲姿勢是否標準，需要偵測肩、膝、髖等身體節點座標。下列標註方式何者最符合需求?",
       "options": {
-        "A": "關鍵點標註（Keypoint Annotation）",
-        "B": "文件主鍵標註（Primary Key Annotation）",
-        "C": "停用詞移除（Stopword Removal）",
-        "D": "資料遮罩（Data Masking）"
+        "A": "影像關鍵點標註(Keypoint Annotation)",
+        "B": "資料庫主鍵欄位標註(Primary Key)",
+        "C": "文本停用詞移除(Stopword Removal)",
+        "D": "敏感欄位資料遮罩處理(Data Masking)"
       },
       "correct_answer": "A",
       "source": {
@@ -2830,10 +2830,10 @@
       "topic": "GenAI/GAN",
       "question_text": "某遊戲公司想快速產生多種寫實角色臉部素材，並評估採用 StyleGAN 類模型。下列何者最能說明影像生成對抗網路（Image GAN）的適用原因?",
       "options": {
-        "A": "透過生成器與判別器的對抗訓練，學習產生接近真實資料分佈的影像",
-        "B": "只要手動寫規則，就能保證每張臉完全不同且無需訓練",
-        "C": "把每張臉轉成一個類別標籤，完全不產生新影像",
-        "D": "利用 ASR 將語音轉文字後輸出角色照片"
+        "A": "由生成器與判別器對抗學習接近真實分佈",
+        "B": "靠手寫規則即可保證每張臉不同無需訓練",
+        "C": "將每張臉轉成類別標籤完全不產生新影像",
+        "D": "用 ASR 將語音轉文字後直接輸出角色照片"
       },
       "correct_answer": "A",
       "source": {
@@ -2853,10 +2853,10 @@
       "topic": "NLP/Transformer",
       "question_text": "某影像團隊想測試不以卷積神經網路為主，而改用類似 NLP Transformer 架構處理影像的模型。下列何者最符合 Vision Transformer（ViT）的概念?",
       "options": {
-        "A": "使用 Transformer 架構處理影像資料，突破傳統 CNN 主導的視覺做法",
-        "B": "只用 TF-IDF 計算圖片中文字詞頻",
-        "C": "專門把語音波形轉成客服文字",
-        "D": "以資料庫索引取代所有視覺特徵學習"
+        "A": "以 Transformer 架構處理影像突破 CNN 路線",
+        "B": "僅以 TF-IDF 計算圖片所含文字的詞頻並排序",
+        "C": "專門將輸入的語音波形訊號轉換成客服系統文字",
+        "D": "以資料庫索引欄位完全取代視覺模型的特徵學習"
       },
       "correct_answer": "A",
       "source": {
@@ -2876,9 +2876,9 @@
       "topic": "GenAI/GAN",
       "question_text": "某行銷公司使用生成對抗網路（Generative Adversarial Network, GAN）製作虛擬代言人照片，但訓練過程常不穩定。下列哪一項是 GAN 的典型特性與限制?",
       "options": {
-        "A": "對抗訓練可提升寫實性，但可能面臨訓練不穩定與模式崩潰",
-        "B": "GAN 完全不需要資料，且永遠不會產生偏差",
-        "C": "GAN 只能做資料表查詢，無法生成影像",
+        "A": "對抗訓練可提升寫實但易遇模式崩潰",
+        "B": "GAN 完全不需資料且永遠不會產生偏差",
+        "C": "GAN 只能做資料表查詢無法生成影像",
         "D": "GAN 以資料刪除權作為主要訓練目標"
       },
       "correct_answer": "A",
@@ -2899,10 +2899,10 @@
       "topic": "CV/Classification",
       "question_text": "某設計團隊希望從文字提示產生高解析度產品概念圖，並要求細節豐富且生成穩定。下列何者最符合擴散模型（Diffusion Models）的生成機制?",
       "options": {
-        "A": "逐步去噪，從隨機噪聲生成細節豐富的圖像",
-        "B": "只計算資料表欄位的平均數",
-        "C": "將圖片切成停用詞後再分類",
-        "D": "只透過人工標籤逐筆手繪所有圖片"
+        "A": "從隨機噪聲逐步去噪以生成細節影像",
+        "B": "僅計算資料表欄位的平均值與標準差",
+        "C": "將圖片切成停用詞後再進行類別分類",
+        "D": "只能透過人工逐筆手繪所有圖片素材"
       },
       "correct_answer": "A",
       "source": {
@@ -2922,10 +2922,10 @@
       "topic": "GenAI/PromptEngineering",
       "question_text": "某企業想建立大型語言模型（Large Language Model, LLM）應用，先讓模型學習大量通用語料，再針對客服情境調整。下列哪一項最符合生成式 AI 技術體系?",
       "options": {
-        "A": "只在上線後人工查詢資料庫，不需任何模型學習",
-        "B": "包含預訓練、微調與應用調用等流程，並可結合提示工程",
-        "C": "只使用手寫 if-else 規則產生所有回答",
-        "D": "先刪除全部文字資料，再開始訓練以避免語意干擾"
+        "A": "上線後人工查資料庫不需任何模型學習",
+        "B": "包含預訓練微調與提示工程等完整流程",
+        "C": "僅以手寫 if-else 規則產生所有回應",
+        "D": "先刪除全部文字資料再開始模型訓練"
       },
       "correct_answer": "B",
       "source": {
@@ -2945,10 +2945,10 @@
       "topic": "GenAI/PromptEngineering",
       "question_text": "某品牌團隊用生成式 AI 撰寫廣告文案，希望明確控制語氣、風格、長度與格式。下列哪一項最符合提示工程（Prompt Engineering）的價值?",
       "options": {
-        "A": "用更精確的提示引導模型，讓輸出更符合指定語氣與格式",
-        "B": "完全不提供任何指令，讓模型隨機生成即可",
-        "C": "只提升伺服器硬碟容量，不改變輸入內容",
-        "D": "將所有文案轉成邊界框座標"
+        "A": "以精準提示引導模型輸出符合的格式語氣",
+        "B": "完全不提供任何指令讓模型自由隨機生成",
+        "C": "只提升伺服器硬碟容量而不變更輸入內容",
+        "D": "將所有文案內容統一轉成邊界框座標格式"
       },
       "correct_answer": "A",
       "source": {
@@ -2968,10 +2968,10 @@
       "topic": "NLP/RAG",
       "question_text": "某企業內部知識助理需回答產品政策，且答案必須引用最新內部文件。若要降低模型憑空生成的風險，下列哪一項最適合?",
       "options": {
-        "A": "檢索增強生成（Retrieval-Augmented Generation, RAG）",
-        "B": "只增加圖片解析度",
-        "C": "移除所有文件檢索流程",
-        "D": "以隨機抽樣取代知識庫查詢"
+        "A": "檢索增強生成(Retrieval-Augmented Generation)",
+        "B": "影像高解析度放大(Image Super-Resolution)",
+        "C": "移除所有文件檢索(Remove All Retrieval)",
+        "D": "隨機抽樣查詢(Random Sampling Query)"
       },
       "correct_answer": "A",
       "source": {
@@ -2991,10 +2991,10 @@
       "topic": "GenAI/FineTuning",
       "question_text": "某公司想讓大型模型適應內部客服語氣，但預算與 GPU 資源有限，不希望完整重訓模型。下列哪一項高效微調方式最符合需求?",
       "options": {
-        "A": "低秩自適應（Low-Rank Adaptation, LoRA）",
-        "B": "完全刪除預訓練權重",
-        "C": "只把資料轉成 PDF，不調整模型",
-        "D": "改用人工客服，不保留任何 AI 能力"
+        "A": "低秩自適應(Low-Rank Adaptation, LoRA)",
+        "B": "完全刪除預訓練(Delete Pretrained Weights)",
+        "C": "資料轉檔為 PDF(Convert Data to PDF)",
+        "D": "改回人工客服(Replace AI with Human)"
       },
       "correct_answer": "A",
       "source": {
@@ -3014,10 +3014,10 @@
       "topic": "NLP/Hallucination",
       "question_text": "某金融內容系統使用生成式 AI 撰寫投資說明，卻出現不存在的法規條文與錯誤公司資料。下列哪一項最符合模型幻覺（Model Hallucination）的風險管理?",
       "options": {
-        "A": "加入事實檢查與人工審核，特別是金融等高風險領域",
-        "B": "提高輸出字數，讓錯誤內容被更多文字稀釋",
-        "C": "關閉所有資料來源，避免模型看到真實資訊",
-        "D": "只用圖片濾鏡修飾生成文字"
+        "A": "加入事實檢查與人工審核降低風險",
+        "B": "提高輸出字數讓錯誤內容被稀釋掉",
+        "C": "關閉所有資料來源避免看到真實資訊",
+        "D": "用圖片濾鏡修飾生成的文字內容"
       },
       "correct_answer": "A",
       "source": {
@@ -3037,10 +3037,10 @@
       "topic": "Multimodal/Fusion",
       "question_text": "某智慧城市系統同時使用監視影像、交通感測器與文字通報。團隊討論早期融合（Early Fusion）、中期融合（Mid Fusion）與晚期融合（Late Fusion）。下列敘述何者最合理?",
       "options": {
-        "A": "早期融合偏向在資料或特徵輸入階段整合；中期融合可在模型融合層整合；晚期融合偏向合併各模態決策結果",
-        "B": "三者都只能處理文字，不能處理影像或感測器資料",
-        "C": "晚期融合必須在原始資料輸入前完成，否則不能使用",
-        "D": "中期融合代表完全不做任何模態對齊"
+        "A": "早期在輸入層中期在隱藏層晚期在決策層",
+        "B": "三者都只能處理文字而無法處理影像感測器",
+        "C": "晚期融合必須在原始資料輸入前完成才可用",
+        "D": "中期融合代表完全不需做任何模態對齊處理"
       },
       "correct_answer": "A",
       "source": {
@@ -3060,10 +3060,10 @@
       "topic": "Multimodal/CLIP",
       "question_text": "某媒體資料庫希望讓使用者輸入「紅色跑車」就能搜尋相符圖片，也能用圖片反查描述。下列哪一項最符合 CLIP（Contrastive Language-Image Pre-training）的用途?",
       "options": {
-        "A": "以對比學習將圖片與文字映射到同一向量空間，支援圖文匹配與檢索",
-        "B": "只將語音訊號轉成文字，不處理圖片",
-        "C": "只做資料庫正規化，無法比較圖文語意",
-        "D": "只生成隨機圖像，不能判斷文字與圖片是否相符"
+        "A": "以對比學習將圖文映射到同一向量空間",
+        "B": "僅將語音訊號轉成文字而不處理圖片",
+        "C": "僅做資料庫正規化無法比較圖文語意",
+        "D": "只生成隨機圖像不判斷圖文是否相符"
       },
       "correct_answer": "A",
       "source": {
@@ -3083,10 +3083,10 @@
       "topic": "Multimodal/General",
       "question_text": "某醫療影像系統要讓醫師對 X 光片提問，並由模型根據影像與文字問題回答。下列哪一類視覺語言模型（Vision-Language Model）最符合此任務?",
       "options": {
-        "A": "BLIP / BLIP-2，支援圖文問答與生成任務",
-        "B": "只用 K-means 分群病患年齡",
-        "C": "只用資料庫觸發器更新庫存",
-        "D": "只用 TTS 將文字轉成語音"
+        "A": "視覺語言模型可支援圖文問答與生成任務",
+        "B": "以分群演算法將病患資料依年齡進行分群",
+        "C": "以資料庫觸發器自動更新庫存或交易紀錄",
+        "D": "以文字轉語音模型把病歷讀給醫師聆聽"
       },
       "correct_answer": "A",
       "source": {
@@ -3106,10 +3106,10 @@
       "topic": "Deploy/MLOps",
       "question_text": "某智慧客服要接收使用者語音提問，先轉成文字，再判斷意圖並產生回覆。此流程中的語音辨識（Automatic Speech Recognition, ASR）負責哪一步?",
       "options": {
-        "A": "把語音訊號轉換為文字",
-        "B": "把文字轉為高解析度產品圖片",
-        "C": "把資料表壓縮為索引",
-        "D": "把模型容器部署到 Kubernetes"
+        "A": "將使用者語音訊號轉換為對應的文字",
+        "B": "將輸入文字轉為高解析度的產品圖片",
+        "C": "將資料表壓縮為查詢索引以加速檢索",
+        "D": "將模型容器部署到容器調度叢集上"
       },
       "correct_answer": "A",
       "source": {
@@ -3129,10 +3129,10 @@
       "topic": "Data/Preprocessing",
       "question_text": "某製造企業想導入 AI 預測設備故障，但尚未確認資料品質與現場接受度。若先做概念驗證（Proof of Concept, POC），下列設計何者最適合?",
       "options": {
-        "A": "選一條具代表性且風險可控的產線，小範圍測試並收集效能與使用者回饋",
-        "B": "直接全廠上線，避免浪費時間在驗證階段",
-        "C": "只購買 GPU，不設定任何驗證目標",
-        "D": "只要求外部廠商承諾成功，不提供測試資料"
+        "A": "選代表性產線小範圍測試並收集回饋",
+        "B": "直接全廠上線避免浪費時間於驗證階段",
+        "C": "僅購買 GPU 設備而不設定任何驗證目標",
+        "D": "僅要求外部廠商承諾成功不給測試資料"
       },
       "correct_answer": "A",
       "source": {
@@ -3153,8 +3153,8 @@
       "question_text": "某零售企業評估 AI 推薦系統，希望判斷投入成本是否值得。若使用投資報酬率（Return on Investment, ROI），下列哪一項最符合其用途?",
       "options": {
         "A": "衡量投資回報相對於投資成本的效益",
-        "B": "衡量圖片分割框與真實框的重疊比例",
-        "C": "衡量語音辨識錯字比例",
+        "B": "衡量分割預測框與真實框的重疊比例",
+        "C": "衡量語音辨識輸出與真實文字的錯字率",
         "D": "衡量資料表欄位是否符合第三正規化"
       },
       "correct_answer": "A",
@@ -3175,10 +3175,10 @@
       "topic": "AI/Adoption",
       "question_text": "某企業主管想「先導入 AI 再找問題」，專案經理認為應先做使用案例選擇（Use-case Selection）。下列哪一項判斷最符合導入評估原則?",
       "options": {
-        "A": "優先選擇重複性高、決策規則清晰且能連結 KPI 的業務流程",
-        "B": "優先選擇資料完全不存在的流程，才能展示 AI 魔法",
-        "C": "優先選擇最流行的模型，不必確認業務痛點",
-        "D": "優先選擇不允許任何部門參與的流程"
+        "A": "優先選重複性高且規則清晰連結 KPI 的流程",
+        "B": "優先選擇資料完全不存在的流程展示 AI 魔法",
+        "C": "優先選擇最流行的模型而不確認業務痛點",
+        "D": "優先選擇不允許任何部門參與決策的流程"
       },
       "correct_answer": "A",
       "source": {
@@ -3198,10 +3198,10 @@
       "topic": "AI/Adoption",
       "question_text": "某公司要估算 AI 客服導入成本，避免只看模型授權費。下列哪一項成本分析（Cost Analysis）最完整?",
       "options": {
-        "A": "只計算每月電費，其他項目可忽略",
-        "B": "包含內部人力、技術訓練、資料清洗、模型開發、系統整合與平台授權等",
-        "C": "只計算文案字數，不計算技術成本",
-        "D": "只看模型名稱是否熱門，不估算成本"
+        "A": "僅計算每月電費而其他成本項目皆忽略",
+        "B": "涵蓋人力訓練資料整合與授權等多項投入",
+        "C": "僅計算行銷文案字數而不估算技術成本",
+        "D": "僅看模型名稱是否熱門而不估算總成本"
       },
       "correct_answer": "B",
       "source": {
@@ -3221,10 +3221,10 @@
       "topic": "CV/Classification",
       "question_text": "某中小企業缺乏 AI 開發團隊，但希望快速建立客服分類原型，資料敏感度不高且時間緊迫。下列供應商選擇（Vendor Selection）何者較適合?",
       "options": {
-        "A": "先評估現有商業 AI 或 Low-code / No-code 服務，以快速建置並驗證",
-        "B": "立即招聘完整研究團隊，自研大型模型且不做 POC",
-        "C": "把資料全部刪除後再委外開發",
-        "D": "只採購辦公椅，因為模型會自行出現"
+        "A": "評估現成商業或低程式碼服務快速建置",
+        "B": "立即招完整研究團隊自研大型模型不 POC",
+        "C": "把所有原始資料刪除後再委外開發系統",
+        "D": "僅採購辦公椅以待大型模型自行出現"
       },
       "correct_answer": "A",
       "source": {
@@ -3244,10 +3244,10 @@
       "topic": "AI/Planning",
       "question_text": "某企業完成 AI 需求評估後，準備制定導入路線圖（Roadmap），讓主管理解階段、里程碑與資源安排。下列輸出何者最符合規劃成果?",
       "options": {
-        "A": "導入規劃文件與甘特圖，整理目標、範疇、任務、時程、團隊與預算",
-        "B": "只列出模型英文名稱，不描述業務流程",
-        "C": "只建立社群貼文排程，不處理 AI 任務",
-        "D": "只要求使用者自行猜測專案順序"
+        "A": "導入規劃文件與甘特圖含目標範疇時程",
+        "B": "僅列出模型英文名稱而不描述業務流程",
+        "C": "僅建立社群媒體貼文排程而不處理 AI",
+        "D": "僅要求使用者自行猜測整體專案順序"
       },
       "correct_answer": "A",
       "source": {
@@ -3267,10 +3267,10 @@
       "topic": "AI/Planning",
       "question_text": "某銀行 AI 專案進入審查前，需確認技術、業務、法務資安與高階主管都同意規劃內容。下列哪一項最符合利害關係人（Stakeholders）治理作法?",
       "options": {
-        "A": "建立利害關係人審查紀錄，記錄各關鍵部門回饋與決議",
-        "B": "只讓模型開發者私下決定所有上線條件",
-        "C": "避免法務與資安參與，以縮短討論時間",
-        "D": "只看社群按讚數決定是否部署"
+        "A": "建立利害關係人審查紀錄收集各部門回饋",
+        "B": "由模型開發者私下單方決定上線各項條件",
+        "C": "刻意避免法務資安參與以縮短討論時間",
+        "D": "依社群貼文按讚數作為決定部署的依據"
       },
       "correct_answer": "A",
       "source": {
@@ -3290,10 +3290,10 @@
       "topic": "AI/Planning",
       "question_text": "某企業想建 AI 銷售預測模型，但資料散在 ERP、CRM 與手動 Excel。若先制定資料策略（Data Strategy），下列哪一項最應優先盤點?",
       "options": {
-        "A": "資料治理、資料正確性、可追溯性、權限控管，以及 API/ETL 整合能力",
-        "B": "辦公室牆面顏色是否符合品牌識別",
-        "C": "模型圖示是否使用同一種藍色",
-        "D": "只統計員工午餐偏好，不處理資料流"
+        "A": "資料治理正確性權限與 API ETL 整合能力",
+        "B": "辦公室室內牆面顏色是否符合品牌識別",
+        "C": "模型示意圖標是否統一採用同一種藍色",
+        "D": "員工午餐偏好統計而不處理資料來源流"
       },
       "correct_answer": "A",
       "source": {
@@ -3313,10 +3313,10 @@
       "topic": "NLP/Hallucination",
       "question_text": "某 AI 專案任務龐大，包含資料源盤點、資料清理、欄位標準化、標註流程與模型訓練。若專案經理要把工作拆成可追蹤子任務，最適合使用何種專案管理方法?",
       "options": {
-        "A": "工作分解結構（Work Breakdown Structure, WBS）",
-        "B": "模型幻覺（Model Hallucination）",
-        "C": "資料刪除權（Right to Erasure）",
-        "D": "圖文檢索（Image-Text Retrieval）"
+        "A": "工作分解結構(Work Breakdown Structure)",
+        "B": "模型幻覺問題(Model Hallucination)",
+        "C": "資料被遺忘權(Right to Erasure)",
+        "D": "跨模態圖文檢索(Image-Text Retrieval)"
       },
       "correct_answer": "A",
       "source": {
@@ -3336,10 +3336,10 @@
       "topic": "AI/Planning",
       "question_text": "某醫院導入 AI 輔助診斷後，醫師擔心工作被取代而不願使用系統。下列哪一項最符合變革管理（Change Management）作法?",
       "options": {
-        "A": "透過溝通、培訓與引導，說明 AI 價值並協助員工適應流程改變",
-        "B": "禁止使用者提出疑問，直接強制上線",
-        "C": "只調高模型參數量，不處理人員抗拒",
-        "D": "刪除所有臨床流程文件，避免員工比較"
+        "A": "透過溝通培訓與引導協助員工適應變革",
+        "B": "禁止使用者提出疑問直接強制系統上線",
+        "C": "只是調高模型參數量而不處理人員抗拒",
+        "D": "刪除所有臨床流程文件以避免員工比較"
       },
       "correct_answer": "A",
       "source": {
@@ -3359,10 +3359,10 @@
       "topic": "Risk/Privacy",
       "question_text": "某客服 AI 將對話紀錄用於訓練，資料中含姓名、電話與地址。為降低隱私風險（Privacy Risk），下列作法何者最適合?",
       "options": {
-        "A": "導入匿名化或去識別化，並控管授權與存取權限",
-        "B": "將個資欄位公開給所有員工，方便除錯",
-        "C": "把姓名複製到更多資料表，提高模型記憶",
-        "D": "取消所有資料保護流程以加快訓練"
+        "A": "導入匿名化或去識別並控管授權與權限",
+        "B": "將個資欄位公開給所有員工以便除錯",
+        "C": "把姓名複製到更多資料表以提高記憶",
+        "D": "取消所有資料保護流程以加快訓練速度"
       },
       "correct_answer": "A",
       "source": {
@@ -3382,10 +3382,10 @@
       "topic": "Risk/Security",
       "question_text": "某醫療 AI 平台處理病患影像與診斷資料，資安團隊要求符合安全性（Security）控制。下列哪一組措施最符合高敏感資料保護?",
       "options": {
-        "A": "資料加密、身份驗證與訪問控制，並確保安全傳輸與儲存",
-        "B": "把所有病患資料寄到公開信箱備份",
-        "C": "移除所有登入驗證，讓整合更方便",
-        "D": "只改善介面顏色，不處理資料存取"
+        "A": "資料加密身份驗證權限與安全傳輸儲存",
+        "B": "將病患資料寄到公開電子信箱進行備份",
+        "C": "移除所有登入驗證以方便系統整合作業",
+        "D": "僅改善使用者介面顏色不處理資料存取"
       },
       "correct_answer": "A",
       "source": {
@@ -3405,10 +3405,10 @@
       "topic": "CV/Segmentation",
       "question_text": "某企業的 AI 招聘系統會自動篩選歐盟求職者，法務要求符合 GDPR（General Data Protection Regulation）。若求職者要求在符合條件下刪除其個人資料，這對應哪一項權利?",
       "options": {
-        "A": "刪除權或被遺忘權（Right to Erasure / Right to be Forgotten）",
-        "B": "影像分割權（Right to Image Segmentation）",
-        "C": "資料擴增權（Right to Data Augmentation）",
-        "D": "模型壓縮權（Right to Model Compression）"
+        "A": "刪除權或被遺忘權(Right to Erasure)",
+        "B": "影像分割權(Right to Image Segmentation)",
+        "C": "資料擴增權(Right to Data Augmentation)",
+        "D": "模型壓縮權(Right to Model Compression)"
       },
       "correct_answer": "A",
       "source": {
@@ -3428,10 +3428,10 @@
       "topic": "Risk/Copyright",
       "question_text": "某內容平台想用網路文章訓練生成式 AI 產生商業文案，但部分文章可能受著作權保護。下列哪一項最能降低著作權（Copyright）風險?",
       "options": {
-        "A": "確認訓練資料來源授權，排除未授權或高風險內容",
-        "B": "故意不記錄資料來源，以免留下證據",
-        "C": "把所有文章改成同一字型，就不會侵權",
-        "D": "只提高模型溫度參數，不處理資料授權"
+        "A": "確認訓練資料來源授權並排除高風險內容",
+        "B": "故意不記錄資料來源以免留下侵權的證據",
+        "C": "將所有文章改為同一字型以避免侵權風險",
+        "D": "只提高模型溫度參數而不處理資料授權"
       },
       "correct_answer": "A",
       "source": {
@@ -3451,10 +3451,10 @@
       "topic": "AI/Risk",
       "question_text": "某銀行信用評分模型對特定年齡與族群的拒貸率異常偏高，稽核懷疑訓練資料含歷史偏見。下列何者最符合模型偏見（Model Bias）治理方向?",
       "options": {
-        "A": "檢查資料分布、歷史偏見與標註偏見，並以公平性指標追蹤不同群體表現",
-        "B": "只看整體準確率，只要平均分數高就不需處理",
-        "C": "刪除所有稽核紀錄，避免模型被質疑",
-        "D": "把所有被拒貸者標為同一類，以加快訓練"
+        "A": "檢視資料與標註偏見並以公平性指標分群比較",
+        "B": "只看整體準確率只要平均分數高就不必處理",
+        "C": "刪除所有稽核紀錄以避免模型遭外部質疑",
+        "D": "將所有被拒貸者標為同類以加快訓練速度"
       },
       "correct_answer": "A",
       "source": {
@@ -3474,10 +3474,10 @@
       "topic": "Data/Preprocessing",
       "question_text": "某電商企業整合 CRM 與訂單資料時，發現顧客年齡缺漏、交易紀錄重複且金額有極端異常值。下列哪一項資料清理（Data Cleaning）流程最適合?",
       "options": {
-        "A": "處理缺失值、移除重複值，並用 Z-score 或 IQR 檢測異常值",
-        "B": "直接把所有資料丟進模型，不做任何檢查",
-        "C": "只更換模型名稱，不處理資料內容",
-        "D": "把資料轉成圖片後刪除數值欄位"
+        "A": "處理缺失移除重複並以 Z-score 偵測異常",
+        "B": "把全部資料直接送入模型而不做任何檢查",
+        "C": "僅更換模型架構名稱而不調整資料內容",
+        "D": "把結構化資料轉成圖片並刪除數值欄位"
       },
       "correct_answer": "A",
       "source": {
@@ -3497,10 +3497,10 @@
       "topic": "Data/Preprocessing",
       "question_text": "某金融公司建立交易風險模型前，要評估資料品質（Data Quality）。下列哪一組指標最符合資料品質檢核?",
       "options": {
-        "A": "完整性、一致性、準確性、即時性與唯一性",
-        "B": "圖片飽和度、音量、影片幀率與字幕字型",
-        "C": "模型層數、GPU 品牌、鍵盤配置與螢幕亮度",
-        "D": "員工喜好、會議長度、辦公室溫度與午餐價格"
+        "A": "完整性 一致性 準確性 即時性 唯一性",
+        "B": "圖片飽和度 音量 影片幀率 字幕字型",
+        "C": "模型層數 GPU 品牌 鍵盤配置 螢幕亮度",
+        "D": "員工喜好 會議長度 辦公溫度 午餐價格"
       },
       "correct_answer": "A",
       "source": {
@@ -3520,10 +3520,10 @@
       "topic": "Deploy/MLOps",
       "question_text": "某醫療影像團隊請多位醫師標註腫瘤邊界，但發現同一張影像的標註標準不一致。下列哪一項最能提升標註（Labeling）品質?",
       "options": {
-        "A": "建立標註準則、定期品質檢查，必要時採雙重標註",
-        "B": "取消所有標註規則，讓每位醫師自由發揮",
-        "C": "只看檔案名稱，不檢查影像內容",
-        "D": "把腫瘤影像全部標成正常，以減少工時"
+        "A": "建立標註準則並定期品質檢查必要時雙標",
+        "B": "取消所有標註規則讓每位醫師自由發揮",
+        "C": "僅依檔案名稱判斷而不檢查影像實際內容",
+        "D": "將所有腫瘤影像皆標為正常以減少工時"
       },
       "correct_answer": "A",
       "source": {
@@ -3543,10 +3543,10 @@
       "topic": "Data/Augmentation",
       "question_text": "某零售影像模型訓練資料不足，團隊想提升模型對不同角度與光線的泛化能力。下列哪一項資料擴增（Data Augmentation）作法最符合影像任務?",
       "options": {
-        "A": "在訓練時加入翻轉、旋轉、裁剪、模糊或色彩偏移等變化",
-        "B": "刪除所有少數類別圖片，只保留最多的類別",
-        "C": "把圖片檔名改長，讓模型學到更多語意",
-        "D": "只調整資料庫連線數，不改變影像資料"
+        "A": "訓練時加入翻轉旋轉裁剪模糊色彩偏移等",
+        "B": "刪除全部少數類別圖片只保留最多的類別",
+        "C": "把圖片檔名改長以期模型學到更多語意",
+        "D": "只調整資料庫連線數而不改變影像資料"
       },
       "correct_answer": "A",
       "source": {
@@ -3566,10 +3566,10 @@
       "topic": "NLP/Tokenization",
       "question_text": "某 AI 團隊要把同一個模型服務部署到測試、正式與備援環境，並希望依流量自動擴縮。下列哪一項容器（Containers）與編排設計最合理?",
       "options": {
-        "A": "用 Docker 封裝依賴環境，並用 Kubernetes 進行資源調度、故障恢復與自動擴縮",
-        "B": "只把程式複製到桌面資料夾，不記錄依賴版本",
-        "C": "每次部署都手動安裝不同版本套件，讓環境自然演化",
-        "D": "用文字分詞取代部署流程"
+        "A": "用容器封裝依賴並以編排平台做擴縮與恢復",
+        "B": "只將程式複製到桌面資料夾而不記錄依賴版本",
+        "C": "每次部署都手動安裝不同套件版本任其演化",
+        "D": "用文字分詞流程完全取代既有的整體部署作業"
       },
       "correct_answer": "A",
       "source": {
@@ -3589,10 +3589,10 @@
       "topic": "Data/Drift",
       "question_text": "某訂閱制服務的流失預測模型上線半年後，顧客行為改變使準確率下降。若要建立部署後監控與漂移（Monitoring / Drift）機制，下列哪一項最適合?",
       "options": {
-        "A": "監控資料漂移與模型漂移，設定門檻並觸發再訓練流程",
-        "B": "只要伺服器沒有當機，就不需要追蹤模型表現",
-        "C": "刪除所有預測紀錄，避免發現問題",
-        "D": "把模型固定永久不更新，確保版本不變"
+        "A": "監控資料與模型漂移設門檻並觸發再訓練",
+        "B": "只要伺服器主機沒有當機就不需追蹤表現",
+        "C": "刪除所有預測紀錄以避免被發現有問題",
+        "D": "將模型版本永久凍結不更新以保持一致"
       },
       "correct_answer": "A",
       "source": {

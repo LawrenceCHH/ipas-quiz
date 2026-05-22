@@ -1325,10 +1325,10 @@
       "topic": "Math/Probability",
       "question_text": "在貝氏定理 P(H|E) = P(E|H) · P(H) / P(E) 中,P(E|H) 通常被稱為什麼?",
       "options": {
-        "A": "事前機率(Prior)",
-        "B": "事後機率(Posterior)",
-        "C": "概似度(Likelihood)",
-        "D": "邊際機率(Marginal)"
+        "A": "事前機率(Prior),即 P(H)",
+        "B": "事後機率(Posterior),即 P(H|E)",
+        "C": "概似度(Likelihood),即 P(E|H)",
+        "D": "邊際機率(Marginal),即 P(E)"
       },
       "correct_answer": "C",
       "source": {
@@ -1338,7 +1338,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** P(E|H) 是「在假設 H 成立下,觀察到證據 E 的機率」,即概似度(Likelihood)。\n\n**其他選項為何錯:**\n- A. Prior 是 P(H)。\n- B. Posterior 是 P(H|E)。\n- C. ✓ 正解\n- D. Marginal 是 P(E)。\n\n**記憶要點:** Bayes 4 大角色:Prior × Likelihood ÷ Marginal = Posterior。",
+      "explanation": "**為什麼 C 是正解:** P(E|H) 是「在假設 H 成立下,觀察到證據 E 的機率」,即概似度(Likelihood)。\n\n**其他選項為何錯:**\n- A. Prior 對應 P(H)。\n- B. Posterior 對應 P(H|E)。\n- C. ✓ 正解\n- D. Marginal 對應 P(E)。\n\n**記憶要點:** Bayes 4 大角色:Prior × Likelihood ÷ Marginal = Posterior。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1348,10 +1348,10 @@
       "topic": "Math/Probability",
       "question_text": "假設檢定中,「型一錯誤(Type I Error)」與「型二錯誤(Type II Error)」何者意義正確?",
       "options": {
-        "A": "Type I:H₀ 為真時被拒絕;Type II:H₀ 為假時未被拒絕",
-        "B": "Type I:H₀ 為假時被拒絕;Type II:H₀ 為真時被拒絕",
-        "C": "兩者意義相同",
-        "D": "兩者皆與 H₀ 無關"
+        "A": "Type I 是拒絕為真 H₀,Type II 是未拒絕為假 H₀",
+        "B": "Type I 是拒絕為假 H₀,Type II 是拒絕為真 H₀",
+        "C": "Type I 是未拒絕為假 H₀,Type II 是接受為真 H₀",
+        "D": "Type I 是接受備擇假設,Type II 是接受對立假設"
       },
       "correct_answer": "A",
       "source": {
@@ -1361,7 +1361,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Type I=假陽性(冤枉好人),Type II=假陰性(放過壞人)。α 控制 Type I,β 控制 Type II,Power = 1−β。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 描述錯誤。\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** Type I = 拒真(冤枉),Type II = 留偽(漏網)。",
+      "explanation": "**為什麼 A 是正解:** Type I=假陽性(冤枉好人),Type II=假陰性(放過壞人)。α 控制 Type I,β 控制 Type II,Power = 1−β。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩種錯誤的描述都顛倒。\n- C. Type I 描述錯誤。\n- D. 與 H₀ 拒絕邏輯無關。\n\n**記憶要點:** Type I = 拒真(冤枉),Type II = 留偽(漏網)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1371,10 +1371,10 @@
       "topic": "Math/Probability",
       "question_text": "中央極限定理(Central Limit Theorem, CLT)的核心意涵為何?",
       "options": {
-        "A": "任何單一樣本一定服從常態分佈",
-        "B": "從同分佈獨立隨機變數中抽取夠大樣本,其「樣本平均」分佈會趨近常態分佈,不論母體分佈為何",
-        "C": "所有母體分佈皆是常態",
-        "D": "樣本數越小,平均越接近常態"
+        "A": "任一單一樣本本身在分佈上必服從常態",
+        "B": "獨立同分佈樣本均值在 n 大時趨近常態",
+        "C": "母體在絕大多數情況下分佈必為常態",
+        "D": "樣本數越小時樣本均值越能逼近常態"
       },
       "correct_answer": "B",
       "source": {
@@ -1384,7 +1384,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** CLT 說的是「樣本平均」的分佈,不是單一樣本本身;n 越大越逼近常態,前提是有限變異數。\n\n**其他選項為何錯:**\n- A. 不對,單一樣本仍可任意分佈。\n- B. ✓ 正解\n- C. 母體可任意。\n- D. 反向,n 越大越逼近。\n\n**記憶要點:** CLT 是「平均的分佈」趨常態,且需 n 夠大、變異數有限。",
+      "explanation": "**為什麼 B 是正解:** CLT 說的是「樣本平均」的分佈,不是單一樣本本身;n 越大越逼近常態,前提是有限變異數。\n\n**其他選項為何錯:**\n- A. 單一樣本可任意分佈。\n- B. ✓ 正解\n- C. 母體可任意分佈。\n- D. 反向,n 越大越逼近。\n\n**記憶要點:** CLT 是「平均的分佈」趨常態,且需 n 夠大、變異數有限。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1394,10 +1394,10 @@
       "topic": "Math/LinAlg",
       "question_text": "PCA(Principal Component Analysis)的數學本質是對「共變異數矩陣」做什麼運算?",
       "options": {
-        "A": "QR 分解",
-        "B": "對共變異數矩陣做特徵值分解(Eigendecomposition),取最大特徵值對應的特徵向量作為主成分",
-        "C": "矩陣的逆運算",
-        "D": "矩陣相加"
+        "A": "QR 分解,取 Q 的前幾列做主成分",
+        "B": "特徵值分解,取最大特徵值的特徵向量",
+        "C": "矩陣逆運算,以反矩陣做投影軸",
+        "D": "矩陣相加運算,將不同維度加總"
       },
       "correct_answer": "B",
       "source": {
@@ -1407,7 +1407,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** PCA 找出資料變異最大的方向 = 共變異數矩陣最大特徵值對應的特徵向量,即第一主成分。\n\n**其他選項為何錯:**\n- A. QR 用於最小平方等。\n- B. ✓ 正解\n- C. 無關。\n- D. 無關。\n\n**記憶要點:** PCA = Cov → Eigendecomposition → 取大特徵值的向量。",
+      "explanation": "**為什麼 B 是正解:** PCA 找出資料變異最大的方向 = 共變異數矩陣最大特徵值對應的特徵向量,即第一主成分。\n\n**其他選項為何錯:**\n- A. QR 主要用於最小平方,不是 PCA。\n- B. ✓ 正解\n- C. 反矩陣與主成分無關。\n- D. 矩陣相加與主成分無關。\n\n**記憶要點:** PCA = Cov → Eigendecomposition → 取大特徵值的向量。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1417,10 +1417,10 @@
       "topic": "Math/LinAlg",
       "question_text": "SVD(Singular Value Decomposition)的主要用途「不」包括下列何者?",
       "options": {
-        "A": "矩陣低秩近似(Low-rank Approximation)",
+        "A": "矩陣的低秩近似與資料降維",
         "B": "推薦系統的潛在因子模型",
-        "C": "影像壓縮",
-        "D": "對影像直接做物件偵測"
+        "C": "灰階影像的壓縮與表徵",
+        "D": "影像物件位置的直接偵測"
       },
       "correct_answer": "D",
       "source": {
@@ -1440,10 +1440,10 @@
       "topic": "Math/Optimization",
       "question_text": "梯度下降(Gradient Descent)中,「學習率(Learning Rate)」設得過大會發生什麼?",
       "options": {
-        "A": "一定能保證找到最小值",
-        "B": "可能造成損失函數震盪甚至發散,無法收斂",
-        "C": "與收斂行為完全無關",
-        "D": "會自動修正權重至最佳值"
+        "A": "保證收斂到全域最小值且步數最少",
+        "B": "損失函數可能震盪或發散而無法收斂",
+        "C": "對訓練收斂行為完全沒有影響",
+        "D": "權重會自動修正至全域最佳值"
       },
       "correct_answer": "B",
       "source": {
@@ -1453,7 +1453,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 學習率太大會在最小值附近跳來跳去甚至飛走,太小則訓練極慢且容易停在局部最小或鞍點。\n\n**其他選項為何錯:**\n- A. 描述不正確。\n- C. 描述不正確。\n- D. 描述不正確。\n- B. ✓ 正解\n\n**記憶要點:** LR 過大震盪、過小遲滯;善用 warmup + decay + Adam。",
+      "explanation": "**為什麼 B 是正解:** 學習率太大會在最小值附近跳來跳去甚至飛走,太小則訓練極慢且容易停在局部最小或鞍點。\n\n**其他選項為何錯:**\n- A. 反而更不易收斂。\n- B. ✓ 正解\n- C. 影響非常大。\n- D. LR 不會自動校正。\n\n**記憶要點:** LR 過大震盪、過小遲滯;善用 warmup + decay + Adam。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1463,10 +1463,10 @@
       "topic": "Math/Optimization",
       "question_text": "下列關於「凸函數(Convex Function)」與梯度下降的關係,何者正確?",
       "options": {
-        "A": "凸函數的任一局部最小值皆是全域最小值,故梯度下降較易找到最佳解",
-        "B": "凸函數不適合用梯度下降",
-        "C": "深度神經網路的損失函數一定是凸函數",
-        "D": "非凸函數一定沒有任何局部最小值"
+        "A": "凸函數的局部最小值即為全域最小值",
+        "B": "凸函數的目標完全不適用梯度下降法",
+        "C": "深度神經網路的損失函數必為凸函數",
+        "D": "非凸函數一定不存在任何局部最小值"
       },
       "correct_answer": "A",
       "source": {
@@ -1476,7 +1476,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 凸函數的優美性質就是「局部 = 全域」,故梯度法不會卡在次佳解;線性/邏輯迴歸是凸,神經網路通常非凸。\n\n**其他選項為何錯:**\n- B. 凸函數最適合梯度下降。\n- C. NN 損失通常非凸。\n- D. 非凸函數可能有多個局部最小。\n- A. ✓ 正解\n\n**記憶要點:** Convex → 局部即全域;NN 非凸 → 多個局部解、初值與隨機性重要。",
+      "explanation": "**為什麼 A 是正解:** 凸函數的優美性質就是「局部 = 全域」,故梯度法不會卡在次佳解;線性/邏輯迴歸是凸,神經網路通常非凸。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 凸函數最適合梯度下降。\n- C. NN 損失通常非凸。\n- D. 非凸可能有多個局部最小。\n\n**記憶要點:** Convex → 局部即全域;NN 非凸 → 多個局部解、初值與隨機性重要。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1486,10 +1486,10 @@
       "topic": "Math/Optimization",
       "question_text": "下列關於「隨機梯度下降(SGD)」與「批次梯度下降(Batch GD)」的差異,何者最正確?",
       "options": {
-        "A": "Batch GD 每步使用整個訓練集計算梯度,SGD 每步只用一個或少數樣本估計梯度",
-        "B": "兩者完全相同",
-        "C": "SGD 速度比 Batch GD 慢",
-        "D": "Batch GD 不需要計算梯度"
+        "A": "Batch GD 用整資料,SGD 每步一樣本",
+        "B": "兩者在梯度估計與收斂特性上完全等價",
+        "C": "SGD 每步計算成本必然高於 Batch GD",
+        "D": "Batch GD 不需要計算任何梯度即可訓練"
       },
       "correct_answer": "A",
       "source": {
@@ -1499,7 +1499,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Batch GD 一次看全資料 → 梯度準但慢;SGD/Mini-batch 一次只看一小撮 → 快但雜訊大,常配合動量、學習率排程使用。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 描述錯誤。\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** Batch=全準慢;SGD=少快吵;Mini-batch 是實務折衷。",
+      "explanation": "**為什麼 A 是正解:** Batch GD 一次看全資料 → 梯度準但慢;SGD/Mini-batch 一次只看一小撮 → 快但雜訊大,常配合動量、學習率排程使用。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩者明顯不同。\n- C. 反向,SGD 每步成本較低。\n- D. Batch GD 仍須計算梯度。\n\n**記憶要點:** Batch=全準慢;SGD=少快吵;Mini-batch 是實務折衷。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1509,10 +1509,10 @@
       "topic": "ML/Algorithms",
       "question_text": "邏輯迴歸(Logistic Regression)的輸出函數為何?",
       "options": {
-        "A": "ReLU",
-        "B": "Sigmoid(將線性輸出映射到 (0, 1) 區間以表機率)",
-        "C": "Softmax(僅用於多類)",
-        "D": "Tanh"
+        "A": "ReLU 函數,輸出區間 [0, ∞)",
+        "B": "Sigmoid 函數,輸出區間 (0, 1)",
+        "C": "Softmax 函數,輸出機率向量",
+        "D": "Tanh 函數,輸出區間 (−1, 1)"
       },
       "correct_answer": "B",
       "source": {
@@ -1522,7 +1522,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Logistic Regression = wᵀx+b → sigmoid → 機率;Softmax 是多類別推廣,sigmoid 即二類別 softmax 特例。\n\n**其他選項為何錯:**\n- A. ReLU 是隱藏層啟動。\n- B. ✓ 正解\n- C. 二類別不需 softmax,可用 sigmoid。\n- D. tanh 在 (-1,1) 不直接表機率。\n\n**記憶要點:** Logistic = 線性 + Sigmoid;二類用 sigmoid、多類用 softmax。",
+      "explanation": "**為什麼 B 是正解:** Logistic Regression = wᵀx+b → sigmoid → 機率;Softmax 是多類別推廣,sigmoid 即二類別 softmax 特例。\n\n**其他選項為何錯:**\n- A. ReLU 是隱藏層啟動,不表機率。\n- B. ✓ 正解\n- C. Softmax 用於多類,不是二類。\n- D. tanh 落在 (−1,1) 不直接表機率。\n\n**記憶要點:** Logistic = 線性 + Sigmoid;二類用 sigmoid、多類用 softmax。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1532,10 +1532,10 @@
       "topic": "ML/Algorithms",
       "question_text": "下列關於決策樹(Decision Tree)「分裂節點」常用的不純度(impurity)度量,何者正確?",
       "options": {
-        "A": "Mean Squared Error 與 Cross-Entropy",
-        "B": "Gini Impurity 與 Entropy(Information Gain)",
-        "C": "BLEU 與 ROUGE",
-        "D": "Precision 與 Recall"
+        "A": "Mean Squared Error 與 R-squared",
+        "B": "Gini Impurity 與 Information Gain",
+        "C": "BLEU Score 與 ROUGE Score",
+        "D": "Precision Rate 與 Recall Rate"
       },
       "correct_answer": "B",
       "source": {
@@ -1545,7 +1545,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Gini 是 CART 預設、Entropy 是 ID3/C4.5;二者皆衡量分裂後子節點純度提升。\n\n**其他選項為何錯:**\n- A. MSE 用於迴歸樹,Cross-Entropy 不直接用於分裂。\n- B. ✓ 正解\n- C. 屬其他任務評估。\n- D. 屬其他任務評估。\n\n**記憶要點:** 分類樹的分裂指標 = Gini 或 Entropy;迴歸樹用 MSE/MAE。",
+      "explanation": "**為什麼 B 是正解:** Gini 是 CART 預設、Entropy 是 ID3/C4.5;二者皆衡量分裂後子節點純度提升。\n\n**其他選項為何錯:**\n- A. MSE 用於迴歸樹,非分類分裂指標。\n- B. ✓ 正解\n- C. 屬機器翻譯與摘要評估。\n- D. 屬分類結果評估指標。\n\n**記憶要點:** 分類樹的分裂指標 = Gini 或 Entropy;迴歸樹用 MSE/MAE。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1555,10 +1555,10 @@
       "topic": "ML/Algorithms",
       "question_text": "KNN(K-Nearest Neighbors)分類器的時間複雜度特性為何?",
       "options": {
-        "A": "訓練時間長、預測時間極短",
-        "B": "訓練幾乎為零(惰性學習),預測時須掃描訓練集計算距離,故預測時間隨 n 線性增長",
-        "C": "訓練與預測時間皆極短",
-        "D": "KNN 不需要訓練資料即可預測"
+        "A": "訓練時間長,預測時間極短常數",
+        "B": "訓練幾乎為零,預測時間隨 n 線性",
+        "C": "訓練與預測時間皆極短皆常數",
+        "D": "預測完全不需訓練資料即可運作"
       },
       "correct_answer": "B",
       "source": {
@@ -1568,7 +1568,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** KNN 是 lazy learner,訓練只存資料;預測要算與所有點距離,故 O(n·d) per query,大資料常加速結構如 KD-Tree。\n\n**其他選項為何錯:**\n- A. 反向。\n- B. ✓ 正解\n- C. 描述不對。\n- D. 描述不對。\n\n**記憶要點:** KNN = 懶人學習,訓練快、預測慢。",
+      "explanation": "**為什麼 B 是正解:** KNN 是 lazy learner,訓練只存資料;預測要算與所有點距離,故 O(n·d) per query,大資料常加速結構如 KD-Tree。\n\n**其他選項為何錯:**\n- A. 方向完全相反。\n- B. ✓ 正解\n- C. 預測時間並不短。\n- D. 預測需與訓練資料比對。\n\n**記憶要點:** KNN = 懶人學習,訓練快、預測慢。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1578,10 +1578,10 @@
       "topic": "ML/Algorithms",
       "question_text": "SVM(Support Vector Machine)的「核技巧(Kernel Trick)」主要目的為何?",
       "options": {
-        "A": "減少模型參數",
-        "B": "在不明確進入高維空間的前提下,以核函數計算高維內積,讓非線性可分問題在原空間以線性形式求解",
-        "C": "完全取代 SGD",
-        "D": "讓 SVM 變成神經網路"
+        "A": "縮減 SVM 模型可學習參數量",
+        "B": "隱式計算高維內積以處理非線性",
+        "C": "完全取代 SGD 作為優化方法",
+        "D": "把 SVM 等價地轉成神經網路"
       },
       "correct_answer": "B",
       "source": {
@@ -1591,7 +1591,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Kernel(如 RBF、Polynomial)用 K(x,y) = ⟨φ(x), φ(y)⟩ 隱式計算高維內積,使原空間非線性問題在隱式高維中變線性可分。\n\n**其他選項為何錯:**\n- A. 與參數量無直接關。\n- B. ✓ 正解\n- C. 無關。\n- D. 無關。\n\n**記憶要點:** Kernel Trick = 隱式高維 + 直接算內積,免去座標轉換。",
+      "explanation": "**為什麼 B 是正解:** Kernel(如 RBF、Polynomial)用 K(x,y) = ⟨φ(x), φ(y)⟩ 隱式計算高維內積,使原空間非線性問題在隱式高維中變線性可分。\n\n**其他選項為何錯:**\n- A. 與參數量無直接關係。\n- B. ✓ 正解\n- C. Kernel 非優化方法。\n- D. SVM 並未變神經網路。\n\n**記憶要點:** Kernel Trick = 隱式高維 + 直接算內積,免去座標轉換。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1601,10 +1601,10 @@
       "topic": "ML/Algorithms",
       "question_text": "下列關於 Naive Bayes(樸素貝氏)分類器的「樸素」假設為何?",
       "options": {
-        "A": "假設特徵之間在類別給定下「條件獨立」",
-        "B": "假設所有類別機率相等",
-        "C": "假設特徵與標籤完全相關",
-        "D": "假設輸入為文字"
+        "A": "特徵在類別給定下彼此條件獨立",
+        "B": "所有類別的事前機率彼此相等",
+        "C": "特徵與標籤之間完全線性相關",
+        "D": "輸入必為文字或詞袋表徵"
       },
       "correct_answer": "A",
       "source": {
@@ -1614,7 +1614,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Naive Bayes 假設 P(x₁,...,xₙ|y) = ∏ P(xᵢ|y),即特徵條件獨立 — 雖不真實但實務上對文本分類等任務仍有效。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 與「樸素」無關。\n- C. 與「樸素」無關。\n- D. 與「樸素」無關。\n\n**記憶要點:** Naive = 條件獨立假設;簡單快,反而在垃圾信過濾等任務不俗。",
+      "explanation": "**為什麼 A 是正解:** Naive Bayes 假設 P(x₁,...,xₙ|y) = ∏ P(xᵢ|y),即特徵條件獨立 — 雖不真實但實務上對文本分類等任務仍有效。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 與「樸素」假設無關。\n- C. 與「樸素」假設無關。\n- D. 與「樸素」假設無關。\n\n**記憶要點:** Naive = 條件獨立假設;簡單快,反而在垃圾信過濾等任務不俗。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1624,10 +1624,10 @@
       "topic": "ML/Ensemble",
       "question_text": "Bagging 與 Boosting 的根本差異為何?",
       "options": {
-        "A": "Bagging 同時平行訓練多個弱學習器(以 bootstrap 採樣)再平均;Boosting 序列式訓練,後續模型針對前者錯誤再學",
-        "B": "兩者完全相同",
-        "C": "Bagging 只能用 SVM",
-        "D": "Boosting 不需要學習器"
+        "A": "Bagging 平行訓練再平均,Boosting 序列糾錯",
+        "B": "Bagging 與 Boosting 在訓練方式上完全相同",
+        "C": "Bagging 只能搭配 SVM 作為唯一基學習器",
+        "D": "Boosting 完全不需要任何弱學習器即可訓練"
       },
       "correct_answer": "A",
       "source": {
@@ -1637,7 +1637,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Bagging(如 RF)主要減 variance、Boosting(如 GBM/XGBoost)主要減 bias。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 描述錯誤。\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** Bagging=平行+減 variance;Boosting=序列+減 bias。",
+      "explanation": "**為什麼 A 是正解:** Bagging(如 RF)主要減 variance、Boosting(如 GBM/XGBoost)主要減 bias。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩者本質不同。\n- C. Bagging 可用各種基學習器。\n- D. Boosting 仍需弱學習器。\n\n**記憶要點:** Bagging=平行+減 variance;Boosting=序列+減 bias。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1647,10 +1647,10 @@
       "topic": "ML/Ensemble",
       "question_text": "下列關於 XGBoost 相較於傳統 GBDT(Gradient Boosting Decision Tree)的主要改進,何者「不正確」?",
       "options": {
-        "A": "引入 L1、L2 正則化抑制過擬合",
-        "B": "支援列(column)子抽樣與並行特徵分裂計算",
-        "C": "對缺失值有預設處理路徑",
-        "D": "完全放棄了 boosting 概念,改為 bagging"
+        "A": "引入 L1 與 L2 正則化以抑制過擬合並提升模型泛化能力",
+        "B": "支援列子抽樣與並行特徵分裂計算以加速訓練的流程",
+        "C": "對缺失值內建預設分支處理路徑可自動分流樣本資料",
+        "D": "完全捨棄 boosting 而改以 bagging 進行並行訓練"
       },
       "correct_answer": "D",
       "source": {
@@ -1670,10 +1670,10 @@
       "topic": "ML/Unsupervised",
       "question_text": "K-Means 演算法的主要限制「不」包括下列何者?",
       "options": {
-        "A": "需事先指定 K(群數)",
-        "B": "對初始 centroid 與離群值敏感",
-        "C": "傾向找球形群集,難處理非凸形群集",
-        "D": "無法在 GPU 或大資料上實作"
+        "A": "必須要事先指定群數 K 為超參數",
+        "B": "對 centroid 初值與離群值敏感",
+        "C": "偏好找球形群,難處理非凸形群",
+        "D": "完全無法在 GPU 或大資料中實作"
       },
       "correct_answer": "D",
       "source": {
@@ -1693,10 +1693,10 @@
       "topic": "ML/Unsupervised",
       "question_text": "DBSCAN 演算法相較 K-Means 的主要優勢為何?",
       "options": {
-        "A": "需要事先指定 K",
-        "B": "能找到非凸形群集且自動識別離群點(noise),不需事先指定群數",
-        "C": "對初始值非常敏感",
-        "D": "只能處理低維資料"
+        "A": "必須事先指定群數 K 才能執行",
+        "B": "能找任意形狀群並標記離群點",
+        "C": "對初始參數與隨機種子非常敏感",
+        "D": "僅能處理低維資料而難擴展"
       },
       "correct_answer": "B",
       "source": {
@@ -1706,7 +1706,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** DBSCAN 以 ε-鄰域密度定義 core/border/noise,無需 K、可找任意形狀群、輸出離群點標記。\n\n**其他選項為何錯:**\n- A. K-Means 需 K,DBSCAN 不需。\n- B. ✓ 正解\n- C. 反向。\n- D. 高維仍可,但 ε 較難調。\n\n**記憶要點:** DBSCAN = Density + ε + minPts;處理任意形狀 + noise detection。",
+      "explanation": "**為什麼 B 是正解:** DBSCAN 以 ε-鄰域密度定義 core/border/noise,無需 K、可找任意形狀群、輸出離群點標記。\n\n**其他選項為何錯:**\n- A. DBSCAN 不需指定 K。\n- B. ✓ 正解\n- C. DBSCAN 不對初值敏感。\n- D. 高維仍可,但 ε 較難調。\n\n**記憶要點:** DBSCAN = Density + ε + minPts;處理任意形狀 + noise detection。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1716,10 +1716,10 @@
       "topic": "DL/Basics",
       "question_text": "下列關於 ReLU(Rectified Linear Unit)啟動函數的敘述,何者最正確?",
       "options": {
-        "A": "ReLU(x) = max(0, x),計算簡單、能緩解梯度消失,但存在「dying ReLU」問題",
-        "B": "ReLU 是線性函數,網路全用 ReLU 仍等價單層線性",
-        "C": "ReLU 輸出範圍是 [-1, 1]",
-        "D": "ReLU 與 sigmoid 完全等價"
+        "A": "ReLU 為 max(0,x) 函數,具 dying ReLU 問題",
+        "B": "ReLU 為純線性函數,堆疊起來仍等同單層線性對應",
+        "C": "ReLU 輸出範圍為 [-1,1],類似 tanh 之雙邊飽和",
+        "D": "ReLU 與 sigmoid 在公式與輸出範圍上完全等價無別"
       },
       "correct_answer": "A",
       "source": {
@@ -1729,7 +1729,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** ReLU 簡單高效,在 x>0 時梯度為 1,正向解決 sigmoid/tanh 梯度消失;但 x≤0 時梯度為 0,可能造成神經元永久不啟動(dying)。\n\n**其他選項為何錯:**\n- B. ReLU 是分段線性,整體非線性。\n- C. ReLU ∈ [0, ∞)。\n- D. 不等價。\n- A. ✓ 正解\n\n**記憶要點:** ReLU 優:快、無消失;缺:dying ReLU → LeakyReLU/GELU 改善。",
+      "explanation": "**為什麼 A 是正解:** ReLU 簡單高效,在 x>0 時梯度為 1,正向解決 sigmoid/tanh 梯度消失;但 x≤0 時梯度為 0,可能造成神經元永久不啟動(dying)。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. ReLU 是分段線性,整體非線性。\n- C. ReLU 範圍是 [0, ∞)。\n- D. 與 sigmoid 形式截然不同。\n\n**記憶要點:** ReLU 優:快、無消失;缺:dying ReLU → LeakyReLU/GELU 改善。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1739,10 +1739,10 @@
       "topic": "DL/Basics",
       "question_text": "下列關於「反向傳播(Backpropagation)」的敘述,何者最正確?",
       "options": {
-        "A": "Backprop 利用鏈式法則,從輸出層往輸入層逐層計算損失對每個權重的梯度",
-        "B": "Backprop 不需要任何微分",
-        "C": "Backprop 只能用於 CNN",
-        "D": "Backprop 是一種正則化方法"
+        "A": "用鏈式法則由輸出向輸入逐層算梯度",
+        "B": "完全不依賴任何微分或鏈式法則",
+        "C": "僅能用於卷積神經網路(CNN)",
+        "D": "是一種抑制過擬合的正則化技巧"
       },
       "correct_answer": "A",
       "source": {
@@ -1762,10 +1762,10 @@
       "topic": "DL/Basics",
       "question_text": "下列哪一種權重初始化方法對「ReLU」啟動函數最為合適?",
       "options": {
-        "A": "全部初始化為 0",
-        "B": "Kaiming/He Initialization(考慮 ReLU 半邊截斷的變異數修正)",
-        "C": "全部初始化為相同非零常數",
-        "D": "極小亂數(σ=10⁻¹⁰)"
+        "A": "Zero 初始化,所有 W 統一設為 0.0",
+        "B": "Kaiming 初始化,Var(W) = 2 / n_in",
+        "C": "Constant 初始化,所有 W 設為 0.1",
+        "D": "微小亂數,W 標準差設為 1e-10 量級"
       },
       "correct_answer": "B",
       "source": {
@@ -1775,7 +1775,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** He init Var(W) = 2/n_in 抵消 ReLU 把一半輸出歸零所造成的變異減半,維持各層訊號變異穩定。Xavier 適合 tanh,He 適合 ReLU。\n\n**其他選項為何錯:**\n- A. 全 0 對稱不破對稱性問題,所有神經元等價。\n- B. ✓ 正解\n- C. 同上對稱性問題。\n- D. 訊號迅速消失。\n\n**記憶要點:** ReLU → He init;tanh/sigmoid → Xavier init。",
+      "explanation": "**為什麼 B 是正解:** He init Var(W) = 2/n_in 抵消 ReLU 把一半輸出歸零所造成的變異減半,維持各層訊號變異穩定。Xavier 適合 tanh,He 適合 ReLU。\n\n**其他選項為何錯:**\n- A. 對稱性無法被打破。\n- B. ✓ 正解\n- C. 同樣會造成對稱性問題。\n- D. 訊號極快消失。\n\n**記憶要點:** ReLU → He init;tanh/sigmoid → Xavier init。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1785,10 +1785,10 @@
       "topic": "DL/CNN",
       "question_text": "CNN 中卷積層(Conv Layer)的「權重共享(Weight Sharing)」帶來的主要好處為何?",
       "options": {
-        "A": "讓網路參數隨輸入大小成倍增長",
-        "B": "大幅減少參數量、強制平移不變性(Translation Invariance/Equivariance),適合影像特徵抽取",
-        "C": "讓網路完全不能學習",
-        "D": "把卷積轉成全連接"
+        "A": "讓參數量隨輸入解析度線性放大",
+        "B": "大幅減少參數並提供平移不變性",
+        "C": "使網路完全失去學習能力與梯度",
+        "D": "把卷積運算強制轉成全連接層"
       },
       "correct_answer": "B",
       "source": {
@@ -1798,7 +1798,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 同一 filter 滑過整張影像 → 參數大降、且不論物件在哪都能用同一組權重抽特徵(translation equivariance)。\n\n**其他選項為何錯:**\n- A. 反向。\n- B. ✓ 正解\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** CNN 三大特性:Local conn + Weight sharing + Pooling。",
+      "explanation": "**為什麼 B 是正解:** 同一 filter 滑過整張影像 → 參數大降、且不論物件在哪都能用同一組權重抽特徵(translation equivariance)。\n\n**其他選項為何錯:**\n- A. 方向完全相反。\n- B. ✓ 正解\n- C. 不會失去學習能力。\n- D. 並未變成全連接層。\n\n**記憶要點:** CNN 三大特性:Local conn + Weight sharing + Pooling。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1808,10 +1808,10 @@
       "topic": "DL/CNN",
       "question_text": "ResNet 引入的「殘差連接(Residual Connection / Skip Connection)」主要解決什麼問題?",
       "options": {
-        "A": "讓影像更銳利",
-        "B": "緩解極深網路的梯度消失/退化問題,使「越深越好」成為可能",
-        "C": "完全取代卷積",
-        "D": "讓網路只能有 5 層"
+        "A": "讓影像輸出在視覺上變得更銳利",
+        "B": "緩解深層梯度消失與退化問題",
+        "C": "完全取代卷積層作為特徵抽取器",
+        "D": "強制限制網路深度只能為 5 層"
       },
       "correct_answer": "B",
       "source": {
@@ -1821,7 +1821,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 殘差連接讓梯度可繞過幾層直接回傳,訓深網路時不再因「退化(degradation)」表現變差;ResNet-152、ResNet-50 之所以可行皆賴此設計。\n\n**其他選項為何錯:**\n- A. 與殘差連接目的不符。\n- C. 與殘差連接目的不符。\n- D. 與殘差連接目的不符。\n- B. ✓ 正解\n\n**記憶要點:** Residual = 直連旁路,使「身分映射」易學,深網不再退化。",
+      "explanation": "**為什麼 B 是正解:** 殘差連接讓梯度可繞過幾層直接回傳,訓深網路時不再因「退化(degradation)」表現變差;ResNet-152、ResNet-50 之所以可行皆賴此設計。\n\n**其他選項為何錯:**\n- A. 與殘差連接目的無關。\n- B. ✓ 正解\n- C. 殘差不取代卷積。\n- D. 並未限制層數。\n\n**記憶要點:** Residual = 直連旁路,使「身分映射」易學,深網不再退化。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1831,10 +1831,10 @@
       "topic": "DL/CNN",
       "question_text": "下列關於「池化(Pooling)」層的敘述,何者最正確?",
       "options": {
-        "A": "Pooling 會增加可學習參數",
-        "B": "Pooling 為下採樣操作,本身無可學習參數;Max Pooling 取區域最大,Average Pooling 取區域平均",
-        "C": "Pooling 與卷積完全相同",
-        "D": "Pooling 必須在第一層使用"
+        "A": "Pooling 含有大量可學習參數需訓練",
+        "B": "Pooling 是無參數下採樣,取區域極值",
+        "C": "Pooling 與卷積在數學上完全等價",
+        "D": "Pooling 必須放在網路的第一層使用"
       },
       "correct_answer": "B",
       "source": {
@@ -1844,7 +1844,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Pooling 是無參數下採樣,主要功能是降空間維度與引入平移不變性。\n\n**其他選項為何錯:**\n- A. 無學習參數。\n- B. ✓ 正解\n- C. 卷積有 filter 參數。\n- D. 通常與卷積層交替。\n\n**記憶要點:** Pooling = 下採樣 + 無參數;Max 保留顯著、Avg 平滑。",
+      "explanation": "**為什麼 B 是正解:** Pooling 是無參數下採樣,主要功能是降空間維度與引入平移不變性。\n\n**其他選項為何錯:**\n- A. Pooling 無學習參數。\n- B. ✓ 正解\n- C. 卷積有 filter 參數。\n- D. 通常與卷積層交替。\n\n**記憶要點:** Pooling = 下採樣 + 無參數;Max 保留顯著、Avg 平滑。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1854,10 +1854,10 @@
       "topic": "DL/RNN",
       "question_text": "LSTM(Long Short-Term Memory)相較於 vanilla RNN 的主要創新為何?",
       "options": {
-        "A": "完全取消所有閘控",
-        "B": "引入 input gate、forget gate、output gate 與 cell state,以閘控資訊流,有效緩解長序列梯度消失問題",
-        "C": "讓 RNN 變成 CNN",
-        "D": "去掉所有非線性"
+        "A": "取消所有閘控與任何形式的記憶單元設計",
+        "B": "引入三閘與 cell state 以緩解梯度消失",
+        "C": "將 RNN 結構改造成卷積神經網路的形式",
+        "D": "去除所有非線性轉換以大幅加速 RNN 訓練"
       },
       "correct_answer": "B",
       "source": {
@@ -1867,7 +1867,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** LSTM 的三閘控+cell state 設計讓梯度沿 cell state 線性流動,大幅緩解長距離依賴的梯度消失。\n\n**其他選項為何錯:**\n- A. 三閘是核心。\n- B. ✓ 正解\n- C. 不正確。\n- D. 不正確。\n\n**記憶要點:** LSTM = 3 gates(input/forget/output)+ cell state;GRU 是 simplified 版。",
+      "explanation": "**為什麼 B 是正解:** LSTM 的三閘控+cell state 設計讓梯度沿 cell state 線性流動,大幅緩解長距離依賴的梯度消失。\n\n**其他選項為何錯:**\n- A. 三閘是 LSTM 核心。\n- B. ✓ 正解\n- C. 仍是 RNN 架構。\n- D. 仍保留非線性。\n\n**記憶要點:** LSTM = 3 gates(input/forget/output)+ cell state;GRU 是 simplified 版。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1877,10 +1877,10 @@
       "topic": "DL/Transformer",
       "question_text": "Self-Attention 的核心計算為 Attention(Q,K,V) = softmax(QKᵀ/√d_k) V,其中除以 √d_k 的目的為何?",
       "options": {
-        "A": "純粹美觀",
-        "B": "避免 QKᵀ 在 d_k 大時數值過大,使 softmax 進入飽和區(梯度趨 0)",
-        "C": "讓計算更慢",
-        "D": "把矩陣變成向量"
+        "A": "純為設計上的美學慣例,於數學上完全無實質作用",
+        "B": "避免 d_k 較大時 softmax 飽和而導致梯度消失",
+        "C": "讓矩陣乘法的整體計算速度刻意被拉慢以穩定",
+        "D": "把高維輸出矩陣強制壓縮成單一向量以利輸出"
       },
       "correct_answer": "B",
       "source": {
@@ -1890,7 +1890,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** d_k 越大,點積數值越大,softmax 容易飽和導致梯度幾乎為 0,除以 √d_k 使其數值穩定。\n\n**其他選項為何錯:**\n- A. 是必要設計。\n- B. ✓ 正解\n- C. 描述錯誤。\n- D. 描述錯誤。\n\n**記憶要點:** Scaled Dot-Product Attention 的「Scaled」就是 √d_k。",
+      "explanation": "**為什麼 B 是正解:** d_k 越大,點積數值越大,softmax 容易飽和導致梯度幾乎為 0,除以 √d_k 使其數值穩定。\n\n**其他選項為何錯:**\n- A. 是必要的數值穩定設計。\n- B. ✓ 正解\n- C. 並非為了變慢。\n- D. 形狀並未改變。\n\n**記憶要點:** Scaled Dot-Product Attention 的「Scaled」就是 √d_k。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1900,10 +1900,10 @@
       "topic": "DL/Transformer",
       "question_text": "下列關於 Transformer Encoder 與 Decoder 差異的敘述,何者最正確?",
       "options": {
-        "A": "兩者完全相同",
-        "B": "Decoder 額外有「Masked Self-Attention」防止看未來資訊,以及「Encoder-Decoder Cross-Attention」連接編碼器輸出",
-        "C": "Encoder 不需要 attention",
-        "D": "Decoder 沒有 FFN"
+        "A": "Encoder 與 Decoder 在子層配置上一致相同",
+        "B": "Decoder 多 Masked Self-Attn 與 Cross-Attn",
+        "C": "Encoder 完全不需 attention 而以全連接代替",
+        "D": "Decoder 完全不含 Feed-Forward 子層的部分"
       },
       "correct_answer": "B",
       "source": {
@@ -1913,7 +1913,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Decoder 多了兩件事:masked self-attention(因果遮罩)避免泄漏未來資訊、cross-attention 讓 decoder 看 encoder 的輸出。\n\n**其他選項為何錯:**\n- A. 結構不同。\n- B. ✓ 正解\n- C. Encoder 核心就是 self-attention。\n- D. Decoder 也有 FFN。\n\n**記憶要點:** Encoder=Self-Attn + FFN;Decoder=Masked Self-Attn + Cross-Attn + FFN。",
+      "explanation": "**為什麼 B 是正解:** Decoder 多了兩件事:masked self-attention(因果遮罩)避免泄漏未來資訊、cross-attention 讓 decoder 看 encoder 的輸出。\n\n**其他選項為何錯:**\n- A. 結構明顯不同。\n- B. ✓ 正解\n- C. Encoder 核心即 self-attention。\n- D. Decoder 也有 FFN。\n\n**記憶要點:** Encoder=Self-Attn + FFN;Decoder=Masked Self-Attn + Cross-Attn + FFN。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1923,10 +1923,10 @@
       "topic": "DL/Optimization",
       "question_text": "Adam 優化器的核心想法為何?",
       "options": {
-        "A": "純隨機梯度,不考慮歷史",
-        "B": "結合 Momentum(梯度一階矩 EMA)與 RMSProp(梯度二階矩 EMA)做 per-parameter 自適應學習率",
-        "C": "完全取消學習率",
-        "D": "二階海森矩陣全展開"
+        "A": "純隨機梯度,完全不考慮歷史資訊",
+        "B": "結合動量一階矩與 RMSProp 二階矩",
+        "C": "完全取消學習率參數而由模型自決",
+        "D": "展開二階海森矩陣以做完整牛頓步"
       },
       "correct_answer": "B",
       "source": {
@@ -1936,7 +1936,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Adam = Momentum + RMSProp + bias correction;每個參數有自己的學習率,實務上常用。\n\n**其他選項為何錯:**\n- A. 描述錯誤。\n- C. 描述錯誤。\n- D. 描述錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Adam = 一階(momentum) + 二階(RMSProp) + bias 校正;常用 lr=1e-3。",
+      "explanation": "**為什麼 B 是正解:** Adam = Momentum + RMSProp + bias correction;每個參數有自己的學習率,實務上常用。\n\n**其他選項為何錯:**\n- A. Adam 維持動量歷史。\n- B. ✓ 正解\n- C. 仍需設定基礎 LR。\n- D. Adam 非二階方法。\n\n**記憶要點:** Adam = 一階(momentum) + 二階(RMSProp) + bias 校正;常用 lr=1e-3。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1946,10 +1946,10 @@
       "topic": "DL/Optimization",
       "question_text": "下列關於「學習率排程(Learning Rate Schedule)」的敘述,何者「不正確」?",
       "options": {
-        "A": "Warmup 在訓練初期逐步提高 LR,可穩定初期訓練",
-        "B": "Cosine Decay 讓 LR 隨訓練步數以餘弦曲線衰減",
-        "C": "Step Decay 在固定 step 處將 LR 減半或乘以衰減係數",
-        "D": "Schedule 永遠應該讓 LR 越大越好"
+        "A": "Warmup 於訓練初期逐步提高學習率",
+        "B": "Cosine Decay 以餘弦曲線衰減學習率",
+        "C": "Step Decay 於固定步處乘衰減係數",
+        "D": "排程設計越激進讓 LR 一律越大越好"
       },
       "correct_answer": "D",
       "source": {
@@ -1959,7 +1959,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 D 是正解:** 多數 schedule 是「先大後小」精修,並非越大越好;太大會震盪/發散。\n\n**其他選項為何錯:**\n- A. 皆為標準 schedule 設計。\n- B. 皆為標準 schedule 設計。\n- C. 皆為標準 schedule 設計。\n- D. ✓ 正解(錯誤敘述)\n\n**記憶要點:** Warmup → Peak → Decay 是典型 LR schedule;Adam + warmup + cosine 是 Transformer 經典組合。",
+      "explanation": "**為什麼 D 是正解:** 多數 schedule 是「先大後小」精修,並非越大越好;太大會震盪/發散。\n\n**其他選項為何錯:**\n- A. 為標準排程設計。\n- B. 為標準排程設計。\n- C. 為標準排程設計。\n- D. ✓ 正解(錯誤敘述)\n\n**記憶要點:** Warmup → Peak → Decay 是典型 LR schedule;Adam + warmup + cosine 是 Transformer 經典組合。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1969,10 +1969,10 @@
       "topic": "DL/Optimization",
       "question_text": "下列哪一項是「梯度爆炸(Exploding Gradient)」最常見的緩解方法?",
       "options": {
-        "A": "完全不訓練",
-        "B": "Gradient Clipping(梯度裁剪,將梯度範數限制在閾值內)",
-        "C": "把所有權重設為零",
-        "D": "完全去掉啟動函數"
+        "A": "完全停止訓練放棄學習任務",
+        "B": "對梯度範數做裁剪限制其上界",
+        "C": "將所有權重一次強制歸零",
+        "D": "完全移除網路中所有啟動函數"
       },
       "correct_answer": "B",
       "source": {
@@ -1982,7 +1982,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Gradient Clipping 是 RNN/Transformer 訓練常規,把過大的梯度範數縮回閾值,避免一次大跳偏離。\n\n**其他選項為何錯:**\n- A. 不切實際。\n- C. 不切實際。\n- D. 不切實際。\n- B. ✓ 正解\n\n**記憶要點:** Exploding gradient → Gradient Clipping(global norm 或 value);Vanishing → ResNet/LSTM/GELU 等。",
+      "explanation": "**為什麼 B 是正解:** Gradient Clipping 是 RNN/Transformer 訓練常規,把過大的梯度範數縮回閾值,避免一次大跳偏離。\n\n**其他選項為何錯:**\n- A. 不切實際。\n- B. ✓ 正解\n- C. 會破壞學習。\n- D. 會使網路退化為線性。\n\n**記憶要點:** Exploding gradient → Gradient Clipping(global norm 或 value);Vanishing → ResNet/LSTM/GELU 等。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -1992,10 +1992,10 @@
       "topic": "Feature/Engineering",
       "question_text": "下列哪一種特徵縮放方法「對離群值最為穩健」?",
       "options": {
-        "A": "Min-Max Normalization(以全域 min/max 縮放)",
-        "B": "Standardization / Z-score(以均值與標準差)",
-        "C": "Robust Scaler(以中位數與 IQR)",
-        "D": "完全不縮放"
+        "A": "Min-Max Scaler,以 min/max 做線性縮放",
+        "B": "Standard Scaler,以均值與標準差縮放",
+        "C": "Robust Scaler,以中位數與 IQR 縮放",
+        "D": "No Scaling,將原始尺度直接送入模型"
       },
       "correct_answer": "C",
       "source": {
@@ -2005,7 +2005,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** RobustScaler 用中位數與 IQR,離群值對中位數影響極小,所以對 outlier 最穩健。\n\n**其他選項為何錯:**\n- A. min/max 被一個離群值大幅扭曲。\n- B. 均值與標準差皆受離群值影響。\n- D. 不縮放會被尺度大特徵主宰。\n- C. ✓ 正解\n\n**記憶要點:** 有 outlier → RobustScaler;乾淨資料 → MinMax/Standard 皆可。",
+      "explanation": "**為什麼 C 是正解:** RobustScaler 用中位數與 IQR,離群值對中位數影響極小,所以對 outlier 最穩健。\n\n**其他選項為何錯:**\n- A. min/max 被單一離群值大幅扭曲。\n- B. 均值與標準差皆受離群值影響。\n- C. ✓ 正解\n- D. 不縮放會被尺度大特徵主宰。\n\n**記憶要點:** 有 outlier → RobustScaler;乾淨資料 → MinMax/Standard 皆可。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2015,10 +2015,10 @@
       "topic": "Feature/Engineering",
       "question_text": "對「類別型特徵(Categorical Feature)」最常見的編碼方式為何?",
       "options": {
-        "A": "Min-Max Scaling",
-        "B": "Z-score 標準化",
-        "C": "One-Hot Encoding 與 Target/Ordinal Encoding(視特性而定)",
-        "D": "直接平均所有類別"
+        "A": "Min-Max Scaling,連續數值的縮放方法",
+        "B": "Z-Score Scaling,連續數值的縮放方法",
+        "C": "One-Hot 或 Target Encoding 等編碼",
+        "D": "對所有類別一律取整體均值後直接代入模型訓練"
       },
       "correct_answer": "C",
       "source": {
@@ -2028,7 +2028,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** 名義類別用 One-Hot;有序類別用 Ordinal;高基數類別常用 Target/Frequency Encoding;依特性選擇。\n\n**其他選項為何錯:**\n- A. 是數值縮放,不是類別編碼。\n- B. 是數值縮放,不是類別編碼。\n- D. 無意義。\n- C. ✓ 正解\n\n**記憶要點:** 類別編碼三大類:Nominal=One-Hot、Ordinal=有序整數、High-cardinality=Target/Frequency。",
+      "explanation": "**為什麼 C 是正解:** 名義類別用 One-Hot;有序類別用 Ordinal;高基數類別常用 Target/Frequency Encoding;依特性選擇。\n\n**其他選項為何錯:**\n- A. 是數值縮放,不是類別編碼。\n- B. 是數值縮放,不是類別編碼。\n- C. ✓ 正解\n- D. 無實際意義。\n\n**記憶要點:** 類別編碼三大類:Nominal=One-Hot、Ordinal=有序整數、High-cardinality=Target/Frequency。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2038,10 +2038,10 @@
       "topic": "Feature/Engineering",
       "question_text": "缺失值(Missing Value)的處理方式中,下列何者「最不建議」?",
       "options": {
-        "A": "刪除缺失列(若缺失少且 MCAR)",
-        "B": "以平均/中位數/眾數填補(Simple Imputation)",
-        "C": "以模型推估(K-NN Imputer、Iterative Imputer)",
-        "D": "用任意亂數填入而不評估影響"
+        "A": "刪除少量 MCAR 缺失列",
+        "B": "以平均、中位數或眾數填補",
+        "C": "以 KNN 或迭代模型推估填補",
+        "D": "用任意亂數填入且不評估影響"
       },
       "correct_answer": "D",
       "source": {
@@ -2061,10 +2061,10 @@
       "topic": "Feature/Selection",
       "question_text": "下列關於「特徵選擇(Feature Selection)」三大類方法的描述,何者最正確?",
       "options": {
-        "A": "Filter / Wrapper / Embedded",
-        "B": "Sigmoid / ReLU / Tanh",
-        "C": "Precision / Recall / F1",
-        "D": "PCA / t-SNE / UMAP"
+        "A": "Filter、Wrapper、Embedded 三類",
+        "B": "Sigmoid、ReLU、Tanh 三類函數",
+        "C": "Precision、Recall、F1 三類指標",
+        "D": "PCA、t-SNE、UMAP 三類降維法"
       },
       "correct_answer": "A",
       "source": {
@@ -2074,7 +2074,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Filter=用統計量(相關係數、卡方)、Wrapper=以模型做循序加減(Forward/Backward)、Embedded=邊訓練邊選(Lasso、Tree importance)。\n\n**其他選項為何錯:**\n- B. 啟動函數。\n- C. 評估指標。\n- D. 降維方法。\n- A. ✓ 正解\n\n**記憶要點:** Feature Selection:Filter(快)、Wrapper(準)、Embedded(實務常用,如 Lasso)。",
+      "explanation": "**為什麼 A 是正解:** Filter=用統計量(相關係數、卡方)、Wrapper=以模型做循序加減(Forward/Backward)、Embedded=邊訓練邊選(Lasso、Tree importance)。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 屬啟動函數。\n- C. 屬評估指標。\n- D. 屬降維方法。\n\n**記憶要點:** Feature Selection:Filter(快)、Wrapper(準)、Embedded(實務常用,如 Lasso)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2084,10 +2084,10 @@
       "topic": "Training/Validation",
       "question_text": "K-Fold Cross-Validation 中,為何要使用「Stratified K-Fold」處理分類問題?",
       "options": {
-        "A": "讓計算更慢",
-        "B": "確保每一 fold 中各類別比例與整體相同,避免類別失衡造成的評估偏差",
-        "C": "讓訓練集消失",
-        "D": "強制使用神經網路"
+        "A": "讓 fold 切分計算速度刻意變慢",
+        "B": "讓各 fold 內類別比例與整體一致",
+        "C": "讓訓練集在某 fold 中完全消失",
+        "D": "強制只能搭配神經網路模型使用"
       },
       "correct_answer": "B",
       "source": {
@@ -2097,7 +2097,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Stratified 保留類別比例,避免某 fold 出現某類別過少甚至缺失,評估更穩定。\n\n**其他選項為何錯:**\n- A. 與目的不符。\n- C. 與目的不符。\n- D. 與目的不符。\n- B. ✓ 正解\n\n**記憶要點:** 分類 + 不平衡 → 用 StratifiedKFold;時序資料 → 用 TimeSeriesSplit。",
+      "explanation": "**為什麼 B 是正解:** Stratified 保留類別比例,避免某 fold 出現某類別過少甚至缺失,評估更穩定。\n\n**其他選項為何錯:**\n- A. 與目的不符。\n- B. ✓ 正解\n- C. 與目的不符。\n- D. 與模型選擇無關。\n\n**記憶要點:** 分類 + 不平衡 → 用 StratifiedKFold;時序資料 → 用 TimeSeriesSplit。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2107,10 +2107,10 @@
       "topic": "Training/Validation",
       "question_text": "處理「時序預測(Time-Series Forecasting)」資料時,正確的驗證切分方式為何?",
       "options": {
-        "A": "用一般 K-Fold 隨機切分(允許未來資料訓練、過去資料驗證)",
-        "B": "TimeSeriesSplit / Rolling-window / Expanding-window 等保留時間順序的切分,確保訓練資料皆早於驗證資料",
-        "C": "完全不切分",
-        "D": "把資料倒過來切"
+        "A": "Random K-Fold,不考慮時間先後順序",
+        "B": "TimeSeriesSplit,保留時序順序的切分",
+        "C": "No Split,以全部資料同時訓練與驗證",
+        "D": "Reverse Split,時序倒序後做隨機切分"
       },
       "correct_answer": "B",
       "source": {
@@ -2120,7 +2120,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 時序資料隨機切會用「未來知識」訓練 → data leakage;必須訓 < 驗 < 測。\n\n**其他選項為何錯:**\n- A. 造成 data leakage。\n- B. ✓ 正解\n- C. 不可行。\n- D. 不可行。\n\n**記憶要點:** 時序 = 保時序 + 不隨機 + Rolling/Expanding。",
+      "explanation": "**為什麼 B 是正解:** 時序資料隨機切會用「未來知識」訓練 → data leakage;必須訓 < 驗 < 測。\n\n**其他選項為何錯:**\n- A. 造成 data leakage。\n- B. ✓ 正解\n- C. 無法評估泛化。\n- D. 仍違反因果順序。\n\n**記憶要點:** 時序 = 保時序 + 不隨機 + Rolling/Expanding。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2130,10 +2130,10 @@
       "topic": "Training/Tuning",
       "question_text": "下列哪一種超參數搜尋方法「最能利用先前評估結果」做後續選點?",
       "options": {
-        "A": "Grid Search",
-        "B": "Random Search",
-        "C": "Bayesian Optimization(以代理模型如 GP/TPE 估計目標函數,選擇 expected improvement 最高的點)",
-        "D": "完全不調"
+        "A": "Grid Search,於固定網格上窮舉組合",
+        "B": "Random Search,於搜尋空間隨機抽樣",
+        "C": "Bayesian Optimization,以代理模型選點",
+        "D": "No Search,直接使用預設超參數設定"
       },
       "correct_answer": "C",
       "source": {
@@ -2143,7 +2143,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** Bayesian Opt 用先前的 (超參, 表現) pair 建代理模型,智慧選下個點,通常比 Grid / Random 更有效率。\n\n**其他選項為何錯:**\n- A. Grid 是窮舉。\n- B. Random 是亂抽。\n- D. 沒有搜尋。\n- C. ✓ 正解\n\n**記憶要點:** HPO 三大:Grid(網)、Random(快)、Bayes(智慧);Optuna/Hyperopt 是熱門工具。",
+      "explanation": "**為什麼 C 是正解:** Bayesian Opt 用先前的 (超參, 表現) pair 建代理模型,智慧選下個點,通常比 Grid / Random 更有效率。\n\n**其他選項為何錯:**\n- A. 不利用先前資訊。\n- B. 不利用先前資訊。\n- C. ✓ 正解\n- D. 沒有搜尋過程。\n\n**記憶要點:** HPO 三大:Grid(網)、Random(快)、Bayes(智慧);Optuna/Hyperopt 是熱門工具。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2153,10 +2153,10 @@
       "topic": "Eval/Metrics",
       "question_text": "ROC-AUC 與 PR-AUC 在「嚴重類別不平衡(如詐欺偵測 1% 為正)」場景下,哪一個更具參考價值?",
       "options": {
-        "A": "ROC-AUC,因為它對不平衡完全不敏感",
-        "B": "PR-AUC(Precision-Recall AUC),因為其聚焦在正類別表現,對不平衡更具區分力",
-        "C": "兩者完全相同",
-        "D": "Accuracy 即可"
+        "A": "ROC-AUC,對類別不平衡完全不敏感",
+        "B": "PR-AUC,聚焦正類表現故更具區分力",
+        "C": "兩者於類別不平衡下意義完全相同",
+        "D": "Accuracy,於嚴重不平衡下指標仍可靠"
       },
       "correct_answer": "B",
       "source": {
@@ -2166,7 +2166,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 高不平衡時 ROC 仍看起來不錯(TNR 高),但實際對正類別表現可能很差;PR 曲線聚焦正類別,更敏感。\n\n**其他選項為何錯:**\n- A. ROC 受不平衡誤導。\n- B. ✓ 正解\n- C. 兩者不同。\n- D. Accuracy 對不平衡尤其誤導。\n\n**記憶要點:** 不平衡 → PR-AUC、F1、Recall@k;平衡 → ROC-AUC 亦可。",
+      "explanation": "**為什麼 B 是正解:** 高不平衡時 ROC 仍看起來不錯(TNR 高),但實際對正類別表現可能很差;PR 曲線聚焦正類別,更敏感。\n\n**其他選項為何錯:**\n- A. ROC 受不平衡誤導。\n- B. ✓ 正解\n- C. 兩者並不相同。\n- D. Accuracy 對不平衡最為誤導。\n\n**記憶要點:** 不平衡 → PR-AUC、F1、Recall@k;平衡 → ROC-AUC 亦可。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2176,10 +2176,10 @@
       "topic": "Eval/Metrics",
       "question_text": "下列關於迴歸評估指標的敘述,何者最正確?",
       "options": {
-        "A": "MAE 對 outlier 較不敏感、RMSE 對 outlier 較敏感(因為平方放大誤差)",
-        "B": "MAE 對 outlier 較敏感、RMSE 較不敏感",
-        "C": "RMSE 永遠等於 MAE",
-        "D": "MAE 必為負值"
+        "A": "MAE 對 outlier 較不敏感,RMSE 較敏感",
+        "B": "MAE 對 outlier 較敏感,RMSE 較不敏感",
+        "C": "RMSE 與 MAE 在任何資料上的數值皆相等",
+        "D": "MAE 的數值在任何資料下皆必為負值之數"
       },
       "correct_answer": "A",
       "source": {
@@ -2189,7 +2189,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** RMSE 把誤差平方再平均,大誤差被放大;MAE 線性,因此對 outlier 更穩健。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 反向。\n- C. 不等價。\n- D. MAE ≥ 0。\n\n**記憶要點:** RMSE 重罰大誤差;MAE 公平看每個。",
+      "explanation": "**為什麼 A 是正解:** RMSE 把誤差平方再平均,大誤差被放大;MAE 線性,因此對 outlier 更穩健。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩者敏感性顛倒。\n- C. 兩者並不等價。\n- D. MAE 必非負。\n\n**記憶要點:** RMSE 重罰大誤差;MAE 公平看每個。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2199,10 +2199,10 @@
       "topic": "Eval/Bias",
       "question_text": "下列關於「Bias-Variance Tradeoff」的敘述,何者最正確?",
       "options": {
-        "A": "提高模型複雜度通常會降低 bias 但提高 variance;反之亦然",
-        "B": "Bias 與 variance 無關",
-        "C": "高 bias 模型一定 variance 也高",
-        "D": "Underfitting 通常表示 variance 太高"
+        "A": "複雜度提高通常降 bias 同時升 variance",
+        "B": "Bias 與 variance 之間完全沒有關聯",
+        "C": "高 bias 模型必同時伴隨高 variance",
+        "D": "Underfitting 的根因是 variance 太高"
       },
       "correct_answer": "A",
       "source": {
@@ -2212,7 +2212,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 簡單模型偏差大、方差小(欠擬合);複雜模型偏差小、方差大(過擬合);找到 sweet spot 是目標。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 描述錯誤。\n- C. 描述錯誤。\n- D. Underfitting = 高 bias 而非高 variance。\n\n**記憶要點:** Under=高 bias、Over=高 variance;Regularization/CV 控管 tradeoff。",
+      "explanation": "**為什麼 A 是正解:** 簡單模型偏差大、方差小(欠擬合);複雜模型偏差小、方差大(過擬合);找到 sweet spot 是目標。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩者明顯有 trade-off。\n- C. 高 bias 通常 variance 低。\n- D. Underfitting = 高 bias。\n\n**記憶要點:** Under=高 bias、Over=高 variance;Regularization/CV 控管 tradeoff。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2222,10 +2222,10 @@
       "topic": "Eval/Bias",
       "question_text": "L1 正則化(Lasso)與 L2 正則化(Ridge)的最大差異為何?",
       "options": {
-        "A": "L1 傾向產生稀疏解(部分權重為 0,可做特徵選擇);L2 傾向使權重變小但不為 0",
-        "B": "兩者完全相同",
-        "C": "L1 不會改變權重",
-        "D": "L2 永遠優於 L1"
+        "A": "L1 產生稀疏解,L2 平滑收縮權重",
+        "B": "兩種正則化效果與形狀完全相同",
+        "C": "L1 對權重大小完全沒有任何作用",
+        "D": "L2 在所有任務上皆永遠優於 L1"
       },
       "correct_answer": "A",
       "source": {
@@ -2235,7 +2235,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** L1 的幾何形狀為菱形,角點落於座標軸 → 稀疏解;L2 圓形,只是收縮。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Lasso=L1=稀疏=特徵選擇;Ridge=L2=平滑=多重共線性;ElasticNet=兩者混合。",
+      "explanation": "**為什麼 A 是正解:** L1 的幾何形狀為菱形,角點落於座標軸 → 稀疏解;L2 圓形,只是收縮。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 幾何形狀本質不同。\n- C. L1 會將部分權重壓為 0。\n- D. 無絕對優劣。\n\n**記憶要點:** Lasso=L1=稀疏=特徵選擇;Ridge=L2=平滑=多重共線性;ElasticNet=兩者混合。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2245,10 +2245,10 @@
       "topic": "ML/Supervised",
       "question_text": "下列哪一項任務「最不屬於」監督式學習(Supervised Learning)?",
       "options": {
-        "A": "依歷史房屋資料預測房價",
-        "B": "依貼上標籤的影像訓練狗種分類器",
-        "C": "對未標註的客戶交易資料做分群,找出消費者類型",
-        "D": "依過去病例預測是否復發"
+        "A": "依歷史房屋資料預測房屋價格",
+        "B": "依貼標籤的影像訓練狗種分類器",
+        "C": "對未標註交易資料做客群分群",
+        "D": "依過去病例預測病患是否復發"
       },
       "correct_answer": "C",
       "source": {
@@ -2258,7 +2258,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** 沒有標籤的分群是 unsupervised(K-Means、DBSCAN)。其他三項皆有明確標籤(房價、狗種、復發)。\n\n**其他選項為何錯:**\n- A. 監督式學習。\n- B. 監督式學習。\n- D. 監督式學習。\n- C. ✓ 正解\n\n**記憶要點:** 有 label = supervised;無 label = unsupervised;部份 label = semi-supervised。",
+      "explanation": "**為什麼 C 是正解:** 沒有標籤的分群是 unsupervised(K-Means、DBSCAN)。其他三項皆有明確標籤(房價、狗種、復發)。\n\n**其他選項為何錯:**\n- A. 屬監督式迴歸。\n- B. 屬監督式分類。\n- C. ✓ 正解\n- D. 屬監督式分類。\n\n**記憶要點:** 有 label = supervised;無 label = unsupervised;部份 label = semi-supervised。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2268,10 +2268,10 @@
       "topic": "ML/Algorithms",
       "question_text": "下列關於 Random Forest(隨機森林)的「隨機」來源,何者「不包括」?",
       "options": {
-        "A": "Bootstrap 樣本(Bagging:每棵樹隨機抽樣資料)",
-        "B": "每次分裂時隨機選一子集特徵作為分裂候選",
-        "C": "隨機改變樣本標籤",
-        "D": "建立大量決策樹"
+        "A": "對訓練樣本做 Bootstrap 抽樣訓練",
+        "B": "於分裂時隨機抽取特徵的子集分裂",
+        "C": "隨機改變樣本所對應的真實類別標籤",
+        "D": "建立大量決策樹組合成隨機森林結構"
       },
       "correct_answer": "C",
       "source": {
@@ -2281,7 +2281,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** RF 不會改標籤;若改標籤就破壞了學習訊號。\n\n**其他選項為何錯:**\n- A. RF 真實設計。\n- B. RF 真實設計。\n- D. RF 真實設計。\n- C. ✓ 正解(不屬於)\n\n**記憶要點:** RF 兩大隨機:Bootstrap(資料)+ 特徵隨機子集(分裂)。",
+      "explanation": "**為什麼 C 是正解:** RF 不會改標籤;若改標籤就破壞了學習訊號。\n\n**其他選項為何錯:**\n- A. RF 真實設計。\n- B. RF 真實設計。\n- C. ✓ 正解(不屬於)\n- D. RF 真實設計。\n\n**記憶要點:** RF 兩大隨機:Bootstrap(資料)+ 特徵隨機子集(分裂)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2291,10 +2291,10 @@
       "topic": "DL/Basics",
       "question_text": "下列關於 Batch Normalization(批次正規化)的敘述,何者最正確?",
       "options": {
-        "A": "對 mini-batch 內每個特徵維度做正規化(零均值、單位變異),再以可學習的 γ、β 縮放偏移,可加速訓練並具輕微正則化效果",
-        "B": "完全取代啟動函數",
-        "C": "只能用於 RNN",
-        "D": "讓網路無法訓練"
+        "A": "每維做正規化加 γβ 縮放,加速訓練",
+        "B": "完全取代啟動函數作為非線性",
+        "C": "限制只能應用於 RNN 序列模型",
+        "D": "插入後會讓網路完全無法訓練"
       },
       "correct_answer": "A",
       "source": {
@@ -2304,7 +2304,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** BN 透過減少 internal covariate shift,可用較大 LR 訓練、加速收斂、提供輕度正則化;γ、β 讓網路保留表達彈性。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n\n**記憶要點:** BN = 每維 normalize + γβ 還原;RNN 通常用 LayerNorm。",
+      "explanation": "**為什麼 A 是正解:** BN 透過減少 internal covariate shift,可用較大 LR 訓練、加速收斂、提供輕度正則化;γ、β 讓網路保留表達彈性。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. BN 不取代啟動函數。\n- C. RNN 通常用 LayerNorm。\n- D. 反而加速收斂。\n\n**記憶要點:** BN = 每維 normalize + γβ 還原;RNN 通常用 LayerNorm。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2314,10 +2314,10 @@
       "topic": "DL/Basics",
       "question_text": "下列哪一個損失函數最適合「二元分類」?",
       "options": {
-        "A": "Mean Squared Error",
-        "B": "Binary Cross-Entropy(Log Loss)",
-        "C": "Hinge Loss(僅適合 SVM)",
-        "D": "KL Divergence 對機率分佈"
+        "A": "Mean Squared Error,以平方誤差作為損失",
+        "B": "Binary Cross-Entropy,搭配 sigmoid 輸出",
+        "C": "Hinge Loss,為最大邊界 SVM 設計的損失",
+        "D": "KL Divergence,衡量兩機率分佈相對距離"
       },
       "correct_answer": "B",
       "source": {
@@ -2327,7 +2327,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 二元分類最常用 BCE = −[y log p + (1−y) log(1−p)],搭配 sigmoid 輸出,梯度形式優美。\n\n**其他選項為何錯:**\n- A. MSE 對分類不合理,梯度也較差。\n- B. ✓ 正解\n- C. Hinge 是 SVM 設計。\n- D. KL 處理分佈,單純二類仍以 BCE 為主。\n\n**記憶要點:** 二類=BCE+Sigmoid;多類=CE+Softmax;迴歸=MSE/MAE。",
+      "explanation": "**為什麼 B 是正解:** 二元分類最常用 BCE = −[y log p + (1−y) log(1−p)],搭配 sigmoid 輸出,梯度形式優美。\n\n**其他選項為何錯:**\n- A. MSE 對分類梯度差。\n- B. ✓ 正解\n- C. Hinge 為 SVM 設計。\n- D. KL 處理分佈,非標準分類損失。\n\n**記憶要點:** 二類=BCE+Sigmoid;多類=CE+Softmax;迴歸=MSE/MAE。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2337,10 +2337,10 @@
       "topic": "Privacy/Compliance",
       "question_text": "下列關於「差分隱私(Differential Privacy, DP)」的敘述,何者最正確?",
       "options": {
-        "A": "DP 通常是在演算法輸出加入精心設計的雜訊(如 Laplace/Gaussian),使單一資料點是否存在難以辨識,提供可量化的隱私保證",
-        "B": "DP 完全不需要任何雜訊",
-        "C": "DP 與隱私無關",
-        "D": "DP 只能用於影像"
+        "A": "於輸出加 noise 提供 ε 量化的保證",
+        "B": "在任何資料與機制下皆完全不需雜訊",
+        "C": "與資料隱私保護完全無關之純技術",
+        "D": "僅能用於影像而不可用於文本資料"
       },
       "correct_answer": "A",
       "source": {
@@ -2350,7 +2350,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** DP 透過 calibrated noise(雜訊規模與 sensitivity / ε 有關)保證單一資料點對輸出影響極小,具有 (ε,δ)-DP 數學保證。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n\n**記憶要點:** DP = ε-差分隱私;經典機制:Laplace、Gaussian、Exponential。",
+      "explanation": "**為什麼 A 是正解:** DP 透過 calibrated noise(雜訊規模與 sensitivity / ε 有關)保證單一資料點對輸出影響極小,具有 (ε,δ)-DP 數學保證。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 雜訊是 DP 核心機制。\n- C. 正是隱私保護方法。\n- D. 適用各種資料型態。\n\n**記憶要點:** DP = ε-差分隱私;經典機制:Laplace、Gaussian、Exponential。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2360,10 +2360,10 @@
       "topic": "Privacy/Compliance",
       "question_text": "下列關於「聯邦學習(Federated Learning, FL)」的敘述,何者最正確?",
       "options": {
-        "A": "FL 將所有原始資料上傳到中央伺服器,再集中訓練",
-        "B": "FL 讓多個 client 在本地訓練,只上傳模型權重/梯度的更新到中央彙整,以降低資料離開源頭的風險",
-        "C": "FL 不需要中央伺服器",
-        "D": "FL 完全消除所有隱私風險"
+        "A": "原始資料統一上傳到中央集中訓練",
+        "B": "本地訓練,只上傳模型更新到中央彙整",
+        "C": "完全不需任何中央伺服器即可運作",
+        "D": "完全消除所有可能的隱私洩漏風險"
       },
       "correct_answer": "B",
       "source": {
@@ -2373,7 +2373,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** FL 把運算搬到資料端,只交換模型更新,降低資料外流;但仍可能透過梯度反推資訊,需結合 DP / secure aggregation。\n\n**其他選項為何錯:**\n- A. 反向。\n- B. ✓ 正解\n- C. 多數 FL 有 central aggregator(或 peer-to-peer)。\n- D. 仍有梯度反推等風險。\n\n**記憶要點:** FL = 資料不動、模型動;常與 DP + Secure Aggregation 組合使用。",
+      "explanation": "**為什麼 B 是正解:** FL 把運算搬到資料端,只交換模型更新,降低資料外流;但仍可能透過梯度反推資訊,需結合 DP / secure aggregation。\n\n**其他選項為何錯:**\n- A. 方向相反。\n- B. ✓ 正解\n- C. 多數 FL 有中央彙整。\n- D. 仍有梯度反推等風險。\n\n**記憶要點:** FL = 資料不動、模型動;常與 DP + Secure Aggregation 組合使用。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2383,10 +2383,10 @@
       "topic": "Bias/Fairness",
       "question_text": "下列關於「人口統計平等(Demographic Parity)」這項公平性指標,何者最正確?",
       "options": {
-        "A": "要求模型對不同人口群體的「正預測比例」相同",
-        "B": "要求所有人都是同一類",
-        "C": "與公平性無關",
-        "D": "只適用於影像分類"
+        "A": "各群體被「預測為正」的比例相同",
+        "B": "所有個體在預測時被歸為同一類別",
+        "C": "此指標與公平性議題完全沒有關聯",
+        "D": "此指標僅適用於影像分類的任務"
       },
       "correct_answer": "A",
       "source": {
@@ -2396,7 +2396,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Demographic Parity 要求各群體被「預測為正」的比例相同,不考慮真實標籤。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 三大公平準則:Demographic Parity、Equalized Odds、Predictive Parity;三者通常不可能同時滿足(不可能定理)。",
+      "explanation": "**為什麼 A 是正解:** Demographic Parity 要求各群體被「預測為正」的比例相同,不考慮真實標籤。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 並非要求歸同類。\n- C. 是公平性核心指標。\n- D. 適用任意分類任務。\n\n**記憶要點:** 三大公平準則:Demographic Parity、Equalized Odds、Predictive Parity;三者通常不可能同時滿足(不可能定理)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2406,10 +2406,10 @@
       "topic": "Bias/Fairness",
       "question_text": "下列哪一項「最可能」是 ML 模型偏見(Bias)的「資料層」來源?",
       "options": {
-        "A": "訓練資料中某弱勢族群代表性嚴重不足(under-representation)",
-        "B": "GPU 廠牌不同",
-        "C": "螢幕亮度設定",
-        "D": "辦公室溫度"
+        "A": "弱勢族群在訓練資料中代表性嚴重不足",
+        "B": "訓練機房使用的 GPU 廠牌不一致",
+        "C": "團隊成員使用螢幕亮度設定不一",
+        "D": "訓練伺服器辦公室室內溫度過高"
       },
       "correct_answer": "A",
       "source": {
@@ -2419,7 +2419,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 弱勢族群代表性不足 → 模型對其學得不夠 → 預測偏差。經典案例:Joy Buolamwini 顯示商用人臉辨識對深膚色女性錯誤率高。\n\n**其他選項為何錯:**\n- B. 與資料偏見無關。\n- C. 與資料偏見無關。\n- D. 與資料偏見無關。\n- A. ✓ 正解\n\n**記憶要點:** Bias 來源:資料(代表性、標註)、演算法(目標、特徵)、部署(回饋迴路)。",
+      "explanation": "**為什麼 A 是正解:** 弱勢族群代表性不足 → 模型對其學得不夠 → 預測偏差。經典案例:Joy Buolamwini 顯示商用人臉辨識對深膚色女性錯誤率高。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 與資料偏見無關。\n- C. 與資料偏見無關。\n- D. 與資料偏見無關。\n\n**記憶要點:** Bias 來源:資料(代表性、標註)、演算法(目標、特徵)、部署(回饋迴路)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2429,10 +2429,10 @@
       "topic": "Modeling/Selection",
       "question_text": "下列何者「最不適合」用於「線性可分(Linearly Separable)」的二類分類問題作為起手式?",
       "options": {
-        "A": "邏輯迴歸(Logistic Regression)",
-        "B": "線性 SVM",
-        "C": "簡單的 Perceptron",
-        "D": "12 層的深度卷積網路 + 大量資料增強"
+        "A": "Logistic Regression 線性分類器",
+        "B": "Linear SVM 以最大邊界做分類",
+        "C": "Perceptron 以權重更新做分類",
+        "D": "12 層 CNN 加大量資料增強分類"
       },
       "correct_answer": "D",
       "source": {
@@ -2442,7 +2442,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 D 是正解:** 線性可分問題用線性模型即可達到完美分類,投入大型深度網路屬過度工程,且更易過擬合、難解釋。\n\n**其他選項為何錯:**\n- A. 都是線性可分問題的合適模型。\n- B. 都是線性可分問題的合適模型。\n- C. 都是線性可分問題的合適模型。\n- D. ✓ 正解(殺雞用牛刀)\n\n**記憶要點:** Occam's razor:簡單模型優先;線性可分問題用線性模型。",
+      "explanation": "**為什麼 D 是正解:** 線性可分問題用線性模型即可達到完美分類,投入大型深度網路屬過度工程,且更易過擬合、難解釋。\n\n**其他選項為何錯:**\n- A. 適合線性可分。\n- B. 適合線性可分。\n- C. 適合線性可分。\n- D. ✓ 正解(殺雞用牛刀)\n\n**記憶要點:** Occam's razor:簡單模型優先;線性可分問題用線性模型。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2452,10 +2452,10 @@
       "topic": "Eval/Metrics",
       "question_text": "在「多類別分類(Multi-class Classification)」中,以下哪一種「macro 平均」與「micro 平均」F1 的差別敘述最正確?",
       "options": {
-        "A": "Macro F1 對每類獨立計算 F1 再平均,等權重對待每類;Micro F1 把全部 TP/FP/FN 加總後算 F1,對大類別更敏感",
-        "B": "兩者完全相同",
-        "C": "Macro F1 一定大於 Micro F1",
-        "D": "Micro F1 只考慮最少的那一類"
+        "A": "Macro F1 對每類等權,Micro F1 大類主導",
+        "B": "Macro F1 與 Micro F1 計算邏輯完全相同",
+        "C": "Macro F1 於所有資料上皆大於 Micro F1",
+        "D": "Micro F1 只計算樣本數最少類別的表現"
       },
       "correct_answer": "A",
       "source": {
@@ -2465,7 +2465,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Macro 平等對待每類別,小類別也有發言權;Micro 把所有預測一起算,大類別主導結果。Weighted 是按樣本數加權。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 不平衡多類別評估:Macro 看公平、Micro 看整體、Weighted 按比例。",
+      "explanation": "**為什麼 A 是正解:** Macro 平等對待每類別,小類別也有發言權;Micro 把所有預測一起算,大類別主導結果。Weighted 是按樣本數加權。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩者並不相同。\n- C. 無此單調關係。\n- D. Micro 是全部彙總。\n\n**記憶要點:** 不平衡多類別評估:Macro 看公平、Micro 看整體、Weighted 按比例。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2475,10 +2475,10 @@
       "topic": "ML/Imbalanced",
       "question_text": "處理嚴重類別不平衡(例:詐欺交易 1%)的分類問題時,下列哪一項做法「最直接」針對問題本身,而非僅事後評估?",
       "options": {
-        "A": "只盲目提高 Accuracy 為訓練目標",
-        "B": "對少數類別做 over-sampling(如 SMOTE)、對多數類別做 under-sampling,或在損失函數中加入 class_weight",
-        "C": "把所有樣本都標成多數類",
-        "D": "直接放棄訓練"
+        "A": "Accuracy 為唯一訓練目標,單純最大化準確率",
+        "B": "對少數類做 Resampling 或加 class_weight 加權",
+        "C": "Majority Label,把所有樣本一律標為多數類別",
+        "D": "No Action,放棄訓練此模型且不採任何處理法"
       },
       "correct_answer": "B",
       "source": {
@@ -2488,7 +2488,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 直接從資料/損失層面處理:Oversampling 增加少數類別代表性、Undersampling 減少多數類別、class_weight 對少數類加重損失。\n\n**其他選項為何錯:**\n- A. Accuracy 在不平衡時嚴重誤導。\n- B. ✓ 正解\n- C. 反例。\n- D. 反例。\n\n**記憶要點:** 不平衡三招:Resampling(SMOTE/RUS)、Class weight、Threshold tuning。",
+      "explanation": "**為什麼 B 是正解:** 直接從資料/損失層面處理:Oversampling 增加少數類別代表性、Undersampling 減少多數類別、class_weight 對少數類加重損失。\n\n**其他選項為何錯:**\n- A. Accuracy 在不平衡時誤導。\n- B. ✓ 正解\n- C. 反例,違背任務目標。\n- D. 非可行策略。\n\n**記憶要點:** 不平衡三招:Resampling(SMOTE/RUS)、Class weight、Threshold tuning。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2498,10 +2498,10 @@
       "topic": "ML/Imbalanced",
       "question_text": "下列關於 SMOTE(Synthetic Minority Over-sampling Technique)的敘述,何者最正確?",
       "options": {
-        "A": "SMOTE 從原資料隨機複製少數類別樣本",
-        "B": "SMOTE 在少數類別樣本與其 K 近鄰之間進行線性插值合成新樣本,以擴增少數類別",
-        "C": "SMOTE 只能用於迴歸問題",
-        "D": "SMOTE 會刪除多數類別樣本"
+        "A": "對原少數類樣本直接做隨機複製",
+        "B": "在少數類與其 K 近鄰間線性插值",
+        "C": "僅限用於迴歸不能用於分類",
+        "D": "刪除多數類樣本以平衡資料"
       },
       "correct_answer": "B",
       "source": {
@@ -2511,7 +2511,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** SMOTE 不是複製,而是在「少數樣本與 K 近鄰」之間取 random α∈[0,1] 線性插值,擴大少數類別決策邊界。\n\n**其他選項為何錯:**\n- A. 複製是 ROS,不是 SMOTE。\n- B. ✓ 正解\n- C. 用於分類。\n- D. 不刪多數樣本(那是 RUS)。\n\n**記憶要點:** SMOTE = K 近鄰線性插值合成;ADASYN 是 SMOTE 改良強調困難區。",
+      "explanation": "**為什麼 B 是正解:** SMOTE 不是複製,而是在「少數樣本與 K 近鄰」之間取 random α∈[0,1] 線性插值,擴大少數類別決策邊界。\n\n**其他選項為何錯:**\n- A. 複製是 ROS,不是 SMOTE。\n- B. ✓ 正解\n- C. SMOTE 用於分類。\n- D. 刪多數是 RUS。\n\n**記憶要點:** SMOTE = K 近鄰線性插值合成;ADASYN 是 SMOTE 改良強調困難區。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2521,10 +2521,10 @@
       "topic": "ML/Imbalanced",
       "question_text": "在嚴重不平衡的二類分類中,模型輸出機率後,「閾值調整(Threshold Tuning)」的主要動機為何?",
       "options": {
-        "A": "想要更慢的訓練速度",
-        "B": "預設 0.5 對不平衡並非最佳;依業務需要(高 Recall 或高 Precision)選擇不同閾值,在 PR/ROC 曲線上找最佳工作點",
-        "C": "閾值與業務指標無關",
-        "D": "閾值愈高愈好"
+        "A": "希望故意降低模型訓練的整體速度",
+        "B": "預設 0.5 非最佳,依業務需求挑工作點",
+        "C": "閾值選擇與業務成本完全無相關性",
+        "D": "閾值設得越接近 1.0 結果一律越好"
       },
       "correct_answer": "B",
       "source": {
@@ -2534,7 +2534,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 對醫療(漏診代價高)應拉低閾值換 Recall;對冷郵件(誤判代價高)拉高閾值換 Precision。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** 閾值 = Recall ↔ Precision 的拉桿;依業務代價選擇工作點。",
+      "explanation": "**為什麼 B 是正解:** 對醫療(漏診代價高)應拉低閾值換 Recall;對冷郵件(誤判代價高)拉高閾值換 Precision。\n\n**其他選項為何錯:**\n- A. 與訓練速度無關。\n- B. ✓ 正解\n- C. 業務成本是核心考量。\n- D. 並非單調最佳。\n\n**記憶要點:** 閾值 = Recall ↔ Precision 的拉桿;依業務代價選擇工作點。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2544,10 +2544,10 @@
       "topic": "ML/Imbalanced",
       "question_text": "Focal Loss(Lin et al., 2017)解決物件偵測等「極度不平衡」場景時,其數學形式 FL = -(1-p)^γ · log(p) 中的 γ 主要功用為何?",
       "options": {
-        "A": "讓所有樣本權重相同",
-        "B": "downweight 易分類樣本(p 大時 (1-p)^γ 小),迫使模型聚焦難分類樣本",
-        "C": "增加正則化",
-        "D": "把分類變迴歸"
+        "A": "讓所有易例與難例的損失權重相同",
+        "B": "壓低易例損失,迫使聚焦難分類樣本",
+        "C": "扮演 L2 正則化項抑制過擬合",
+        "D": "將分類問題改造成迴歸問題"
       },
       "correct_answer": "B",
       "source": {
@@ -2557,7 +2557,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** γ>0 時,易例(p→1)的損失被壓很低、難例的損失保留,讓梯度集中在尚未學好的樣本。\n\n**其他選項為何錯:**\n- A. 反向。\n- B. ✓ 正解\n- C. 不是正則化。\n- D. 仍是分類損失。\n\n**記憶要點:** Focal Loss = CE × (1-p)^γ;γ 越大,越懶得理會已分對的樣本。",
+      "explanation": "**為什麼 B 是正解:** γ>0 時,易例(p→1)的損失被壓很低、難例的損失保留,讓梯度集中在尚未學好的樣本。\n\n**其他選項為何錯:**\n- A. 反向,刻意不等權。\n- B. ✓ 正解\n- C. 不是正則化機制。\n- D. 仍是分類損失。\n\n**記憶要點:** Focal Loss = CE × (1-p)^γ;γ 越大,越懶得理會已分對的樣本。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2567,10 +2567,10 @@
       "topic": "ML/Anomaly",
       "question_text": "Isolation Forest 異常偵測演算法的核心想法為何?",
       "options": {
-        "A": "異常點容易被「隨機切分」用較少次分裂就孤立出來,因此用「分裂路徑長度短」識別異常",
-        "B": "異常點分裂路徑必然長",
-        "C": "把所有資料當成異常",
-        "D": "用標籤監督異常"
+        "A": "異常點以較少隨機分裂即被孤立",
+        "B": "異常點的分裂路徑長度必然較長",
+        "C": "將整批訓練資料全部標為異常",
+        "D": "需要異常標籤做監督式訓練"
       },
       "correct_answer": "A",
       "source": {
@@ -2580,7 +2580,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** iForest 不算距離/密度,而是看「隨機切資料」時樣本多快被孤立,離群點通常很快(路徑短)。\n\n**其他選項為何錯:**\n- B. 反向。\n- C. 錯誤,iForest 是非監督的。\n- D. 錯誤,iForest 是非監督的。\n- A. ✓ 正解\n\n**記憶要點:** iForest = 隨機切+路徑短=異常;高效、大資料友善。",
+      "explanation": "**為什麼 A 是正解:** iForest 不算距離/密度,而是看「隨機切資料」時樣本多快被孤立,離群點通常很快(路徑短)。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 路徑短才是異常。\n- C. 與演算法目標不符。\n- D. iForest 是非監督。\n\n**記憶要點:** iForest = 隨機切+路徑短=異常;高效、大資料友善。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2590,10 +2590,10 @@
       "topic": "ML/Anomaly",
       "question_text": "用 Autoencoder 做「重建式異常偵測(Reconstruction-based Anomaly Detection)」的原理為何?",
       "options": {
-        "A": "若資料分佈與訓練分佈相近,重建誤差小;若為異常,重建誤差大,可作為異常分數",
-        "B": "Autoencoder 完全無法用來做異常偵測",
-        "C": "重建誤差永遠為 0",
-        "D": "需要手動標註異常"
+        "A": "重建誤差大者為異常,小者為常態樣本資料",
+        "B": "Autoencoder 不可用於異常偵測之任務",
+        "C": "正常資料的重建誤差於訓練後恆等於零",
+        "D": "需要有人工異常標註的監督式之訓練資料"
       },
       "correct_answer": "A",
       "source": {
@@ -2603,7 +2603,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** AE 學會壓縮+重建常態樣本,異常輸入因不在學過的流形上而重建誤差較大,以閾值切分異常。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** AE 異常偵測 = 重建誤差 > 閾值 → 異常;非監督。",
+      "explanation": "**為什麼 A 是正解:** AE 學會壓縮+重建常態樣本,異常輸入因不在學過的流形上而重建誤差較大,以閾值切分異常。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 是經典 AE 應用。\n- C. 通常有殘餘誤差。\n- D. 屬非監督學習。\n\n**記憶要點:** AE 異常偵測 = 重建誤差 > 閾值 → 異常;非監督。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2613,10 +2613,10 @@
       "topic": "ML/Anomaly",
       "question_text": "One-Class SVM 用於異常偵測時的核心策略為何?",
       "options": {
-        "A": "在特徵空間中學一個包覆「正常樣本」的最小超球/超平面,落於其外者視為異常",
-        "B": "需要同等數量的正常與異常樣本",
-        "C": "本質上只能做二類監督",
-        "D": "輸出總是 0"
+        "A": "學包覆正常樣本的邊界,外者為異常",
+        "B": "必須有等量正常與異常樣本訓練",
+        "C": "本質上只能做監督式二類分類",
+        "D": "對任何輸入皆輸出固定的 0 值"
       },
       "correct_answer": "A",
       "source": {
@@ -2626,7 +2626,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** OC-SVM 只用「正常樣本」學決策邊界(經 kernel 投影到 RKHS),outside = 異常,屬非監督/半監督。\n\n**其他選項為何錯:**\n- B. 不需異常標籤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** OC-SVM = 學「常態包絡」、區分內/外。",
+      "explanation": "**為什麼 A 是正解:** OC-SVM 只用「正常樣本」學決策邊界(經 kernel 投影到 RKHS),outside = 異常,屬非監督/半監督。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 不需異常標籤。\n- C. 非監督應用。\n- D. 並非固定輸出。\n\n**記憶要點:** OC-SVM = 學「常態包絡」、區分內/外。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2636,10 +2636,10 @@
       "topic": "DL/Transfer",
       "question_text": "下列關於「遷移學習(Transfer Learning)」的敘述,何者最正確?",
       "options": {
-        "A": "需要從零開始訓練模型",
-        "B": "先在大規模資料上預訓練(如 ImageNet/通用語料),再針對下游小資料任務微調,常能在資源有限時顯著提升表現",
-        "C": "預訓練模型永遠不可微調",
-        "D": "與大規模資料無關"
+        "A": "對每個下游任務皆從零開始隨機訓練",
+        "B": "先在大資料預訓練,下游小資料微調",
+        "C": "預訓練模型完成後永遠不可再微調",
+        "D": "完全不需要任何大規模語料或資料"
       },
       "correct_answer": "B",
       "source": {
@@ -2649,7 +2649,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Transfer learning 借用大資料學到的通用特徵,小資料任務只需微調 = 更快收斂、更好泛化。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Transfer = Pretrain(大) + Fine-tune(小);ImageNet/BERT/GPT 都是經典基底。",
+      "explanation": "**為什麼 B 是正解:** Transfer learning 借用大資料學到的通用特徵,小資料任務只需微調 = 更快收斂、更好泛化。\n\n**其他選項為何錯:**\n- A. 與遷移學習相反。\n- B. ✓ 正解\n- C. 微調是常態做法。\n- D. 大規模預訓練是前提。\n\n**記憶要點:** Transfer = Pretrain(大) + Fine-tune(小);ImageNet/BERT/GPT 都是經典基底。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2659,10 +2659,10 @@
       "topic": "DL/Transfer",
       "question_text": "進行遷移學習時,「凍結(Freezing)前幾層 + 只訓練後幾層」策略最適合下列哪一種情境?",
       "options": {
-        "A": "下游資料極多,且分佈與預訓練資料差異很大",
-        "B": "下游資料少,且分佈與預訓練資料相近(底層特徵可重用)",
-        "C": "完全沒有預訓練模型可用",
-        "D": "沒有 GPU"
+        "A": "下游資料極多且分佈與來源差距大",
+        "B": "下游資料少且分佈與來源差距小",
+        "C": "完全沒有可用的預訓練權重檔",
+        "D": "缺乏 GPU 等硬體加速資源"
       },
       "correct_answer": "B",
       "source": {
@@ -2672,7 +2672,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** 底層常是邊緣/紋理等通用特徵可重用;資料少時不要訓太多參數避免過擬合。\n\n**其他選項為何錯:**\n- A. 資料多 + 分佈差大 → 全量 fine-tune 較適合。\n- C. 與凍結無關。\n- D. 與凍結無關。\n- B. ✓ 正解\n\n**記憶要點:** 資料少+像 → freeze 底層 + tune 頂層;資料多+不像 → 全量微調或重訓。",
+      "explanation": "**為什麼 B 是正解:** 底層常是邊緣/紋理等通用特徵可重用;資料少時不要訓太多參數避免過擬合。\n\n**其他選項為何錯:**\n- A. 應全量 fine-tune。\n- B. ✓ 正解\n- C. 凍結需有預訓練。\n- D. 與凍結策略無關。\n\n**記憶要點:** 資料少+像 → freeze 底層 + tune 頂層;資料多+不像 → 全量微調或重訓。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2682,10 +2682,10 @@
       "topic": "DL/Regularization",
       "question_text": "Dropout 在訓練與推論期的行為差異為何?",
       "options": {
-        "A": "訓練期隨機丟棄神經元、推論期保留所有神經元並做相應縮放(inverted dropout)",
-        "B": "訓練期不丟、推論期才丟",
-        "C": "兩階段行為相同",
-        "D": "Dropout 是訓練資料增強"
+        "A": "訓練隨機丟神經元,推論用全部並縮放",
+        "B": "訓練時不丟,僅於推論期才丟神經元",
+        "C": "訓練與推論行為與機率完全相同",
+        "D": "Dropout 屬於訓練資料增強方法"
       },
       "correct_answer": "A",
       "source": {
@@ -2695,7 +2695,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Train 時隨機丟、Inference 時全用(現代實作多用 inverted dropout 在訓練時除以 (1-p) 自動補償)。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n\n**記憶要點:** Dropout train↔eval 不同;PyTorch 用 model.train() / model.eval() 切換。",
+      "explanation": "**為什麼 A 是正解:** Train 時隨機丟、Inference 時全用(現代實作多用 inverted dropout 在訓練時除以 (1-p) 自動補償)。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 階段顛倒。\n- C. 兩階段不同。\n- D. 屬模型結構正則化。\n\n**記憶要點:** Dropout train↔eval 不同;PyTorch 用 model.train() / model.eval() 切換。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2705,10 +2705,10 @@
       "topic": "DL/Regularization",
       "question_text": "下列何者為「Early Stopping」防止過擬合的核心做法?",
       "options": {
-        "A": "在訓練前就終止訓練",
-        "B": "在每個 epoch 監看驗證損失,當其連續幾個 epoch 未改善即停止訓練,保留驗證最佳權重",
-        "C": "永遠不停止",
-        "D": "隨機刪除權重"
+        "A": "在訓練開始之前就直接終止整個訓練",
+        "B": "監看驗證損失若連續未改善即停訓",
+        "C": "永遠不允許訓練流程在任何時刻停止",
+        "D": "在訓練過程中隨機刪除模型權重"
       },
       "correct_answer": "B",
       "source": {
@@ -2718,7 +2718,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Early Stopping 用驗證集監看,過了「patience」未改善即停;隱含的 regularization 是「限制有效訓練步數」。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Early Stopping = Validation loss + patience + restore_best_weights。",
+      "explanation": "**為什麼 B 是正解:** Early Stopping 用驗證集監看,過了「patience」未改善即停;隱含的 regularization 是「限制有效訓練步數」。\n\n**其他選項為何錯:**\n- A. 無法學到任何東西。\n- B. ✓ 正解\n- C. 與目標相反。\n- D. 不是 Early Stopping。\n\n**記憶要點:** Early Stopping = Validation loss + patience + restore_best_weights。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2728,10 +2728,10 @@
       "topic": "DL/Regularization",
       "question_text": "下列關於「Weight Decay(權重衰減)」與「L2 正則化」的關係,何者最正確?",
       "options": {
-        "A": "在 SGD 設定下,Weight Decay ≈ L2 正則化;但在 Adam 等自適應優化器下兩者並不等價(故有 AdamW)",
-        "B": "兩者完全相同,沒有任何差別",
-        "C": "Weight Decay 只能用於 CNN",
-        "D": "L2 正則化會把所有權重變為 0"
+        "A": "在 SGD 下兩者等價,而在 Adam 下兩者不等價",
+        "B": "在任何優化器下兩者皆完全等價而毫無差別",
+        "C": "Weight Decay 僅能用於 CNN 卷積架構",
+        "D": "L2 正則化會把所有權重精確歸為零之值"
       },
       "correct_answer": "A",
       "source": {
@@ -2741,7 +2741,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** SGD 下兩者等價;Adam 下因每參數調整學習率,把 L2 加在 loss 與直接 decay 權重結果不同 → AdamW 解此問題。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** AdamW = Adam + Decoupled WD,Transformer 訓練常用。",
+      "explanation": "**為什麼 A 是正解:** SGD 下兩者等價;Adam 下因每參數調整學習率,把 L2 加在 loss 與直接 decay 權重結果不同 → AdamW 解此問題。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 在 Adam 下並不等價。\n- C. 適用於任意架構。\n- D. 只是縮小不是歸零。\n\n**記憶要點:** AdamW = Adam + Decoupled WD,Transformer 訓練常用。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2751,10 +2751,10 @@
       "topic": "DL/Regularization",
       "question_text": "Batch Normalization 為何「兼具一定的正則化效果」?",
       "options": {
-        "A": "因為 mini-batch 統計量帶有雜訊,等同對訓練輸入引入隨機性",
-        "B": "因為 BN 完全去除損失",
-        "C": "因為 BN 完全等價於 Dropout",
-        "D": "因為 BN 必須與 L1 配合"
+        "A": "mini-batch 統計量帶雜訊,起隨機正則作用",
+        "B": "BN 將整個損失函數從訓練流程中移除掉",
+        "C": "BN 與 Dropout 在數學上完全等價同源",
+        "D": "BN 必須搭配 L1 正則化才能正常運作"
       },
       "correct_answer": "A",
       "source": {
@@ -2764,7 +2764,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** mini-batch 算的均值/變異是估計值,有 noise;這種雜訊作用類似 Dropout,提供輕度正則化。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** BN 副作用:加速收斂 + 輕度 regularization。",
+      "explanation": "**為什麼 A 是正解:** mini-batch 算的均值/變異是估計值,有 noise;這種雜訊作用類似 Dropout,提供輕度正則化。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. BN 不去除損失。\n- C. 兩者機制不同。\n- D. BN 可獨立使用。\n\n**記憶要點:** BN 副作用:加速收斂 + 輕度 regularization。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2774,10 +2774,10 @@
       "topic": "DL/SelfSupervised",
       "question_text": "下列關於自監督學習(Self-Supervised Learning, SSL)的敘述,何者最正確?",
       "options": {
-        "A": "完全需要人工標籤",
-        "B": "用資料本身產生監督訊號(pretext task,如預測遮罩、對比、旋轉、下一句),不需人工標註",
-        "C": "只是強化學習的別名",
-        "D": "比監督學習更需要標籤"
+        "A": "每個訓練樣本仍須要有人工標註的真實標籤",
+        "B": "用 pretext task 由資料自行產生監督訊號",
+        "C": "本質上即是強化學習方法的另一個別稱罷了",
+        "D": "需要的人工標籤資料量比監督學習更多更繁"
       },
       "correct_answer": "B",
       "source": {
@@ -2787,7 +2787,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** SSL 用資料自帶結構造 task(MLM、SimCLR、MAE、CPC、BYOL),學通用表徵,常作為 pretraining。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** SSL = 不標也能學;BERT/MAE/SimCLR 皆是經典例子。",
+      "explanation": "**為什麼 B 是正解:** SSL 用資料自帶結構造 task(MLM、SimCLR、MAE、CPC、BYOL),學通用表徵,常作為 pretraining。\n\n**其他選項為何錯:**\n- A. SSL 不需人工標籤。\n- B. ✓ 正解\n- C. 不屬於強化學習。\n- D. 反向,需求更低。\n\n**記憶要點:** SSL = 不標也能學;BERT/MAE/SimCLR 皆是經典例子。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2797,10 +2797,10 @@
       "topic": "DL/SelfSupervised",
       "question_text": "對比學習(Contrastive Learning,如 SimCLR、MoCo)的核心想法為何?",
       "options": {
-        "A": "把正例(同一資料的不同 augmentation)拉近,把負例(其他資料)推開,於 embedding 空間中分佈良好",
-        "B": "把所有樣本拉到同一點",
-        "C": "把所有樣本散到隨機位置",
-        "D": "與資料增強無關"
+        "A": "正例拉近、負例推遠以分佈良好",
+        "B": "把所有樣本嵌入到同一點上",
+        "C": "把所有樣本嵌入隨機隨機位置",
+        "D": "完全不需要任何資料增強"
       },
       "correct_answer": "A",
       "source": {
@@ -2810,7 +2810,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** SimCLR/MoCo 都採對比目標,key 是「同個 anchor 不同視角為正例,batch 內其他為負例」。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Contrastive Learning = 正例近 + 負例遠;Augmentation 是產生正例的關鍵。",
+      "explanation": "**為什麼 A 是正解:** SimCLR/MoCo 都採對比目標,key 是「同個 anchor 不同視角為正例,batch 內其他為負例」。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 違背可區分性。\n- C. 違背可區分性。\n- D. 增強是產生正例的關鍵。\n\n**記憶要點:** Contrastive Learning = 正例近 + 負例遠;Augmentation 是產生正例的關鍵。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2820,10 +2820,10 @@
       "topic": "Training/Calibration",
       "question_text": "「模型校準(Model Calibration)」要解決什麼問題?",
       "options": {
-        "A": "讓模型參數變多",
-        "B": "讓模型輸出的「機率值」與「真實正例比例」一致(如 0.8 信心 → 大約 80% 為真)",
-        "C": "讓模型推論更慢",
-        "D": "把模型權重變為 0"
+        "A": "讓模型參數量盡可能變多",
+        "B": "讓預測機率與實際正例比例一致",
+        "C": "讓模型推論速度故意變慢",
+        "D": "將模型權重一律強制歸零"
       },
       "correct_answer": "B",
       "source": {
@@ -2833,7 +2833,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** Calibration 是「機率可信度」問題,深度模型常過度自信,需 Platt(logistic)、Isotonic、Temperature Scaling 校正。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Calibration:Platt、Isotonic、Temperature Scaling;ECE/MCE 是常用指標。",
+      "explanation": "**為什麼 B 是正解:** Calibration 是「機率可信度」問題,深度模型常過度自信,需 Platt(logistic)、Isotonic、Temperature Scaling 校正。\n\n**其他選項為何錯:**\n- A. 與校準目標無關。\n- B. ✓ 正解\n- C. 與校準目標無關。\n- D. 與校準目標無關。\n\n**記憶要點:** Calibration:Platt、Isotonic、Temperature Scaling;ECE/MCE 是常用指標。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2843,10 +2843,10 @@
       "topic": "Training/Calibration",
       "question_text": "Expected Calibration Error(ECE)的計算方式為何?",
       "options": {
-        "A": "把所有預測機率簡單平均",
-        "B": "將預測機率分桶,對每桶計算「平均信心」與「實際正確率」的差,再以樣本數加權平均",
-        "C": "把錯誤預測數除以總樣本數",
-        "D": "與機率無關"
+        "A": "把所有預測機率值簡單地取平均",
+        "B": "分桶計算信心與準確率差,以樣本加權",
+        "C": "用錯誤預測數直接除以總樣本數",
+        "D": "與預測機率值完全沒有任何關係"
       },
       "correct_answer": "B",
       "source": {
@@ -2856,7 +2856,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** ECE 量化「信心 vs 實際準確率」差距,經典實作分 10-20 桶。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** ECE = Σ (|conf − acc| × n_bin / n_total);越小越校準。",
+      "explanation": "**為什麼 B 是正解:** ECE 量化「信心 vs 實際準確率」差距,經典實作分 10-20 桶。\n\n**其他選項為何錯:**\n- A. 不是 ECE 的定義。\n- B. ✓ 正解\n- C. 那是錯誤率。\n- D. ECE 以機率為基礎。\n\n**記憶要點:** ECE = Σ (|conf − acc| × n_bin / n_total);越小越校準。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2866,10 +2866,10 @@
       "topic": "Training/Tuning",
       "question_text": "「Learning Rate Range Test(LR Finder)」的主要用途為何?",
       "options": {
-        "A": "找最大可行的學習率(不發散)上界,作為 schedule 的 peak LR",
-        "B": "找最小可行的學習率",
-        "C": "替換 Adam 優化器",
-        "D": "完全消除學習率"
+        "A": "找出尚未發散的最大可行學習率上界",
+        "B": "找出讓 loss 微幅下降的最小可行學習率",
+        "C": "用以完全替換 Adam 等優化器演算法",
+        "D": "把學習率完全從訓練流程中移除掉"
       },
       "correct_answer": "A",
       "source": {
@@ -2879,7 +2879,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** LR Finder 從小到大線性掃 LR,記錄 loss → 損失下降最快、即將發散前的 LR 就是 peak LR 建議值。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** LR Finder = Range test;fastai 內建 lr_find()。",
+      "explanation": "**為什麼 A 是正解:** LR Finder 從小到大線性掃 LR,記錄 loss → 損失下降最快、即將發散前的 LR 就是 peak LR 建議值。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 通常找上界。\n- C. 非優化器替代品。\n- D. 仍需學習率。\n\n**記憶要點:** LR Finder = Range test;fastai 內建 lr_find()。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2889,10 +2889,10 @@
       "topic": "Training/Tuning",
       "question_text": "「Warm Restart(暖重啟)」學習率排程的主要好處為何?",
       "options": {
-        "A": "讓 LR 永遠保持不變",
-        "B": "在 cosine schedule 中週期性把 LR 重設回較高值,有助跳出局部最小並探索更廣權重空間",
-        "C": "停止訓練",
-        "D": "把模型重設為 0"
+        "A": "讓學習率永遠保持單一常數不變",
+        "B": "週期性把 LR 重設回高值再衰減",
+        "C": "完全停止整個訓練過程不再更新",
+        "D": "把模型權重一次重設回隨機初值"
       },
       "correct_answer": "B",
       "source": {
@@ -2902,7 +2902,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** SGDR 用 cosine annealing + 多次 restart,每次 restart LR 拉回 peak,然後 cosine 降,讓優化器多次探索。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** SGDR = Cosine + Warm Restart;對深度模型常見有效。",
+      "explanation": "**為什麼 B 是正解:** SGDR 用 cosine annealing + 多次 restart,每次 restart LR 拉回 peak,然後 cosine 降,讓優化器多次探索。\n\n**其他選項為何錯:**\n- A. 與排程目的相反。\n- B. ✓ 正解\n- C. 不是停止訓練。\n- D. 不重設權重。\n\n**記憶要點:** SGDR = Cosine + Warm Restart;對深度模型常見有效。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2912,10 +2912,10 @@
       "topic": "Eval/Metrics",
       "question_text": "ROC 曲線的 X 軸與 Y 軸分別代表什麼?",
       "options": {
-        "A": "X: FPR(False Positive Rate);Y: TPR(True Positive Rate / Recall)",
-        "B": "X: Precision;Y: Recall",
-        "C": "X: F1;Y: Accuracy",
-        "D": "X: 樣本編號;Y: 損失"
+        "A": "X 軸是 FPR,Y 軸是 TPR 即 Recall",
+        "B": "X 軸是 Precision,Y 軸是 Recall",
+        "C": "X 軸是 F1 分數,Y 軸是 Accuracy",
+        "D": "X 軸是樣本編號,Y 軸是訓練 Loss"
       },
       "correct_answer": "A",
       "source": {
@@ -2925,7 +2925,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** ROC = (FPR, TPR);PR 曲線才是 (Recall, Precision)。\n\n**其他選項為何錯:**\n- B. PR 曲線。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** ROC:X=FPR、Y=TPR;PR:X=Recall、Y=Precision。",
+      "explanation": "**為什麼 A 是正解:** ROC = (FPR, TPR);PR 曲線才是 (Recall, Precision)。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 那是 PR 曲線。\n- C. 不是曲線軸定義。\n- D. 與 ROC 完全無關。\n\n**記憶要點:** ROC:X=FPR、Y=TPR;PR:X=Recall、Y=Precision。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2935,10 +2935,10 @@
       "topic": "Eval/Metrics",
       "question_text": "「混淆矩陣(Confusion Matrix)」對「多類分類」的延伸,正確敘述為何?",
       "options": {
-        "A": "只能用於二類問題,多類無法表示",
-        "B": "K×K 矩陣,row 為真實類別,column 為預測類別,對角線是 TP,可推 per-class precision/recall/F1",
-        "C": "對角線是錯誤分類",
-        "D": "只有總體 accuracy,沒有細節"
+        "A": "僅限於二類問題,多類完全無法以單一矩陣呈現之",
+        "B": "K×K 矩陣,對角為 TP,可推 per-class 指標",
+        "C": "對角線上的元素代表的是被分類錯誤的樣本群數",
+        "D": "整體只能提供 accuracy 而看不到任何細節指標"
       },
       "correct_answer": "B",
       "source": {
@@ -2948,7 +2948,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** K×K 矩陣,對角為 TP,off-diagonal 揭示哪些類常被混淆;per-class precision/recall/F1 由此可計算。\n\n**其他選項為何錯:**\n- A. 多類可用。\n- B. ✓ 正解\n- C. 錯誤。\n- D. 錯誤。\n\n**記憶要點:** Confusion matrix = 多類診斷神器,看「誰被混成誰」。",
+      "explanation": "**為什麼 B 是正解:** K×K 矩陣,對角為 TP,off-diagonal 揭示哪些類常被混淆;per-class precision/recall/F1 由此可計算。\n\n**其他選項為何錯:**\n- A. 多類可用。\n- B. ✓ 正解\n- C. 對角為正確分類。\n- D. 可推出細節指標。\n\n**記憶要點:** Confusion matrix = 多類診斷神器,看「誰被混成誰」。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2958,10 +2958,10 @@
       "topic": "Math/Statistics",
       "question_text": "「相關性不等於因果」最重要的提醒在於下列何者?",
       "options": {
-        "A": "兩變數高相關必有因果",
-        "B": "兩變數可能因為共同原因(confounder)、巧合或反向因果而高相關,因果需更嚴格實驗或設計推論",
-        "C": "相關係數可直接作為因果證據",
-        "D": "因果與資料無關"
+        "A": "兩變數有高相關性必然有因果關係存在",
+        "B": "可能由 confounder 或反向因果所造成",
+        "C": "相關係數可直接作為因果推論的單一證據",
+        "D": "因果推論與所觀察的資料間完全沒有關係"
       },
       "correct_answer": "B",
       "source": {
@@ -2971,7 +2971,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** RCT、Causal DAG、Do-calculus、合成對照等是因果推論工具,單純相關係數不足以證明因果。\n\n**其他選項為何錯:**\n- A. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- B. ✓ 正解\n\n**記憶要點:** Causation 需 RCT / Causal model;Correlation 只是觀察。",
+      "explanation": "**為什麼 B 是正解:** RCT、Causal DAG、Do-calculus、合成對照等是因果推論工具,單純相關係數不足以證明因果。\n\n**其他選項為何錯:**\n- A. 相關不等於因果。\n- B. ✓ 正解\n- C. 不能直接證明因果。\n- D. 觀察資料仍是基礎。\n\n**記憶要點:** Causation 需 RCT / Causal model;Correlation 只是觀察。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -2981,10 +2981,10 @@
       "topic": "Math/Statistics",
       "question_text": "下列關於「p 值(p-value)」的敘述,何者最正確?",
       "options": {
-        "A": "p 值代表「H₀ 為真的機率」",
-        "B": "p 值代表「在 H₀ 為真時,觀察到至少和當前一樣極端結果的條件機率」",
-        "C": "p<0.05 即證明結果重要",
-        "D": "p 值與資料量無關"
+        "A": "代表虛無假設 H₀ 為真的後驗機率",
+        "B": "代表 H₀ 為真時觀察到極端結果機率",
+        "C": "代表 p<0.05 即證明效應有實務意義",
+        "D": "代表與樣本量大小完全無關的指標"
       },
       "correct_answer": "B",
       "source": {
@@ -2994,7 +2994,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 B 是正解:** p 值是 P(資料|H₀),不是 P(H₀|資料);與「效應大小」也不同。\n\n**其他選項為何錯:**\n- A. 常見誤解。\n- C. 統計顯著 ≠ 實務重要。\n- D. 樣本越大越易顯著。\n- B. ✓ 正解\n\n**記憶要點:** p 值 = 在 H₀ 下「資料極端度」的條件機率;不是「H₀ 為真機率」。",
+      "explanation": "**為什麼 B 是正解:** p 值是 P(資料|H₀),不是 P(H₀|資料);與「效應大小」也不同。\n\n**其他選項為何錯:**\n- A. 是常見誤解。\n- B. ✓ 正解\n- C. 顯著 ≠ 實務重要。\n- D. 樣本越大越易顯著。\n\n**記憶要點:** p 值 = 在 H₀ 下「資料極端度」的條件機率;不是「H₀ 為真機率」。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3004,10 +3004,10 @@
       "topic": "Math/Statistics",
       "question_text": "下列關於「95% 信賴區間(Confidence Interval)」的敘述,何者最正確?",
       "options": {
-        "A": "若多次抽樣以同方法建立信賴區間,長期約 95% 區間會涵蓋真實母體參數;不能直接解讀為「真值有 95% 機率落在區間內」",
-        "B": "真值有 95% 機率落在區間",
-        "C": "信賴水準愈低區間愈寬",
-        "D": "與樣本數無關"
+        "A": "重複抽樣時長期 95% 區間涵蓋真值",
+        "B": "真實參數有 95% 機率落於本區間內",
+        "C": "信賴水準越低區間越寬越不精確",
+        "D": "區間寬度與樣本數大小完全無關"
       },
       "correct_answer": "A",
       "source": {
@@ -3017,7 +3017,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 頻率學派下,參數是固定的;CI 是隨樣本變的隨機區間;Bayesian 的 credible interval 才可說「真值有 X% 機率在區間內」。\n\n**其他選項為何錯:**\n- B. 常見誤解。\n- C. 信賴水準愈高區間愈寬。\n- D. 樣本越大區間越窄。\n- A. ✓ 正解\n\n**記憶要點:** CI ≠ 機率區間;Credible interval(Bayes)才是。",
+      "explanation": "**為什麼 A 是正解:** 頻率學派下,參數是固定的;CI 是隨樣本變的隨機區間;Bayesian 的 credible interval 才可說「真值有 X% 機率在區間內」。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 是常見誤解。\n- C. 反向關係。\n- D. 樣本越大越窄。\n\n**記憶要點:** CI ≠ 機率區間;Credible interval(Bayes)才是。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3027,10 +3027,10 @@
       "topic": "Math/InfoTheory",
       "question_text": "下列關於「熵(Entropy)」的敘述,何者最正確?",
       "options": {
-        "A": "熵衡量隨機變數的不確定性;均勻分佈熵最大、確定性分佈熵為 0",
-        "B": "熵與不確定性無關",
-        "C": "熵只能為負",
-        "D": "離散分佈無法計算熵"
+        "A": "衡量不確定性,均勻最大、確定為 0",
+        "B": "與隨機變數的不確定性完全無關",
+        "C": "在任何分佈下熵的值必為負數",
+        "D": "離散機率分佈不能定義熵的值"
       },
       "correct_answer": "A",
       "source": {
@@ -3040,7 +3040,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** H(X) ≥ 0;確定 = 0、均勻 = log(N);用於決策樹、KL 散度、交叉熵損失等基礎。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Entropy = 不確定性 = -Σ p log p;均勻最大、確定為 0。",
+      "explanation": "**為什麼 A 是正解:** H(X) ≥ 0;確定 = 0、均勻 = log(N);用於決策樹、KL 散度、交叉熵損失等基礎。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 熵正是不確定性度量。\n- C. 熵 ≥ 0。\n- D. 離散分佈可定義熵。\n\n**記憶要點:** Entropy = 不確定性 = -Σ p log p;均勻最大、確定為 0。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3050,10 +3050,10 @@
       "topic": "Math/InfoTheory",
       "question_text": "KL 散度(Kullback-Leibler Divergence)主要量度什麼?",
       "options": {
-        "A": "兩個機率分佈 P 與 Q 之間的不對稱差異度,值 ≥ 0,等於 0 ↔ P=Q",
-        "B": "兩個分佈之間的對稱距離",
-        "C": "兩個確定值之間的差",
-        "D": "與機率分佈無關"
+        "A": "兩分佈間的不對稱差異,P=Q 時為 0",
+        "B": "兩分佈間滿足三角不等式的對稱距離",
+        "C": "兩個確定純量數值之間的絕對差值",
+        "D": "與機率分佈本身完全沒有任何關係"
       },
       "correct_answer": "A",
       "source": {
@@ -3063,7 +3063,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** D_KL(P||Q) ≠ D_KL(Q||P),且不滿足三角不等式 → 非度量(metric)。常用於 VAE、Variational Inference、Cross-Entropy 推導。\n\n**其他選項為何錯:**\n- B. 不對稱,不是距離。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** KL = 相對熵;非對稱;Cross-Entropy = Entropy + KL。",
+      "explanation": "**為什麼 A 是正解:** D_KL(P||Q) ≠ D_KL(Q||P),且不滿足三角不等式 → 非度量(metric)。常用於 VAE、Variational Inference、Cross-Entropy 推導。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 不對稱、非度量。\n- C. 對象是分佈而非純量。\n- D. 核心對象正是分佈。\n\n**記憶要點:** KL = 相對熵;非對稱;Cross-Entropy = Entropy + KL。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3073,10 +3073,10 @@
       "topic": "ML/TimeSeries",
       "question_text": "下列關於 ARIMA 模型的敘述,何者最正確?",
       "options": {
-        "A": "ARIMA(p,d,q) 結合自迴歸 AR(p)、差分 I(d)、移動平均 MA(q),適用於可經差分變平穩的時序",
-        "B": "ARIMA 只能用於完全平穩資料且不需差分",
-        "C": "ARIMA 與深度學習等價",
-        "D": "ARIMA 不需任何參數調整"
+        "A": "結合 AR、I、MA 處理可差分後平穩之序列",
+        "B": "僅能用於完全平穩資料且完全不需做差分",
+        "C": "在表達能力上與所有深度學習模型等價",
+        "D": "完全不需調整 p、d、q 參數即可直接使用"
       },
       "correct_answer": "A",
       "source": {
@@ -3086,7 +3086,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** ARIMA(p,d,q) = AR + I + MA;d 是差分階數,把非平穩變平穩才適用 AR/MA。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** ARIMA 三參:p(AR 階)、d(差分)、q(MA 階);SARIMA 加季節項。",
+      "explanation": "**為什麼 A 是正解:** ARIMA(p,d,q) = AR + I + MA;d 是差分階數,把非平穩變平穩才適用 AR/MA。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 正是 d 差分的用途。\n- C. 表達能力不同。\n- D. p、d、q 皆需選擇。\n\n**記憶要點:** ARIMA 三參:p(AR 階)、d(差分)、q(MA 階);SARIMA 加季節項。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3096,10 +3096,10 @@
       "topic": "ML/TimeSeries",
       "question_text": "下列哪一項「最不建議」用於時序預測模型的特徵工程?",
       "options": {
-        "A": "建立 lag features(t-1, t-7, t-30 等)",
-        "B": "rolling mean / rolling std 等移動視窗統計量",
-        "C": "計算「未來 7 天平均」作為當期特徵",
-        "D": "週期/星期/節日標記"
+        "A": "建立 t-1、t-7、t-30 等 lag 特徵",
+        "B": "計算 rolling mean、std 視窗統計",
+        "C": "以未來 7 天的平均作為當期預測特徵",
+        "D": "加上週期、星期或節日等日曆性的標記欄"
       },
       "correct_answer": "C",
       "source": {
@@ -3109,7 +3109,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:** 用「未來」資料當特徵就是 data leakage,預測時不可得,離線評估會被嚴重高估。\n\n**其他選項為何錯:**\n- A. 標準時序特徵工程。\n- B. 標準時序特徵工程。\n- D. 標準時序特徵工程。\n- C. ✓ 正解(反例)\n\n**記憶要點:** 時序特徵:lag / rolling / calendar 皆可;絕不能用未來資訊。",
+      "explanation": "**為什麼 C 是正解:** 用「未來」資料當特徵就是 data leakage,預測時不可得,離線評估會被嚴重高估。\n\n**其他選項為何錯:**\n- A. 標準時序特徵。\n- B. 標準時序特徵。\n- C. ✓ 正解(反例)\n- D. 標準時序特徵。\n\n**記憶要點:** 時序特徵:lag / rolling / calendar 皆可;絕不能用未來資訊。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3119,10 +3119,10 @@
       "topic": "ML/TimeSeries",
       "question_text": "時序分解(Time Series Decomposition)通常將序列拆解為哪些成分?",
       "options": {
-        "A": "Trend(趨勢)+ Seasonality(季節)+ Residual(殘差),可加性或乘性",
-        "B": "只有趨勢",
-        "C": "只有雜訊",
-        "D": "完全不可分解"
+        "A": "趨勢、季節、殘差三項分解",
+        "B": "趨勢一項,無其他成分元素",
+        "C": "殘差一項,無其他結構成分",
+        "D": "序列在數學上完全無法分解"
       },
       "correct_answer": "A",
       "source": {
@@ -3132,7 +3132,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** STL / classical decomposition 都把時序分為 trend、season、residual;加性適合振幅穩定、乘性適合振幅隨值放大。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 時序分解:Trend + Season + Residual;Additive vs Multiplicative。",
+      "explanation": "**為什麼 A 是正解:** STL / classical decomposition 都把時序分為 trend、season、residual;加性適合振幅穩定、乘性適合振幅隨值放大。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 還有季節與殘差。\n- C. 還有趨勢與季節。\n- D. 經典模型可分解。\n\n**記憶要點:** 時序分解:Trend + Season + Residual;Additive vs Multiplicative。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3142,10 +3142,10 @@
       "topic": "ML/Interpretability",
       "question_text": "SHAP(SHapley Additive exPlanations)的理論基礎為何?",
       "options": {
-        "A": "賽局理論的 Shapley value,公平地把「預測值與基準的差」拆解到各特徵貢獻上",
-        "B": "純粹基於相關係數",
-        "C": "隨機亂猜",
-        "D": "與模型本身無關"
+        "A": "由 Shapley value 來公平分配貢獻",
+        "B": "由 Pearson 相關係數來分配貢獻",
+        "C": "對各特徵以隨機亂猜的方式給予貢獻值",
+        "D": "與被解釋模型的權重結構完全沒有關聯"
       },
       "correct_answer": "A",
       "source": {
@@ -3155,7 +3155,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** SHAP 將每個特徵視為玩家,以 Shapley value 公平分配「模型預測對基準的偏差」到各特徵,具理論保證(local accuracy、symmetry、missingness、consistency)。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** SHAP = Shapley + Additive;global summary + local explanation。",
+      "explanation": "**為什麼 A 是正解:** SHAP 將每個特徵視為玩家,以 Shapley value 公平分配「模型預測對基準的偏差」到各特徵,具理論保證(local accuracy、symmetry、missingness、consistency)。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 不僅是相關性。\n- C. 並非隨機。\n- D. SHAP 緊扣模型預測。\n\n**記憶要點:** SHAP = Shapley + Additive;global summary + local explanation。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3165,10 +3165,10 @@
       "topic": "ML/Interpretability",
       "question_text": "LIME(Local Interpretable Model-agnostic Explanations)的核心思路為何?",
       "options": {
-        "A": "在被解釋樣本附近,用一個簡單的可解釋模型(如線性迴歸)局部擬合黑盒模型,以得到局部特徵權重",
-        "B": "完全取代原模型",
-        "C": "只看全域平均",
-        "D": "需要原模型程式碼"
+        "A": "在樣本鄰域用簡單線性模型擬合黑盒",
+        "B": "完全取代原本被解釋的黑盒模型",
+        "C": "僅看全域平均表現而忽略單樣本",
+        "D": "必須取得原模型的程式碼或結構"
       },
       "correct_answer": "A",
       "source": {
@@ -3178,7 +3178,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** LIME 對單一樣本做局部解釋:採樣鄰域 → 拿黑盒打分 → 用線性模型擬合 → 取線性係數作解釋。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** LIME = Local + Linear surrogate;與 SHAP 同屬 model-agnostic 解釋,但 LIME 不具 SHAP 的理論保證。",
+      "explanation": "**為什麼 A 是正解:** LIME 對單一樣本做局部解釋:採樣鄰域 → 拿黑盒打分 → 用線性模型擬合 → 取線性係數作解釋。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. LIME 是解釋,不取代。\n- C. LIME 是局部解釋。\n- D. 屬 model-agnostic。\n\n**記憶要點:** LIME = Local + Linear surrogate;與 SHAP 同屬 model-agnostic 解釋,但 LIME 不具 SHAP 的理論保證。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3188,10 +3188,10 @@
       "topic": "ML/Interpretability",
       "question_text": "「特徵重要性(Feature Importance)」在隨機森林中常見的兩種計算方式為何?",
       "options": {
-        "A": "Mean Decrease in Impurity(MDI,基於分裂不純度下降)與 Permutation Importance(置換特徵看效能變化)",
-        "B": "兩者完全相同",
-        "C": "用 SVM 計算",
-        "D": "用 cosine similarity 計算"
+        "A": "MDI 與 Permutation 兩種方法",
+        "B": "兩種方法在計算邏輯上完全等價無別",
+        "C": "改用 SVM margin 作為重要性的度量",
+        "D": "改用 cosine 距離作為重要性的度量"
       },
       "correct_answer": "A",
       "source": {
@@ -3201,7 +3201,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** MDI 是訓練期累計,可能偏向高 cardinality 特徵;Permutation 是事後評估,較穩健但較慢。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Tree 重要性兩派:MDI(快、有偏)、Permutation(慢、穩健)。",
+      "explanation": "**為什麼 A 是正解:** MDI 是訓練期累計,可能偏向高 cardinality 特徵;Permutation 是事後評估,較穩健但較慢。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩者本質不同。\n- C. 不是 RF 度量方式。\n- D. 不是 RF 度量方式。\n\n**記憶要點:** Tree 重要性兩派:MDI(快、有偏)、Permutation(慢、穩健)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3211,10 +3211,10 @@
       "topic": "DL/Basics",
       "question_text": "Softmax 函數對輸入向量 z 的輸出特性,下列何者最正確?",
       "options": {
-        "A": "輸出每元素 ∈ (0,1) 且總和為 1,屬機率分佈;但對大數值差異敏感(maximum 占絕對主導)",
-        "B": "輸出可為負",
-        "C": "總和不固定",
-        "D": "等同 sigmoid 元素級"
+        "A": "元素 ∈ (0,1),總和為 1,大者通吃",
+        "B": "輸出元素值在數學上可為負且不一致",
+        "C": "輸出元素的總和會隨輸入向量而變動",
+        "D": "與元素級 sigmoid 在數學上完全等價"
       },
       "correct_answer": "A",
       "source": {
@@ -3224,7 +3224,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Softmax 把 logits 變機率分佈;指數放大最大值差距,故有「贏者通吃」傾向,常配合 temperature 調整 sharpness。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Softmax = 機率分佈 + 贏者通吃;temperature 控銳度。",
+      "explanation": "**為什麼 A 是正解:** Softmax 把 logits 變機率分佈;指數放大最大值差距,故有「贏者通吃」傾向,常配合 temperature 調整 sharpness。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 元素必為正。\n- C. 總和恆為 1。\n- D. Softmax 跨元素耦合。\n\n**記憶要點:** Softmax = 機率分佈 + 贏者通吃;temperature 控銳度。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3234,10 +3234,10 @@
       "topic": "DL/Optimization",
       "question_text": "「梯度消失(Vanishing Gradient)」在深層 sigmoid/tanh 網路發生的主要原因為何?",
       "options": {
-        "A": "sigmoid/tanh 飽和區梯度趨近 0,層層相乘後越往底層越小,訓練停滯",
-        "B": "梯度越深越大",
-        "C": "與啟動函數無關",
-        "D": "完全是隨機現象"
+        "A": "飽和區梯度趨零,層層相乘後變極小",
+        "B": "層數越深時梯度反而越大爆炸",
+        "C": "與所選的啟動函數完全沒有關係",
+        "D": "純粹是隨機波動產生的偶發現象"
       },
       "correct_answer": "A",
       "source": {
@@ -3247,7 +3247,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** sigmoid'(x) ≤ 0.25,深層連乘後梯度 → 0;對策:ReLU 系列、ResNet、LSTM、適當初始化、BN。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Vanishing → ReLU + ResNet + 好初始化;Exploding → Gradient Clipping。",
+      "explanation": "**為什麼 A 是正解:** sigmoid'(x) ≤ 0.25,深層連乘後梯度 → 0;對策:ReLU 系列、ResNet、LSTM、適當初始化、BN。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 那是梯度爆炸。\n- C. 與啟動函數密切相關。\n- D. 是系統性現象。\n\n**記憶要點:** Vanishing → ReLU + ResNet + 好初始化;Exploding → Gradient Clipping。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3257,10 +3257,10 @@
       "topic": "ML/Algorithms",
       "question_text": "Naive Bayes 對「文字分類」表現不俗,主要原因為何?",
       "options": {
-        "A": "詞袋(Bag-of-Words)向量高維且稀疏,Naive Bayes 對此具備天然優勢、訓練快、推論快",
-        "B": "Naive Bayes 一定優於所有深度模型",
-        "C": "Naive Bayes 假設詞之間高度相關",
-        "D": "Naive Bayes 需要 GPU"
+        "A": "BoW 高維稀疏,NB 訓練推論皆極快",
+        "B": "NB 表現一律優於所有深度模型",
+        "C": "NB 假設詞之間相互高度線性相關",
+        "D": "NB 必須仰賴 GPU 加速才能訓練"
       },
       "correct_answer": "A",
       "source": {
@@ -3270,7 +3270,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 文字 BoW 稀疏 + 條件獨立假設在文字下「夠好用」,NB 訓練幾乎只需計算詞頻機率。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Naive Bayes 文字分類 baseline 強而快;Multinomial NB 處理計數、Bernoulli NB 處理 binary。",
+      "explanation": "**為什麼 A 是正解:** 文字 BoW 稀疏 + 條件獨立假設在文字下「夠好用」,NB 訓練幾乎只需計算詞頻機率。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 並非一律最優。\n- C. 假設是條件獨立。\n- D. NB 計算極輕量。\n\n**記憶要點:** Naive Bayes 文字分類 baseline 強而快;Multinomial NB 處理計數、Bernoulli NB 處理 binary。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3280,10 +3280,10 @@
       "topic": "Privacy/Compliance",
       "question_text": "下列關於「k-匿名(k-Anonymity)」的描述,何者最正確?",
       "options": {
-        "A": "資料表中任一記錄不能與少於 k-1 個其他記錄在準識別欄(quasi-identifiers)上完全相同,以降低重識別風險",
-        "B": "k=1 即可保證隱私",
-        "C": "k-匿名與重識別風險無關",
-        "D": "k-匿名 = 完全加密"
+        "A": "每筆紀錄至少與 k−1 筆準識別欄相同",
+        "B": "只要 k=1 即可保證重識別風險為零",
+        "C": "與資料重識別風險完全沒有相關性",
+        "D": "即等同於對整份資料做完全加密"
       },
       "correct_answer": "A",
       "source": {
@@ -3293,7 +3293,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** k 越大、群組越大、重識別風險越低,但通常會降低資料效用 — k-匿名仍有 attribute disclosure 等弱點,需 l-diversity / t-closeness 補強。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** k-Anonymity → l-Diversity → t-Closeness → Differential Privacy,愈嚴格愈強。",
+      "explanation": "**為什麼 A 是正解:** k 越大、群組越大、重識別風險越低,但通常會降低資料效用 — k-匿名仍有 attribute disclosure 等弱點,需 l-diversity / t-closeness 補強。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. k=1 沒有保護力。\n- C. 正是降風險工具。\n- D. 與加密機制不同。\n\n**記憶要點:** k-Anonymity → l-Diversity → t-Closeness → Differential Privacy,愈嚴格愈強。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3303,10 +3303,10 @@
       "topic": "Privacy/Compliance",
       "question_text": "「Secure Aggregation(安全彙整)」在聯邦學習中的主要功能為何?",
       "options": {
-        "A": "讓中央伺服器只能解到「客戶端模型更新的總和」,而看不到個別更新,降低伺服器側觀測單一 client 的隱私風險",
-        "B": "完全取代加密",
-        "C": "客戶端不能訓練",
-        "D": "與隱私無關"
+        "A": "讓伺服器只解到更新總和,看不到單一",
+        "B": "完全取代所有形式的加密協定",
+        "C": "讓客戶端完全無法在本地進行訓練",
+        "D": "與資料隱私保護完全沒有任何關聯"
       },
       "correct_answer": "A",
       "source": {
@@ -3316,7 +3316,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Secure Aggregation 透過 secret sharing / masking,使 server 只能得到 aggregate,不知道任何單一 client update 內容。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** FL 隱私三件套:Local training + Secure Aggregation + Differential Privacy。",
+      "explanation": "**為什麼 A 是正解:** Secure Aggregation 透過 secret sharing / masking,使 server 只能得到 aggregate,不知道任何單一 client update 內容。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 是加密協定的應用。\n- C. 客戶端仍本地訓練。\n- D. 正是隱私保護機制。\n\n**記憶要點:** FL 隱私三件套:Local training + Secure Aggregation + Differential Privacy。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3326,10 +3326,10 @@
       "topic": "Bias/Fairness",
       "question_text": "「Equalized Odds(均等機會)」公平準則的定義為何?",
       "options": {
-        "A": "不同人口群在「真陽率(TPR)」與「假陽率(FPR)」皆相同",
-        "B": "預測為正比例相同(即 demographic parity)",
-        "C": "Precision 相同",
-        "D": "Accuracy 相同"
+        "A": "不同群體之間 TPR 與 FPR 皆相同",
+        "B": "不同群體之間被預測為正比例相同",
+        "C": "不同群體之間的 Precision 皆相同",
+        "D": "不同群體之間整體 Accuracy 皆相同"
       },
       "correct_answer": "A",
       "source": {
@@ -3339,7 +3339,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Equalized Odds 同時要求 TPR 與 FPR 在各群一致;Equal Opportunity 是其放寬版,只看 TPR。\n\n**其他選項為何錯:**\n- B. 是 Demographic Parity。\n- C. 不是 Equalized Odds 定義。\n- D. 不是 Equalized Odds 定義。\n- A. ✓ 正解\n\n**記憶要點:** Equalized Odds = 同 TPR + 同 FPR;Equal Opportunity = 同 TPR(更鬆)。",
+      "explanation": "**為什麼 A 是正解:** Equalized Odds 同時要求 TPR 與 FPR 在各群一致;Equal Opportunity 是其放寬版,只看 TPR。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 那是 Demographic Parity。\n- C. 那是 Predictive Parity。\n- D. 那是 Accuracy Parity。\n\n**記憶要點:** Equalized Odds = 同 TPR + 同 FPR;Equal Opportunity = 同 TPR(更鬆)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3349,10 +3349,10 @@
       "topic": "Bias/Fairness",
       "question_text": "「Disparate Impact(差別影響)」常用 4/5 規則,其意涵為何?",
       "options": {
-        "A": "若弱勢群被選率 / 強勢群被選率 < 80%,即有 disparate impact 之嫌(美國 EEOC 標準)",
-        "B": "若弱勢群被選率高即不公平",
-        "C": "與資料無關",
-        "D": "4/5 是模型準確率"
+        "A": "弱勢群被選率與強勢群之比小於 0.8",
+        "B": "弱勢群被選率較高反而代表更不公平",
+        "C": "此規則與資料或選拔結果完全無關",
+        "D": "4/5 規則指的是模型的整體準確率"
       },
       "correct_answer": "A",
       "source": {
@@ -3362,7 +3362,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 4/5 規則(80% 規則)是美國 EEOC 對招聘等決策的法律標準,常用於檢測模型潛在歧視。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 4/5 Rule:Disadvantaged / Advantaged < 0.8 → adverse impact 警訊。",
+      "explanation": "**為什麼 A 是正解:** 4/5 規則(80% 規則)是美國 EEOC 對招聘等決策的法律標準,常用於檢測模型潛在歧視。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 方向顛倒。\n- C. 與選拔資料相關。\n- D. 與準確率無關。\n\n**記憶要點:** 4/5 Rule:Disadvantaged / Advantaged < 0.8 → adverse impact 警訊。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3372,10 +3372,10 @@
       "topic": "Bias/Fairness",
       "question_text": "「反事實公平性(Counterfactual Fairness)」的定義為何?",
       "options": {
-        "A": "在所有其他因素相同下,若改變保護屬性(如種族),模型對該個案的預測不變,則該決策對該個體是反事實公平的",
-        "B": "與因果無關",
-        "C": "僅看相關係數",
-        "D": "完全等於 Demographic Parity"
+        "A": "變更保護屬性後對個案的預測結果仍維持不變",
+        "B": "與因果或反事實推論在本質定義上完全無關聯",
+        "C": "僅以 Pearson 相關係數作為唯一的公平性判定",
+        "D": "於定義上完全等同於 Demographic Parity"
       },
       "correct_answer": "A",
       "source": {
@@ -3385,7 +3385,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Counterfactual Fairness 以因果圖為基礎,要求「改變敏感屬性」不影響預測 — 是個體層面的因果性概念。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Counterfactual Fairness:做因果反事實實驗,改種族後預測仍同。",
+      "explanation": "**為什麼 A 是正解:** Counterfactual Fairness 以因果圖為基礎,要求「改變敏感屬性」不影響預測 — 是個體層面的因果性概念。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 核心即因果反事實。\n- C. 是因果推論,非相關。\n- D. 與 DP 並不相同。\n\n**記憶要點:** Counterfactual Fairness:做因果反事實實驗,改種族後預測仍同。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3395,10 +3395,10 @@
       "topic": "ML/Algorithms",
       "question_text": "下列關於 LightGBM 與 XGBoost 的差異,何者「最正確」?",
       "options": {
-        "A": "LightGBM 採 leaf-wise 生長與 histogram-based 分裂,通常更快且記憶體更省;XGBoost 預設 level-wise 較穩健",
-        "B": "兩者完全一樣",
+        "A": "LightGBM 用 leaf-wise",
+        "B": "LightGBM 與 XGBoost 相同",
         "C": "LightGBM 不能處理類別特徵",
-        "D": "XGBoost 不支援 GPU"
+        "D": "XGBoost 不支援 GPU 訓練"
       },
       "correct_answer": "A",
       "source": {
@@ -3408,7 +3408,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** LightGBM 用 leaf-wise(挑損失下降最多的葉子分裂)+ histogram,速度與記憶體優於 XGBoost level-wise;但 leaf-wise 容易過擬合,需限制 max_depth/num_leaves。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** LightGBM = leaf-wise + histogram + 原生類別;深度需控制。",
+      "explanation": "**為什麼 A 是正解:** LightGBM 用 leaf-wise(挑損失下降最多的葉子分裂)+ histogram,速度與記憶體優於 XGBoost level-wise;但 leaf-wise 容易過擬合,需限制 max_depth/num_leaves。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩者實作不同。\n- C. 原生支援類別特徵。\n- D. XGBoost 支援 GPU。\n\n**記憶要點:** LightGBM = leaf-wise + histogram + 原生類別;深度需控制。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3418,10 +3418,10 @@
       "topic": "ML/Algorithms",
       "question_text": "下列關於「Calibrated Random Forest」的描述,何者最正確?",
       "options": {
-        "A": "Random Forest 預設輸出機率傾向「過度均勻」,需用 Platt/Isotonic 校準才能得到可信機率",
-        "B": "Random Forest 機率永遠完美校準",
-        "C": "Random Forest 不能輸出機率",
-        "D": "校準只對神經網路有效"
+        "A": "預設機率傾向均勻,需 Platt 或 Isotonic 校準",
+        "B": "預設輸出機率於任何情境下皆已完美校準無需處理",
+        "C": "Random Forest 在任何情境下皆完全無法輸出機率",
+        "D": "校準技術僅對神經網路才有效,對 RF 完全沒效果"
       },
       "correct_answer": "A",
       "source": {
@@ -3431,7 +3431,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** RF 的機率是「投票比例」,容易偏向 0.5 區間,實務上常用 CalibratedClassifierCV 校準。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** RF/Boosting/NB/NN 多需 calibration;Sklearn CalibratedClassifierCV 一行搞定。",
+      "explanation": "**為什麼 A 是正解:** RF 的機率是「投票比例」,容易偏向 0.5 區間,實務上常用 CalibratedClassifierCV 校準。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 並非完美校準。\n- C. 可輸出機率。\n- D. 校準適用多種模型。\n\n**記憶要點:** RF/Boosting/NB/NN 多需 calibration;Sklearn CalibratedClassifierCV 一行搞定。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3441,10 +3441,10 @@
       "topic": "Feature/Engineering",
       "question_text": "「Target Encoding(目標編碼,又稱 Mean Encoding)」最大的風險為何?",
       "options": {
-        "A": "目標洩漏(Target Leakage):若不做 k-fold/out-of-fold 平均,直接用整體 target mean 編碼會造成驗證集評估虛高",
-        "B": "永遠優於 One-Hot",
-        "C": "完全沒有風險",
-        "D": "只能用於數值特徵"
+        "A": "不做 OOF 容易使 target 洩漏進特徵",
+        "B": "於任何資料情境下皆優於 One-Hot 編碼",
+        "C": "完全沒有任何過擬合或目標洩漏的風險存在",
+        "D": "Target Encoding 僅可用於數值型特徵"
       },
       "correct_answer": "A",
       "source": {
@@ -3454,7 +3454,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Target encoding 直接用 label 訊息,若不做 OOF 容易把 label 漏進特徵,驗證/測試估計嚴重高估。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Target Encoding:OOF + Smoothing(加先驗均值)是常見保命招。",
+      "explanation": "**為什麼 A 是正解:** Target encoding 直接用 label 訊息,若不做 OOF 容易把 label 漏進特徵,驗證/測試估計嚴重高估。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 無絕對優劣。\n- C. 風險就是 leakage。\n- D. 是用於類別特徵。\n\n**記憶要點:** Target Encoding:OOF + Smoothing(加先驗均值)是常見保命招。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3464,10 +3464,10 @@
       "topic": "DL/CNN",
       "question_text": "1×1 卷積(1×1 Convolution)在現代 CNN 中的常見用途為何?",
       "options": {
-        "A": "在不改變空間尺寸下,做通道(channel)維度的線性組合,可進行降/升維、跨通道特徵融合",
-        "B": "完全等於 max pooling",
-        "C": "把所有像素變成 0",
-        "D": "與卷積無關"
+        "A": "不改變空間尺寸下做通道間的線性組合操作",
+        "B": "於數學上完全等價於 max pooling 操作",
+        "C": "將輸出影像所有像素一律強制歸為 0 值",
+        "D": "與卷積運算本身在數學上完全沒有任何關聯"
       },
       "correct_answer": "A",
       "source": {
@@ -3477,7 +3477,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** 1×1 卷積 = 對每個位置的所有通道做 1 個 fully-connected,可極大改變通道數,常用於 bottleneck(ResNet)、Inception。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** 1×1 conv = 通道線性組合;ResNet bottleneck 與 Inception 的關鍵元件。",
+      "explanation": "**為什麼 A 是正解:** 1×1 卷積 = 對每個位置的所有通道做 1 個 fully-connected,可極大改變通道數,常用於 bottleneck(ResNet)、Inception。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 池化是空間下採樣。\n- C. 不會歸零。\n- D. 本身就是卷積。\n\n**記憶要點:** 1×1 conv = 通道線性組合;ResNet bottleneck 與 Inception 的關鍵元件。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3487,10 +3487,10 @@
       "topic": "DL/Transformer",
       "question_text": "BERT 與 GPT 在「微調(Fine-tuning)」下游任務的典型差異為何?",
       "options": {
-        "A": "BERT 常加任務 head(如 [CLS] + 線性層做分類);GPT 多以「文字 in / 文字 out」的 prompt 形式微調或 prompt-tune",
-        "B": "兩者完全一樣",
-        "C": "BERT 不能做分類",
-        "D": "GPT 不能做生成"
+        "A": "BERT 用 head,GPT 用 prompt",
+        "B": "BERT 與 GPT 在微調方式上皆完全相同",
+        "C": "BERT 完全無法用於下游的分類任務",
+        "D": "GPT 完全無法用於下游的內容生成任務"
       },
       "correct_answer": "A",
       "source": {
@@ -3500,7 +3500,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** BERT(encoder)輸出 token 表徵 → 接 head;GPT(decoder)以續寫方式做任務,搭配 instruction tuning / few-shot 等。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** BERT = Encoder + Head;GPT = Decoder + Prompt;BART/T5 是 Encoder-Decoder。",
+      "explanation": "**為什麼 A 是正解:** BERT(encoder)輸出 token 表徵 → 接 head;GPT(decoder)以續寫方式做任務,搭配 instruction tuning / few-shot 等。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩者範式不同。\n- C. BERT 強於分類。\n- D. GPT 強於生成。\n\n**記憶要點:** BERT = Encoder + Head;GPT = Decoder + Prompt;BART/T5 是 Encoder-Decoder。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3510,10 +3510,10 @@
       "topic": "DL/Embeddings",
       "question_text": "Sentence Transformer(如 SBERT)為何能在語意相似度任務上顯著優於原 BERT 的 [CLS] 向量?",
       "options": {
-        "A": "SBERT 透過 Siamese / Triplet 對比訓練,直接在「句子相似」目標上學到有用的句向量,而 BERT [CLS] 未針對相似度目標訓練",
-        "B": "SBERT 完全沒有訓練",
-        "C": "BERT [CLS] 已經是最佳句向量",
-        "D": "兩者完全相同"
+        "A": "用 Siamese 對比訓練學「句相似」目標",
+        "B": "SBERT 完全沒有經過任何形式的訓練",
+        "C": "原生 BERT [CLS] 已是最佳句向量表徵",
+        "D": "兩種句向量在所有任務上完全等價無別"
       },
       "correct_answer": "A",
       "source": {
@@ -3523,7 +3523,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** SBERT 把 BERT 包成 Siamese,以 cosine + MSE/Triplet 在 STS 等資料上微調,輸出可直接做相似度檢索。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** RAG 檢索的「句向量」首選不是 raw BERT [CLS],而是 SBERT / instructor 系列。",
+      "explanation": "**為什麼 A 是正解:** SBERT 把 BERT 包成 Siamese,以 cosine + MSE/Triplet 在 STS 等資料上微調,輸出可直接做相似度檢索。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 有對比微調過程。\n- C. 原生 [CLS] 表現差。\n- D. 兩者表現差距大。\n\n**記憶要點:** RAG 檢索的「句向量」首選不是 raw BERT [CLS],而是 SBERT / instructor 系列。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3533,10 +3533,10 @@
       "topic": "DL/Embeddings",
       "question_text": "高維 embedding 空間做相似度搜尋時,常用「向量索引」加速。下列何者是常見的近似最近鄰(ANN)資料結構/演算法?",
       "options": {
-        "A": "HNSW(Hierarchical Navigable Small World)、IVF(Inverted File)、PQ(Product Quantization)",
-        "B": "BFS / DFS 純粹 graph traversal",
-        "C": "Heap sort",
-        "D": "Bubble sort"
+        "A": "HNSW、IVF、PQ 等近似最近鄰結構",
+        "B": "BFS 與 DFS 等純圖遍歷演算法",
+        "C": "Heap sort 等比較排序演算法",
+        "D": "Bubble sort 等基本排序演算法"
       },
       "correct_answer": "A",
       "source": {
@@ -3546,7 +3546,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** FAISS、Milvus、Qdrant 都支援這些 ANN 演算法;HNSW 通用,IVF/PQ 適合超大資料庫的記憶體壓縮。\n\n**其他選項為何錯:**\n- B. 與向量檢索無關。\n- C. 與向量檢索無關。\n- D. 與向量檢索無關。\n- A. ✓ 正解\n\n**記憶要點:** ANN 三招:HNSW(圖)、IVF(分群)、PQ(量化壓縮)。",
+      "explanation": "**為什麼 A 是正解:** FAISS、Milvus、Qdrant 都支援這些 ANN 演算法;HNSW 通用,IVF/PQ 適合超大資料庫的記憶體壓縮。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 與向量檢索無關。\n- C. 與向量檢索無關。\n- D. 與向量檢索無關。\n\n**記憶要點:** ANN 三招:HNSW(圖)、IVF(分群)、PQ(量化壓縮)。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3556,10 +3556,10 @@
       "topic": "ML/Algorithms",
       "question_text": "Logistic Regression 與線性 SVM 的本質差別主要在於下列何者?",
       "options": {
-        "A": "Logistic 用 log-likelihood / cross-entropy 損失,可輸出機率;線性 SVM 用 hinge loss 找最大邊界,原生不直接輸出機率",
-        "B": "兩者完全一樣",
-        "C": "Logistic 是非線性、SVM 是線性",
-        "D": "Logistic 需 GPU、SVM 不需"
+        "A": "Logistic 用 log,SVM 用 hinge",
+        "B": "兩者於損失函數與輸出形式上皆完全相同無別",
+        "C": "Logistic 為非線性而 SVM 為線性模型",
+        "D": "Logistic 需 GPU,SVM 完全不需要"
       },
       "correct_answer": "A",
       "source": {
@@ -3569,7 +3569,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Logistic = log loss + 機率輸出;SVM = hinge loss + 最大邊界,雖可用 Platt scaling 推機率但不原生。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Logistic ↔ Log loss / Probabilities;SVM ↔ Hinge loss / Margin。",
+      "explanation": "**為什麼 A 是正解:** Logistic = log loss + 機率輸出;SVM = hinge loss + 最大邊界,雖可用 Platt scaling 推機率但不原生。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 損失機制本質不同。\n- C. 兩者皆為線性分類器。\n- D. 與硬體需求無關。\n\n**記憶要點:** Logistic ↔ Log loss / Probabilities;SVM ↔ Hinge loss / Margin。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3579,10 +3579,10 @@
       "topic": "ML/Interpretability",
       "question_text": "下列關於 Permutation Importance 的「結果解讀」,何者最正確?",
       "options": {
-        "A": "若打亂特徵 X 後驗證指標下降很多,表示模型對 X 高度依賴,X 重要;反之則可能不重要",
-        "B": "Permutation Importance 越大代表特徵越無用",
-        "C": "與驗證指標無關",
-        "D": "需要重新訓練模型才能算"
+        "A": "打亂後驗證指標下降越多代表特徵越重要",
+        "B": "Permutation 值越大則代表此特徵越無用",
+        "C": "此度量在計算上與所選驗證指標完全無關",
+        "D": "必須要重新訓練整個模型後才能計算指標"
       },
       "correct_answer": "A",
       "source": {
@@ -3592,7 +3592,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Permutation 是「事後」評估,不需重訓:打亂 X、看效能掉多少。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Permutation Importance = 不重訓的模型敏感度量;對 correlated features 仍需小心。",
+      "explanation": "**為什麼 A 是正解:** Permutation 是「事後」評估,不需重訓:打亂 X、看效能掉多少。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 方向相反。\n- C. 仰賴驗證指標。\n- D. 不需重新訓練。\n\n**記憶要點:** Permutation Importance = 不重訓的模型敏感度量;對 correlated features 仍需小心。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"
@@ -3602,10 +3602,10 @@
       "topic": "Modeling/Selection",
       "question_text": "下列哪一項是「Hold-out Validation」與「Cross-Validation」的核心差異?",
       "options": {
-        "A": "Hold-out 只切一次(train/valid/test);Cross-Validation 多次切分後平均,評估更穩定且利用率更高,但成本較高",
-        "B": "兩者完全相同",
-        "C": "Hold-out 不需要驗證集",
-        "D": "Cross-Validation 不能用於小資料"
+        "A": "Hold-out 切一次,CV 多次切分後平均",
+        "B": "Hold-out 與 CV 流程與成本完全相同",
+        "C": "Hold-out 不需驗證集即可完成評估",
+        "D": "Cross-Validation 不適用於小資料集"
       },
       "correct_answer": "A",
       "source": {
@@ -3615,7 +3615,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:** Hold-out 簡單但結果受切分影響;CV 對小資料更穩、更善用樣本,但訓練 K 次成本高。\n\n**其他選項為何錯:**\n- B. 錯誤。\n- C. 錯誤。\n- D. 錯誤。\n- A. ✓ 正解\n\n**記憶要點:** Small data → CV;Large data → Hold-out 即夠;時序則用 TimeSeriesSplit。",
+      "explanation": "**為什麼 A 是正解:** Hold-out 簡單但結果受切分影響;CV 對小資料更穩、更善用樣本,但訓練 K 次成本高。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 兩者明顯不同。\n- C. 需要驗證集。\n- D. 反而最適合小資料。\n\n**記憶要點:** Small data → CV;Large data → Hold-out 即夠;時序則用 TimeSeriesSplit。",
       "subject_code": "s3",
       "generated": true,
       "generated_by": "claude"

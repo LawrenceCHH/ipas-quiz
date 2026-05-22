@@ -1342,10 +1342,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某電商平台對 10 萬名用戶進行 K-means 分群，分成 5 群後發現某一群的群內平方和（Within-Cluster Sum of Squares, WCSS）遠高於其他群。以下哪個處理方式最合適？",
       "options": {
-        "A": "對該群再進行子分群，或增加 K 值重新分群",
-        "B": "改用 DBSCAN 演算法，因為它不需要指定 K 值",
-        "C": "移除 WCSS 最高的群，僅保留其餘四群",
-        "D": "增加迭代次數，讓演算法收斂更完全"
+        "A": "對該群執行子分群或增加 K 值重新分群",
+        "B": "改用 DBSCAN 因其不需指定群數參數",
+        "C": "移除 WCSS 最高的群並保留其餘四群",
+        "D": "增加最大迭代次數讓演算法更完整收斂"
       },
       "correct_answer": "A",
       "source": {
@@ -1365,10 +1365,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某物流公司想利用時間序列分析預測未來三個月的包裹量。資料顯示每年年底有明顯尖峰，整體呈現上升趨勢。以下哪個 ARIMA 模型組合最能同時捕捉趨勢與季節性？",
       "options": {
-        "A": "ARIMA(1,0,0)",
-        "B": "ARIMA(0,1,0)",
+        "A": "SARIMA(1,0,0)(0,0,0)[12]",
+        "B": "SARIMA(0,1,0)(0,0,0)[12]",
         "C": "SARIMA(1,1,1)(1,1,1)[12]",
-        "D": "ARIMA(2,2,2)"
+        "D": "SARIMA(2,2,2)(0,0,1)[12]"
       },
       "correct_answer": "C",
       "source": {
@@ -1378,7 +1378,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:**\n資料同時具有趨勢（上升）和季節性（年底尖峰），需要 Seasonal ARIMA (SARIMA)。SARIMA(1,1,1)(1,1,1)[12] 的非季節部分處理趨勢，季節部分[12] 處理年度週期。\n\n**其他選項為何錯:**\n- A. ARIMA(1,0,0) 是簡單 AR(1)，無法處理趨勢或季節性\n- B. ARIMA(0,1,0) 只做一階差分去趨勢，無法捕捉季節性\n- C. ✓ 正解\n- D. ARIMA(2,2,2) 過度差分且無季節性參數\n\n**記憶要點:** SARIMA = ARIMA + 季節參數 [s]；年度資料用 [12]，季度用 [4]。",
+      "explanation": "**為什麼 C 是正解:**\n資料同時具有趨勢（上升）和季節性（年底尖峰），需要含季節參數的 SARIMA。SARIMA(1,1,1)(1,1,1)[12] 的非季節部分 (1,1,1) 以一階差分處理趨勢，季節部分 (1,1,1)[12] 處理年度週期，兩者兼備。\n\n**其他選項為何錯:**\n- A. SARIMA(1,0,0)(0,0,0)[12] 季節參數全為 0，等同 AR(1)，無法處理趨勢與季節\n- B. SARIMA(0,1,0)(0,0,0)[12] 只做非季節一階差分，無季節參數\n- C. ✓ 正解\n- D. SARIMA(2,2,2)(0,0,1)[12] 過度差分且季節 AR、I 為 0，無法捕捉趨勢與週期\n\n**記憶要點:** SARIMA(p,d,q)(P,D,Q)[s]；趨勢看 (p,d,q)，季節看 (P,D,Q)[s]；年度資料 s=12，季度 s=4。",
       "subject_code": "s2",
       "generated": true,
       "generated_by": "claude"
@@ -1388,10 +1388,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某銀行以關聯規則分析信用卡消費模式，設定最小支持度（min_support）= 0.05、最小信賴度（min_confidence）= 0.6。若某規則的 Support = 0.04，該規則會被？",
       "options": {
-        "A": "過濾掉，因為未達最小支持度門檻",
-        "B": "提升 Confidence 後再判斷是否保留",
-        "C": "轉換為逆向規則後重新評估",
-        "D": "保留，因為 Confidence 可能超過 0.6"
+        "A": "直接過濾掉，因為支持度低於 min_support 門檻",
+        "B": "保留候選，待 Confidence 計算完成後再判斷",
+        "C": "改以逆向規則 B → A 重新計算支持度後評估",
+        "D": "繼續保留，因為 Confidence 仍可能達 0.6 門檻"
       },
       "correct_answer": "A",
       "source": {
@@ -1401,7 +1401,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:**\nApriori 演算法首先過濾未達最小支持度的項目集，Support = 0.04 < min_support = 0.05，該規則直接被剪枝（pruning），不論 Confidence 高低。\n\n**其他選項為何錯:**\n- D. 錯誤；支持度不足的規則在 Apriori 中會先被剔除，不進入 Confidence 計算\n- A. ✓ 正解\n- B. Confidence 是後續計算，不影響 Support 門檻的過濾\n- C. 逆向規則有不同 Support，但原規則仍被過濾\n\n**記憶要點:** Apriori 的「反單調性」：若項目集支持度不足，其所有超集支持度也不足，可安全剪枝。",
+      "explanation": "**為什麼 A 是正解:**\nApriori 演算法先以最小支持度過濾候選項目集，Support = 0.04 < min_support = 0.05，該規則在頻繁項目集階段就被剪枝（pruning），不會進入 Confidence 計算。\n\n**其他選項為何錯:**\n- D. 支持度不足的規則在 Apriori 中先被剔除，不論 Confidence 多高\n- A. ✓ 正解\n- B. Confidence 是後續計算，無法挽救已被支持度門檻過濾的規則\n- C. 逆向規則的支持度 P(A∩B) 相同，仍不滿足 min_support\n\n**記憶要點:** Apriori 反單調性：項目集支持度不足，其所有超集支持度也不足，可安全剪枝。",
       "subject_code": "s2",
       "generated": true,
       "generated_by": "claude"
@@ -1411,10 +1411,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某醫療機構利用 DBSCAN 演算法對患者就醫行為進行分群。若將參數 ε（鄰域半徑）設定過大，可能導致什麼問題？",
       "options": {
-        "A": "產生過多雜訊點（noise points）",
-        "B": "群數過多，分群過於細緻",
-        "C": "原本應分開的群被合併成同一群",
-        "D": "演算法無法收斂，進入無限迴圈"
+        "A": "雜訊點數量大幅增加且核心點減少",
+        "B": "群數過多且每群只包含少數樣本點",
+        "C": "原本應分開的群被連接合併成同一群",
+        "D": "演算法無法收斂並進入無限迴圈狀態"
       },
       "correct_answer": "C",
       "source": {
@@ -1424,7 +1424,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:**\nε 過大時，每個點的鄰域涵蓋更多點，本來密度較低的「橋接」區域也變成核心點，導致原本應為不同群的點被連接，合併成一個大群（under-clustering）。\n\n**其他選項為何錯:**\n- A. ε 過大會減少雜訊點（更多點被包含在群內），而非增加\n- B. ε 過大會導致群數減少，而非增多\n- C. ✓ 正解\n- D. DBSCAN 無收斂問題，它是確定性演算法\n\n**記憶要點:** ε 大 → 鄰域大 → 群合併（under-clustering）；ε 小 → 鄰域小 → 群破碎、雜訊多（over-clustering）。",
+      "explanation": "**為什麼 C 是正解:**\nε 過大時，每個點的鄰域涵蓋更多點，本來密度較低的「橋接」區域也變成核心點，導致原本應為不同群的點被連接，合併成一個大群（under-clustering）。\n\n**其他選項為何錯:**\n- A. ε 過大會減少雜訊點（更多點被包含在群內），而非增加\n- B. ε 過大會導致群數減少（合併），不會變多\n- C. ✓ 正解\n- D. DBSCAN 是確定性演算法，不存在收斂問題\n\n**記憶要點:** ε 大 → 鄰域大 → 群合併（under-clustering）；ε 小 → 鄰域小 → 群破碎、雜訊多（over-clustering）。",
       "subject_code": "s2",
       "generated": true,
       "generated_by": "claude"
@@ -1434,10 +1434,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某連鎖餐廳分析各分店的月營業額，發現資料高度右偏（正偏態）。若使用階層式分群（Hierarchical Clustering）且採用「完整連結」（Complete Linkage）策略，兩群之間的距離定義為何？",
       "options": {
-        "A": "兩群中所有點對距離的平均值",
-        "B": "兩群質心之間的距離",
-        "C": "兩群中最近的兩點之間的距離",
-        "D": "兩群中最遠的兩點之間的距離"
+        "A": "兩群中所有點對距離的算術平均值",
+        "B": "兩群各自質心之間的歐氏距離值",
+        "C": "兩群中最近一對點之間的歐氏距離",
+        "D": "兩群中最遠一對點之間的歐氏距離"
       },
       "correct_answer": "D",
       "source": {
@@ -1457,10 +1457,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某電信公司以客戶通話時長、資料用量等特徵建立 K-means 分群模型。在決定最佳 K 值時，分析師使用「手肘法」（Elbow Method）。當 K 從 3 增加到 4 時，WCSS 從 1200 降至 900；從 4 增加到 5 時，WCSS 從 900 降至 870。應選擇哪個 K 值？",
       "options": {
-        "A": "K = 4，因為此時 WCSS 下降幅度出現明顯轉折",
-        "B": "K = 5，因為 WCSS 仍在下降",
-        "C": "K = 6，因為需要繼續測試才能確定",
-        "D": "K = 3，因為這是最小的 K"
+        "A": "K = 4，因為 WCSS 下降幅度在此明顯轉折變平",
+        "B": "K = 5，因為 WCSS 仍持續下降需更多群",
+        "C": "K = 6，因為應該繼續測試直到收斂為止",
+        "D": "K = 3，因為較小的 K 計算成本與複雜度低"
       },
       "correct_answer": "A",
       "source": {
@@ -1480,10 +1480,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某超市資料科學家對購物籃資料進行關聯規則挖掘，發現規則「麵包 → 牛奶」的 Lift = 0.7。對此規則的正確解讀是？",
       "options": {
-        "A": "購買麵包的顧客比未購買麵包的顧客較不可能購買牛奶",
-        "B": "麵包與牛奶之間不存在任何關聯",
-        "C": "牛奶的銷售量是麵包的 0.7 倍",
-        "D": "購買麵包的顧客比未購買麵包的顧客更可能購買牛奶"
+        "A": "買麵包者購買牛奶的機率低於整體牛奶購買率",
+        "B": "麵包與牛奶之間不存在任何統計關聯關係",
+        "C": "牛奶的總銷售量約為麵包總銷售量的 0.7 倍",
+        "D": "買麵包者購買牛奶的機率高於整體牛奶購買率"
       },
       "correct_answer": "A",
       "source": {
@@ -1503,10 +1503,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某房地產公司對全台城市的房價進行時間序列分析，發現每年第二季（Q2）房價均會上升。這種現象屬於時間序列的哪個成分？",
       "options": {
-        "A": "季節性成分（Seasonality）",
-        "B": "週期性成分（Cyclicality）",
-        "C": "不規則成分（Irregular/Noise）",
-        "D": "趨勢成分（Trend）"
+        "A": "季節性成分（Seasonality）：固定週期內規律重複",
+        "B": "週期性成分（Cyclicality）：非固定長度的長期波動",
+        "C": "不規則成分（Irregular）：無法預測的隨機雜訊變動",
+        "D": "趨勢成分（Trend）：資料長期持續上升或下降"
       },
       "correct_answer": "A",
       "source": {
@@ -1526,10 +1526,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某保險公司針對理賠資料進行分群分析，希望找出異常理賠行為。以下哪種演算法最適合，因為它能自動識別離群點而不需預先指定群數？",
       "options": {
-        "A": "DBSCAN",
-        "B": "階層式分群（Ward 連結）",
-        "C": "主成分分析（PCA）",
-        "D": "K-means（K=5）"
+        "A": "DBSCAN 密度分群（無需指定群數可自動標記雜訊點）",
+        "B": "階層式分群 Hierarchical（Ward 連結需切割樹狀圖）",
+        "C": "主成分分析 PCA（線性降維方法非屬分群演算法）",
+        "D": "K-means 分群（K=5 需預設群數無離群點概念）"
       },
       "correct_answer": "A",
       "source": {
@@ -1549,10 +1549,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某電商平台進行 RFM 分析（Recency, Frequency, Monetary），其中「Frequency」欄位的值域為 1–500 次，「Monetary」欄位為 100–500,000 元。若直接套用 K-means，哪個特徵會主導分群結果，為何？",
       "options": {
-        "A": "Monetary，因為其數值範圍遠大於其他特徵",
-        "B": "Frequency，因為次數比金額更具區分力",
-        "C": "三者同等重要，K-means 自動平衡",
-        "D": "Recency，因為時間資料最重要"
+        "A": "Monetary，因其數值範圍跨度最大主導歐氏距離",
+        "B": "Frequency，因消費次數比金額更具區分客戶能力",
+        "C": "三者同等重要，因 K-means 會自動平衡縮放尺度",
+        "D": "Recency，因最近消費時間距離決定客群歸屬"
       },
       "correct_answer": "A",
       "source": {
@@ -1572,10 +1572,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某股票分析師對個股收盤價進行移動平均分析。「指數移動平均（EMA）」與「簡單移動平均（SMA）」最主要的差異是什麼？",
       "options": {
-        "A": "EMA 對近期資料賦予較高權重，對市場變化反應更靈敏",
-        "B": "SMA 只使用最近 N 天資料，而 EMA 使用全部歷史資料",
-        "C": "EMA 消除了時間序列中的季節性成分",
-        "D": "EMA 計算速度更快，適合大數據環境"
+        "A": "EMA 對近期資料給予較高權重故對變化反應更靈敏",
+        "B": "SMA 只看最近 N 天而 EMA 完全使用所有歷史資料",
+        "C": "EMA 能直接消除時間序列中的年度季節性成分波動",
+        "D": "EMA 的浮點運算速度遠快於 SMA 適合即時大數據"
       },
       "correct_answer": "A",
       "source": {
@@ -1595,10 +1595,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某市場研究公司對消費者進行問卷調查，想找出不同年齡層對產品類別的偏好差異。研究員選擇對應分析（Correspondence Analysis）。以下哪個說法最準確描述此方法的用途？",
       "options": {
-        "A": "用於視覺化類別變數間的關聯結構",
-        "B": "用於建立年齡層對銷售額的回歸預測模型",
-        "C": "用於測試兩個類別變數是否獨立",
-        "D": "用於將高維連續特徵降維至二維空間"
+        "A": "以低維散點圖視覺化類別變數之間的關聯結構",
+        "B": "建立連續變數對類別變數的多元線性回歸模型",
+        "C": "檢定兩個類別變數是否在統計上彼此獨立無關",
+        "D": "將高維連續特徵降維至二維保留最大方差結構"
       },
       "correct_answer": "A",
       "source": {
@@ -1618,10 +1618,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某物聯網平台針對工廠設備的感測器數據建立異常偵測系統。工程師選用孤立森林（Isolation Forest）演算法。孤立森林識別異常點的核心原理是什麼？",
       "options": {
-        "A": "異常點在隨機決策樹中需要較少的分割次數才能被孤立",
-        "B": "異常點的密度顯著低於其鄰域中的正常點",
-        "C": "異常點的重構誤差在自編碼器中明顯高於正常點",
-        "D": "異常點距群中心的歐氏距離明顯大於正常點"
+        "A": "異常點在隨機決策樹中只需少數次分割即可被孤立",
+        "B": "異常點所在鄰域的局部密度顯著低於正常樣本",
+        "C": "異常點經自編碼器重構後的重構誤差遠高於正常",
+        "D": "異常點與最近群中心的歐氏距離遠大於正常樣本"
       },
       "correct_answer": "A",
       "source": {
@@ -1641,10 +1641,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某零售業者想找出「購買尿布的顧客也常購買啤酒」這類關聯。在 Apriori 演算法中，以下哪個步驟順序是正確的？",
       "options": {
-        "A": "計算 Support → 過濾低支持度項目集 → 計算 Confidence → 過濾低信賴度規則",
-        "B": "生成所有可能規則 → 計算 Support → 計算 Confidence → 計算 Lift",
-        "C": "計算 Confidence → 計算 Support → 生成頻繁項目集",
-        "D": "計算 Lift → 計算 Confidence → 計算 Support → 過濾"
+        "A": "計算 Support → 過濾低支持度 → 計算 Confidence → 過濾低信賴度",
+        "B": "計算 Support → 計算 Confidence → 計算 Lift → 生成所有候選規則",
+        "C": "計算 Confidence → 計算 Support → 計算 Lift → 生成頻繁項目集",
+        "D": "計算 Lift → 計算 Confidence → 計算 Support → 過濾低 Lift 規則"
       },
       "correct_answer": "A",
       "source": {
@@ -1654,7 +1654,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:**\nApriori 演算法標準流程：(1) 計算所有項目的 Support，過濾低於 min_support 的項目；(2) 逐步擴展頻繁項目集（1-項目集→2-項目集→…）；(3) 對頻繁項目集生成規則，計算 Confidence，過濾低於 min_confidence 的規則；(4) 可選計算 Lift。\n\n**其他選項為何錯:**\n- D. 順序錯誤，Lift 是最後計算的\n- A. ✓ 正解\n- B. 先生成所有規則會計算量爆炸，Apriori 的關鍵是先剪枝\n- C. Confidence 依賴 Support，不可先計算\n\n**記憶要點:** Apriori = 先 Support 剪枝（頻繁項目集），再 Confidence 過濾規則，最後可計算 Lift 評估實用性。",
+      "explanation": "**為什麼 A 是正解:**\nApriori 演算法標準流程：(1) 計算所有項目的 Support，過濾低於 min_support 的項目；(2) 逐步擴展頻繁項目集；(3) 對頻繁項目集計算 Confidence 並過濾低於 min_confidence 的規則；(4) 可選計算 Lift。「先 Support 剪枝再 Confidence 過濾」是 Apriori 的核心步驟順序。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 順序錯誤；Apriori 必須在過濾後才生成候選規則，且 Lift 不該在過濾前計算\n- C. 順序錯誤；Confidence 須在頻繁項目集生成之後才能計算，不能先於 Support\n- D. 順序錯誤；Lift 是最後一步輔助評估指標，不應排在 Support 前計算\n\n**記憶要點:** Apriori = 先 Support 剪枝（頻繁項目集），再 Confidence 過濾規則，最後可計算 Lift 評估實用性。",
       "subject_code": "s2",
       "generated": true,
       "generated_by": "claude"
@@ -1664,10 +1664,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某航空公司對旅客的航班延誤資料進行聚類分析，希望探索資料中的自然群組。以下哪個特性是 K-means 演算法的固有限制？",
       "options": {
-        "A": "K-means 假設群的形狀為球形（凸形），對非球形群效果差",
-        "B": "K-means 每次執行結果完全相同，缺乏隨機性",
-        "C": "K-means 要求所有特徵必須是類別型資料",
-        "D": "K-means 無法處理超過 1,000 筆以上的資料"
+        "A": "K-means 假設群為球形分佈對非凸形狀分群效果差",
+        "B": "K-means 演算法完全確定無隨機性每次結果必相同",
+        "C": "K-means 要求所有輸入特徵必須是類別型離散資料",
+        "D": "K-means 無法處理樣本數超過數千以上的大型資料"
       },
       "correct_answer": "A",
       "source": {
@@ -1687,10 +1687,10 @@
       "topic": "Analytics/Methods",
       "question_text": "某製造業工廠利用多元迴歸分析建立產品缺陷率的預測模型。模型的 R² = 0.85。若此模型用於預測訓練集以外的新資料，以下哪個說法最可能正確？",
       "options": {
-        "A": "新資料的 R² 可能低於 0.85，因為訓練集的擬合程度通常優於測試集",
-        "B": "新資料的 R² 將高於 0.85，因為新資料消除了訓練雜訊",
-        "C": "R² 在新資料上無意義，需改用 RMSE 評估",
-        "D": "新資料的 R² 將等於 0.85，因為模型已完全學習規律"
+        "A": "新資料 R² 通常低於 0.85，因訓練擬合常優於測試表現",
+        "B": "新資料 R² 通常高於 0.85，因新樣本能消除訓練雜訊干擾",
+        "C": "新資料 R² 完全失去意義，應改用 RMSE 等誤差指標評估",
+        "D": "新資料 R² 將維持 0.85，因模型已學會所有泛化規律"
       },
       "correct_answer": "A",
       "source": {
@@ -1710,10 +1710,10 @@
       "topic": "FeatureEng",
       "question_text": "某人力資源部門建立員工離職預測模型，其中「職位等級」欄位的值為：實習生、專員、主任、經理、副總、總監（具有明確順序）。以下哪種編碼方式最合適？",
       "options": {
-        "A": "One-Hot 編碼，因為職位是類別型資料",
-        "B": "目標編碼（Target Encoding），以離職率替代職位名稱",
-        "C": "標籤編碼（Label Encoding），因為職位具有明確的順序關係",
-        "D": "二元編碼（Binary Encoding），減少維度"
+        "A": "One-Hot Encoding，把職位視為無序的名目類別處理",
+        "B": "Target Encoding，將每個職位替換為對應的離職率值",
+        "C": "Label Encoding，將職位映射為保留順序的整數序列",
+        "D": "Binary Encoding，把職位轉成多個二進位欄位以降維"
       },
       "correct_answer": "C",
       "source": {
@@ -1733,10 +1733,10 @@
       "topic": "FeatureEng",
       "question_text": "某醫院建立糖尿病預測模型，訓練資料中「血糖值」欄位有少量離群值（值域通常 70-400，但有幾筆超過 1000）。下列哪種特徵縮放方法對這些離群值最不敏感？",
       "options": {
-        "A": "Min-Max 正規化（最小-最大縮放）",
-        "B": "Z-score 標準化（均值為 0，標準差為 1）",
-        "C": "Robust Scaling（以中位數和 IQR 縮放）",
-        "D": "對數轉換（Log Transformation）後再標準化"
+        "A": "Min-Max 正規化（以最小值與最大值縮放至 [0,1]）",
+        "B": "Z-score 標準化（以平均數與標準差縮放至均值 0）",
+        "C": "Robust Scaling 縮放（以中位數與 IQR 進行縮放）",
+        "D": "Max-Abs 正規化（以絕對值最大值縮放至 [-1,1]）"
       },
       "correct_answer": "C",
       "source": {
@@ -1746,7 +1746,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 C 是正解:**\nRobust Scaling 使用中位數（代替均值）和 IQR（代替標準差）進行縮放：X' = (X - median) / IQR。中位數和 IQR 是離群值不敏感的統計量，不會被少數極端值扭曲。\n\n**其他選項為何錯:**\n- A. Min-Max 使用最小值和最大值，極端離群值會將所有正常值壓縮到接近 0 或 1 的狹窄範圍\n- B. Z-score 使用均值和標準差，都受離群值影響\n- C. ✓ 正解\n- D. 對數轉換有效但不是「縮放方法」分類中的選項，且需要正值\n\n**記憶要點:** Robust Scaling = 中位數 + IQR = 抗離群值；Min-Max = 易受離群值扭曲；Z-score = 中等受影響。",
+      "explanation": "**為什麼 C 是正解:**\nRobust Scaling 使用中位數（代替均值）和 IQR（代替標準差）進行縮放：X' = (X - median) / IQR。中位數和 IQR 是離群值不敏感的統計量，不會被少數極端值扭曲。\n\n**其他選項為何錯:**\n- A. Min-Max 使用最小值和最大值，極端離群值會將所有正常值壓縮到接近 0 或 1 的狹窄範圍\n- B. Z-score 使用均值和標準差，兩者都受離群值影響\n- C. ✓ 正解\n- D. Max-Abs 以絕對值最大值縮放，同樣受極端離群值主導\n\n**記憶要點:** Robust Scaling = 中位數 + IQR = 抗離群值；Min-Max 與 Max-Abs = 易受離群值扭曲；Z-score = 中等受影響。",
       "subject_code": "s2",
       "generated": true,
       "generated_by": "claude"
@@ -1756,10 +1756,10 @@
       "topic": "FeatureEng",
       "question_text": "某電商平台有一個「商品類別」欄位，包含 800 個不同類別（高基數）。若使用 One-Hot 編碼，將產生什麼主要問題？",
       "options": {
-        "A": "產生 800 個稀疏二元特徵，導致維度詛咒（Curse of Dimensionality）",
-        "B": "One-Hot 編碼會破壞特徵的順序資訊",
-        "C": "One-Hot 編碼只適用於二元分類問題",
-        "D": "模型無法處理類別型特徵，必須改用數值型"
+        "A": "產生 800 維稀疏二元特徵造成維度詛咒與計算負擔",
+        "B": "One-Hot 編碼會破壞類別本身既有的順序與層次資訊",
+        "C": "One-Hot 編碼只能應用於二元分類問題不能用於多分類",
+        "D": "模型完全無法處理類別型特徵必須改用純數值型輸入"
       },
       "correct_answer": "A",
       "source": {
@@ -1779,10 +1779,10 @@
       "topic": "FeatureEng",
       "question_text": "某資料科學家對房價預測模型進行特徵選擇，使用過濾法（Filter Method）。以下哪個指標最適合用於過濾法中衡量特徵與目標變數的相關性？",
       "options": {
-        "A": "交叉驗證分數（Cross-Validation Score）",
-        "B": "特徵重要性（Feature Importance from Random Forest）",
-        "C": "皮爾森相關係數（Pearson Correlation Coefficient）",
-        "D": "遞迴特徵消除（Recursive Feature Elimination）得分"
+        "A": "交叉驗證分數（Cross-Validation Score，包裝法）",
+        "B": "隨機森林特徵重要性（Feature Importance，嵌入法）",
+        "C": "皮爾森相關係數（Pearson Correlation，過濾法）",
+        "D": "遞迴特徵消除得分（Recursive Feature Elimination，包裝法）"
       },
       "correct_answer": "C",
       "source": {
@@ -1802,10 +1802,10 @@
       "topic": "FeatureEng",
       "question_text": "某金融機構建立信用評分模型，將「月收入」和「月支出」兩個特徵衍生為「每月儲蓄率 = (月收入 - 月支出) / 月收入」。這屬於特徵工程的哪個技術？",
       "options": {
-        "A": "特徵衍生（Feature Derivation / Feature Construction）",
-        "B": "特徵選擇（Feature Selection）",
-        "C": "特徵編碼（Feature Encoding）",
-        "D": "特徵縮放（Feature Scaling）"
+        "A": "特徵衍生（Feature Derivation，由現有特徵運算組合）",
+        "B": "特徵選擇（Feature Selection，從現有特徵挑選子集）",
+        "C": "特徵編碼（Feature Encoding，將類別變數轉成數值）",
+        "D": "特徵縮放（Feature Scaling，調整特徵數值分佈範圍）"
       },
       "correct_answer": "A",
       "source": {
@@ -1825,10 +1825,10 @@
       "topic": "FeatureEng",
       "question_text": "某資料科學家對訓練資料集進行 Min-Max 正規化，將特徵縮放至 [0, 1]。在應用於測試集時，應使用哪組統計量？",
       "options": {
-        "A": "訓練集的最小值和最大值，保持縮放一致性",
-        "B": "訓練集和測試集合並後的最小值和最大值",
-        "C": "每次預測時動態計算當前批次的最小值和最大值",
-        "D": "測試集的最小值和最大值，確保測試集也在 [0, 1] 範圍內"
+        "A": "訓練集的最小值與最大值，套用至訓練與測試集",
+        "B": "訓練集與測試集合併後計算的最小值與最大值",
+        "C": "每筆預測動態以當批次資料的最小值與最大值",
+        "D": "測試集自身的最小值與最大值以涵蓋 [0,1] 範圍"
       },
       "correct_answer": "A",
       "source": {
@@ -1848,10 +1848,10 @@
       "topic": "FeatureEng",
       "question_text": "某機器學習工程師使用嵌入法（Embedded Method）進行特徵選擇，選用 Lasso 迴歸（L1 正則化）。Lasso 進行特徵選擇的機制是什麼？",
       "options": {
-        "A": "將不重要特徵的係數縮減至恰好為零，實現稀疏解",
-        "B": "對每個特徵子集建立模型並比較交叉驗證分數",
-        "C": "以隨機森林評估特徵重要性後排序並截斷",
-        "D": "計算每個特徵與目標的皮爾森相關係數，移除低相關特徵"
+        "A": "在損失函數加入 L1 懲罰使不重要特徵的係數收縮至零",
+        "B": "對所有特徵子集分別建模並比較交叉驗證分數高低",
+        "C": "以隨機森林計算特徵重要性後排序並截斷低重要性",
+        "D": "計算每個特徵與目標的皮爾森相關係數後移除低相關"
       },
       "correct_answer": "A",
       "source": {
@@ -1871,10 +1871,10 @@
       "topic": "FeatureEng",
       "question_text": "某資料科學家對包含 50 個特徵的資料集使用主成分分析（PCA）進行降維，保留解釋 95% 方差的主成分。在執行 PCA 之前，哪個前處理步驟是必要的？",
       "options": {
-        "A": "對所有數值特徵進行標準化（Standardization）",
-        "B": "移除所有缺失值的列",
-        "C": "將目標變數納入 PCA 計算",
-        "D": "對所有特徵進行 One-Hot 編碼"
+        "A": "對所有連續型特徵進行 Z-score 標準化以對齊尺度",
+        "B": "刪除所有包含任一缺失值的列以避免協方差扭曲",
+        "C": "將目標變數一併納入 PCA 計算以提升解釋變異程度",
+        "D": "對全部類別型特徵進行 One-Hot 編碼後再執行 PCA"
       },
       "correct_answer": "A",
       "source": {
@@ -1894,10 +1894,10 @@
       "topic": "FeatureEng",
       "question_text": "某零售公司在建立銷售預測模型時，欲對「銷售日期」特徵進行特徵工程。以下哪種做法能最有效地捕捉時間的週期性（如星期幾、月份）而不丟失順序資訊？",
       "options": {
-        "A": "將日期轉換為自 2000 年 1 月 1 日起的天數（整數）",
-        "B": "對「星期幾」進行 One-Hot 編碼（7 個二元特徵）",
-        "C": "將週期性特徵進行正弦/餘弦轉換（sin/cos encoding）",
-        "D": "將日期捨去至月份精度（如 2024-03）"
+        "A": "轉換為自基準日起的整數天數以保留嚴格時間順序",
+        "B": "對星期幾與月份分別執行 One-Hot 編碼產生稀疏向量",
+        "C": "對週期特徵執行正弦與餘弦轉換以保留週期相鄰性",
+        "D": "將日期捨入至月份粒度以降低季節性雜訊干擾分析"
       },
       "correct_answer": "C",
       "source": {
@@ -1917,10 +1917,10 @@
       "topic": "FeatureEng",
       "question_text": "某資料科學家建立客戶流失預測模型，在訓練資料上使用目標編碼（Target Encoding）將「地區」欄位替換為該地區的平均流失率。以下哪個風險是目標編碼最需要防範的？",
       "options": {
-        "A": "目標洩漏（Target Leakage）導致模型過擬合",
-        "B": "無法處理訓練集中未出現的新地區",
-        "C": "計算時間過長，不適合大型資料集",
-        "D": "產生過多稀疏特徵"
+        "A": "目標洩漏導致模型在訓練集嚴重過擬合而泛化差",
+        "B": "無法處理訓練時未出現的新地區會產生缺失編碼",
+        "C": "計算過程耗時過長不適合應用於大型資料集場景",
+        "D": "編碼後產生過多稀疏二元欄位造成維度爆炸風險"
       },
       "correct_answer": "A",
       "source": {
@@ -1940,10 +1940,10 @@
       "topic": "FeatureEng",
       "question_text": "某氣象局對未來降雨量建立預測模型，輸入特徵包括溫度（°C）、濕度（%）、氣壓（hPa）。若這些特徵間存在多重共線性，以下哪種特徵處理方法最能直接解決此問題？",
       "options": {
-        "A": "主成分分析（PCA）進行降維",
-        "B": "目標編碼（Target Encoding）",
-        "C": "移除缺失值",
-        "D": "Min-Max 正規化"
+        "A": "主成分分析 PCA（產生彼此不相關的主成分變數）",
+        "B": "目標編碼 Target Encoding（以目標均值替代類別）",
+        "C": "缺失值刪除 Listwise Deletion（移除含缺失之列）",
+        "D": "最小最大正規化 Min-Max（將特徵縮放至 [0,1]）"
       },
       "correct_answer": "A",
       "source": {
@@ -1963,10 +1963,10 @@
       "topic": "FeatureEng",
       "question_text": "某資料科學家在建立詐欺偵測模型時發現，訓練資料中正常交易佔 99%，詐欺交易僅佔 1%（嚴重不平衡）。以下哪種資料層面的處理方式屬於「過採樣」（Oversampling）技術？",
       "options": {
-        "A": "使用 SMOTE（Synthetic Minority Over-sampling Technique）合成少數類別樣本",
-        "B": "在損失函數中給少數類別更高的懲罰權重",
-        "C": "使用 Ensemble 方法（如 EasyEnsemble）從多數類別中隨機抽樣",
-        "D": "隨機刪除多數類別樣本至少數類別相同比例"
+        "A": "以 SMOTE 在少數類別樣本近鄰之間合成新樣本",
+        "B": "在損失函數中對少數類別樣本給予更高懲罰權重",
+        "C": "以 EasyEnsemble 對多數類別反覆隨機抽樣後集成",
+        "D": "隨機刪除多數類別樣本至兩類別樣本數相同比例"
       },
       "correct_answer": "A",
       "source": {
@@ -1976,7 +1976,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 A 是正解:**\nSMOTE（合成少數類別過採樣技術）透過在少數類別樣本的近鄰之間插值合成新樣本，屬於過採樣技術。它不是簡單複製現有少數類別樣本，而是生成新的合成樣本。\n\n**其他選項為何錯:**\n- D. 這是「欠採樣」（Undersampling/Down-sampling）技術\n- A. ✓ 正解\n- B. 這是「成本敏感學習」（Cost-Sensitive Learning），在損失函數層面處理，不是採樣\n- C. EasyEnsemble 結合欠採樣和集成，屬於混合方法\n\n**記憶要點:** 過採樣 = 增加少數類別（SMOTE 合成）；欠採樣 = 減少多數類別（Random Under-sampling）。",
+      "explanation": "**為什麼 A 是正解:**\nSMOTE（合成少數類別過採樣技術）透過在少數類別樣本的近鄰之間插值合成新樣本，屬於資料層面的過採樣技術，能增加少數類別的樣本數量。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 這是「成本敏感學習」（Cost-Sensitive Learning），在演算法層面處理，不是採樣\n- C. EasyEnsemble 結合欠採樣與集成，屬於混合方法非過採樣\n- D. 這是「欠採樣」（Undersampling/Down-sampling）技術\n\n**記憶要點:** 過採樣 = 增加少數類別（SMOTE 合成）；欠採樣 = 減少多數類別（Random Under-sampling）。",
       "subject_code": "s2",
       "generated": true,
       "generated_by": "claude"
@@ -1986,10 +1986,10 @@
       "topic": "FeatureEng",
       "question_text": "某資料科學家在特徵選擇時，使用「包裝法（Wrapper Method）」的遞迴特徵消除（RFE）。包裝法相較於過濾法的主要缺點是什麼？",
       "options": {
-        "A": "包裝法只能用於線性模型",
-        "B": "包裝法選出的特徵無法解釋",
-        "C": "包裝法不考慮特徵與目標變數的相關性",
-        "D": "包裝法需要反覆訓練模型，計算成本高"
+        "A": "包裝法只能搭配線性模型使用無法應用於樹模型",
+        "B": "包裝法選出的特徵在業務上難以提供合理可解釋性",
+        "C": "包裝法無法考慮特徵與目標之間的真實相關程度",
+        "D": "包裝法須反覆訓練模型評估子集導致計算成本高"
       },
       "correct_answer": "D",
       "source": {
@@ -2009,10 +2009,10 @@
       "topic": "FeatureEng",
       "question_text": "某電商平台在建立推薦系統時，需要對用戶 ID（共 500 萬個不同用戶）進行特徵表示。以下哪種方法最適合？",
       "options": {
-        "A": "Label Encoding（整數 0 到 4,999,999）",
-        "B": "One-Hot Encoding（500 萬維稀疏向量）",
-        "C": "Embedding 嵌入（低維稠密向量）",
-        "D": "Frequency Encoding（用用戶出現頻率替代 ID）"
+        "A": "標籤編碼 Label Encoding（將 ID 轉為單一整數標籤）",
+        "B": "獨熱編碼 One-Hot Encoding（產生 500 萬維稀疏向量）",
+        "C": "嵌入向量 Embedding（將 ID 映射至低維稠密向量）",
+        "D": "頻率編碼 Frequency Encoding（以 ID 出現次數替代）"
       },
       "correct_answer": "C",
       "source": {
@@ -2032,10 +2032,10 @@
       "topic": "FeatureEng",
       "question_text": "某資料工程師發現客戶年齡特徵呈現嚴重右偏分佈（positive skew），大量客戶集中在 20-30 歲，少數高齡客戶拉高了分佈尾部。哪種轉換最能使此分佈接近常態？",
       "options": {
-        "A": "Z-score 標準化（X - mean / std）",
-        "B": "Min-Max 正規化至 [0, 1]",
-        "C": "對數轉換（Log Transformation）",
-        "D": "Robust Scaling（中位數縮放）"
+        "A": "Z-score 標準化（以平均數與標準差調整資料尺度）",
+        "B": "Min-Max 正規化（將資料線性縮放至 [0,1] 區間）",
+        "C": "對數轉換 Log Transformation（壓縮長尾改善偏態）",
+        "D": "Robust Scaling 縮放（以中位數與 IQR 進行縮放）"
       },
       "correct_answer": "C",
       "source": {
@@ -2055,10 +2055,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某市場研究公司對 1,000 名消費者的月支出進行探索性資料分析（EDA）。箱形圖顯示：Q1 = 8,000 元、Q3 = 20,000 元，一個資料點為 42,000 元。根據 Tukey 定義，此資料點是否為離群值？",
       "options": {
-        "A": "需要更多資料才能判斷，單一閾值不足",
-        "B": "否，離群值定義需要 Z-score > 3，此處 Z-score 未知",
-        "C": "否，42,000 元低於 Q3 的兩倍，不算離群值",
-        "D": "是，42,000 元超過 Q3 + 1.5 × IQR = 38,000 元"
+        "A": "無法判斷，依 Tukey 法則需要更多樣本才能對 42,000 元做出離群判定",
+        "B": "否，依 Z-score 法須以絕對值 > 3 為標準，而 42,000 的 Z-score 未知",
+        "C": "否，因為 42,000 元未超過 Q3 × 2 = 40,000 元的兩倍判定上界",
+        "D": "是，因為 42,000 元超過 Q3 + 1.5×IQR = 38,000 元的判定上界"
       },
       "correct_answer": "D",
       "source": {
@@ -2078,10 +2078,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某資料分析師繪製兩個連續變數的散佈圖（Scatter Plot），發現資料點呈現「越往右上角，資料越密集，但整體雲形向右傾斜」的模式。這最可能代表什麼？",
       "options": {
-        "A": "兩變數呈負線性相關（r < 0）",
-        "B": "兩變數存在 U 型非線性關係",
-        "C": "兩變數完全無關（r ≈ 0）",
-        "D": "兩變數呈正線性相關（r > 0）"
+        "A": "兩變數呈現負線性相關（Pearson r 顯著小於零）",
+        "B": "兩變數呈現 U 型曲線非線性關係（線性 r ≈ 0）",
+        "C": "兩變數彼此不存在任何相關關係（Pearson r ≈ 0）",
+        "D": "兩變數呈現正線性相關（Pearson r 顯著大於零）"
       },
       "correct_answer": "D",
       "source": {
@@ -2101,10 +2101,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某零售公司進行 EDA，發現「客戶年齡」特徵有 8% 的缺失值。分析師決定直接刪除含缺失值的列。以下哪種情況下此做法風險最高？",
       "options": {
-        "A": "缺失值為 MCAR（完全隨機缺失），與其他變數無關",
-        "B": "缺失值為 MAR（隨機缺失），與其他觀測變數有關",
-        "C": "缺失值為 MNAR（非隨機缺失），與缺失值本身有關",
-        "D": "缺失值均勻分佈在所有年齡段"
+        "A": "MCAR（Missing Completely At Random，與任何變數均無關）",
+        "B": "MAR（Missing At Random，缺失機制與其他可觀測變數有關）",
+        "C": "MNAR（Missing Not At Random，缺失機制與缺失值本身有關）",
+        "D": "MCAR（Missing Completely At Random，於各年齡段均勻分佈）"
       },
       "correct_answer": "C",
       "source": {
@@ -2124,10 +2124,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某資料分析師在 EDA 中發現「月銷售額」的直方圖呈現嚴重右偏（正偏態），平均值為 50,000 元，中位數為 32,000 元。在報告集中趨勢時，應優先選用哪個指標？",
       "options": {
-        "A": "眾數，因為代表最常見的銷售額",
-        "B": "幾何平均數，因為銷售額是比例性資料",
-        "C": "平均值（50,000 元），因為使用全部資料",
-        "D": "中位數（32,000 元），因為較不受極端值影響"
+        "A": "眾數，因為代表分佈中最頻繁出現的銷售額類別",
+        "B": "幾何平均數，因為銷售額本質上屬於比例性增長資料",
+        "C": "平均值 50,000 元，因為它運用了全體分店的資料",
+        "D": "中位數 32,000 元，因為它較不受極端高值的影響"
       },
       "correct_answer": "D",
       "source": {
@@ -2147,10 +2147,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某醫療資料分析師使用相關性熱圖（Correlation Heatmap）分析 20 個生化指標之間的關係，發現指標 A 與指標 B 的 Pearson 相關係數為 0.95。這對後續的迴歸分析有何影響？",
       "options": {
-        "A": "高相關表示兩個特徵都非常重要，應保留",
-        "B": "Pearson r = 0.95 表示因果關係，A 導致 B",
-        "C": "無影響，迴歸模型可自動處理高相關特徵",
-        "D": "可能引起多重共線性問題，使係數估計不穩定"
+        "A": "高相關代表兩個指標都很重要，應同時保留並一起納入迴歸模型",
+        "B": "Pearson 相關係數接近 1 已足以證明指標 A 與 B 之間存在因果關係",
+        "C": "線性迴歸模型可以自動穩健地處理特徵之間高度相關所造成的影響",
+        "D": "可能引起多重共線性使得迴歸係數估計變得不穩定且解釋力會下降"
       },
       "correct_answer": "D",
       "source": {
@@ -2170,10 +2170,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某資料分析師進行 EDA 時，想比較五個不同城市的房價分佈（中位數、四分位距、離群值）。以下哪種圖表最能一次呈現所有這些資訊？",
       "options": {
-        "A": "長條圖（Bar Chart），各城市顯示平均房價",
-        "B": "折線圖（Line Chart），連接各城市平均值",
-        "C": "箱形圖（Box Plot），各城市一個箱",
-        "D": "圓餅圖（Pie Chart），各城市佔總銷售比例"
+        "A": "長條圖（Bar Chart），對每個城市顯示平均房價長條",
+        "B": "折線圖（Line Chart），依序連接各城市平均房價點",
+        "C": "箱形圖（Box Plot），對每個城市並列繪製一個箱型",
+        "D": "圓餅圖（Pie Chart），對每個城市計算其房價總佔比"
       },
       "correct_answer": "C",
       "source": {
@@ -2193,10 +2193,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某電商公司對 100 萬筆交易資料進行 EDA，計算所有數值型特徵的描述性統計。以下哪種情況表明某特徵可能需要進一步調查？",
       "options": {
-        "A": "平均值 ≈ 中位數（差異 < 5%）",
-        "B": "最大值恰好是最小值的整數倍",
-        "C": "標準差遠大於平均值（變異係數 CV > 1）",
-        "D": "資料呈現完美常態分佈"
+        "A": "平均值與中位數接近且差距不到 5%（近乎對稱）",
+        "B": "最大值恰好為最小值的整數倍（如三倍或五倍）",
+        "C": "標準差遠大於平均值即變異係數 CV 大於 1（高分散）",
+        "D": "資料分佈接近完美常態鐘形（偏度與峰度近似 0）"
       },
       "correct_answer": "C",
       "source": {
@@ -2216,10 +2216,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某資料科學家在 EDA 中使用配對圖（Pair Plot）分析多個特徵之間的兩兩關係。對角線上的子圖通常顯示什麼？",
       "options": {
-        "A": "兩個特徵之間的散佈圖",
-        "B": "每個特徵與目標變數的折線圖",
-        "C": "每個特徵自身的分佈（直方圖或 KDE）",
-        "D": "兩個特徵之間的 Pearson 相關係數"
+        "A": "兩兩特徵之間的散佈圖（Scatter Plot of two features）",
+        "B": "每個特徵與目標變數隨時間變化的折線圖（Line Chart）",
+        "C": "每個特徵自身的單變數分佈圖（Histogram 或 KDE）",
+        "D": "兩兩特徵之間的皮爾森相關係數數值（Pearson r value）"
       },
       "correct_answer": "C",
       "source": {
@@ -2239,10 +2239,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某銀行對客戶的信用評分資料（0–850 分）進行 EDA，發現平均值 = 620，標準差 = 85，偏度（Skewness）= -0.8。關於此分佈的描述，哪個最正確？",
       "options": {
-        "A": "分佈對稱，平均值 ≈ 中位數 ≈ 眾數",
-        "B": "右偏（正偏態），少數客戶信用評分極低",
-        "C": "左偏（負偏態），多數客戶信用評分偏高，少數極低",
-        "D": "左偏（負偏態），多數客戶信用評分偏低，少數極高"
+        "A": "分佈完全對稱，平均值、中位數與眾數三者幾乎相等",
+        "B": "右偏（正偏態），多數客戶信用評分極低少數極高",
+        "C": "左偏（負偏態），多數客戶信用評分偏高少數極低",
+        "D": "右偏（正偏態），多數客戶信用評分偏低少數極高"
       },
       "correct_answer": "C",
       "source": {
@@ -2262,10 +2262,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某資料分析師對電商訂單資料進行 EDA，發現「訂單金額」欄位中有 0.5% 的值為負數（退款記錄）。應如何處理？",
       "options": {
-        "A": "直接刪除，負數是錯誤資料",
-        "B": "以平均值插補，填補為正常訂單金額",
-        "C": "理解業務含義後決定：若代表退款則可能是有效資料",
-        "D": "將所有負數取絕對值，強制轉換為正數"
+        "A": "直接刪除這些紀錄，因為負數一定屬於資料錯誤",
+        "B": "以平均值插補替換負值，使其落於正常訂單範圍",
+        "C": "先理解業務含義再決定，例如退款屬有效紀錄保留",
+        "D": "對所有負數取絕對值，將其強制轉換為正數金額"
       },
       "correct_answer": "C",
       "source": {
@@ -2285,10 +2285,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某資料分析師對 10 個連續特徵計算相關係數矩陣，以熱圖呈現。若熱圖的顏色方案為藍色（-1）到紅色（+1），且對角線為深紅色，則對角線的值代表什麼？",
       "options": {
-        "A": "每個特徵的標準差（對角線方差）",
-        "B": "每個特徵的特徵重要性分數",
-        "C": "每個特徵與目標變數的相關係數",
-        "D": "每個特徵自身與自身的相關係數（= 1）"
+        "A": "每個特徵自身的標準差數值（亦即協方差矩陣對角線）",
+        "B": "每個特徵在隨機森林模型中的特徵重要性分數值",
+        "C": "每個特徵與目標變數之間的皮爾森相關係數數值",
+        "D": "每個特徵與自身的皮爾森相關係數（其值恆等於 1）"
       },
       "correct_answer": "D",
       "source": {
@@ -2308,10 +2308,10 @@
       "topic": "Analytics/EDA",
       "question_text": "某資料科學家在 EDA 過程中對類別特徵「城市」（有 50 個不同值）繪製頻率分佈。發現「台北市」出現次數占總樣本的 65%，其他城市均低於 5%。這種現象在機器學習中可能帶來什麼問題？",
       "options": {
-        "A": "無問題，多數類別佔多數是正常的",
-        "B": "應移除「城市」特徵，因為不平衡類別無法使用",
-        "C": "需要使用 Z-score 標準化此特徵",
-        "D": "模型可能偏向預測「台北市」相關的結果，對其他城市預測效果差"
+        "A": "無任何問題，多數類別佔較高比例本來就屬正常現象",
+        "B": "應直接移除「城市」特徵，因為不平衡類別無法建模",
+        "C": "需先對「城市」特徵套用 Z-score 標準化再進行訓練",
+        "D": "模型可能偏向預測台北市而對其他少數城市表現變差"
       },
       "correct_answer": "D",
       "source": {
@@ -2331,10 +2331,10 @@
       "topic": "BigData/Storage",
       "question_text": "某企業想建立一個儲存系統，需同時支援：結構化 SQL 查詢、ACID 交易保證、以及對 PB 級原始日誌文件（JSON/Parquet）的直接查詢。以下哪種架構最符合需求？",
       "options": {
-        "A": "傳統關聯式資料庫（RDBMS，如 PostgreSQL）",
-        "B": "資料湖（Data Lake，如 Amazon S3）",
-        "C": "資料湖屋（Data Lakehouse，如 Delta Lake）",
-        "D": "文件型 NoSQL 資料庫（如 MongoDB）"
+        "A": "傳統關聯式資料庫 RDBMS（如 PostgreSQL、Oracle）",
+        "B": "原始資料湖 Data Lake（如 Amazon S3 物件儲存）",
+        "C": "資料湖屋 Data Lakehouse（如 Delta Lake、Iceberg）",
+        "D": "文件型 NoSQL 資料庫（如 MongoDB、Couchbase）"
       },
       "correct_answer": "C",
       "source": {
@@ -2354,10 +2354,10 @@
       "topic": "BigData/Storage",
       "question_text": "某社群平台需要儲存用戶與用戶之間的追蹤關係（A 追蹤 B、B 追蹤 C 等）以及每個關係的建立時間。以下哪種資料庫最適合此場景？",
       "options": {
-        "A": "鍵值資料庫（Key-Value Store，如 Redis）",
-        "B": "列族資料庫（Column-Family，如 HBase）",
-        "C": "關聯式資料庫（RDBMS）",
-        "D": "圖形資料庫（Graph Database，如 Neo4j）"
+        "A": "鍵值資料庫 Key-Value Store（如 Redis、DynamoDB）",
+        "B": "列族資料庫 Column-Family Store（如 HBase、Cassandra）",
+        "C": "關聯式資料庫 RDBMS（如 PostgreSQL、MySQL）",
+        "D": "圖形資料庫 Graph Database（如 Neo4j、JanusGraph）"
       },
       "correct_answer": "D",
       "source": {
@@ -2377,10 +2377,10 @@
       "topic": "BigData/Storage",
       "question_text": "在 ACID 特性中，「隔離性（Isolation）」的主要目的是什麼？",
       "options": {
-        "A": "確保交易中的所有操作要麼全部成功，要麼全部回滾",
-        "B": "確保資料庫始終處於有效狀態，不違反完整性約束",
-        "C": "確保並發執行的多個交易不會相互干擾",
-        "D": "確保已提交的交易即使系統崩潰也不會丟失"
+        "A": "確保交易中所有操作要全部成功否則全部回滾不留中間狀態",
+        "B": "確保資料庫始終處於有效狀態並滿足所有完整性約束的條件",
+        "C": "確保並行執行的多個交易彼此互不干擾不能讀到中間狀態",
+        "D": "確保已提交交易在系統發生崩潰之後仍能持續保留不會丟失"
       },
       "correct_answer": "C",
       "source": {
@@ -2400,10 +2400,10 @@
       "topic": "BigData/Storage",
       "question_text": "某 IoT 公司每天從 10 萬個設備收集感測器數據，資料格式各異（JSON、CSV、二進位），且未來可能新增更多設備和格式。長期儲存應選擇哪種方案？",
       "options": {
-        "A": "關聯式資料庫，因為 ACID 保證確保資料正確性",
-        "B": "Redis 快取，因為高吞吐量需要低延遲儲存",
-        "C": "資料倉儲（Data Warehouse），因為提供結構化查詢",
-        "D": "資料湖（Data Lake），因為支援多格式原始資料且成本低"
+        "A": "關聯式資料庫，因 ACID 交易能確保感測器資料正確性",
+        "B": "Redis 快取儲存，因記憶體儲存能滿足高吞吐量低延遲",
+        "C": "資料倉儲 Warehouse，因結構化模型方便執行 SQL 查詢",
+        "D": "資料湖 Data Lake，因支援多格式原始資料且儲存成本低"
       },
       "correct_answer": "D",
       "source": {
@@ -2423,10 +2423,10 @@
       "topic": "BigData/Storage",
       "question_text": "某企業的 Hadoop HDFS 系統採用「資料局部性（Data Locality）」原則。這個原則的核心概念是什麼？",
       "options": {
-        "A": "確保每個資料區塊有多個副本（預設 3 個）",
-        "B": "優先處理本地時區產生的資料",
-        "C": "將熱門資料複製到多個節點，提高讀取速度",
-        "D": "將計算任務移動到資料所在節點，減少網路傳輸"
+        "A": "對每個資料區塊建立多個副本以提升容錯能力（預設 3 份）",
+        "B": "優先處理特定地理時區所產生的本地資料以提升時效性",
+        "C": "將熱門資料複製到多個節點以提升讀取速度與快取命中率",
+        "D": "將計算任務分派至資料所在節點以減少網路傳輸負擔成本"
       },
       "correct_answer": "D",
       "source": {
@@ -2446,10 +2446,10 @@
       "topic": "BigData/Storage",
       "question_text": "某電商平台需要一個資料庫來儲存用戶的購物車資訊（user_id → 購物車清單），需要極高的讀寫吞吐量和低延遲，資料結構簡單。以下哪種資料庫最合適？",
       "options": {
-        "A": "PostgreSQL（關聯式資料庫）",
-        "B": "Neo4j（圖形資料庫）",
-        "C": "Redis（鍵值資料庫）",
-        "D": "Apache Cassandra（列族資料庫）"
+        "A": "PostgreSQL 關聯式資料庫（適合複雜 JOIN 查詢與報表）",
+        "B": "Neo4j 圖形資料庫（適合多跳關係查詢與社交圖譜）",
+        "C": "Redis 記憶體鍵值資料庫（適合高吞吐量低延遲查找）",
+        "D": "Cassandra 列族資料庫（適合時間序列與寬表大規模寫入）"
       },
       "correct_answer": "C",
       "source": {
@@ -2469,10 +2469,10 @@
       "topic": "BigData/Storage",
       "question_text": "某企業評估是否將資料倉儲遷移至資料湖屋架構。資料湖屋相較於傳統資料倉儲的主要優勢是什麼？",
       "options": {
-        "A": "資料湖屋的查詢速度比傳統資料倉儲快 10 倍以上",
-        "B": "資料湖屋不需要資料工程師，AI 自動管理所有資料",
-        "C": "資料湖屋完全取消了 Schema 定義，任何查詢皆可執行",
-        "D": "資料湖屋可在低成本物件儲存上同時支援 BI 分析和機器學習原始資料"
+        "A": "資料湖屋的 SQL 查詢延遲比傳統資料倉儲低 10 倍以上",
+        "B": "資料湖屋以 AI 自動完成資料治理因此不需要資料工程師",
+        "C": "資料湖屋徹底取消所有 Schema 定義使任意查詢都能執行",
+        "D": "資料湖屋在低成本物件儲存上同時支援 BI 分析與 ML 訓練"
       },
       "correct_answer": "D",
       "source": {
@@ -2492,10 +2492,10 @@
       "topic": "BigData/Storage",
       "question_text": "某企業的 MongoDB 叢集中儲存了大量用戶行為日誌（JSON 格式，每筆約 2KB，每天新增 1 億筆）。若需要對過去 30 天的資料進行聚合分析，MongoDB 相較於 RDBMS 的優勢是什麼？",
       "options": {
-        "A": "MongoDB 的 SQL 查詢比 PostgreSQL 更快",
-        "B": "MongoDB 自動對所有欄位建立索引，查詢無需優化",
-        "C": "MongoDB 支援完整的 ACID 跨文件交易",
-        "D": "MongoDB 的文件模型與 JSON 日誌結構天然匹配，無需 ETL 轉換"
+        "A": "MongoDB 的 SQL 查詢效能在大量資料下遠勝 PostgreSQL 引擎",
+        "B": "MongoDB 自動對所有欄位建立索引因此查詢完全無需手動優化",
+        "C": "MongoDB 支援完整跨多份文件與多分片的 ACID 交易能力保證",
+        "D": "MongoDB 文件模型與 JSON 日誌天然匹配無需經過 ETL 轉換步驟"
       },
       "correct_answer": "D",
       "source": {
@@ -2515,10 +2515,10 @@
       "topic": "Privacy",
       "question_text": "某醫院欲與研究機構共享患者資料進行疾病研究，但需保護個人隱私。研究機構希望在不解密的情況下對加密資料進行統計計算。以下哪種技術最符合此需求？",
       "options": {
-        "A": "k-匿名化（k-Anonymity）",
-        "B": "聯邦學習（Federated Learning）",
-        "C": "差分隱私（Differential Privacy）",
-        "D": "同態加密（Homomorphic Encryption）"
+        "A": "k-匿名化（k-Anonymity，使每筆紀錄至少與 k 筆相同）",
+        "B": "聯邦學習（Federated Learning，本地訓練只共享梯度）",
+        "C": "差分隱私（Differential Privacy，於輸出加入隨機噪音）",
+        "D": "同態加密（Homomorphic Encryption，於密文上直接運算）"
       },
       "correct_answer": "D",
       "source": {
@@ -2538,10 +2538,10 @@
       "topic": "Privacy",
       "question_text": "某政府機關要發布人口普查資料供學術研究使用。資料採用「k-匿名化（k-Anonymity）」處理，k = 5。以下哪個說法正確描述 k-匿名化的保護機制？",
       "options": {
-        "A": "資料集中每種敏感屬性的比例不超過 1/k",
-        "B": "每次查詢結果會加入至少 k 個隨機噪音值",
-        "C": "每個人的敏感屬性（如疾病）被加密，只有授權人員可解密",
-        "D": "每筆記錄在準識別符組合上至少與其他 4 筆記錄相同"
+        "A": "每種敏感屬性值在資料集中所佔比例都不超過 1/k 的上限",
+        "B": "每次查詢結果都會加入至少 k 個隨機產生的數值噪音項目",
+        "C": "每筆紀錄的敏感屬性都經對稱加密只有授權人員可以解密",
+        "D": "每筆紀錄在準識別符組合上至少與其他 k-1 筆紀錄一致相同"
       },
       "correct_answer": "D",
       "source": {
@@ -2561,10 +2561,10 @@
       "topic": "Privacy",
       "question_text": "某科技公司採用「差分隱私（Differential Privacy）」保護用戶資料，設定隱私預算 ε = 0.1。若將 ε 提高至 10，對隱私保護和資料效用的影響是什麼？",
       "options": {
-        "A": "ε 不影響隱私程度，只影響計算速度",
-        "B": "ε = 10 表示資料被加密 10 次，保護更強",
-        "C": "ε 越大，隱私保護越強，資料效用越低",
-        "D": "ε 越大，隱私保護越弱，資料效用越高"
+        "A": "ε 不影響隱私強度，僅決定差分隱私機制的計算成本",
+        "B": "ε = 10 代表資料被加密 10 次因此隱私保護程度更強",
+        "C": "ε 越大則隱私保護越強而資料效用相對來說越低",
+        "D": "ε 越大則隱私保護越弱而資料效用相對來說越高"
       },
       "correct_answer": "D",
       "source": {
@@ -2584,10 +2584,10 @@
       "topic": "Privacy",
       "question_text": "某企業實施「零信任架構（Zero Trust Architecture）」管控員工對資料的存取。以下哪個原則最核心地體現了零信任的理念？",
       "options": {
-        "A": "所有資料一律加密，且每個請求都需要兩步驟驗證",
-        "B": "資料存取日誌保留 7 年，以供事後審計",
-        "C": "企業內網的所有裝置和用戶預設信任，外部連線需驗證",
-        "D": "無論用戶位置（內網或外網），持續驗證身份且僅授予最小必要權限"
+        "A": "對所有資料強制加密且每次請求都需要兩步驟驗證程序",
+        "B": "資料存取日誌至少保留 7 年以供後續法規審計與追溯使用",
+        "C": "企業內網所有裝置與用戶預設即為可信外部連線才須驗證",
+        "D": "不論位置位於內網或外網皆持續驗證身分並授予最小權限"
       },
       "correct_answer": "D",
       "source": {
@@ -2607,10 +2607,10 @@
       "topic": "Privacy",
       "question_text": "某健康科技公司想讓多家醫院在不共享患者原始資料的情況下共同訓練疾病預測模型。以下哪種技術最適合實現此目標？",
       "options": {
-        "A": "同態加密後集中訓練",
-        "B": "資料本地化（Data Localization）",
-        "C": "k-匿名化後集中訓練",
-        "D": "聯邦學習（Federated Learning）"
+        "A": "同態加密 Homomorphic Encryption 後集中加密訓練模型",
+        "B": "資料本地化 Data Localization（資料不出境法規合規）",
+        "C": "k-匿名化 k-Anonymity 處理後集中匯總訓練模型參數",
+        "D": "聯邦學習 Federated Learning（本地訓練僅共享模型梯度）"
       },
       "correct_answer": "D",
       "source": {
@@ -2632,7 +2632,7 @@
       "options": {
         "A": "角色型存取控制（RBAC）",
         "B": "屬性型存取控制（ABAC）",
-        "C": "自主存取控制（DAC）",
+        "C": "自主型存取控制（DAC）",
         "D": "政策型存取控制（PBAC）"
       },
       "correct_answer": "C",
@@ -2653,10 +2653,10 @@
       "topic": "Privacy",
       "question_text": "某金融機構在台灣收集的客戶資料，依法規要求必須儲存在台灣境內的伺服器，不得傳輸至境外。這屬於哪種資料隱私保護措施？",
       "options": {
-        "A": "假名化（Pseudonymization）",
-        "B": "資料最小化（Data Minimization）",
-        "C": "差分隱私（Differential Privacy）",
-        "D": "資料本地化（Data Localization）"
+        "A": "假名化（Pseudonymization，以代號替換可識別符）",
+        "B": "資料最小化（Data Minimization，只收集必要資料）",
+        "C": "差分隱私（Differential Privacy，於輸出加入隨機噪音）",
+        "D": "資料本地化（Data Localization，依法規限制儲存地點）"
       },
       "correct_answer": "D",
       "source": {
@@ -2676,10 +2676,10 @@
       "topic": "Privacy",
       "question_text": "某企業實施 RBAC（角色型存取控制），設定「資料分析師」角色可讀取分析資料庫，但不可修改或刪除。「行銷主管」可讀取和匯出報表，但不可存取原始資料。以下哪個說法最準確描述 RBAC 的優勢？",
       "options": {
-        "A": "RBAC 可依即時情境（時間、位置）動態調整存取權限",
-        "B": "RBAC 不需要管理員介入，用戶自行設定所需權限",
-        "C": "每個用戶的權限可以完全個人化，無需與他人相同",
-        "D": "透過角色集中管理權限，新增用戶只需指派角色，降低管理複雜度"
+        "A": "可依即時情境（時間、位置、裝置）動態調整存取權限",
+        "B": "不需要管理員介入，用戶可自行設定所需的存取權限",
+        "C": "每位用戶的權限可完全個人化客製而無需與他人相同",
+        "D": "以角色為中心集中管理新增用戶只需指派角色即可運作"
       },
       "correct_answer": "D",
       "source": {
@@ -2699,10 +2699,10 @@
       "topic": "BigData/Processing",
       "question_text": "某串流媒體平台需要對用戶的即時播放行為進行分析，要求延遲低於 100 毫秒，且需要按事件發生時間（Event Time）處理亂序事件。以下哪個處理框架最合適？",
       "options": {
-        "A": "Hadoop MapReduce，因為其批次處理能力最強",
-        "B": "Apache Spark Streaming（微批次），因為支援機器學習整合",
-        "C": "Apache Flink，因為支援真正的事件時間（Event Time）處理和低延遲串流",
-        "D": "Apache Airflow，因為可以設定排程定時處理"
+        "A": "Hadoop MapReduce，批次處理且擁有最強磁碟容錯能力",
+        "B": "Spark Streaming，微批次處理且整合機器學習函式庫",
+        "C": "Apache Flink，真正串流處理且支援事件時間語義機制",
+        "D": "Apache Airflow，工作流程排程器且支援 Cron 定時觸發"
       },
       "correct_answer": "C",
       "source": {
@@ -2722,10 +2722,10 @@
       "topic": "BigData/Processing",
       "question_text": "某資料工程師比較 Apache Spark 和 Hadoop MapReduce 的性能。Spark 在迭代計算（如機器學習訓練）中比 MapReduce 快 10-100 倍的主要原因是什麼？",
       "options": {
-        "A": "Spark 的程式碼由 Scala 編寫，比 MapReduce 的 Java 執行更快",
-        "B": "Spark 自動將資料壓縮，減少儲存和傳輸量",
-        "C": "Spark 使用更先進的 CPU 架構，計算能力更強",
-        "D": "Spark 將中間計算結果保留在記憶體（RAM）中，避免反覆讀寫硬碟"
+        "A": "Spark 以 Scala 撰寫位元組碼比 Java 的 MR 任務更為快速",
+        "B": "Spark 自動壓縮中間資料以減少儲存與網路傳輸的資料量",
+        "C": "Spark 採用比 MR 更先進的 CPU 與 GPU 硬體加速計算架構",
+        "D": "Spark 將中間結果保留於記憶體避免反覆讀寫磁碟造成瓶頸"
       },
       "correct_answer": "D",
       "source": {
@@ -2745,10 +2745,10 @@
       "topic": "BigData/Processing",
       "question_text": "某資料團隊需要建立一個複雜的資料管道：每日凌晨從多個來源抓取資料，進行清洗、轉換、驗證，最終載入資料倉儲，各步驟有相依關係。以下哪個工具最適合管理此工作流程？",
       "options": {
-        "A": "Apache Kafka，因為支援即時資料串流傳輸",
-        "B": "Apache Flink，因為支援低延遲處理",
-        "C": "Apache Spark，因為處理大量資料最快",
-        "D": "Apache Airflow，因為支援 Python DAG 定義複雜工作流程和排程"
+        "A": "Apache Kafka，因其支援高吞吐量即時資料串流訊息傳輸",
+        "B": "Apache Flink，因其支援毫秒級低延遲事件時間串流處理",
+        "C": "Apache Spark，因其在處理大量資料時的批次效能最佳化",
+        "D": "Apache Airflow，因其以 Python DAG 定義複雜任務依賴排程"
       },
       "correct_answer": "D",
       "source": {
@@ -2768,10 +2768,10 @@
       "topic": "BigData/Processing",
       "question_text": "某開發團隊希望建立一個資料管道，在不同的執行環境（本地開發、Google Cloud、AWS）上運行，希望避免被特定雲端廠商鎖定（Vendor Lock-in）。以下哪個框架最能實現此目標？",
       "options": {
-        "A": "AWS Glue，因為與 AWS 生態系統整合最好",
-        "B": "Hadoop MapReduce，因為是開源的不受廠商限制",
-        "C": "Apache Spark，因為有最多的生態系統支援",
-        "D": "Apache Beam，因為提供統一的程式模型可在多種執行器上運行"
+        "A": "AWS Glue，因其與 AWS 雲端生態系深度整合並擁有最多服務",
+        "B": "Hadoop MapReduce，因其屬於 Apache 開源專案不受廠商限制",
+        "C": "Apache Spark，因其擁有最豐富的生態系函式庫與社群支援",
+        "D": "Apache Beam，因其提供統一程式模型可於多種 Runner 上執行"
       },
       "correct_answer": "D",
       "source": {
@@ -2791,10 +2791,10 @@
       "topic": "BigData/Processing",
       "question_text": "某資料科學家在 Apache Spark 中對 RDD 進行操作，呼叫了 `map()` 和 `filter()` 兩個轉換（Transformation），再呼叫 `count()` 動作（Action）。以下哪個說法正確描述 Spark 的惰性求值（Lazy Evaluation）？",
       "options": {
-        "A": "每個 RDD 操作完成後立即將結果寫入磁碟",
-        "B": "`count()` 會先等待 `map()` 和 `filter()` 各自完成後再執行",
-        "C": "`map()` 和 `filter()` 在被呼叫時立即執行計算",
-        "D": "`map()` 和 `filter()` 只記錄執行計劃，直到 `count()` 被呼叫才真正執行"
+        "A": "每個 RDD 轉換操作完成後立即將中間結果寫入 HDFS 磁碟",
+        "B": "count() 必須等待 map() 與 filter() 各自獨立完成後才執行",
+        "C": "map() 與 filter() 在被呼叫的當下就立即執行對應的計算",
+        "D": "map() 與 filter() 僅建立 DAG 計劃直到 count() 才實際觸發"
       },
       "correct_answer": "D",
       "source": {
@@ -2814,10 +2814,10 @@
       "topic": "BigData/Processing",
       "question_text": "某資料工程師比較 Apache Airflow 和 Kubeflow 在 ML 管道方面的用途。以下哪個說法最準確區分兩者？",
       "options": {
-        "A": "兩者功能完全相同，只是程式語言不同",
-        "B": "Kubeflow 只能在 Google Cloud 上運行，Airflow 可在任何環境運行",
-        "C": "Airflow 是 Kubernetes 原生的，Kubeflow 適合一般 ETL 管道",
-        "D": "Kubeflow 專為機器學習工作流（訓練、調參、部署）設計，Airflow 是通用資料管道排程工具"
+        "A": "Airflow 與 Kubeflow 功能完全相同，僅程式語言與部署環境略有差異",
+        "B": "Airflow 僅支援 GCP 雲端環境，Kubeflow 則能在任何 K8s 環境執行",
+        "C": "Airflow 是 K8s 原生的 ML 訓練平台，Kubeflow 是通用 ETL 排程工具",
+        "D": "Airflow 是通用資料管道排程工具，Kubeflow 是 K8s 原生 ML 工作流"
       },
       "correct_answer": "D",
       "source": {
@@ -2827,7 +2827,7 @@
       },
       "verified": true,
       "verification_needed": null,
-      "explanation": "**為什麼 D 是正解:**\nKubeflow 是 Kubernetes 原生的機器學習平台，專注於 ML Pipeline：模型訓練、超參數調整（Katib）、模型服務（KFServing）、實驗追蹤。Airflow 是通用工作流程排程工具，不限於 ML，適合各種 ETL、報表、資料同步管道。\n\n**其他選項為何錯:**\n- C. Airflow 和 Kubeflow 的特性描述互換了\n- D. ✓ 正解\n- A. 兩者功能和適用場景明顯不同\n- B. Kubeflow 可在任何 Kubernetes 環境運行（包括 AWS、Azure、本地）\n\n**記憶要點:** Kubeflow = ML 專用管道（K8s 原生）；Airflow = 通用 ETL 排程（DAG Python）；MLflow = 實驗追蹤；三者常互補使用。",
+      "explanation": "**為什麼 D 是正解:**\nKubeflow 是 Kubernetes 原生的機器學習平台，專注於 ML Pipeline：模型訓練、超參數調整（Katib）、模型服務（KFServing）、實驗追蹤。Airflow 是通用工作流程排程工具，不限於 ML，適合各種 ETL、報表、資料同步管道。\n\n**其他選項為何錯:**\n- A. 兩者的設計目標、適用場景與生態系明顯不同，並非僅程式語言之別\n- B. 描述錯誤；Airflow 是開源工具可在任何環境執行，並非 GCP 限定\n- C. Airflow 與 Kubeflow 的特性被互換了，正好相反\n- D. ✓ 正解\n\n**記憶要點:** Kubeflow = ML 專用管道（K8s 原生）；Airflow = 通用 ETL 排程（DAG Python）；MLflow = 實驗追蹤；三者常互補使用。",
       "subject_code": "s2",
       "generated": true,
       "generated_by": "claude"
@@ -2837,10 +2837,10 @@
       "topic": "Stats/Descriptive",
       "question_text": "某工廠生產了 7 個零件，品質分數依序為：82, 85, 88, 90, 92, 95, 150。請問此資料集的平均數、中位數和眾數中，哪個最能代表「典型」零件的品質？",
       "options": {
-        "A": "平均數，因為使用了所有數據",
-        "B": "中位數，因為不受 150 這個極端值影響",
-        "C": "眾數，因為代表最常見的品質分數",
-        "D": "三者相同，均可使用"
+        "A": "平均數，因為使用了所有 7 筆零件的品質分數資料",
+        "B": "中位數，因為不受極端值 150 影響而代表典型分數",
+        "C": "眾數，因為代表所有零件中最常出現的品質分數值",
+        "D": "三者皆相等，因此任選一個指標皆可正確代表典型"
       },
       "correct_answer": "B",
       "source": {
@@ -2860,10 +2860,10 @@
       "topic": "Stats/Descriptive",
       "question_text": "某投資基金連續 4 年的年報酬率為：+10%、+20%、-15%、+25%。計算這 4 年的平均年報酬率，應使用哪種平均數？",
       "options": {
-        "A": "算術平均數（Arithmetic Mean）",
-        "B": "幾何平均數（Geometric Mean）",
-        "C": "調和平均數（Harmonic Mean）",
-        "D": "加權平均數（Weighted Mean），以投資金額為權重"
+        "A": "算術平均數（Arithmetic Mean，把各年報酬率加總後平均）",
+        "B": "幾何平均數（Geometric Mean，把各年成長率連乘後開根號）",
+        "C": "調和平均數（Harmonic Mean，把各年報酬率取倒數後平均）",
+        "D": "加權平均數（Weighted Mean，以投資金額為權重加權平均）"
       },
       "correct_answer": "B",
       "source": {
@@ -2883,10 +2883,10 @@
       "topic": "Stats/Descriptive",
       "question_text": "某班級 30 名學生的考試成績呈現峰度（Kurtosis）= 1.5。對此分佈形狀的正確描述是？",
       "options": {
-        "A": "超峰態（Leptokurtic），比常態分佈有更厚的尾部",
-        "B": "常峰態（Mesokurtic），與常態分佈形狀相似",
-        "C": "低峰態（Platykurtic），比常態分佈有更薄的尾部、更平坦的峰",
-        "D": "無法判斷，峰度只能與偏度一起解讀"
+        "A": "超峰態 Leptokurtic（峰度大於 3，比常態更尖且尾部更厚）",
+        "B": "常峰態 Mesokurtic（峰度約等於 3，分佈形狀近似常態分佈）",
+        "C": "低峰態 Platykurtic（峰度小於 3，比常態更平且尾部更薄）",
+        "D": "未定型 Indeterminate（峰度需與偏度合併解讀才有意義）"
       },
       "correct_answer": "C",
       "source": {
@@ -2906,10 +2906,10 @@
       "topic": "Stats/Descriptive",
       "question_text": "某調查公司對 200 名受訪者的收入資料計算四分位數，得到 Q1 = 40,000、Q2 = 55,000、Q3 = 80,000。哪個說法正確？",
       "options": {
-        "A": "IQR = Q3 - Q1 = 40,000，50% 的受訪者收入在此範圍內",
-        "B": "IQR = Q3 - Q2 = 25,000，代表上半部資料的分散程度",
-        "C": "IQR = Q2 - Q1 = 15,000，代表下半部資料的分散程度",
-        "D": "IQR = Q3 + Q1 = 120,000，代表收入的總範圍"
+        "A": "IQR = Q3 - Q1 = 40,000，代表中間 50% 受訪者收入的範圍",
+        "B": "IQR = Q3 - Q2 = 25,000，代表中位數以上受訪者收入的範圍",
+        "C": "IQR = Q2 - Q1 = 15,000，代表中位數以下受訪者收入的範圍",
+        "D": "IQR = Q3 + Q1 = 120,000，代表收入分佈下限至上限的總距"
       },
       "correct_answer": "A",
       "source": {
@@ -2929,10 +2929,10 @@
       "topic": "Stats/Descriptive",
       "question_text": "某資料分析師計算兩組資料的變異數（Variance）：A 組 σ² = 100，B 組 σ² = 400。若要比較兩組的相對分散程度（考慮各組平均值不同），應使用哪個指標？",
       "options": {
-        "A": "直接比較變異數，B 組（400）比 A 組（100）分散程度更大",
-        "B": "比較標準差，B 組（20）比 A 組（10）分散",
-        "C": "計算變異係數（CV = 標準差 / 平均數），考慮各組平均值的差異",
-        "D": "計算四分位距（IQR），變異數無法比較分散程度"
+        "A": "直接比較變異數絕對值，B 組（400）大於 A 組（100）較分散",
+        "B": "比較標準差絕對值，B 組（20）大於 A 組（10）較為分散",
+        "C": "計算變異係數 CV（標準差 / 平均數）以校正各組均值差異",
+        "D": "計算四分位距 IQR（Q3 - Q1）以衡量資料中段的分散程度"
       },
       "correct_answer": "C",
       "source": {
@@ -2952,10 +2952,10 @@
       "topic": "Stats/Descriptive",
       "question_text": "某企業員工薪資資料中，Q1 = 45,000、中位數 = 55,000、Q3 = 70,000、最小值 = 30,000、最大值 = 200,000。在箱形圖中，上方鬚（Upper Whisker）的位置應該是？",
       "options": {
-        "A": "200,000（資料最大值）",
-        "B": "70,000 + 1.5 × (70,000 - 45,000) = 107,500，但不超過實際資料最大非離群值",
-        "C": "70,000 + 標準差",
-        "D": "中位數 + 2 × IQR = 55,000 + 50,000 = 105,000"
+        "A": "上鬚延伸至最大實際薪資值 200,000 元（不論是否離群）",
+        "B": "上鬚延伸至 Q3 + 1.5×IQR = 107,500 元內的最大非離群值",
+        "C": "上鬚延伸至 Q3 + 一倍樣本標準差所定義的上界範圍位置",
+        "D": "上鬚延伸至中位數 + 2×IQR = 105,000 元所定義的上界值"
       },
       "correct_answer": "B",
       "source": {
@@ -2975,10 +2975,10 @@
       "topic": "Stats/Hypothesis",
       "question_text": "某藥廠測試新藥是否有效，設定 H₀：新藥無效，H₁：新藥有效，顯著水準 α = 0.05。臨床試驗結果顯示 p-value = 0.03。以下哪個結論正確？",
       "options": {
-        "A": "接受 H₀，因為 p-value < 0.05 表示結果不可靠",
-        "B": "拒絕 H₀，p-value = 0.03 < α = 0.05，有統計顯著性",
-        "C": "無法做結論，需要更多資料",
-        "D": "接受 H₁，新藥肯定有效"
+        "A": "接受 H₀，因 p-value = 0.03 < α 表示結果不可靠應保留 H₀",
+        "B": "拒絕 H₀，因 p-value = 0.03 < α = 0.05 達到統計顯著性門檻",
+        "C": "暫不結論，因 p-value 接近 0.05 邊界需增加樣本後再評估",
+        "D": "接受 H₁，因 p-value = 0.03 證明了新藥在臨床上絕對有效"
       },
       "correct_answer": "B",
       "source": {
@@ -2998,10 +2998,10 @@
       "topic": "Stats/Hypothesis",
       "question_text": "某研究員進行假設檢定，設定 α = 0.05。若實際上 H₀ 為假（新藥真的有效），但檢定結果未能拒絕 H₀，這屬於什麼錯誤？",
       "options": {
-        "A": "第一型錯誤（Type I Error），因為做出了錯誤的結論",
-        "B": "第二型錯誤（Type II Error），錯誤地保留了假的虛無假設",
-        "C": "顯著水準設定錯誤，應降低 α",
-        "D": "這不是錯誤，是正確的統計推論"
+        "A": "第一型錯誤（Type I Error，H₀ 為真卻被錯誤拒絕的偽陽性）",
+        "B": "第二型錯誤（Type II Error，H₀ 為假卻未被拒絕的偽陰性）",
+        "C": "顯著水準設定錯誤（α 設得太高應降低 α 並重新檢定資料）",
+        "D": "並非錯誤而是正確統計推論（H₀ 為假未拒絕仍屬合理結果）"
       },
       "correct_answer": "B",
       "source": {
@@ -3021,10 +3021,10 @@
       "topic": "Stats/Hypothesis",
       "question_text": "某研究想比較三個城市（台北、台中、高雄）居民的平均月收入是否有顯著差異，各組樣本來自常態分佈且方差同質。應選擇哪種統計檢定方法？",
       "options": {
-        "A": "獨立樣本 t 檢定（Independent t-test）",
-        "B": "配對樣本 t 檢定（Paired t-test）",
-        "C": "單因子變異數分析（One-Way ANOVA）",
-        "D": "卡方獨立性檢定（Chi-Square Test of Independence）"
+        "A": "獨立樣本 t 檢定（Independent t-test，只能比較兩組均值）",
+        "B": "配對樣本 t 檢定（Paired t-test，只用於配對前後同對象）",
+        "C": "單因子變異數分析（One-Way ANOVA，比較三組以上均值）",
+        "D": "卡方獨立性檢定（Chi-Square Independence，僅用類別資料）"
       },
       "correct_answer": "C",
       "source": {
@@ -3044,10 +3044,10 @@
       "topic": "Stats/Hypothesis",
       "question_text": "某製造廠測試新舊兩種生產方法的良品率，新方法良品率 92%（n=50），舊方法 88%（n=50），p-value = 0.38。工廠主管決定不採用新方法。這個決策在統計上是否正確？",
       "options": {
-        "A": "正確，因為 92% 和 88% 的差異太小，不具實際意義",
-        "B": "正確，因為 p-value = 0.38 > α = 0.05，無統計顯著差異，不能拒絕 H₀",
-        "C": "錯誤，p-value > 0.05 代表新方法確定無效",
-        "D": "錯誤，應以商業效益而非 p-value 決定是否採用"
+        "A": "正確，因 92% 與 88% 的良品率差異過小不具有實際商業意義",
+        "B": "正確，因 p-value = 0.38 > α = 0.05 無顯著差異不能拒絕 H₀",
+        "C": "錯誤，因 p-value > 0.05 已直接證實新方法確定完全無效不可用",
+        "D": "錯誤，因應該以商業效益而非 p-value 來決定是否導入新方法"
       },
       "correct_answer": "B",
       "source": {
@@ -3067,10 +3067,10 @@
       "topic": "Stats/Hypothesis",
       "question_text": "某研究員想分析不同教育程度（國中、高中、大學、研究所）的受訪者對某政策的支持程度（量表 1-5 分，偏序數資料，非常態分佈）是否有差異。應選哪種檢定方法？",
       "options": {
-        "A": "單因子 ANOVA（One-Way ANOVA）",
-        "B": "Kruskal-Wallis 檢定",
-        "C": "卡方適合度檢定（Chi-Square Goodness-of-Fit）",
-        "D": "Mann-Whitney U 檢定"
+        "A": "單因子 ANOVA（One-Way ANOVA，需常態與方差同質假設）",
+        "B": "Kruskal-Wallis 檢定（非常態三組以上的無母數比較方法）",
+        "C": "卡方適合度檢定（Chi-Square Goodness-of-Fit，類別頻率）",
+        "D": "Mann-Whitney U 檢定（非常態僅兩組的無母數比較方法）"
       },
       "correct_answer": "B",
       "source": {
@@ -3090,10 +3090,10 @@
       "topic": "Stats/Hypothesis",
       "question_text": "某電商平台想驗證「顧客滿意度評分（1-10分）與再次購買次數（次/年）之間是否存在線性相關」。資料分析顯示滿意度分數大致呈常態分佈。應選哪種相關性檢定？",
       "options": {
-        "A": "Spearman 等級相關係數（Spearman's ρ）",
-        "B": "Pearson 積差相關係數（Pearson's r）",
-        "C": "卡方獨立性檢定（Chi-Square Independence Test）",
-        "D": "Mann-Whitney U 檢定"
+        "A": "Spearman 等級相關 ρ（適用於非常態或序數資料的相關性）",
+        "B": "Pearson 積差相關 r（適用於常態連續資料的線性相關性）",
+        "C": "卡方獨立性檢定 χ²（適用於兩類別變數的獨立性檢定）",
+        "D": "Mann-Whitney U 檢定（適用於兩組中位數差異的無母數比較）"
       },
       "correct_answer": "B",
       "source": {
@@ -3113,10 +3113,10 @@
       "topic": "Stats/Probability",
       "question_text": "某客服中心平均每小時接到 8 通投訴電話，且投訴事件相互獨立。若要計算「某小時內恰好接到 5 通投訴電話」的機率，應使用哪種機率分佈？",
       "options": {
-        "A": "二項分佈（Binomial Distribution）",
-        "B": "卜瓦松分佈（Poisson Distribution）",
-        "C": "常態分佈（Normal Distribution）",
-        "D": "指數分佈（Exponential Distribution）"
+        "A": "二項分佈 Binomial（固定 n 次獨立試驗每次成功機率 p）",
+        "B": "卜瓦松分佈 Poisson（單位時間內事件次數平均率 λ 固定）",
+        "C": "常態分佈 Normal（連續對稱鐘形分佈以均值與標準差描述）",
+        "D": "指數分佈 Exponential（連續隨機變數刻畫事件等待時間）"
       },
       "correct_answer": "B",
       "source": {
@@ -3136,10 +3136,10 @@
       "topic": "Stats/Probability",
       "question_text": "某銀行 ATM 故障後，平均需等待 30 分鐘才有技術人員修復。若修復時間服從指數分佈，請問「等待時間超過 1 小時」的機率最接近哪個值？（e^(-2) ≈ 0.135）",
       "options": {
-        "A": "0.5（50%）",
-        "B": "0.368（36.8%）",
-        "C": "0.135（13.5%）",
-        "D": "0.865（86.5%）"
+        "A": "0.500 ≈ 50.0%",
+        "B": "0.368 ≈ 36.8%",
+        "C": "0.135 ≈ 13.5%",
+        "D": "0.865 ≈ 86.5%"
       },
       "correct_answer": "C",
       "source": {
@@ -3159,10 +3159,10 @@
       "topic": "Stats/Probability",
       "question_text": "某工廠生產線上，某零件的直徑服從常態分佈 N(50mm, 4mm²)（μ=50, σ²=4, σ=2）。若規格要求直徑在 46mm 到 54mm 之間，根據常態分佈的 68-95-99.7 規則，符合規格的零件比例約為多少？",
       "options": {
-        "A": "68%",
-        "B": "95%",
-        "C": "99.7%",
-        "D": "50%"
+        "A": "約 68.0%",
+        "B": "約 95.0%",
+        "C": "約 99.7%",
+        "D": "約 50.0%"
       },
       "correct_answer": "B",
       "source": {
@@ -3182,10 +3182,10 @@
       "topic": "Stats/Probability",
       "question_text": "某問卷調查發現，受訪者中 30% 有購買某品牌的習慣。若隨機抽取 10 名受訪者，恰好 4 名有購買習慣的機率應使用哪種分佈計算？其期望值為何？",
       "options": {
-        "A": "卜瓦松分佈，期望值 λ = 3",
-        "B": "二項分佈（n=10, p=0.3），期望值 E(X) = np = 3",
-        "C": "常態分佈，期望值 μ = 4",
-        "D": "均勻分佈，期望值 = (0 + 10) / 2 = 5"
+        "A": "卜瓦松分佈（Poisson, λ=3），期望值 E(X) = λ = 3",
+        "B": "二項分佈（Binomial, n=10, p=0.3），期望值 E(X) = np = 3",
+        "C": "常態分佈（Normal, μ=3, σ²=2.1），期望值 E(X) = μ = 3",
+        "D": "均勻分佈（Uniform on [0,10]），期望值 E(X) = (0+10)/2 = 5"
       },
       "correct_answer": "B",
       "source": {
@@ -3205,10 +3205,10 @@
       "topic": "Stats/Probability",
       "question_text": "某醫院對某疾病的診斷測試，已知：盛行率（疾病真實存在的機率）= 1%，測試靈敏度（Sensitivity）= 99%，特異度（Specificity）= 95%。若某人測試結果為陽性，實際患病的機率（陽性預測值）最接近哪個值？",
       "options": {
-        "A": "99%",
-        "B": "95%",
+        "A": "約 99.0%",
+        "B": "約 95.0%",
         "C": "約 16.7%",
-        "D": "約 50%"
+        "D": "約 50.0%"
       },
       "correct_answer": "C",
       "source": {
@@ -3228,10 +3228,10 @@
       "topic": "Stats/Probability",
       "question_text": "某統計學教材說明「中央極限定理（Central Limit Theorem）」的應用。以下哪個說法最準確描述此定理？",
       "options": {
-        "A": "無論原始資料的分佈為何，樣本均值的分佈會隨著樣本量增大而趨近常態分佈",
-        "B": "中央極限定理只適用於本身呈常態分佈的資料",
-        "C": "只要樣本量 ≥ 10，樣本均值就服從完美的常態分佈",
-        "D": "中央極限定理保證大樣本的標準差等於母體標準差"
+        "A": "無論母體分佈形狀為何樣本均值分佈隨樣本量增大趨近常態",
+        "B": "中央極限定理僅適用於本身呈現常態分佈的母體資料應用",
+        "C": "只要樣本量超過 10 即可保證樣本均值服從完美常態分佈",
+        "D": "中央極限定理保證樣本標準差會隨樣本量增大等於母體值"
       },
       "correct_answer": "A",
       "source": {
@@ -3274,10 +3274,10 @@
       "topic": "Stats/Regression",
       "question_text": "某資料科學家建立多元線性迴歸模型，訓練集 R² = 0.92，但在測試集上 R² = 0.45。診斷此問題的最可能原因是什麼？",
       "options": {
-        "A": "模型欠擬合（Underfitting），特徵太少",
-        "B": "模型過擬合（Overfitting），模型過度記憶訓練資料噪音",
-        "C": "訓練集和測試集的資料分佈差異太大（分佈偏移）",
-        "D": "R² 的計算公式在測試集和訓練集上不同，比較無意義"
+        "A": "模型欠擬合 Underfitting，特徵不足而無法捕捉資料規律",
+        "B": "模型過擬合 Overfitting，過度記憶訓練資料噪音泛化差",
+        "C": "資料分佈偏移 Distribution Shift，訓練測試集分佈不同",
+        "D": "R² 在訓練與測試集的計算公式不同所以彼此比較沒意義"
       },
       "correct_answer": "B",
       "source": {
@@ -3297,10 +3297,10 @@
       "topic": "Stats/Regression",
       "question_text": "某保險公司想預測「客戶是否會投訴」（二元結果：是/否），使用的自變數包括年齡、收入、保單金額等連續型特徵。以下哪種迴歸方法最適合？",
       "options": {
-        "A": "多元線性迴歸（Multiple Linear Regression）",
-        "B": "邏輯迴歸（Logistic Regression）",
-        "C": "Lasso 迴歸（L1 正則化線性迴歸）",
-        "D": "多項式迴歸（Polynomial Regression）"
+        "A": "多元線性迴歸（Multiple Linear Regression，輸出連續數值）",
+        "B": "邏輯迴歸（Logistic Regression，輸出 0–1 範圍的機率值）",
+        "C": "Lasso 迴歸（L1-Regularized Linear，輸出連續數值估計）",
+        "D": "多項式迴歸（Polynomial Regression，輸出非線性連續值）"
       },
       "correct_answer": "B",
       "source": {
@@ -3320,10 +3320,10 @@
       "topic": "Stats/Regression",
       "question_text": "某資料科學家建立線性迴歸模型，殘差分析顯示殘差（Residuals）呈現明顯的異方差性（Heteroscedasticity）：隨著預測值增大，殘差的變異數也增大。這個問題對模型有何影響？",
       "options": {
-        "A": "無影響，OLS 係數估計仍然是最佳線性無偏估計（BLUE）",
-        "B": "係數估計仍無偏，但標準誤估計不正確，導致假設檢定結論不可靠",
-        "C": "模型的 R² 會降低到 0，失去所有解釋力",
-        "D": "模型需要全部重建，現有係數完全無效"
+        "A": "無影響，OLS 係數估計仍是最佳線性無偏估計（BLUE）有效",
+        "B": "係數仍無偏但標準誤估計失真導致假設檢定結論可能不可靠",
+        "C": "模型 R² 會降為零並使迴歸係數完全失去任何解釋能力意義",
+        "D": "模型需要全部重新建構並重新估計現有所有係數已完全無效"
       },
       "correct_answer": "B",
       "source": {
@@ -3343,10 +3343,10 @@
       "topic": "Stats/Regression",
       "question_text": "某零售公司建立線性迴歸模型評估廣告投放（電視、網路、雜誌）對銷售的影響。Ridge 迴歸（L2 正則化）相較於普通 OLS 的主要優勢是什麼？",
       "options": {
-        "A": "Ridge 迴歸自動將不重要特徵的係數縮減至零，實現特徵選擇",
-        "B": "Ridge 迴歸透過縮小係數大小來減少過擬合，對多重共線性更穩健",
-        "C": "Ridge 迴歸不需要資料標準化，可直接套用不同量綱特徵",
-        "D": "Ridge 迴歸的計算速度比 OLS 快 10 倍"
+        "A": "Ridge 將不重要特徵的係數自動縮減至恰好為零達特徵選擇",
+        "B": "Ridge 透過縮小係數整體大小降低過擬合並穩健處理多共線性",
+        "C": "Ridge 不需要對特徵進行標準化即可直接套用不同量綱的資料",
+        "D": "Ridge 的數值計算速度比普通 OLS 普遍快上十倍以上的效能"
       },
       "correct_answer": "B",
       "source": {
@@ -3366,10 +3366,10 @@
       "topic": "Viz/Tools",
       "question_text": "某資料分析師欲呈現公司 2020–2024 年各季度的銷售額，並同時顯示年度趨勢。以下哪種圖表最能同時呈現時間趨勢和各季度的個別數值？",
       "options": {
-        "A": "圓餅圖（Pie Chart），每年一個圓餅",
-        "B": "折線圖（Line Chart），X 軸為季度，Y 軸為銷售額",
-        "C": "樹狀圖（Treemap），以面積大小代表銷售額",
-        "D": "散佈圖（Scatter Plot），X 軸為季度編號，Y 軸為銷售額"
+        "A": "圓餅圖 Pie Chart（每年一個圓餅顯示各季比例）",
+        "B": "折線圖 Line Chart（X 軸季度 Y 軸銷售額連成線）",
+        "C": "樹狀圖 Treemap（以矩形面積大小代表各季銷售額）",
+        "D": "散佈圖 Scatter Plot（X 軸季度編號 Y 軸對應銷售額）"
       },
       "correct_answer": "B",
       "source": {
@@ -3389,10 +3389,10 @@
       "topic": "Viz/Tools",
       "question_text": "根據 Edward Tufte 的資料視覺化原則，「資料墨水比（Data-Ink Ratio）」的概念是什麼？以下哪個設計最符合此原則？",
       "options": {
-        "A": "在圖表中使用盡可能多的顏色和裝飾，讓圖表更吸引人",
-        "B": "最大化用於呈現資料資訊的墨水比例，最小化非必要裝飾元素",
-        "C": "確保每個圖表都有漸層背景和 3D 效果，增加視覺立體感",
-        "D": "每個資料點都應標示確切數值，讓讀者不需估算"
+        "A": "在圖表中加入盡可能多的顏色與裝飾以提升視覺吸引力",
+        "B": "最大化承載資料資訊的墨水比例並最小化非必要裝飾元素",
+        "C": "為每個圖表加上漸層背景與 3D 效果以強化視覺立體質感",
+        "D": "在每個資料點都標註精確的數值以避免讀者需自行估算"
       },
       "correct_answer": "B",
       "source": {
@@ -3412,10 +3412,10 @@
       "topic": "Viz/Tools",
       "question_text": "某資料分析師想同時呈現全台 22 個縣市的人口數量、GDP、和面積三個變數的關係。以下哪種圖表最適合一次呈現三個連續變數？",
       "options": {
-        "A": "折線圖，三條線各代表一個變數",
-        "B": "泡泡圖（Bubble Chart）：X 軸為 GDP、Y 軸為人口、泡泡大小為面積",
-        "C": "堆疊長條圖，三個變數疊加在一起",
-        "D": "雷達圖（Radar Chart），每個縣市一個多邊形"
+        "A": "折線圖 Line Chart（三條線分別代表人口、GDP、面積）",
+        "B": "泡泡圖 Bubble Chart（X 軸 GDP、Y 軸人口、大小為面積）",
+        "C": "堆疊長條圖 Stacked Bar（三個變數疊加在同一根長條上）",
+        "D": "雷達圖 Radar Chart（每個縣市繪製一個三軸多邊形剖面）"
       },
       "correct_answer": "B",
       "source": {
@@ -3435,10 +3435,10 @@
       "topic": "Viz/Tools",
       "question_text": "某資料分析師在 Power BI 中建立儀表板，想讓使用者點選不同地區後，所有圖表自動篩選顯示該地區的資料。此功能稱為什麼？",
       "options": {
-        "A": "資料鑽取（Drill-Through）",
-        "B": "交叉篩選/互動篩選（Cross-Filtering / Interactive Filtering）",
-        "C": "資料標準化（Data Normalization）",
-        "D": "資料集成（Data Integration）"
+        "A": "資料鑽取 Drill-Through（點選資料後跳轉至詳細頁面）",
+        "B": "交叉篩選 Cross-Filtering（點選元件連動其他視覺元素）",
+        "C": "資料標準化 Data Normalization（前處理階段尺度對齊）",
+        "D": "資料整合 Data Integration（合併多個來源資料的步驟）"
       },
       "correct_answer": "B",
       "source": {
@@ -3458,10 +3458,10 @@
       "topic": "Viz/Tools",
       "question_text": "某分析師想用圖表呈現「各產品線在總營收中的組成比例，且同時顯示每個產品線內各子類別的比例」。以下哪種圖表最適合展示這種階層性比例資訊？",
       "options": {
-        "A": "折線圖（Line Chart）",
-        "B": "樹狀圖（Treemap）",
-        "C": "散佈圖（Scatter Plot）",
-        "D": "箱形圖（Box Plot）"
+        "A": "折線圖 Line Chart（連接時間點顯示趨勢變化）",
+        "B": "樹狀圖 Treemap（巢狀矩形顯示階層比例關係）",
+        "C": "散佈圖 Scatter Plot（顯示兩變數的相關性關係）",
+        "D": "箱形圖 Box Plot（顯示中位數與四分位分散程度）"
       },
       "correct_answer": "B",
       "source": {
@@ -3481,10 +3481,10 @@
       "topic": "ML/Basics",
       "question_text": "某資料科學家面對一個客戶流失預測問題，資料集有 100 個特徵但只有 500 筆樣本，且有很多特徵彼此高度相關。以下哪種模型策略最合適？",
       "options": {
-        "A": "深度神經網路（Deep Neural Network, 10 層），因為層數越多表達能力越強",
-        "B": "正則化線性模型（如 Elastic Net），搭配特徵選擇，適合高維小樣本",
-        "C": "K-means 分群，因為客戶流失是無監督學習問題",
-        "D": "決策樹（不限深度），因為可以自動處理高相關特徵"
+        "A": "深度神經網路 DNN（10 層架構），因為層數越多模型表達能力越強",
+        "B": "正則化線性模型 Elastic Net（L1+L2 組合），適合高維小樣本場景",
+        "C": "K-means 分群（無監督學習），不需要標籤即可進行客戶群體分析",
+        "D": "不剪枝決策樹 Decision Tree（不限深度），可自動捕捉特徵交互作用"
       },
       "correct_answer": "B",
       "source": {
@@ -3504,10 +3504,10 @@
       "topic": "ML/Basics",
       "question_text": "某機器學習工程師說「我們的模型在訓練集上準確率 99%，但在生產環境中效果很差」。下列哪種現象最可能是根本原因？",
       "options": {
-        "A": "模型使用了太少的神經網路層數",
-        "B": "訓練資料和生產資料存在分佈偏移（Distribution Shift / Covariate Shift）",
-        "C": "模型的學習率（Learning Rate）設定過高",
-        "D": "訓練時間太短，模型尚未完全收斂"
+        "A": "模型架構過於簡單發生 Underfitting，神經網路層數過少表達不足",
+        "B": "訓練與生產資料分佈不一致發生 Distribution Shift 的資料偏移",
+        "C": "模型訓練超參數設定不當，學習率設定過高導致 Gradient 梯度爆炸",
+        "D": "模型訓練時間過短 Premature Stop，尚未在訓練資料上完全收斂"
       },
       "correct_answer": "B",
       "source": {
@@ -3527,10 +3527,10 @@
       "topic": "ML/Basics",
       "question_text": "某機器學習團隊要決定模型的超參數（Hyperparameters），如決策樹的最大深度、正則化係數 λ 等。以下哪種方法是正確的超參數調整流程？",
       "options": {
-        "A": "在測試集上嘗試不同超參數組合，選擇測試集表現最好的",
-        "B": "在訓練集上嘗試不同超參數，選擇訓練集 loss 最低的",
-        "C": "使用驗證集（或交叉驗證）調整超參數，測試集只用於最終評估",
-        "D": "超參數不影響模型性能，不需要調整"
+        "A": "在測試集上嘗試多組超參數並選擇測試集表現最佳的組合",
+        "B": "在訓練集上嘗試多組超參數並選擇訓練集 Loss 最低的組合",
+        "C": "在驗證集上調整超參數，測試集留待最後做最終一次評估",
+        "D": "超參數對模型性能影響極小因此不需特別調整可直接使用"
       },
       "correct_answer": "C",
       "source": {
@@ -3550,10 +3550,10 @@
       "topic": "BigData/Cleaning",
       "question_text": "某資料清洗工程師在處理電商訂單資料時，發現同一位客戶的姓名以不同格式出現：「王小明」、「王 小明」（中間有空格）、「王小明 」（尾部有空格）。這種資料問題屬於哪個類別？",
       "options": {
-        "A": "結構性錯誤（Structural Errors），資料格式不一致",
-        "B": "邏輯性錯誤（Logical Errors），資料違反業務邏輯",
-        "C": "缺失值（Missing Values），部分欄位空白",
-        "D": "重複值（Duplicates），同一記錄出現多次"
+        "A": "結構性錯誤（Structural Errors，格式不一致與多餘空白）",
+        "B": "邏輯性錯誤（Logical Errors，資料違反業務規則或約束）",
+        "C": "缺失值（Missing Values，部分欄位為空白或 NULL 值）",
+        "D": "重複值（Duplicates，同一筆紀錄在資料中重複出現多次）"
       },
       "correct_answer": "A",
       "source": {
@@ -3573,10 +3573,10 @@
       "topic": "BigData/Cleaning",
       "question_text": "某資料工程師評估資料集的品質，計算各項指標。「唯一性比率（Uniqueness Rate）」= 90% 代表什麼意義？",
       "options": {
-        "A": "90% 的欄位有填入值，10% 為空值",
-        "B": "90% 的記錄在主鍵欄位上是唯一的，10% 為重複記錄",
-        "C": "90% 的資料值在允許的業務邏輯範圍內",
-        "D": "90% 的欄位值落在正常統計範圍內，10% 為離群值"
+        "A": "90% 的欄位有填入有效值，10% 為缺失或空白值（完整性）",
+        "B": "90% 的紀錄在主鍵欄位上為唯一值，10% 為重複紀錄（唯一性）",
+        "C": "90% 的資料值落在業務邏輯允許範圍內，10% 違反規則（一致性）",
+        "D": "90% 的欄位值落於統計常態範圍內，10% 為極端離群值（準確性）"
       },
       "correct_answer": "B",
       "source": {
@@ -3596,10 +3596,10 @@
       "topic": "ROC/AUC",
       "question_text": "某醫院建立糖尿病風險篩查模型，得到 ROC 曲線下面積（AUC）= 0.85。另一家醫院的模型 AUC = 0.72。以下哪個說法最準確？",
       "options": {
-        "A": "AUC = 0.85 的模型準確率（Accuracy）一定高於 AUC = 0.72 的模型",
-        "B": "AUC = 0.85 的模型對任意隨機選取的一位患者和一位健康者，正確將患者排名更高的機率為 85%",
-        "C": "AUC = 0.72 的模型只比隨機猜測（AUC = 0.5）略好，沒有實用價值",
-        "D": "AUC = 1.0 才是好模型，AUC = 0.85 代表模型有嚴重問題"
+        "A": "AUC = 0.85 的模型在任何閾值下準確率必然高於 AUC = 0.72 的模型",
+        "B": "AUC = 0.85 代表隨機抽取一位患者與一位健康者模型正確排序的機率",
+        "C": "AUC = 0.72 僅略高於隨機猜測（0.5）水準幾乎沒有臨床實用價值",
+        "D": "AUC = 1.0 才是好模型，AUC = 0.85 代表模型存在嚴重的擬合問題"
       },
       "correct_answer": "B",
       "source": {
