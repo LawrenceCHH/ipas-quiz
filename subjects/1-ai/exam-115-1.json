@@ -8,7 +8,7 @@
   "verified_question_pool": [
     {
       "id": "exam-s1-115-1-q1",
-      "topic": null,
+      "topic": "NLP/General",
       "question_text": "某工程師正在建置一套法律文件解析系統,在進行資訊擷取(Information Extraction)前,需要對文本進行詞性標註(Part-of-Speech Tagging, POS Tagging)。請問此步驟的主要目的為何?",
       "options": {
         "A": "將文本翻譯為其他語言以利跨語言分析",
@@ -22,14 +22,14 @@
         "page": 1,
         "evidence": "answer column shows 'D' for question 1"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 詞性標註(POS Tagging)的核心任務,就是為文本中每個詞彙標記其語法類別(名詞、動詞、形容詞等),讓後續的句法分析或資訊擷取能利用詞性資訊判斷詞彙在句中的角色。\n\n**其他選項為何錯:**\n- A. 跨語言翻譯是機器翻譯(Machine Translation)的任務,與詞性標註無關。\n- B. 將文本切分為基本詞彙單位是斷詞(Tokenization),發生在詞性標註之前的前置步驟。\n- C. 判斷情感傾向是情感分析(Sentiment Analysis)的任務。\n- D. ✓ 正解\n\n**記憶要點:** POS Tagging = 標詞性(名詞/動詞/形容詞);Tokenization = 切詞。兩者常被搞混,記住「先切詞、再標詞性」的順序。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q2",
-      "topic": null,
+      "topic": "GenAI/FineTuning",
       "question_text": "一家新創公司希望對 Llama3 70B 模型進行領域微調(Domain Fine-Tuning)以建立企業專用助理,但 GPU 記憶體有限,無法支撐完整模型的反向傳播梯度計算。工程師希望凍結(freeze)原模型權重、僅訓練少量額外參數的前提下,評估採用 LoRA(Low-Rank Adaptation)方案。請問 LoRA 在此場景下的主要優勢為何?",
       "options": {
         "A": "透過知識蒸餾(Knowledge Distillation)將 70B 模型壓縮為較小的學生模型",
@@ -43,14 +43,14 @@
         "page": 1,
         "evidence": "answer column shows 'C' for question 2"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** LoRA(Low-Rank Adaptation)的核心設計是凍結原始預訓練權重,只在各層旁路加入低秩分解的可訓練矩陣進行訓練,可訓練參數量僅為原模型的一小部分,因此能大幅降低反向傳播所需的梯度與優化器狀態記憶體。\n\n**其他選項為何錯:**\n- A. 知識蒸餾是訓練一個更小的學生模型模仿教師模型,屬於模型壓縮技術,不是 LoRA 的做法。\n- B. 剪枝是移除權重本身,LoRA 不改動或刪除原始權重,而是凍結它們。\n- C. ✓ 正解\n- D. 稀疏注意力是改變 Attention 計算方式以降低序列長度成本,與 LoRA 的參數高效微調無關。\n\n**記憶要點:** LoRA = 凍結原權重 + 旁路低秩矩陣,參數少、記憶體省,是 PEFT(Parameter-Efficient Fine-Tuning)的代表方法。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q3",
-      "topic": null,
+      "topic": "NLP/Embedding",
       "question_text": "某工程師在建構搜尋引擎的詞向量模型時,語料庫規模達數十億 token,且包含大量長尾詞彙(Long-tail Terms)。他在 Word2Vec 的 CBOW 與 Skip-gram 兩種訓練策略之間進行選擇,需考量訓練效率與低頻詞表示品質之差異。下列何者最能準確地反映兩者在此情境下的取捨?",
       "options": {
         "A": "CBOW 對長尾詞表現更好,因為它透過多個上下文詞的平均來強化稀疏詞的訓練訊號",
@@ -64,14 +64,14 @@
         "page": 1,
         "evidence": "answer column shows 'B' for question 3"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** CBOW 用多個上下文詞平均預測中心詞,平均化過程會稀釋低頻詞的訊號,訓練速度快但低頻詞向量品質較差;Skip-gram 反過來以單一中心詞預測多個周圍詞,每個中心詞會產生多筆訓練樣本,讓長尾詞獲得較多學習機會,因此向量品質通常較優,但計算量較大。\n\n**其他選項為何錯:**\n- A. CBOW 的平均機制正是稀釋低頻詞訊號的原因,對長尾詞表現「較差」而非「較好」,描述相反。\n- B. ✓ 正解\n- C. Skip-gram 每個中心詞要對多個上下文詞分別計算,單次迭代運算量比 CBOW 大,訓練速度較慢而非較快。\n- D. 兩者對低頻詞表現有明顯差異,並非完全相同。\n\n**記憶要點:** CBOW 快但平均化、Skip-gram 慢但對長尾詞友善,記住「Skip-gram 慢工出細活」。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q4",
-      "topic": null,
+      "topic": "NLP/BERT-vs-GPT",
       "question_text": "某金融科技公司的工程師正在準備內部客服對話與交易紀錄文本,進行 BERT 模型的預訓練,以提升模型對金融語境的理解能力,並採用遮蔽語言建模(Masked Language Model, MLM)作為訓練任務。請問 MLM 的核心訓練目標為何?",
       "options": {
         "A": "讓模型自左至右逐 token 生成句子,學習自迴歸語言模型(Autoregressive LM)能力",
@@ -85,14 +85,14 @@
         "page": 1,
         "evidence": "answer column shows 'C' for question 4"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** MLM(Masked Language Model)隨機遮蔽輸入序列中約 15% 的 token,訓練模型利用左右兩側(雙向)上下文去預測被遮蔽的原始內容,這正是 BERT 能學到雙向語境表示的關鍵。\n\n**其他選項為何錯:**\n- A. 自左至右逐 token 生成是 GPT 一類自迴歸模型(Causal LM)的訓練方式,不是 MLM。\n- B. MLM 不使用對抗訓練框架,對抗訓練是 GAN 的核心概念。\n- C. ✓ 正解\n- D. 遮蔽 token 是隨機抽樣訓練訊號的機制,目的不是縮減詞彙表或省記憶體。\n\n**記憶要點:** MLM = 隨機挖空 + 雙向猜詞;GPT 系列才是「從左唸到右」的自迴歸生成。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q5",
-      "topic": null,
+      "topic": "NLP/Embedding",
       "question_text": "某電商平台的工程師在開發商品評論情感分析系統時,發現使用 One-Hot 編碼無法表達詞語之間的語意關係,且隨著詞彙表擴大,向量維度與記憶體需求快速增加。工程師因此改用 Word2Vec 進行詞語表示。請問 Word2Vec 從根本上解決了上述問題的哪項限制?",
       "options": {
         "A": "建立詞語之間的序列依賴關係,以捕捉長距離上下文語意",
@@ -106,14 +106,14 @@
         "page": 2,
         "evidence": "answer column shows 'C' for question 5"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** One-Hot 編碼的維度等於詞彙表大小,向量高維且稀疏,詞與詞之間也沒有語意關係。Word2Vec 透過訓練將詞彙映射到低維稠密向量空間,同時讓語意相近的詞在向量空間中距離較近,從根本上解決了高維稀疏表示的維度與記憶體問題。\n\n**其他選項為何錯:**\n- A. 捕捉長距離上下文依賴是 RNN/Transformer 等序列模型的能力,不是 Word2Vec 詞向量本身要解決的問題。\n- B. Word2Vec 訓練目標並非依詞頻調整重要性,題目描述的痛點也與詞頻加權無關。\n- C. ✓ 正解\n- D. Word2Vec 是無監督(自監督)方法,透過上下文共現學習,不需要標註語料。\n\n**記憶要點:** One-Hot = 高維稀疏、無語意;Word2Vec = 低維稠密、保語意,是 Embedding 的基礎。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q6",
-      "topic": null,
+      "topic": "CV/Segmentation",
       "question_text": "某自駕車感知系統需要在同一張影像中同時完成道路、建築、行人的逐像素分類,並且能夠區分畫面中兩名相鄰行人(標記為「行人#1」和「行人#2」)。工程師在選擇語義分割(Semantic Segmentation)與實例分割(Instance Segmentation)時,請問兩者的根本差異為何?",
       "options": {
         "A": "實例分割對每個像素進行分類但不產生 Bounding Box;語義分割產生 Bounding Box 但不進行像素級標記",
@@ -127,14 +127,14 @@
         "page": 2,
         "evidence": "answer column shows 'C' for question 6"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** 語義分割(Semantic Segmentation)只依類別為每個像素標記,同類別的不同物件(如兩名行人)會被視為同一塊區域無法區分;實例分割(Instance Segmentation)在此基礎上進一步為同類別的每個獨立物件產生各自的遮罩(Mask),因此能分辨「行人#1」與「行人#2」。\n\n**其他選項為何錯:**\n- A. 兩者描述正好顛倒:語義分割不產生 Bounding Box,實例分割才會結合偵測框與像素級遮罩。\n- B. 語義分割與實例分割都是像素級任務,並非「只有語義分割」逐像素標記,描述錯誤。\n- C. ✓ 正解\n- D. 兩者在是否區分個體上正是關鍵差異所在,並非沒有差異。\n\n**記憶要點:** 語義分割 = 只分類別、不分個體;實例分割 = 分類別 + 分個體(各自 Mask)。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q7",
-      "topic": null,
+      "topic": "CV/Segmentation",
       "question_text": "某大型超市的防損系統需要即時偵測多名顧客各自手持的購物籃、手機與商品,並需對每個物件進行精確區域標記(Pixel-level Mask),同時能區分畫面中不同個體(即使不同顧客拿著相同商品,也需分別標記)。請問下列哪一項技術最適合此場景的需求?",
       "options": {
         "A": "影像分類(Image Classification)",
@@ -148,14 +148,14 @@
         "page": 2,
         "evidence": "answer column shows 'C' for question 7"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** 情境需要「像素級精確標記(Mask)」且「能區分同類別的不同個體」(如不同顧客持有的相同商品要分開標記),這正是實例分割的定義:結合物件偵測與像素級分割,對每個獨立物件個體產生專屬遮罩。\n\n**其他選項為何錯:**\n- A. 影像分類只判斷整張影像屬於哪個類別,無法標記個別物件位置。\n- B. 目標檢測只能產生 Bounding Box,無法做到像素級精確區域標記。\n- C. ✓ 正解\n- D. 語義分割只能標出「這是商品類別」的像素區域,無法區分不同顧客各自持有的相同商品。\n\n**記憶要點:** 需要「像素級 + 分個體」→ 實例分割;只需框選 → 目標檢測;只需分類別像素 → 語義分割。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q8",
-      "topic": null,
+      "topic": "ML/Evaluation",
       "question_text": "某工程師訓練了一個皮膚病變二元分類模型(惡性/良性),在向臨床醫師報告模型效能時,使用 ROC 曲線(Receiver Operating Characteristic Curve)進行呈現。請問 ROC 曲線的橫軸(X 軸)與縱軸(Y 軸)分別代表哪些指標,且在醫療情境中代表哪一種意義?",
       "options": {
         "A": "X 軸為準確率(Accuracy),Y 軸為召回率(Recall),表示模型整體分類正確比例與偵測能力",
@@ -169,14 +169,14 @@
         "page": 2,
         "evidence": "answer column shows 'B' for question 8"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** ROC 曲線以 FPR(假陽率,將健康個體誤判為惡性的比例)為 X 軸、TPR(真陽率,正確找出惡性病灶的比例,即 Recall)為 Y 軸,在醫療情境中分別對應「誤診健康人的風險」與「正確揪出病患的能力」,曲線越靠左上代表模型在兩者間的權衡越好。\n\n**其他選項為何錯:**\n- A. Accuracy 與 Recall 並非 ROC 曲線的座標軸定義。\n- B. ✓ 正解\n- C. Precision-Recall 曲線才是以這兩者為座標軸,常用於類別不平衡情境,但並非 ROC 曲線。\n- D. IoU 閾值與 mAP 是物件偵測任務的評估指標,與 ROC 曲線無關。\n\n**記憶要點:** ROC = FPR(X)vs TPR(Y);PR 曲線 = Recall(X)vs Precision(Y)。醫療情境常用 ROC 權衡誤診與漏診風險。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q9",
-      "topic": null,
+      "topic": "ML/Evaluation",
       "question_text": "某團隊在監控影像分類模型的線上效能時,透過儀表板呈現混淆矩陣(Confusion Matrix),以觀察模型預測結果與實際標籤的分佈情形。請問下列哪一項無法從混淆矩陣中直接計算?",
       "options": {
         "A": "精確率(Precision)",
@@ -190,14 +190,14 @@
         "page": 3,
         "evidence": "answer column shows 'D' for question 9"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 混淆矩陣是模型在「單一固定決策閾值」下的預測結果統計,Precision、Recall、Accuracy 都能由矩陣中的 TP/FP/TN/FN 直接算出;但 AUC 是模型在所有可能閾值下的排序能力總結,需要每筆樣本的預測機率分數才能計算,無法只從單一閾值的混淆矩陣中得出。\n\n**其他選項為何錯:**\n- A. Precision = TP/(TP+FP),可直接由混淆矩陣算出。\n- B. Accuracy = (TP+TN)/總數,可直接由混淆矩陣算出。\n- C. Recall = TP/(TP+FN),可直接由混淆矩陣算出。\n- D. ✓ 正解\n\n**記憶要點:** 混淆矩陣只反映「一個閾值」的結果;AUC 需要跨所有閾值的機率分數,兩者資訊層級不同。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q10",
-      "topic": null,
+      "topic": "CV/Detection",
       "question_text": "某工廠導入即時影像瑕疵偵測系統,需在高頻影像流中進行快速推論。工程師在 YOLO 與 Faster R-CNN 兩種物件偵測架構之間進行評估,請問下列哪一個針對兩者在偵測流程設計上的差異最為正確?",
       "options": {
         "A": "YOLO 採用單階段偵測,直接從整張影像預測物件位置與類別;Faster R-CNN 則先產生候選區域再進行分類",
@@ -211,14 +211,14 @@
         "page": 3,
         "evidence": "answer column shows 'A' for question 10"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** YOLO(You Only Look Once)是單階段(One-Stage)偵測器,直接在整張影像上一次性回歸出物件位置與類別;Faster R-CNN 是兩階段(Two-Stage)偵測器,先透過 RPN(Region Proposal Network)產生候選區域,再對候選區域進行分類與框回歸,因此推論速度較慢但定位精度通常較高。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 只有 Faster R-CNN 是兩階段流程,YOLO 是單階段,描述錯誤。\n- C. YOLO 是單階段架構沒錯,但它並不使用候選區域(Region Proposal),與提升準確率的方式描述不符。\n- D. Faster R-CNN 是兩階段偵測器,並非單階段,描述顛倒。\n\n**記憶要點:** YOLO = 一次到位(單階段,快);Faster R-CNN = 先找候選區域再分類(兩階段,準)。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q11",
-      "topic": null,
+      "topic": "NLP/Transformer",
       "question_text": "某工程師在分析 Transformer 架構時,發現自注意力機制(Self-Attention)能夠有效提升模型對序列中長距離依賴關係的建模能力。請問 Self-Attention 的核心功能為何?",
       "options": {
         "A": "透過隱藏狀態的遞迴傳遞,逐步累積序列中的上下文資訊",
@@ -232,14 +232,14 @@
         "page": 3,
         "evidence": "answer column shows 'B' for question 11"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** Self-Attention 讓序列中每個 token 都能直接與其他所有 token(包含自己)計算關聯權重,依重要性分配注意力,藉此一次性建模任意距離的依賴關係,不受序列長度限制。\n\n**其他選項為何錯:**\n- A. 隱藏狀態逐步遞迴傳遞是 RNN/LSTM 的機制,Self-Attention 沒有遞迴結構。\n- B. ✓ 正解\n- C. 只做局部運算、只看相鄰詞是卷積(CNN)的特性,Self-Attention 可以直接關聯任意距離的 token。\n- D. 將序列壓縮成固定長度向量是傳統 Seq2Seq(如 Encoder-Decoder RNN)的瓶頸做法,Self-Attention 保留完整序列的逐 token 表示。\n\n**記憶要點:** Self-Attention = 「每個詞都看全部詞」,不靠遞迴、不受局部視窗限制,是長距離依賴的解方。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q12",
-      "topic": null,
+      "topic": "ML/Classification",
       "question_text": "某工程師在設計一個二元分類器(Binary Classifier)時,考慮在輸出層使用 Sigmoid 函數。請問 Sigmoid 函數的主要特性與限制為何?",
       "options": {
         "A": "可將輸入轉換為任意實數範圍,適合用於迴歸任務",
@@ -253,14 +253,14 @@
         "page": 3,
         "evidence": "answer column shows 'B' for question 12"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** Sigmoid 函數將任意實數輸入壓縮到 (0,1) 區間,常被解釋為屬於正類的機率,適合二元分類的輸出層;但當輸入值絕對值過大時,函數曲線趨於平坦,梯度接近 0,深層網路中容易發生梯度消失(Vanishing Gradient),拖慢或阻礙訓練。\n\n**其他選項為何錯:**\n- A. Sigmoid 輸出被限制在 (0,1),並非任意實數範圍,不適合直接用於一般迴歸任務。\n- B. ✓ 正解\n- C. 輸出多類別機率分布是 Softmax 的功能,Sigmoid 是針對單一數值的二元機率輸出。\n- D. Sigmoid 在輸入極端值時梯度會趨近 0,並非全範圍梯度穩定,這正是它的限制而非優點。\n\n**記憶要點:** Sigmoid = 壓到 (0,1)、可當機率,但兩端「飽和」會梯度消失,深層網路較少用它做隱藏層。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q13",
-      "topic": null,
+      "topic": "GenAI/FineTuning",
       "question_text": "某公司評估兩種方案,將大型語言模型客製化為內部客服助理:方案 A 為提示微調(Prompt Tuning),在輸入端加入可學習的軟提示(Soft Prompt);方案 B 為傳統微調(Fine-Tuning),以標註問答資料調整模型。兩方案最本質的技術差異為何?",
       "options": {
         "A": "提示微調主要用於降低推論延遲,而傳統微調則用於提升模型容量",
@@ -274,14 +274,14 @@
         "page": 4,
         "evidence": "answer column shows 'C' for question 13"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** 傳統微調(Fine-Tuning)會更新模型本身的權重參數,以標註資料調整模型;提示微調(Prompt Tuning)則凍結模型權重,只在輸入端學習一組可訓練的軟提示向量,透過改變輸入表示來引導模型輸出,模型參數本身完全不變,這正是兩者最本質的差異。\n\n**其他選項為何錯:**\n- A. 兩者的差異核心在於「是否更新模型參數」,而非推論延遲或模型容量的取捨。\n- B. 兩者在是否更新模型權重上有本質不同,並非只差在學習率設定。\n- C. ✓ 正解\n- D. 兩種方案通常都建立在預訓練模型之上,差異不在於是否使用預訓練模型。\n\n**記憶要點:** Fine-Tuning = 改模型權重;Prompt Tuning = 凍結模型、只學輸入端的軟提示,是 PEFT 的一種。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q14",
-      "topic": null,
+      "topic": "GenAI/FineTuning",
       "question_text": "某工程師計劃將通用 LLM 在醫療問答語料上進行監督微調(Supervised Fine-Tuning, SFT),但發生了災難性遺忘(Catastrophic Forgetting)問題。在計算資源有限的情況下,工程師希望透過調整微調策略來緩解此問題。下列哪一種訓練設計最能有效率地學習新任務的同時保留原有能力?",
       "options": {
         "A": "凍結大部分預訓練參數,僅對少量新增模組(如 LoRA 層)進行微調,並控制更新範圍以減少對原有知識的干擾",
@@ -295,14 +295,14 @@
         "page": 4,
         "evidence": "answer column shows 'A' for question 14"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** 災難性遺忘源自於全量更新模型參數時覆蓋掉原有知識。凍結大部分預訓練權重、只對少量新增模組(如 LoRA)進行訓練,能將參數更新範圍限制在小範圍內,既能學習新任務又能大幅降低對原有能力的干擾,同時大幅減少計算資源需求。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 提高學習率、縮短訓練步數反而更容易讓權重劇烈變動,加劇對原知識的覆蓋,無助於緩解遺忘。\n- C. 僅用醫療語料反覆多輪訓練會讓模型過度擬合新任務,加速遺忘原有的通用知識。\n- D. 批次大小只影響梯度估計的穩定度,與是否覆蓋原有知識、是否遺忘沒有直接關聯。\n\n**記憶要點:** 緩解災難性遺忘的關鍵是「限制更新範圍」——LoRA/凍結大部分參數,而不是調整學習率或批次大小。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q15",
-      "topic": null,
+      "topic": "AI/Planning",
       "question_text": "某企業建置一套多代理人(Multi-Agent)系統,由一個 Orchestrator Agent 負責任務分配,多個 Worker Agent 分別執行網路搜尋、程式撰寫與結果彙整。若 Orchestrator 發現某 Worker Agent 回傳結果品質不符合預期,從系統容錯與任務可靠性角度,下列哪一項機制最能確保整體任務仍能正確完成?",
       "options": {
         "A": "直接採用該 Worker Agent 的輸出,避免重試機制造成延遲",
@@ -316,14 +316,14 @@
         "page": 4,
         "evidence": "answer column shows 'B' for question 15"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** 具備容錯能力的 Multi-Agent 系統需要 Orchestrator 能主動評估 Worker 回傳結果的品質,對不合格結果觸發重試或轉派給其他 Worker,並記錄失敗原因作為後續改善依據,這樣才能在單一 Worker 表現不佳時仍讓整體任務可靠地完成。\n\n**其他選項為何錯:**\n- A. 直接採用品質不符的結果會讓錯誤直接流入最終輸出,無法確保任務可靠性。\n- B. ✓ 正解\n- C. 強制統一模型只是減少輸出差異,並不能解決「結果品質不符預期」時的容錯與復原問題。\n- D. 一個 Worker 失敗就整個中止,會讓系統完全沒有容錯能力,可靠性反而更差。\n\n**記憶要點:** 容錯設計的核心是「偵測不合格結果 → 重試/轉派 → 記錄回饋」,而不是照單全收或直接中止。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q16",
-      "topic": null,
+      "topic": "AI/Planning",
       "question_text": "一位工程師正在實作一個 ReAct 框架的 AI Agent,該 Agent 需要回答「台灣目前最大的電動車充電站營運商是哪間公司,以及其充電樁總數」。Agent 的工具清單如下:•web_search(query):回傳搜尋結果摘要•get_webpage(url):回傳網頁內文•calculator(expression):回傳計算結果•get_current_date():回傳今日日期工程師設計了以下的 System Prompt 與 ReAct Loop,請問此 Agent 設計存在哪些問題?應如何改善?[System Prompt]你是一個資料查詢助理。每次只能使用一個工具。當你知道答案時,直接輸出最終答案。[第一輪 Agent 輸出]Thought: 我已經知道台灣電動車市場的概況,不需要搜尋,可以直接回答。Action: 無 Answer: 台灣最大充電站營運商是 XX 公司,共有 500 個充電樁。",
       "options": {
         "A": "System Prompt 未要求 Agent 在回答前使用工具驗證,導致直接依賴既有知識產生幻覺(Hallucination);應明確規定即時性問題需先執行 web_search",
@@ -337,14 +337,14 @@
         "page": 4,
         "evidence": "answer column shows 'A' for question 16"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** 題目要求的是「目前」最大充電站營運商與充電樁「總數」,屬於會隨時間變動的即時性資訊,但 System Prompt 沒有規定 Agent 必須先用 web_search 等工具驗證才能回答,導致 Agent 直接憑內部知識產生看似合理但未經查證的答案,屬於典型的幻覺(Hallucination)。改善方式應在 System Prompt 中明確要求對時效性問題先執行搜尋工具再作答。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. calculator 與 get_current_date 是否多餘要看任務需求,本題的問題核心是「沒查證就作答」,並非工具數量問題。\n- C. Thought 步驟是 ReAct 讓模型先推理再行動的核心設計,能提升準確度,並非應移除的多餘負擔。\n- D. 一次呼叫所有工具不但沒有必要,也違反 ReAct「逐步推理、依需要行動」的精神,無法解決本題「未查證」的根本問題。\n\n**記憶要點:** ReAct Agent 遇到即時性問題,必須先 Action(呼叫工具)驗證再回答,否則就是「不查證直接答」的幻覺。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q17",
-      "topic": null,
+      "topic": "Multimodal/General",
       "question_text": "某醫療新創公司正在開發一套「多模態患者風險評估系統」,需同時處理三種異質資料來源:胸腔 X 光影像(影像模態)、臨床診斷筆記(文字模態),以及心率與血氧的時序感測資料(數值時序模態)。工程師在進行各模態的特徵擷取模型選擇時,需為每種模態挑選最適合的模型架構。下列哪一組模型配置最符合三種模態各自的資料特性?",
       "options": {
         "A": "影像模態用 LSTM、文字模態用 CNN、時序模態用 BERT",
@@ -358,14 +358,14 @@
         "page": 5,
         "evidence": "answer column shows 'D' for question 17"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 影像資料具有空間局部性,CNN 擅長擷取這類特徵;文字資料需要理解語序與長距離語意依賴,Transformer 是目前最適合的架構;時序感測資料(心率、血氧)具有時間先後關係,LSTM 或 Temporal CNN 專門設計用來處理序列時間相依性,三者分別對應各模態的資料特性。\n\n**其他選項為何錯:**\n- A. LSTM 用於影像、CNN 用於文字、BERT 用於數值時序,完全配錯資料型態與架構特性。\n- B. TF-IDF 是文字統計特徵、ResNet 是影像 CNN 架構、Word2Vec 是詞向量,三者全部配錯模態。\n- C. BERT 是為文字設計的 Transformer 架構,直接套用在影像像素或數值時序上並不合適,「通用性」不代表任意資料型態都適用。\n- D. ✓ 正解\n\n**記憶要點:** 影像→CNN、文字→Transformer、時序→LSTM/Temporal CNN,依資料的空間/語序/時間特性選架構。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q18",
-      "topic": null,
+      "topic": "Multimodal/Fusion",
       "question_text": "某醫院的 AI 研究團隊正在開發一套整合「CT 影像+電子病歷文本+基因序列」三種模態資料的癌症預測模型。請問在此場景中採用「跨模態對齊(Cross-Modal Alignment)」技術主要解決什麼問題?",
       "options": {
         "A": "使模型僅聚焦於 CT 影像資料,避免文本與基因資料引入雜訊",
@@ -379,14 +379,14 @@
         "page": 6,
         "evidence": "answer column shows 'D' for question 18"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 跨模態對齊(Cross-Modal Alignment)的目的是把來自不同模態(影像、文本、基因序列)、原本各自獨立的表示空間,映射到一個共同的語意空間中,讓模型能學習並利用模態之間的語意關聯,而不是只看單一模態或簡單拼接特徵。\n\n**其他選項為何錯:**\n- A. 跨模態對齊的目的是「整合」多模態資訊,不是只聚焦單一模態、忽略其他模態。\n- B. 自動生成配對標註屬於資料標註/弱監督學習的範疇,不是跨模態對齊技術本身要解決的問題。\n- C. 對齊技術著重語意關聯的建立,並非以降低儲存或計算成本為主要目的。\n- D. ✓ 正解\n\n**記憶要點:** 跨模態對齊 = 把不同模態的表示「拉到同一個語意空間」,是多模態融合前的關鍵前處理。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q19",
-      "topic": null,
+      "topic": "ML/Evaluation",
       "question_text": "一家電商公司已將推薦系統 AI 模型上線三個月,業務主管要求專案團隊評估導入成效。團隊根據下圖數據得出結論:「因為 AUC 高達 0.91,模型表現優異,AI 導入成效良好。」請問此評估結論存在什麼根本問題?",
       "options": {
         "A": "僅依賴離線指標 AUC 判斷模型成效,忽略線上業務指標(如 CTR 與營收)的變化,可能導致錯誤結論",
@@ -400,15 +400,15 @@
         "page": 6,
         "evidence": "answer column shows 'A' for question 19"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** 圖表顯示離線指標 AUC 高達 0.91,但線上業務指標卻出現分歧:CTR 從 3.2% 微幅下降至 3.1%,平均訂單金額則從 $850 上升至 $1,020。團隊僅憑單一離線指標 AUC 就下「導入成效良好」的結論,忽略了 CTR 下降、延遲與費用等線上業務與成本指標需要一併綜合評估,離線指標與線上真實業務表現本來就可能脫鉤,單看 AUC 容易得出過度樂觀或錯誤的結論。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. AUC 高只代表模型「排序」能力好,不代表使用者實際點擊行為(CTR)一定會提升,CTR 下降不能被 AUC 蓋過,兩者不能互相取代解讀。\n- C. CTR 僅小幅下降 0.1 個百分點,而訂單金額同時上升,不能單憑 CTR 些微變動就斷定「模型效果變差」並立即 Rollback,應綜合多項指標評估。\n- D. 平均訂單金額上升可能受季節性、客單價結構等其他因素影響,不能單憑此指標就判定模型已成功優化營收,而忽略 CTR 下降與其他指標。\n\n**記憶要點:** 離線指標(AUC)好 ≠ 線上業務指標(CTR、營收)一定好,AI 導入成效評估要看多項線上業務指標綜合判斷,不能只看單一離線分數。",
       "subject_code": "s1",
       "image": "shared/images/exam-s1-115-1-q19-p6.png"
     },
     {
       "id": "exam-s1-115-1-q20",
-      "topic": null,
+      "topic": "Deploy/MLOps",
       "question_text": "某電商公司計畫導入即時推薦系統,希望使用者進入網站後能在 100 毫秒內取得推薦結果,且推薦結果需依據最新使用者行為進行調整。系統需支援每日約 50 萬活躍使用者,尖峰時段每秒約 3,000 筆請求(QPS)。目前公司已累積歷史購買紀錄與瀏覽行為資料,並持續接收即時點擊流(Streaming Data)。IT 基礎架構採用雲端環境,團隊配置為 2 名資料工程師與 1 名機器學習工程師。某工程師提出以下導入規劃:(1)使用批次訓練(Batch Training)建立協同過濾模型(2)將模型部署為 REST API 提供即時推論服務(3)使用 Kafka 串流處理即時使用者行為特徵(4)將所有即時資料先寫入資料倉儲(Data Warehouse)再進行特徵計算(5)使用 Redis 或 Feature Store 快取即時特徵請問以下哪一項最合理的技術導入規劃組合與調整建議?",
       "options": {
         "A": "保留(1)(2)(3),移除(4),並加入(5)以降低延遲",
@@ -422,14 +422,14 @@
         "page": 6,
         "evidence": "answer column shows 'A' for question 20"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** 系統需求是 100 毫秒內回應且依最新行為即時調整。批次訓練的協同過濾模型(1)可作為離線基底模型,部署為 REST API(2)提供推論服務,用 Kafka 處理即時點擊流(3)取得最新行為特徵都合理;但(4)先寫入資料倉儲再計算特徵,資料倉儲通常針對批次分析設計、寫入與查詢延遲高,會直接拖垮 100 毫秒的即時性需求,應移除;改用(5)Redis 或 Feature Store 直接快取即時特徵,才能在低延遲下提供最新特徵。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 保留(4)資料倉儲會造成即時特徵計算延遲過高,無法滿足 100 毫秒需求,且移除(3)會失去即時點擊流訊號。\n- C. 移除(1)批次訓練模型、改用線上學習,在資料工程與 ML 工程人力有限(僅 3 人)、系統剛起步的情境下,直接上線上學習的維運複雜度與風險過高,並非最合理的第一步規劃。\n- D. 保留(4)會讓即時特徵計算流程多繞經資料倉儲,增加延遲,與 100 毫秒的即時性需求衝突,並非「同時兼顧」而是自相矛盾。\n\n**記憶要點:** 追求低延遲即時特徵,要用 Feature Store/Redis 直接快取,避免特徵計算路徑繞經為批次分析設計的資料倉儲。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q21",
-      "topic": null,
+      "topic": "GenAI/RAG",
       "question_text": "一位機器學習工程師正在優化公司內部的 RAG 法律文件問答系統。近期因營運成本壓力,公司要求在不更換模型且不影響回答品質的前提下,將整體 token 成本降低至目前的 60%,且目前成本主要集中於輸入 tokens。工程師在檢查系統後,盤點出目前的使用情況如下:◆使用模型:GPT-4o(輸入$5/1M tokens、輸出 $15/1M tokens)◆每次查詢:將前 10 筆檢索文件區塊全部加入 Prompt(每塊約 600 tokens)◆System Prompt:每次請求均包含約 500tokens 的公司背景說明◆對話機制:保留完整對話歷史,平均累積約 8,000tokens◆每日查詢量:約 5,000 次◆平均輸出:約 300tokens/次在上述限制與系統現況下,請問下列哪一項優化組合,最能在維持回答品質的前提下有效降低 token 成本?",
       "options": {
         "A": "將輸出 max_tokens 從 1,000 壓縮至 200,強制模型給出更短的回答,以降低輸出費用",
@@ -443,14 +443,14 @@
         "page": 7,
         "evidence": "answer column shows 'B' for question 21"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** 題目明確指出成本主要集中在輸入 tokens(檢索文件區塊、System Prompt、完整對話歷史)。將固定不變的 System Prompt 改用 Prompt Caching 或靜態前綴重用可大幅降低重複輸入的計費 token 數,再對持續累積的對話歷史做摘要壓縮以保留語意重點而非逐字保留,能直接針對輸入成本的主要來源下手,且不影響檢索文件與回答品質。\n\n**其他選項為何錯:**\n- A. 大幅壓縮輸出長度只影響輸出 tokens,但題目說明成本主要集中在「輸入」tokens,並非輸出,對症下藥錯了方向,且可能犧牲回答完整性。\n- B. ✓ 正解\n- C. Batch API 通常適用於非即時、可延後處理的批次任務,RAG 問答系統需要即時回應使用者查詢,不適合改為非同步批次模式。\n- D. 只在 Prompt 中口頭要求模型「簡短」屬於軟性引導,無法穩定保證輸出長度,且同樣只影響輸出而非輸入 token 成本。\n\n**記憶要點:** 輸入成本高 → 先看能不能 Prompt Caching(固定前綴)+ 歷史摘要壓縮,而不是一味壓縮輸出或改變送出模式。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q22",
-      "topic": null,
+      "topic": "Deploy/MLOps",
       "question_text": "某金融科技公司計劃建立完整的 AI 開發到維運流程,希望實現「模型訓練→測試→部署→監控→再訓練」的自動化流程串接,並確保線上模型的版本可追溯。技術主管建議引入 MLOps 框架。MLOps 在此 AI 開發生命週期中的核心角色為何?",
       "options": {
         "A": "專注於訓練資料的標註與品質控管,以提升模型訓練效果",
@@ -464,14 +464,14 @@
         "page": 7,
         "evidence": "answer column shows 'C' for question 22"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** MLOps 的核心角色是把「訓練→測試→部署→監控→再訓練」整個機器學習生命週期串接成自動化流程,並建立版本管理機制(資料、模型、程式碼版本可追溯),讓模型能夠持續部署、監控與迭代更新,這正是題目情境所需要的能力。\n\n**其他選項為何錯:**\n- A. 資料標註與品質控管屬於資料工程/標註流程的範疇,不是 MLOps 的核心定位。\n- B. 自動化模型搜尋與參數調整是 AutoML/超參數優化(HPO)的範疇,與 MLOps 著重的流程自動化及版本管理不同。\n- C. ✓ 正解\n- D. MLOps 強調的是持續監控與「持續更新」,而非「減少後續維運與更新需求」,描述方向相反。\n\n**記憶要點:** MLOps = ML 生命週期自動化 + 版本可追溯,串起訓練到監控再訓練的完整迴圈。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q23",
-      "topic": null,
+      "topic": "AI/Planning",
       "question_text": "某製造業公司計劃將 AI 導入生產線瑕疵檢測流程,目前瑕疵樣本約 800 張(含各類瑕疵類型)、正常樣本約 15,000 張,現有 IT 基礎設施為地端伺服器且無 GPU,且生產線環境需於地端即時完成推論,檢測需求為每片零件須在 100 毫秒內完成檢測,且預算為中等、無法於短期內大規模採購硬體。工程師正在規劃第一階段的 AI 導入方案,請問下列哪一種規劃最為合適?",
       "options": {
         "A": "從零訓練一個大型 CNN 模型,並採購高階 GPU 伺服器以滿足推論速度需求",
@@ -485,14 +485,14 @@
         "page": 8,
         "evidence": "answer column shows 'B' for question 23"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** 情境限制是樣本少(瑕疵僅 800 張)、無 GPU、需地端即時推論(100ms 內)、預算中等。採用預訓練模型做遷移學習,只需少量瑕疵樣本微調就能取得不錯效果,再用量化或蒸餾壓縮模型,使其能在無 GPU 的地端環境內以低延遲完成推論,完全對應題目的所有限制條件。\n\n**其他選項為何錯:**\n- A. 從零訓練大型 CNN 需要大量標註資料,現有 800 張瑕疵樣本明顯不足;採購高階 GPU 也超出「無法短期大規模採購硬體」的預算限制。\n- B. ✓ 正解\n- C. 暫緩專案並等待蒐集到 10 萬筆樣本並不實際也沒有必要,遷移學習正是為了在小樣本情境下也能有效導入 AI 的解法。\n- D. 將影像上傳雲端違反「地端即時完成推論」的需求,且第三方 AutoML 平台通常無法保證滿足 100 毫秒的地端低延遲要求。\n\n**記憶要點:** 小樣本 + 無 GPU + 地端低延遲 → 遷移學習 + 模型壓縮(量化/蒸餾),是資源受限時的標準組合。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q24",
-      "topic": null,
+      "topic": "Deploy/MLOps",
       "question_text": "某即時詐欺偵測系統對模型回應時間有嚴格限制,若推論延遲過高將影響交易核准流程。維運工程師在模型上線前進行延遲測試(Latency Testing)時,主要評估的目標為何?",
       "options": {
         "A": "評估模型推論過程中的記憶體使用量,以確認部署資源是否足夠",
@@ -506,14 +506,14 @@
         "page": 8,
         "evidence": "answer column shows 'D' for question 24"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 延遲測試(Latency Testing)顧名思義是測量系統從接收輸入到回傳預測結果所需要的時間,確認回應速度是否符合系統的時效性要求(此情境為避免影響交易核准流程),這是延遲測試最直接的評估目標。\n\n**其他選項為何錯:**\n- A. 記憶體使用量的評估屬於資源/容量測試(Resource/Load Testing),不是延遲測試的主要目標。\n- B. 對異常或攻擊輸入的穩定性屬於穩健性測試(Robustness Testing)或安全性測試,不是延遲測試的範疇。\n- C. 不同族群預測結果是否一致屬於公平性測試(Fairness Testing),與回應時間無關。\n- D. ✓ 正解\n\n**記憶要點:** Latency Testing 只看「回應時間」;資源用量、穩健性、公平性各有各自的測試類型,不要混為一談。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q25",
-      "topic": null,
+      "topic": "Risk/Compliance",
       "question_text": "某企業欲將其 AI 輔助決策系統提交給外部稽核單位審查,並宣稱符合 NIST《AI 風險管理框架》(NIST AI RMF)中可驗證性(Verifiability)的要求。為讓第三方稽核人員能獨立重現模型評估結果,下列哪一項技術實踐最直接符合此要求?",
       "options": {
         "A": "將模型測試準確率優化至 99%以上,以達到業界公認的高可靠標準",
@@ -527,14 +527,14 @@
         "page": 8,
         "evidence": "answer column shows 'B' for question 25"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** 可驗證性(Verifiability)的核心是讓第三方能夠獨立「重現」模型評估的結果,這需要完整記錄測試資料集、評估流程與訓練/評估過程中的關鍵設定(如超參數、隨機種子、資料版本),並確保這些紀錄可被追溯與查核,才能讓外部稽核人員依循相同條件重新跑出相同(或可解釋的)結果。\n\n**其他選項為何錯:**\n- A. 提高準確率是模型效能的表現,與「稽核人員能否獨立重現評估結果」沒有直接關係,準確率再高也不代表結果可被驗證重現。\n- B. ✓ 正解\n- C. 加快迭代速度、縮短發布週期屬於開發效率議題,與可驗證性(結果可重現)無關,甚至可能因缺乏完整紀錄而更難重現。\n- D. 擴充訓練資料量是提升泛化能力的做法,並不能讓稽核人員「獨立重現」評估過程,與可驗證性的定義不符。\n\n**記憶要點:** Verifiability(可驗證性)= 別人能照著你的紀錄重現結果,關鍵在「可追溯的資料 + 流程紀錄」,不是準確率或資料量。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q26",
-      "topic": null,
+      "topic": "Risk/Compliance",
       "question_text": "某銀行導入一套 AI 授信審核系統,針對貸款申請人進行自動化決策。監理單位要求系統必須符合負責任 AI(Responsible AI)原則,特別是對被拒絕的申請人提供每筆決策的具體理由說明。從技術與合規的角度,此要求的核心能力需求為何?",
       "options": {
         "A": "系統必須在收到申請後 10 秒內自動刪除申請人個資",
@@ -548,14 +548,14 @@
         "page": 8,
         "evidence": "answer column shows 'D' for question 26"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 要求對每筆拒絕決策提供「具體理由說明」,本質上就是要求系統具備可解釋性(Explainability),能將模型的判斷拆解成可理解的特徵貢獻(例如哪些因素導致此人被拒絕),這是負責任 AI 原則中「透明度/可解釋性」的核心技術能力需求。\n\n**其他選項為何錯:**\n- A. 自動刪除個資屬於資料保存/隱私政策的議題,與「提供拒絕理由」的可解釋性要求無關。\n- B. 隨機調整決策不但無助於說明理由,反而會破壞決策的一致性與可信度。\n- C. 100% 準確率在現實中不可能達成,且準確率高低與是否能「說明理由」是兩件不同的事。\n- D. ✓ 正解\n\n**記憶要點:** 「要說明為什麼拒絕」= 需要可解釋性(Explainability),能拆解特徵貢獻,而不是靠準確率或隨機性。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q27",
-      "topic": null,
+      "topic": "AI/Risk",
       "question_text": "某醫院計劃導入一套 AI 醫療影像診斷輔助系統,用於輔助放射科醫師判讀 CT 影像。院方技術委員會討論在人命攸關且需確保最終臨床決策責任由人類承擔的情境下,從系統設計架構層面,最關鍵的安全機制為何?",
       "options": {
         "A": "採用人機協作(Human-in-the-Loop, HITL)架構,由醫師最終審核決策",
@@ -569,14 +569,14 @@
         "page": 9,
         "evidence": "answer column shows 'A' for question 27"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** 題目明確要求「最終臨床決策責任由人類承擔」,人機協作(Human-in-the-Loop)架構讓 AI 系統僅提供輔助判讀建議,最終診斷與治療決策仍由醫師審核確定,這是在人命攸關情境下,兼顧 AI 效率與人類問責的最關鍵安全機制。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 信心低於閾值就自動關機,無法保證系統在所有情境下都能持續提供輔助,也不涉及「人類承擔最終決策責任」的架構設計。\n- C. 隨機切換模型並多數決,屬於模型集成(Ensemble)的一種做法,與「確保人類擁有最終決策權」無關。\n- D. 對輸入加入隨機擾動通常是用於測試模型穩健性(如對抗樣本防禦),並非確保人類掌握最終決策權的機制。\n\n**記憶要點:** 「人命攸關 + 責任在人」的關鍵字,直接對應到 Human-in-the-Loop(人機協作)架構。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q28",
-      "topic": null,
+      "topic": "ML/Evaluation",
       "question_text": "一位資料科學家使用 XGBoost 建立信用風險評分模型,並使用 SHAP 解釋模型對某申請人的預測結果。SHAP summary plot 顯示該樣本中「月收入」的 SHAP 值為-2.3,「負債比率」為+1.8,其中 SHAP 值代表各特徵對模型輸出值的影響程度與方向。關於對 SHAP 值的解讀,下列敘述何者正確?",
       "options": {
         "A": "「月收入」的 SHAP 值-2.3 代表該特徵使此申請人的違約預測機率降低了 2.3%",
@@ -590,14 +590,14 @@
         "page": 9,
         "evidence": "answer column shows 'B' for question 28"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** SHAP 值衡量的是「該特徵相對於基準值(base value,通常是所有樣本的平均預測),把模型輸出往正或負方向推移了多少單位」,是針對「單一樣本、單一預測」的局部貢獻度量。「月收入」SHAP 值 -2.3 代表此特徵讓這位申請人的模型輸出往負方向(通常對應降低違約風險)推移了 2.3 個單位,而不是直接等於機率變化的百分比。\n\n**其他選項為何錯:**\n- A. SHAP 值是模型輸出值(通常是 log-odds 或原始分數空間)的推移量,並非直接等於機率百分比的變化,兩者單位不同,不能直接畫上等號。\n- B. ✓ 正解\n- C. SHAP 值的正負代表影響的「方向」(推高或拉低預測值),與該特徵「是否重要」無關,重要性要看 SHAP 值的絕對值大小或整體平均,負值不代表不重要。\n- D. SHAP 值是「單一樣本」的局部解釋,只反映這位申請人的個案,不能用單一樣本的 SHAP 值去推論該特徵在「整個訓練集」中的全域重要性排名。\n\n**記憶要點:** SHAP 值 = 相對 base value 的「方向 + 幅度」局部貢獻;要看全域重要性要彙總所有樣本(如平均 |SHAP|),不能拿單一樣本值代表全體。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q29",
-      "topic": null,
+      "topic": "ML/Evaluation",
       "question_text": "某工程師為一套卷積神經網路(CNN)的醫療影像輔助診斷系統設計模型可解釋性機制。該系統需滿足下列需求:1.能向醫師說明影像被判定為異常的原因 2.支援近即時推論,每次解釋須於 200 毫秒內完成,且不可進行大量重複採樣計算 3.解釋結果須以影像中具代表性的視覺化像素區域呈現在此情境下,下列何種方法最為適合?",
       "options": {
         "A": "使用 LIME,透過超像素擾動取樣分析影像區塊對預測的影響",
@@ -611,14 +611,14 @@
         "page": 9,
         "evidence": "answer column shows 'C' for question 29"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** 情境要求近即時(200 毫秒內)、不可大量重複採樣、且需以視覺化像素區域呈現。Grad-CAM 只需一次前向與反向傳播,利用梯度資訊定位對預測貢獻最大的影像區域並生成熱力圖,計算量小、速度快,完全符合近即時且禁止大量重複採樣的限制。\n\n**其他選項為何錯:**\n- A. LIME 需要對輸入影像做多次超像素擾動取樣並重新推論,屬於大量重複採樣計算,不符合 200 毫秒且禁止重複採樣的限制。\n- B. SHAP KernelExplainer 同樣需要大量取樣模擬特徵子集合以估計 Shapley 值,計算成本高,無法滿足近即時需求。\n- C. ✓ 正解\n- D. TreeExplainer 是專為樹狀模型(如 XGBoost、隨機森林)設計的 SHAP 方法,並不適用於 CNN 這類深度學習影像模型。\n\n**記憶要點:** 需要「快、不重複採樣、影像區域視覺化」→ Grad-CAM;LIME/SHAP KernelExplainer 都靠重複取樣,速度慢。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q30",
-      "topic": null,
+      "topic": "Data/Preprocessing",
       "question_text": "某資料科學家正在處理一份包含 200 個感測器特徵的工廠設備監測資料集,為了降低模型複雜度並保留主要變異資訊,他先對資料進行標準化(Standardization),再使用主成分分析(PCA)進行降維。在 PCA 過程中,為了找出能最大化資料變異量的主成分方向,演算法主要依賴哪一項數學操作?",
       "options": {
         "A": "透過對目標函數進行梯度下降(Gradient Descent)最佳化,迭代求得主成分方向",
@@ -632,14 +632,14 @@
         "page": 10,
         "evidence": "answer column shows 'C' for question 30"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** PCA 的數學核心是計算標準化後資料的協方差矩陣,再對協方差矩陣做特徵值分解,取得的特徵向量即為主成分方向,對應的特徵值大小代表該方向所能解釋的變異量,依特徵值排序即可找出最大化資料變異的主成分方向。\n\n**其他選項為何錯:**\n- A. PCA 是透過線性代數的特徵值分解求得解析解,並非透過梯度下降迭代最佳化目標函數。\n- B. 依相關性排序選特徵屬於特徵選擇(Feature Selection)方法,PCA 是特徵轉換/降維方法,兩者不同。\n- C. ✓ 正解\n- D. 卷積運算是 CNN 用於擷取影像局部特徵的操作,與 PCA 的線性代數降維原理無關。\n\n**記憶要點:** PCA = 協方差矩陣 → 特徵值分解 → 依特徵值大小取主成分,是解析解而非迭代優化。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q31",
-      "topic": null,
+      "topic": "ML/Clustering",
       "question_text": "某資料工程師嘗試對包含 300 個特徵的使用者行為資料集使用 DBSCAN 進行群集分析,但發現幾乎所有資料點都被判定為雜訊點(Noise Points),難以形成有意義的群集,即使不斷調整ε(Epsilon)與 MinPts 參數也無濟於事。請問下列何者為此問題最可能的根本原因?",
       "options": {
         "A": "在高維空間中,維度詛咒(Curse of Dimensionality)使得資料點之間的距離趨於相近,導致 DBSCAN 的密度估計失效",
@@ -653,14 +653,14 @@
         "page": 10,
         "evidence": "answer column shows 'A' for question 31"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** DBSCAN 仰賴計算資料點之間的距離來估計局部密度(是否達到 MinPts 在 ε 半徑內)。在高維空間中,受維度詛咒影響,任兩點之間的距離會趨於相近、失去區分度,導致密度估計失真,幾乎所有點看起來都「一樣稀疏」而被判為雜訊點,這是高維資料讓 DBSCAN 失效的根本原因,調整 ε 與 MinPts 也無法真正解決距離度量本身失真的問題。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. DBSCAN 並非「僅適用低維」這麼絕對,而是隨維度增加,距離度量失真的問題逐漸嚴重,描述過於武斷且未點出根本原因。\n- C. 資料是否具有群集結構與特徵數量沒有必然關係,不能因為特徵多就斷定「必然不具備群集結構」。\n- D. 核心點數量並非受「數學限制」而無法形成,而是因為距離度量在高維空間中失真,才導致密度估計失效,描述因果錯誤。\n\n**記憶要點:** 高維空間 → 距離趨於相近(維度詛咒)→ 以距離為基礎的密度分群(DBSCAN)容易失效,調參數治標不治本,通常需先降維。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q32",
-      "topic": null,
+      "topic": "CV/Classification",
       "question_text": "某工程師正在實作一個 CNN 影像分類模型,在 PyTorch 中定義模型架構時,需要在卷積擷取特徵後接上全連結層(Fully Connected Layer)進行分類。在模型程式碼中,需要在卷積輸出與全連結層之間插入什麼操作?",
       "options": {
         "A": "使用全域平均池化(Global Average Pooling)將特徵圖壓縮後再接全連結層",
@@ -674,14 +674,14 @@
         "page": 10,
         "evidence": "answer column shows 'B' for question 32"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** 卷積層輸出的是多維的特徵圖(Feature Map,形狀通常是 channel × height × width),而全連結層要求輸入是一維向量。最基本且常見的做法是使用 Flatten 操作,把多維特徵圖展平成一維向量後,才能接入全連結層進行分類。\n\n**其他選項為何錯:**\n- A. 全域平均池化是另一種可行的替代做法(常見於較新架構),但並非題目所問「最基本、必須插入」的標準操作,一般教學情境中卷積接全連結的預設做法是 Flatten。\n- B. ✓ 正解\n- C. 深度學習框架不會「自動」把多維特徵圖轉換成全連結層需要的一維向量,必須顯式加入 Flatten(或等效)操作,否則會維度不匹配報錯。\n- D. Softmax 是分類任務最後輸出層的機率正規化函數,通常接在全連結層「之後」,而不是插在卷積輸出與全連結層之間。\n\n**記憶要點:** 卷積輸出是多維特徵圖,全連結層要一維向量,中間必須插入 Flatten(或 Global Pooling)做維度轉換。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q33",
-      "topic": null,
+      "topic": "Data/Augmentation",
       "question_text": "某自駕車公司的 AI 訓練團隊面臨標註成本高的問題,無法取得足夠的真實惡劣天氣(大雨、濃霧)駕駛場景資料,工程師提議使用合成資料(Synthetic Data)來補充訓練集。請問下列何者最能正確敘述合成資料在 AI 訓練中的角色?",
       "options": {
         "A": "合成資料主要用於文字任務的資料擴增,影像任務仍需依賴真實資料",
@@ -695,14 +695,14 @@
         "page": 10,
         "evidence": "answer column shows 'D' for question 33"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 合成資料(Synthetic Data)最大的價值在於能透過模擬引擎在受控條件下,產生真實世界難以蒐集或成本過高的多樣化場景(如大雨、濃霧等惡劣天氣),用來擴充訓練集覆蓋的場景範圍,幫助模型學到更全面的特徵分佈,進而提升泛化能力,而不是取代真實資料或影響推論成本。\n\n**其他選項為何錯:**\n- A. 合成資料同樣廣泛應用於影像任務(如模擬駕駛場景、模擬感測器資料),並非「只用於文字任務」。\n- B. 合成資料通常存在與真實資料的分佈落差(Sim-to-Real Gap),一般用於「補充」而非「完全取代」真實資料。\n- C. 合成資料是訓練階段用來擴充資料集的手段,與推論階段的計算成本無關。\n- D. ✓ 正解\n\n**記憶要點:** 合成資料 = 用來「補足真實資料蒐集不到的場景」以擴充訓練集,提升泛化,不是萬能取代真實資料。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q34",
-      "topic": null,
+      "topic": "Deploy/MLOps",
       "question_text": "某廣告技術公司的點擊率(CTR)預測系統每天新增數百個用戶行為特徵(如新廣告位、新設備類型),特徵空間持續動態擴展。若採用傳統靜態模型每週批次重訓一次,會導致嚴重的模型過期問題。為在特徵空間頻繁變化的情況下維持模型即時準確度,最適合的模型架構方向為何?",
       "options": {
         "A": "採用傳統靜態羅吉斯迴歸(Logistic Regression),縮短批次重訓週期從每週改為每日",
@@ -716,14 +716,14 @@
         "page": 11,
         "evidence": "answer column shows 'B' for question 34"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** 特徵空間持續動態新增,若每次都要全量重訓才能納入新特徵,會造成明顯的模型過期延遲。支援增量學習的模型架構能在不重新訓練整個模型的前提下,隨新資料與新特徵持續、即時地更新,是應對特徵空間頻繁變化情境最合適的方向。\n\n**其他選項為何錯:**\n- A. 即使把批次重訓週期縮短為每日,本質上仍是「靜態批次重訓」,無法真正做到即時反映新增特徵,只是縮短了過期的時間窗,並未解決根本問題。\n- B. ✓ 正解\n- C. 每次新增特徵就要重新定義輸入層並全量重訓,等於每次都要重跑完整訓練流程,無法達到「即時準確度」的需求,維運成本也很高。\n- D. GNN 是為圖結構資料(節點與邊的關係)設計的架構,CTR 預測的特徵新增問題與圖結構關聯性建模無直接關係,並非針對「特徵空間動態擴展」的解法。\n\n**記憶要點:** 特徵/資料頻繁變動、需要即時反映 → 增量學習(Incremental Learning),不必每次都全量重訓。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q35",
-      "topic": null,
+      "topic": "Multimodal/Fusion",
       "question_text": "某生物醫學研究機構正在建構一個整合「基因序列特徵」與「電子病歷文本特徵」的疾病風險預測模型。由於高維數值特徵和語意文本特徵的性質差異顯著,請問下列哪一種特徵處理與選擇策略最為合適?",
       "options": {
         "A": "將所有特徵合併為單一特徵矩陣後,使用主成分分析(PCA)進行降維,作為模型輸入",
@@ -737,14 +737,14 @@
         "page": 11,
         "evidence": "answer column shows 'B' for question 35"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** 基因序列特徵(高維數值)與電子病歷文本特徵(語意型)性質差異顯著,適合採用分層策略:先針對基因序列做特徵選擇(篩掉雜訊與冗餘維度),再對文本特徵用語意表示方法(如詞嵌入/語言模型)萃取語意向量,最後才將兩類已個別處理好的特徵做融合(Feature Fusion),這樣才能各自保留原始資料型態最適合的處理方式,再整合成統一輸入。\n\n**其他選項為何錯:**\n- A. 直接把數值特徵與文字原始特徵合併成單一矩陣後才做 PCA,會忽略兩者性質差異(PCA 對高維數值有效,但無法妥善處理未經語意表示的原始文本),容易讓語意資訊被稀釋或扭曲。\n- B. ✓ 正解\n- C. 隨機森林特徵重要性適合處理數值型特徵,但對未經語意表示的原始文本特徵效果有限,且「一次性排序篩選」忽略了兩種模態需要不同前處理方式的差異。\n- D. 將文本簡化為詞頻等淺層統計特徵,會遺失語意資訊,雖然降低了複雜度,但犧牲了文本模態原本能提供的語意深度,並非最適合的策略。\n\n**記憶要點:** 性質差異大的異質特徵(數值 vs 文本)→ 先分層各自妥善處理(特徵選擇 / 語意表示),再做 Feature Fusion 整合,不要囫圇合併。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q36",
-      "topic": null,
+      "topic": "CV/Classification",
       "question_text": "某公司希望開發一個工業零件瑕疵辨識分類模型,共有 10 個類別,但每類僅約 50 張人工標註影像(總計約 500 張)。由於標註成本高昂,短期內無法擴充資料集。在此情境下,工程師需要在有限標註資料下建構高效能模型。請問下列哪一種策略最為適合?",
       "options": {
         "A": "使用在大型資料集預訓練完成的卷積神經網路(CNN),並進行遷移學習微調",
@@ -758,14 +758,14 @@
         "page": 11,
         "evidence": "answer column shows 'A' for question 36"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** 每類僅約 50 張標註影像、共 10 類,標註樣本量非常有限。使用在大型資料集(如 ImageNet)上預訓練好的 CNN 作為特徵萃取骨幹,再針對這個小規模資料集進行遷移學習微調,能利用預訓練模型已學到的通用視覺特徵,大幅降低對大量標註資料的需求,是小樣本情境下最有效的策略。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. Vision Transformer 通常需要比 CNN 更大量的訓練資料才能有效學習(缺乏 CNN 的空間歸納偏誤),用僅 500 張影像從頭訓練 ViT 極易嚴重過擬合。\n- C. K-means 是無監督分群方法,直接把群集結果當作 10 個類別的分類輸出,無法保證群集與真實標籤類別一致,不是監督式分類任務該用的方法。\n- D. 單純複製既有影像並不會增加真正的資訊量(只是重複樣本),從頭訓練深度 CNN 在資料量不足下依然容易過擬合,效果遠不如遷移學習。\n\n**記憶要點:** 標註資料稀少的分類任務,標準解法是「預訓練模型 + 遷移學習微調」,而不是從零訓練大模型或單純複製資料。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q37",
-      "topic": null,
+      "topic": "Data/Preprocessing",
       "question_text": "某製造廠開發產線瑕疵檢測模型時,資料集存在嚴重類別不平衡問題,其中良品約占 99%,瑕疵品僅占 1%。若直接使用原始資料進行訓練,模型容易偏向預測多數類別(良品),導致對少數類別(瑕疵品)辨識能力不足。在不調整模型架構與學習演算法的前提下,僅透過資料前處理方式改善此問題,下列何者最適當?",
       "options": {
         "A": "使用 SMOTE 等過採樣方法進行少數類別擴增",
@@ -779,14 +779,14 @@
         "page": 11,
         "evidence": "answer column shows 'A' for question 37"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** 題目限定「僅透過資料前處理方式」改善類別不平衡(良品 99% vs 瑕疵品 1%)。SMOTE(Synthetic Minority Over-sampling Technique)透過在少數類別(瑕疵品)樣本間進行內插,合成新的少數類別樣本,增加少數類別在訓練集中的比例,讓模型在訓練時能獲得更多瑕疵品的學習訊號,屬於典型的資料層級處理手法。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. L1/L2 正則化是調整模型訓練目標函數的手法,屬於模型/演算法層面的處理,不屬於「資料前處理」,且題目明確排除調整模型架構與學習演算法。\n- C. 增加神經網路層數屬於模型架構調整,不是資料前處理方式,且與類別不平衡問題無直接關聯。\n- D. 複製更多多數類別(良品)資料只會讓不平衡問題更嚴重,模型會更加偏向預測良品,準確率雖可能上升但對偵測瑕疵品毫無幫助,甚至有害。\n\n**記憶要點:** 「僅限資料前處理」解決類別不平衡 → 想到 SMOTE 過採樣(或欠採樣少數類別),不要去動模型架構或正則化。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q38",
-      "topic": null,
+      "topic": "Data/Preprocessing",
       "question_text": "某 IoT 平台接收工廠溫度感測器資料,發現在常態分佈(均值 25°C,標準差 2°C)的數萬筆紀錄中,出現數筆「999°C」的極端值,研判為感測器通訊錯誤(網路封包延遲導致數值溢位)所致,且該異常數值在實際情況下不可能發生。在進行模型訓練前的資料清洗階段,針對這類離群值,最適當的處理策略為何?",
       "options": {
         "A": "保留所有原始數值,並使用平均數(Mean)作為特徵輸入模型",
@@ -800,14 +800,14 @@
         "page": 12,
         "evidence": "answer column shows 'D' for question 38"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 999°C 已確認是感測器通訊錯誤造成、實際情況不可能發生的離群值,不具備真實物理意義。對這類已確認為錯誤的離群值,合理做法是直接刪除該筆記錄,或以中位數(對極端值不敏感)進行填補,避免這類異常值扭曲模型訓練時學到的資料分佈。\n\n**其他選項為何錯:**\n- A. 保留原始異常值並直接用平均數作特徵,999°C 這類極端值會嚴重拉高/扭曲平均數,讓平均數本身也失真,無法解決問題。\n- B. Z-score 標準化只是線性縮放數值範圍,並不會把 999°C 的離群本質「消除」,它縮放後仍會是一個異常突出的極端值,標準化不能取代離群值清洗。\n- C. 999°C 是感測器故障產生的連續數值錯誤,並非有意義的類別變數,轉成獨熱編碼類別會讓模型誤以為這是一個有意義的獨立狀態,不符合資料的本質。\n- D. ✓ 正解\n\n**記憶要點:** 確認是感測器錯誤造成、不合理的離群值,標準做法是刪除或用中位數填補,而不是硬塞進模型或只做數值縮放。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q39",
-      "topic": null,
+      "topic": "Data/Preprocessing",
       "question_text": "某 AI 平台工程師正在為多模態模型訓練系統規劃資料儲存架構,需要同時處理原始影像、非結構化文本,以及經過整理的結構化特徵資料。在此情境下,應如何選擇資料湖(Data Lake)與資料倉儲(Data Warehouse)的使用方式?",
       "options": {
         "A": "將原始影像與文本資料儲存在 Data Lake,將整理後的結構化特徵資料儲存在 Data Warehouse",
@@ -821,14 +821,14 @@
         "page": 12,
         "evidence": "answer column shows 'A' for question 39"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** Data Lake 適合儲存原始、未結構化或半結構化的資料(如原始影像、文本),保留最大彈性以供未來多種用途使用;Data Warehouse 則適合儲存已經過整理、具備明確結構的資料(如處理好的結構化特徵),便於高效率查詢與分析。依資料型態分別存放到適合的儲存架構,是同時處理原始異質資料與結構化特徵資料的標準做法。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 原始影像與非結構化文本並不適合直接存入為結構化查詢設計的 Data Warehouse,強行塞入會犧牲彈性且處理成本高。\n- C. Data Warehouse 存在的目的正是為了提供結構化資料的高效查詢,若全部塞進 Data Lake,會犧牲結構化特徵資料原本該有的查詢效率。\n- D. 文本資料同樣屬於非結構化資料,和原始影像一樣適合放在 Data Lake,而非直接歸入 Data Warehouse。\n\n**記憶要點:** 原始/非結構化資料(影像、文本)→ Data Lake;整理過的結構化資料 → Data Warehouse,依資料型態分工存放。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q40",
-      "topic": null,
+      "topic": "GenAI/Compression",
       "question_text": "某智慧製造公司在產線上部署工業相機進行即時外觀瑕疵檢測,原先將影像傳至雲端進行 AI 推論,但因網路延遲與連線不穩導致系統無法滿足即時需求(需低於 200ms)。工程師因此改為將模型部署於產線端的邊緣裝置後,但仍未達系統需求。在不更換硬體設備的前提下,下列哪一組技術最能有效降低推論延遲,同時維持合理準確率?",
       "options": {
         "A": "減少訓練資料的使用數量,並重新訓練模型以提升推論效率",
@@ -842,14 +842,14 @@
         "page": 12,
         "evidence": "answer column shows 'D' for question 40"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 情境限制「不更換硬體設備」且需在邊緣裝置上進一步降低推論延遲。將模型從 FP32 量化為 INT8 能大幅降低運算量與記憶體頻寬需求,搭配推論加速優化(如算子融合、專用推論引擎),在同一硬體上顯著提升推論速度,同時量化後準確率通常只有小幅下降,是在不換硬體前提下最直接有效的做法。\n\n**其他選項為何錯:**\n- A. 減少訓練資料量只會影響模型訓練時學到的知識與準確率,並不會改變模型本身的推論運算量,無助於降低推論延遲。\n- B. 批次推論是把多筆輸入一起處理以提升「吞吐量(Throughput)」,但單筆請求需要等待湊滿批次,反而可能拉長單張影像的「延遲」,與即時單張偵測的需求相違背。\n- C. 模型集成需要同時執行多個模型並整合結果,運算量與延遲通常會「增加」而非降低,與降低延遲的目標背道而馳。\n- D. ✓ 正解\n\n**記憶要點:** 不換硬體、要降延遲 → 模型量化(FP32→INT8)+ 推論加速,是邊緣裝置最常見的效能優化組合。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q41",
-      "topic": null,
+      "topic": "Deploy/MLOps",
       "question_text": "某 AI 影像辨識平台以單一 GPU 伺服器提供多租戶推論服務,系統長期觀察到 GPU 使用率約維持在 60%左右,且在執行過程中可觀察到 GPU kernel 之間存在明顯閒置間隔,單次推論多以小批次方式執行。然而,在尖峰時段時,請求延遲會出現明顯波動甚至突增。同時,CPU 與記憶體資源使用率均未達瓶頸,且系統團隊已排除硬體、網路與請求併發控制異常。在此情境下,請判斷最可能造成問題的原因為何?",
       "options": {
         "A": "GPU 排程策略與批次大小設定不當,導致 GPU 運算單元未被有效利用",
@@ -863,14 +863,14 @@
         "page": 12,
         "evidence": "answer column shows 'A' for question 41"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** 題目指出 GPU 使用率僅約 60%、kernel 之間有明顯閒置間隔,且多以小批次執行,同時已排除硬體、網路與併發控制異常。這些線索指向 GPU 排程策略與批次大小設定不當:小批次讓 GPU 運算單元無法充分並行利用,kernel 間的閒置間隔顯示排程沒有讓 GPU 持續滿載運作,尖峰時段延遲波動則是因為資源利用效率低,無法有效吸收瞬間增加的請求量。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. 題目已明確說明系統團隊已排除「請求併發控制」異常,不應再選這個已被排除的原因。\n- C. GPU 使用率僅 60% 且有明顯閒置間隔,顯示問題是「資源沒被用好」而非「資源不夠用」,若真是硬體效能不足,使用率通常會長期貼近滿載而非閒置。\n- D. 模型未量化只會讓單次推論的運算成本較高,但不能直接解釋「GPU 使用率偏低、kernel 間有閒置間隔」這個現象,兩者關聯性不足以成為最可能的根本原因。\n\n**記憶要點:** 使用率不高 + kernel 間閒置 + 小批次 → 典型的批次大小/排程設定不當,不是硬體不夠力,也不是併發搶佔(已排除)。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q42",
-      "topic": null,
+      "topic": "Deploy/MLOps",
       "question_text": "某保險公司將理賠金額預測模型正式部署上線,MLOps 團隊設計監控機制。三個月後模型整體均方根誤差(RMSE)無明顯變化,但業務單位反映高額理賠案件的預測誤差明顯增加。經分析,高額理賠案件僅佔約 5%的樣本比例,且未被監控機制及時發現。請問最可能的設計缺陷為何?",
       "options": {
         "A": "監控頻率不足,應由每日批次監控改為即時串流監控",
@@ -884,14 +884,14 @@
         "page": 13,
         "evidence": "answer column shows 'D' for question 42"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 高額理賠案件僅佔約 5% 的樣本,在只看「整體」RMSE 的情況下,少數高額案件的誤差變化會被大量正常案件的表現稀釋、平均掉,使整體指標看起來「無明顯變化」,但這群體本身的誤差其實已明顯惡化。真正的設計缺陷是監控機制沒有依理賠金額區間(如高額 vs 一般)分群追蹤,才會讓這個局部問題被整體平均指標掩蓋。\n\n**其他選項為何錯:**\n- A. 監控頻率(每日 vs 即時)只影響「多快發現」,並不能解決「整體指標把高額案件誤差稀釋掉」這個根本的分群監控缺失問題。\n- B. 長尾分布確實較難單靠整體指標偵測,但這不代表「無法透過監控機制發現」——只要針對高額區間單獨監控,一樣能有效偵測,選項的結論過於絕對。\n- C. 換成 MAE 同樣是「整體」指標,一樣會被佔多數的正常案件稀釋,無法解決高額理賠這個特定子群體被掩蓋的問題,問題不在指標種類而在有沒有分群。\n- D. ✓ 正解\n\n**記憶要點:** 整體指標會被多數樣本稀釋掉少數關鍵子群體的問題,監控應依業務重要區間(如高額理賠)分群追蹤,而不只看整體平均。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q43",
-      "topic": null,
+      "topic": "Deploy/MLOps",
       "question_text": "某電商平台的演算法工程師開發了一個新版商品推薦模型,在離線 A/B 測試中,新模型的各項評估指標(AUC、NDCG@10)均顯著優於現行線上模型。然而,離線測試無法完全反映真實使用者的互動行為(點擊、購買、停留時間)。在正式全面上線前,若希望在可控制風險下量化真實業務指標,應採用下列何種線上驗證策略?",
       "options": {
         "A": "影子模式(Shadow Mode):新舊模型同時產生預測,但僅顯示舊模型結果,於後端比較輸出差異",
@@ -905,14 +905,14 @@
         "page": 13,
         "evidence": "answer column shows 'C' for question 43"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** 題目要求「在可控制風險下量化真實業務指標(點擊、購買等使用者互動)」。金絲雀發布只將小比例(1–5%)的真實使用者流量導入新模型,讓這群使用者對新模型的推薦產生真實互動,藉此直接量測 CTR、CVR 等真實業務指標,並在確認效果良好後才逐步擴大流量,風險可控且能取得離線測試拿不到的真實線上反饋。\n\n**其他選項為何錯:**\n- A. 影子模式讓新模型在背景同步產生預測,但實際顯示給使用者的仍是舊模型結果,使用者不會與新模型的推薦互動,因此無法量測到 CTR、CVR 這類需要真實使用者互動才能產生的業務指標。\n- B. 回測是用「歷史」日誌資料模擬,並非真實使用者對「當下」新模型輸出的即時互動,同樣無法反映真實線上業務表現,這正是離線測試的侷限。\n- C. ✓ 正解\n- D. 負載測試評估的是系統在高流量下的效能穩定性,與量測業務指標(CTR、CVR)無關,而且「直接全面上線」也違反了「可控制風險」的要求。\n\n**記憶要點:** 要量測「真實使用者業務指標」又要「控制風險」→ 金絲雀發布(小流量真實曝光、逐步擴量);影子模式只比對輸出、不影響使用者體驗,測不到真實互動指標。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q44",
-      "topic": null,
+      "topic": "Deploy/Integration",
       "question_text": "某 MLOps 工程師正在設計 AI 模型的推論服務 API,需要處理使用者上傳的高解析度影像(平均 5MB)進行即時分類。在 RESTful API 設計時,選擇 HTTP 請求方法與資料傳輸格式的最佳實踐為何?",
       "options": {
         "A": "使用 HTTP GET 方法,將影像資料 Base64 編碼後附加於 URL Query String 中",
@@ -926,14 +926,14 @@
         "page": 13,
         "evidence": "answer column shows 'B' for question 44"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** 上傳 5MB 高解析度影像屬於大型二進位資料傳輸,應使用 HTTP POST 方法,並以 multipart/form-data(適合檔案上傳表單)或 application/octet-stream(直接傳送二進位資料流)格式將影像放在 Request Body 中傳送,這是 RESTful API 處理大型檔案上傳的標準實踐。\n\n**其他選項為何錯:**\n- A. URL 長度有實際限制(常見瀏覽器/伺服器限制在數 KB 到數十 KB),5MB 影像即使 Base64 編碼後也遠遠超過 URL Query String 能承載的長度,且 GET 語意上不適合用來傳送大量資料。\n- B. ✓ 正解\n- C. PUT 通常用於「以完整資料取代/更新某資源」,而非提交資料進行處理;且 application/xml 並不適合承載二進位影像資料,會需要額外編碼、效率低。\n- D. 要求客戶端下載模型於本地推論違反了題目「即時分類」服務由伺服器端 API 提供推論的設計目標,也失去了集中化模型服務、版本控管的意義。\n\n**記憶要點:** 大型檔案(影像)上傳 → POST + multipart/form-data 或 octet-stream,GET 的 URL 裝不下、也不是語意正確的做法。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q45",
-      "topic": null,
+      "topic": "Deploy/Integration",
       "question_text": "某 AI 平台整合多個外部 AI 微服務(語音辨識 API、NLP 分析 API、知識圖譜查詢服務),在高峰期間某外部服務偶發延遲或逾時(Timeout),導致請求鏈路壅塞,最終造成平台級服務中斷(Cascading Failure)。為從架構層面預防此類連鎖故障,最有效的設計模式為何?",
       "options": {
         "A": "將所有外部 API 呼叫改為同步串行處理,並取消逾時限制,確保每個請求皆完成後再繼續",
@@ -947,14 +947,14 @@
         "page": 14,
         "evidence": "answer column shows 'B' for question 45"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 B 是正解:** 斷路器模式(Circuit Breaker)會持續監控外部服務的錯誤率或逾時狀況,一旦超過閾值就「跳脫」,暫停對該異常服務的呼叫並直接回傳替代回應(Fallback),避免請求持續堆積、等待逾時而拖垮整個呼叫鏈,是從架構層面防止單一服務異常引發連鎖故障(Cascading Failure)最直接有效的設計模式。\n\n**其他選項為何錯:**\n- A. 取消逾時限制反而會讓請求在異常服務上無限期卡住,加劇請求堆積與資源耗盡,使連鎖故障風險更嚴重,而非改善。\n- B. ✓ 正解\n- C. 擴充執行緒池上限只是增加「能同時卡住等待的請求數量」,並未解決異常服務拖慢整條呼叫鏈的根本問題,資源耗盡的風險依然存在,只是延後爆發。\n- D. 停用健康檢查會讓系統失去偵測服務異常的能力,無法及早發現問題並採取因應措施,反而增加連鎖故障的風險。\n\n**記憶要點:** 防止外部服務異常拖垮整體系統 → 斷路器模式(Circuit Breaker),異常時快速失敗 + 提供 Fallback,而不是硬撐等待或盲目擴充資源。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q46",
-      "topic": null,
+      "topic": "Risk/Privacy",
       "question_text": "某醫院計劃建立混合雲 AI 平台:使用公有雲 GPU 叢集進行 CT 影像模型訓練,但基於 HIPAA(Health Insurance Portability and Accountability Act)法規要求,患者影像原始資料不得離開醫院院內環境。下列何者最符合「利用公有雲算力訓練模型」與「不傳輸原始患者資料」雙重限制的技術方案?",
       "options": {
         "A": "將患者影像資料以 AES-256 加密後上傳至公有雲,並於雲端解密後進行模型訓練",
@@ -968,14 +968,14 @@
         "page": 14,
         "evidence": "answer column shows 'C' for question 46"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** 聯邦學習讓模型訓練在院內本地端進行,原始患者影像資料完全不離開醫院環境,訓練過程中只將模型參數更新(梯度或權重變化)傳送到雲端進行聚合,同時仍能借助雲端算力共同改善模型,同時滿足「利用雲端算力訓練」與「原始資料不外流」兩項限制。\n\n**其他選項為何錯:**\n- A. 即使加密上傳,資料仍實質「離開」了醫院環境並在雲端解密還原成可讀影像,違反 HIPAA 要求原始資料不得離開院內環境的限制。\n- B. 同態加密是針對「推論請求」進行加密運算的技術,主要用於保護推論階段的資料隱私,並非解決「如何在雲端利用算力訓練模型、同時不傳送原始訓練資料」這個訓練情境的問題。\n- C. ✓ 正解\n- D. VPN 專線只是強化「傳輸過程」的網路層安全,但資料本質上仍需要傳輸到雲端才能訓練,並未解決「原始資料不得離開醫院」的根本限制。\n\n**記憶要點:** 「用雲端算力訓練、但資料不能離開本地」的經典解法就是聯邦學習(Federated Learning)——資料留在本地,只傳模型更新去聚合。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q47",
-      "topic": null,
+      "topic": "Deploy/MLOps",
       "question_text": "某電商平台將新的推薦模型部署至線上系統,為降低風險,團隊採用漸進式部署策略(Phased Rollout),先將新模型流量從 5%逐步提升至 100%。在部署初期,團隊發現轉換率(Conversion Rate)略有提升,但在流量提升至 30%時,系統延遲(Latency)明顯上升,且部分使用者體驗變差。請問在此情境下,最適當的下一步策略為何?",
       "options": {
         "A": "立即將新模型全面部署至 100%,以觀察整體效果並評估系統表現變化",
@@ -989,14 +989,14 @@
         "page": 14,
         "evidence": "answer column shows 'D' for question 47"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 漸進式部署的目的正是在發現問題時能及時止步、排查再繼續。目前已觀察到轉換率提升(代表新模型本身有正面效益)但延遲在 30% 流量時明顯上升,合理做法是暫停繼續擴大流量,先針對延遲問題進行效能分析與優化,確認問題解決後再繼續逐步擴量,才能同時保留轉換率的正面效益並解決延遲風險。\n\n**其他選項為何錯:**\n- A. 在已出現延遲惡化與使用者體驗變差的警訊下,直接衝到 100% 流量會讓問題影響到全部使用者,風險不受控,違背漸進式部署逐步驗證的精神。\n- B. 新模型已顯示轉換率提升的正面效益,直接完全 Rollback 並停止測試,等於放棄了這個潛在效益,且延遲問題也可能只是可被優化解決的技術問題,不必然要整個放棄。\n- C. 延遲問題已經明顯影響使用者體驗,若放任不處理繼續維持現狀,問題只會持續影響這 30% 的使用者,不符合「發現問題就該應對」的漸進式部署精神。\n- D. ✓ 正解\n\n**記憶要點:** 漸進式部署遇到指標轉差,標準反應是「暫停擴量 → 分析優化 → 確認後再繼續」,不是直接衝到 100% 也不是馬上整個放棄。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q48",
-      "topic": null,
+      "topic": "Data/Drift",
       "question_text": "某銀行的信用卡風控模型已穩定上線一年,主要用於偵測盜刷交易提醒。近期在未對模型或特徵工程進行調整的情況下,系統觀察到深夜電商交易的核准率明顯上升,盜刷攔截率下降,但模型 AUC 幾乎維持不變,且交易金額、地區與裝置等特徵分布未出現明顯變化。進一步分析發現,疫情後使用者行為改變,使原本被視為高風險的交易型態逐漸轉為一般消費。下列何者最能敘述此現象的原因?",
       "options": {
         "A": "資料漂移(Data Drift),因輸入特徵分布發生變化",
@@ -1010,14 +1010,14 @@
         "page": 15,
         "evidence": "answer column shows 'C' for question 48"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 C 是正解:** 題目明確指出交易金額、地區、裝置等「輸入特徵分布」並未出現明顯變化,但使用者行為模式改變,使原本會被判定為高風險的深夜電商交易型態,實際上已經轉變為正常消費——也就是同樣的輸入特徵,如今對應到的「真實標籤(是否為盜刷)」意義已經不同了。這正是概念漂移(Concept Drift)的定義:特徵與目標標籤之間的關聯性隨時間改變,而不是輸入特徵本身的分布改變。\n\n**其他選項為何錯:**\n- A. 資料漂移指的是「輸入特徵分布」本身發生變化,但題目已明確排除這點(交易金額、地區、裝置特徵分布未變),因此不符合資料漂移的定義。\n- B. 訓練與服務偏差是指線上推論與離線訓練時的特徵處理邏輯不一致所造成的落差,屬於工程實作問題,與題目描述的「使用者行為型態隨時間改變」的業務現象無關。\n- C. ✓ 正解\n- D. 題目說明模型與特徵工程都未經調整,問題源自使用者行為型態改變導致標籤意義變化,而非有人調整了分類門檻,不符合決策閾值偏移的情境。\n\n**記憶要點:** 特徵分布沒變、但「特徵→標籤」的對應關係變了 → 概念漂移(Concept Drift);特徵分布本身變了才是資料漂移(Data Drift)。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q49",
-      "topic": null,
+      "topic": "Deploy/MLOps",
       "question_text": "某零售電商平台已建立模型監控儀表板,用於追蹤線上推薦模型的運作狀態與效能表現。維運工程師需判斷哪些指標屬於「線上持續監控(Continuous Monitoring)」的範疇。下列指標中,哪一項最不適合在即時監控系統中追蹤,而應改由離線實驗追蹤系統管理?",
       "options": {
         "A": "訓練實驗中每個 Epoch 的學習率(Learning Rate)變化曲線與超參數(Hyperparameter)設定軌跡",
@@ -1031,14 +1031,14 @@
         "page": 15,
         "evidence": "answer column shows 'A' for question 49"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 A 是正解:** 每個 Epoch 的學習率變化曲線與超參數設定軌跡,是模型「訓練階段」的實驗紀錄,屬於離線實驗追蹤系統(如 MLflow、TensorBoard 等實驗管理工具)該負責記錄與比較的內容,並非模型上線後需要「持續監控」的線上運作狀態指標,不應納入即時監控儀表板。\n\n**其他選項為何錯:**\n- A. ✓ 正解\n- B. API 回應延遲與請求量趨勢是模型上線後「服務層級」的即時運作狀態,必須持續在線監控才能及時發現效能異常。\n- C. PSI 用來偵測「線上」輸入特徵分布是否隨時間偏離訓練時的分布(資料漂移),需要對持續進來的線上流量做即時或定期監控。\n- D. 比對模型預測分布與人工標註結果,是持續追蹤模型線上預測品質是否隨時間劣化的機制,同樣屬於上線後需要持續監控的範疇。\n\n**記憶要點:** 訓練過程中的超參數/學習率曲線是「離線實驗紀錄」;上線後的延遲、流量、資料漂移、預測品質才是「線上持續監控」該管的事。",
       "subject_code": "s1"
     },
     {
       "id": "exam-s1-115-1-q50",
-      "topic": null,
+      "topic": "Multimodal/Fusion",
       "question_text": "某醫療團隊建立肺炎診斷系統,採用晚期融合(Late Fusion)策略,將胸腔 X 光影像與病患問診文字分別進行預測後再整合結果。測試發現,當問診紀錄品質不佳(如描述簡短或資訊缺漏)時,整體模型效能僅小幅下降。關於此現象,下列何者最不可能為其原因?",
       "options": {
         "A": "各模態獨立進行預測,可降低單一模態品質不佳對整體結果的影響",
@@ -1052,9 +1052,9 @@
         "page": 15,
         "evidence": "answer column shows 'D' for question 50"
       },
-      "verified": false,
-      "verification_needed": "topic,explanation",
-      "explanation": null,
+      "verified": true,
+      "verification_needed": null,
+      "explanation": "**為什麼 D 是正解:** 晚期融合(Late Fusion)的定義是「各模態分別獨立預測後,才在輸出/決策階段整合結果」,而不是在「輸入階段」整合特徵——那是早期融合(Early Fusion)的做法。選項 D 把晚期融合的機制描述成早期融合,敘述本身與晚期融合的定義相反,因此不可能是「晚期融合為何能降低問診品質不佳影響」的正確原因。\n\n**其他選項為何錯:**\n- A. 各模態獨立預測正是晚期融合的核心特性,單一模態(問診文字)品質不佳時,另一模態(X 光影像)的預測不會被直接拖累,是合理的原因之一。\n- B. 融合階段依可靠度動態調整各模態權重,是晚期融合常見的強化做法,能合理降低低品質模態對最終結果的影響。\n- C. 各模態使用獨立模型分別預測,一個模態的錯誤不會在特徵抽取層就與另一模態糾纏放大,是晚期融合結構性的合理優點。\n- D. ✓ 正解\n\n**記憶要點:** 晚期融合 = 先各自預測、後端整合結果;早期融合 = 先合併特徵、再一起預測。選項 D 把兩者定義搞反,是本題要挑出的錯誤敘述。",
       "subject_code": "s1"
     }
   ]
