@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# pre-commit hook: block commits where subjects/**/*.json and index.html's
+# embedded POOL (index.html:378) have drifted apart.
+#
+# Why this exists: commit 0b952e7 changed subjects/*.json but never rebuilt
+# index.html, and nobody noticed for three months — users kept practicing
+# stale questions. `tools/build_pool.py --check` catches exactly this, but a
+# check that only runs when someone remembers to run it isn't a check.
+#
+# Install (this file lives under version control at tools/hooks/pre-commit;
+# .git/hooks/ itself is never committed, so re-run this after every clone):
+#   ln -sf ../../tools/hooks/pre-commit .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+if ! uv run --project tools python tools/build_pool.py --check; then
+    echo ""
+    echo "COMMIT BLOCKED: index.html's POOL is out of sync with subjects/**/*.json."
+    echo ""
+    echo "Fix:"
+    echo "  1. uv run --project tools python tools/build_pool.py"
+    echo "  2. git add index.html"
+    echo "  3. commit again"
+    exit 1
+fi

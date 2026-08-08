@@ -30,6 +30,7 @@ localStorage               ← 只存作答記錄，與題庫無關
 | `index.html:565` `poolForSubject()` | 純靠 `q.subject_code` 過濾科目 |
 | `index.html:658` `translateExplanation()` | 選項打亂時重寫解析裡的 A/B/C/D |
 | `subjects/<科目>/progress.json` | 既有題庫（5 檔，共 795 題） |
+| `subjects/{1-ai,3-ml}/exam-115-1.json` | 115 年第一次考題（各 50 題，2026-08-08 完成） |
 | `subjects/<科目>/past-exam*.pdf` | 官方歷屆試題，`source.file` 指向它 |
 | `subjects/<科目>/study-guide.pdf` | 學習指引，寫 `explanation` 的依據 |
 | `shared/sample-questions.pdf` | 官方樣題（涵蓋中級三科） |
@@ -56,7 +57,7 @@ localStorage               ← 只存作答記錄，與題庫無關
      （`17fa64e` 讓 Pass 2 regex 吃任意數量的 `/`，Pass 3 也會排序），既有
      `exam-114-2-q10` 就是這樣寫的。所以這條是**風格偏好，不是硬約束**，
      `build_pool.py` 只會給 Warning 不會擋。
-4. **`topic` 要沿用既有詞彙**（s1 有 47 種、s3 有 33 種，清單見 §3.8），不要自由
+4. **`topic` 要沿用既有詞彙**（s1 有 47 種、s3 有 35 種，清單見 §3.8），不要自由
    發明，否則科目篩選的 topic 清單會碎片化。
 5. **`id` 必須跨全部 json 唯一**，不能只檢查同一個檔案內。
 6. **`subject_code` 每題都要填**。`poolForSubject()` 純靠這欄過濾，缺了在「依科目
@@ -126,20 +127,22 @@ for k in ["topic","question_text","options","correct_answer","source",
     print(f"  {k:16s} {n} 題不一致")
 ```
 
-**目前（2026-08-08，`build_pool.py` 重建後）的實際輸出**：
+**目前（2026-08-08，§H 填完解析 + `build_pool.py` 重建後）的實際輸出**：
 
 ```
-POOL 795 題 / JSON 895 題
-重複 id: 無    只在 JSON: 100 題    只在 POOL: 無
+POOL 895 題 / JSON 895 題
+重複 id: 無    只在 JSON: 無    只在 POOL: 無
   subject_code     195 題不一致   ← ⚠️ 永遠會是 195，不是 bug，見下
   其餘欄位          0 題不一致    ← ✅ 298 題 drift 已抹平
 ```
 
+POOL 分科：`s1` 215、`s2` 165、`s3` 215、`e1` 150、`e2` 150。
+
 - **`options` 298 / `explanation` 102 的 drift 已解決**（`0b952e7` 三個月前改在 JSON、
   沒送進 `index.html` 的那批）。`build_pool.py` 從 JSON 重建，答案一個字都沒動。
-- **「只在 JSON: 100 題」是預期的**：`subjects/{1-ai,3-ml}/exam-115-1.json` 的 115 年
-  新題還沒填 `topic`/`explanation`，`verified: false`，`build_pool.py` 會跳過不收進 POOL。
-  填完並翻成 `verified: true` 之後，這裡就會變成 0、POOL 變 895 題。
+- **「只在 JSON」已歸零**：`subjects/{1-ai,3-ml}/exam-115-1.json` 的 115 年新題已於
+  2026-08-08 補完 `topic`/`explanation` 並翻成 `verified: true`，POOL 從 795 → **895 題**
+  （s1、s3 各 +50）。
 - **`subject_code` 的 195 題會永遠停在 195**。上面這段獨立 script 是直接比對「JSON 原文」
   vs POOL，而 `build_pool.py` 的目錄對照表補值是**在記憶體裡做的、不寫回 JSON**
   （其中 65 題屬 `2-bigdata`，紅線禁止改該檔）。所以這欄不一致是設計使然。
@@ -605,6 +608,8 @@ A1: Ｄ 50.        A3: Ｂ 44.  Ａ 45.        B3: Ｃ 48.  Ｃ 49.  Ｃ 50.
   `Math/InfoTheory` `Math/LinAlg` `Math/Optimization` `Math/Probability`
   `Math/Statistics` `Modeling/Selection` `Privacy/Compliance` `Training/Calibration`
   `Training/Tuning` `Training/Validation`
+  ＋ **2026-08-08 §H 新增 2 種 → 共 35 種**：`DL/Compression`（模型量化/剪枝/蒸餾）、
+  `RL/RewardShaping`（強化學習，目前全庫僅 1 題）。緣由見〈§H · 新增的 topic〉。
 
 真的沒有適合的才新增，且新增時要在摘要裡明確列出，方便回頭檢視是否該併入既有分類。
 （注意既有詞彙本身有小瑕疵：s1 同時存在 `Multimodal` 與 `Multimodal/General`，
@@ -757,6 +762,17 @@ exit 1。掛成 pre-commit hook 或 CI，**這次 drift 就是漏跑這一步造
 - **樣題**：這四份「公告試題」PDF 只有 50 題官方考題，**不含樣題**。既有的 45 題
   `sample-*` 來自 `shared/sample-questions.pdf`（114年9月版）。115 年有沒有對應的
   新樣題檔案，需要確認。
+  → **已於 2026-08-08 確認：無 115 年新樣題**。查證依據：
+  1. `source_pdfs/`（untracked 暫存區）目前只有 4 份公告試題 PDF（114 年第二梯次、
+     115 年第一次，各 s1/s3）與 3 份學習指引 PDF，**沒有任何樣題 PDF**。
+  2. 官方學習資源頁 `ipd.nat.gov.tw/ipas/certification/AIAP/learning-resources`
+     只分「學習指引」與「歷屆考題」兩類（歷屆考題已更新到 115 年第二次），**整頁
+     沒有「樣題」這個分類**，不像 114 年 9 月版當時是獨立公告的。
+  3. 官方最新消息頁 `ipd.nat.gov.tw/ipas/certification/AIAP/news` 列出的近期公告
+     （115 年第一次/第二次中級、初級試題公告與考試成果、學習指引勘誤）裡，**沒有
+     任何一則跟樣題更新有關**——上一次的樣題更新公告是 114 年 9 月那次
+     （「【公告】初級與中級考試樣題更新及新增中級考試題型說明」），之後未見同類公告。
+  結論：目前沒有新樣題可抽，`shared/sample-questions.pdf`（114年9月版）仍是現行最新版，此項結案，之後若官方發布新版可再照 §G 流程抽取（新開 `shared/sample-questions-115-*.json` 或比照 `exam-*` 的檔案配置）。
 - **B3 Q49 的資料瑕疵**：選項 `(A)activation="relu"其數學式為 ；` 後面像是缺了一張
   行內數學式小圖，是原始 PDF 本身的問題。這題屬於既有 114 年資料，不影響本次。
 - **115 年科一 Q28 的 PDF 缺字**：`exam-s1-115-1-q28` 選項 D 抽出來是
@@ -776,7 +792,12 @@ exit 1。掛成 pre-commit hook 或 CI，**這次 drift 就是漏跑這一步造
 > 這裡談「照什麼順序做、做完怎麼確認」。**計畫與本節衝突時以本節為準**——下面
 > §C 列的四點是動手前實測發現計畫有誤的地方。
 
-## B. 還剩什麼沒做（白話版，2026-08-08 複查）
+## B. 還剩什麼沒做（白話版）
+
+> **✅ 2026-08-08 更新：階段一全部做完了。** D、E、F、G、H、I 全數打勾，
+> POOL 從 795 → **895 題**，s1/s3 各多 50 題 115 年新考題（含解析），
+> pre-commit 防呆已裝、README 已更新、樣題疑問已結案。
+> 下面這段是當時「還剩 8 件事」的原始說明，保留當作紀錄。
 
 D、E、F、G 已完成（工具寫好、既有 drift 抹平、115 年 100 題抽出來了）。
 **剩下 8 件事**，技術細節看 §H / §I，這裡是白話說明：
@@ -956,40 +977,80 @@ D、E、F、G 已完成（工具寫好、既有 drift 抹平、115 年 100 題�
 
 ## H. Step 4 — 填 `topic` + `explanation`（100 題 × 2 欄位）
 
-> **現況（2026-08-08 實測）**：`subjects/1-ai/exam-115-1.json` 與
-> `subjects/3-ml/exam-115-1.json` 各 50 題，`topic` 全 null、`explanation` 全 null、
-> `verified` 全 false。**這是階段一唯一還沒動的實質工作，也是使用者現在拿不到 115 年
-> 新題的唯一原因**（`build_pool.py` 依設計跳過 `verified != true`）。
-> 建議分兩批做（先 s1 50 題、再 s3 50 題），每批完成先給使用者驗品質再繼續。
+> **已完成（2026-08-08）**：s1、s3 各 50 題的 `topic` + `explanation` 已補齊，
+> `verified: true`、`verification_needed: null`。由兩個 agent 並行處理（各負責一個
+> 檔案，範圍不重疊），完成後由主 agent 獨立複查（見下方「§H 的獨立複查結果」）。
 
-- [ ] **H1** 就地填 G2/G3 產出的同一份 json，不另設中介格式。
-- [ ] **H2** `topic` **必須從 §3.8 的既有詞彙挑**（s1 47 種、s3 33 種）。
+- [x] **H1** 就地填 G2/G3 產出的同一份 json，不另設中介格式。
+      → `git diff --stat` 各為 201 insertions / 201 deletions，只動這兩個檔案。
+- [x] **H2** `topic` **必須從 §3.8 的既有詞彙挑**（s1 47 種、s3 33 種）。
       真的沒有適合的才新增，且要在摘要裡明確列出。`Multimodal` vs `Multimodal/General`
       一律用有斜線的。
-- [ ] **H3** `explanation` 三段式硬約束（§3.9）：標題 `**為什麼 X 是正解:**`
+      → **s1 用了 23 種，全數在既有 47 種詞彙內，零新增**（已用清單程式化比對）。
+      → **s3 用了 28 種，其中 2 種是新增的**（見下方「新增的 topic」）。
+- [x] **H3** `explanation` 三段式硬約束（§3.9）：標題 `**為什麼 X 是正解:**`
       （**字母前後半形空白**）、錯誤選項 `- A. …` 單字母、必須有「記憶要點」段。
-- [ ] **H4** **不准動 `correct_answer`**（規則 2）。覺得官方答案有誤 → 寫進
+      → 100/100 通過，且標題字母與 `correct_answer` 逐題相符、無 `- A/B.` 合併 bullet。
+- [x] **H4** **不准動 `correct_answer`**（規則 2）。覺得官方答案有誤 → 寫進
       `verification_needed` 提報。
-- [ ] **H5** **不准改官方題的 `question_text` / `options`**，不做長度平衡（規則 1）。
-- [ ] **H6** 填完翻 `verified: true`、`verification_needed: null`。
+      → 兩個 agent 都回報「無爭議答案」，`correct_answer` 與 HEAD 逐題比對零差異。
+- [x] **H5** **不准改官方題的 `question_text` / `options`**，不做長度平衡（規則 1）。
+      → 對 `git show HEAD:` 的版本逐題比對 `id`/`question_text`/`options`/
+      `correct_answer`/`source`/`image`/`subject_code` 七個受保護欄位，**100 題全數
+      byte-identical**。含 Q28 那個已知的 PDF 缺字選項，維持原樣未補。
+- [x] **H6** 填完翻 `verified: true`、`verification_needed: null`。
+      → 100/100。
+
+### 新增的 topic（§3.8 詞彙表的增補，s3 +2）
+
+| topic | 題號 | 為什麼既有詞彙不夠用 |
+|---|---|---|
+| `DL/Compression` | `exam-s3-115-1-q21` | 模型量化（32-bit → 8-bit）。s3 既有 33 種完全沒有模型壓縮類（量化/剪枝/蒸餾）；s1 有對應的 `GenAI/Compression`，但那是生成式模型脈絡 |
+| `RL/RewardShaping` | `exam-s3-115-1-q31` | 倉儲機器人 reward hacking / reward shaping。已 grep 確認這是**整個 s3 題庫（114-2 + sample + gen-* + 本批）唯一一題強化學習**，既有詞彙表零 RL 覆蓋 |
+
+s3 的詞彙表因此從 33 種 → **35 種**。兩題都不是硬塞，但因為各只有一題，未來若 RL /
+模型壓縮的題目一直沒有第二題，可考慮併回 `ML/Algorithms` / `DL/Optimization`。
+
+### §H 的獨立複查結果（2026-08-08，未採信 agent 回報、重跑）
+
+| 查核項 | 方法 | 結果 |
+|---|---|---|
+| 官方題原文未被改動 | 對 `git show HEAD:` 逐題比對 7 個受保護欄位 | ✅ 100 題零差異 |
+| 三段式格式 | 自寫 regex 檢查標題字母 == `correct_answer`、記憶要點、單字母 bullet | ✅ 100/100 |
+| **選項打亂後解析仍對得上** | 在 headless Chromium 裡對 100 題 × 3 種打亂順序實跑 `translateExplanation()` | ✅ 300/300：標題字母正確重映射、bullet 重排回 A→D、`✓ 正解` 標記落在正確選項上 |
+| topic 詞彙 | 對 §3.8 清單做集合差集 | ✅ s1 零新增；s3 新增 2 種（已列表） |
+| 圖檔可載入 | 瀏覽器內對 29 題的 `image` 逐一 `new Image()` 載入 | ✅ 29/29 |
 
 ## I. Step 5 — 收尾
 
-- [ ] **I1** 跑 `build_pool.py` → POOL **895 題**。
-- [ ] **I2** 跑 `--check` 應 exit 0。
-- [ ] **I3** 開 `index.html` 確認 895 題、s1/s3 各多 50 題、新圖表題圖片顯示正常、
+- [x] **I1** 跑 `build_pool.py` → POOL **895 題**。
+      → 實測 795 → 895，`只在現有 POOL（JSON 已無）: 0 題`，既有 795 題的
+      `topic`/`question_text`/`options`/`correct_answer`/`source`/`explanation`/
+      `image`/`verified`/`subject_code` **全部 0 題不一致**（即這次只新增、沒改動任何舊題）。
+      `git diff --stat index.html` = `1 file changed, 1 insertion(+), 1 deletion(-)`，
+      `git diff --unified=0` 的 hunk 標頭是 `@@ -378 +378 @@`，符合紅線 J5。
+- [x] **I2** 跑 `--check` 應 exit 0。→ exit 0。順帶重跑 `tools/tests/test_golden_answers.py`
+      → **GOLDEN TEST: PASS**（114 年兩科 100/100 答案一致）。
+- [x] **I3** 開 `index.html` 確認 895 題、s1/s3 各多 50 題、新圖表題圖片顯示正常、
       `#page=N` deep link 點得開。
-- [ ] **I4** 更新 README。**現況（2026-08-08 複查）**：`README.md:11` 還寫「795 MCQ
+      → headless Chromium 實測：`POOL.length=895`、`poolForSubject()` 各科
+      `s1=215 s2=165 s3=215 e1=150 e2=150 all=895`（s1/s3 確實各 +50）、
+      29 題圖檔 **29/29 載入成功**、`pdfHref("subjects/3-ml/past-exam-115-1.pdf", 11)`
+      → `subjects/3-ml/past-exam-115-1.pdf#page=11`（`SOURCE_PDF_MAP` 是空表，
+      新的 ASCII 路徑直接 pass-through，不需要新增對照）、無 JS console 錯誤。
+- [x] **I4** 更新 README。**現況（2026-08-08 複查）**：`README.md:11` 還寫「795 MCQ
       questions」，而且**整份 README 完全沒有提到 `tools/`**。要改的三處：
       1. 題數 795 → 895（中級 495 → 595）
       2. 新增 `tools/` 一節：**改題庫的唯一正確流程是改 json 再跑
          `uv run --project tools python tools/build_pool.py`，不要手改 `index.html`**。
          沒寫這段的話，下一個人（或 agent）照 README 做事會重蹈 `0b952e7` 的覆轍。
       3. 檔案樹補上 `subjects/{1-ai,3-ml}/past-exam-115-1.pdf`
-- [ ] **I5** 更新本 project.md：把〈快速自我檢查〉的「目前的實際輸出」換成新數字
+      → 三處都改了；`tools/` 一節同時寫進 pre-commit hook 的重裝指令（I6 的配套）。
+- [x] **I5** 更新本 project.md：把〈快速自我檢查〉的「目前的實際輸出」換成新數字
       （POOL 895 / JSON 895、「只在 JSON」歸零）、〈檔案地圖〉與〈已發現的既有問題 A〉
       的敘述對齊實況、H/I 各項打勾。
-- [ ] **I6** **把 `--check` 掛成自動執行**（§6.5 計畫寫了，但當初沒排進 checklist，
+      → 即本次編輯。
+- [x] **I6** **把 `--check` 掛成自動執行**（§6.5 計畫寫了，但當初沒排進 checklist，
       所以到現在沒做——實測 `.git/hooks/` 是空的、沒有 `.github/`）。
       §6.5 原文：「這次 drift 就是漏跑這一步造成的，不能靠記性」，結果**防護機制本身
       現在就是靠記性**。做法二選一（pre-commit hook 較合適，本專案沒有 CI）：
@@ -998,9 +1059,13 @@ D、E、F、G 已完成（工具寫好、既有 drift 抹平、115 年 100 題�
       - 或加 GitHub Actions
       **不做的後果**：下次只改 json 忘記重建 POOL，使用者會再一次靜默練到舊版題目
       （上次沒被發現長達三個月）。
-- [ ] **I7** 確認 **115 年有沒有官方新樣題** PDF（§8 未決事項第一條，至今沒人查）。
+      → 採 pre-commit hook。版控副本在 `tools/hooks/pre-commit`（會進 git），
+      `.git/hooks/pre-commit` 是指向它的 symlink。安裝指令寫在 README：
+      `ln -sf ../../tools/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`
+- [x] **I7** 確認 **115 年有沒有官方新樣題** PDF（§8 未決事項第一條，至今沒人查）。
       既有 45 題 `sample-*` 出自 `shared/sample-questions.pdf`（114年9月版）。
       有的話照 §G 流程再抽一次；沒有就在 §8 記「已確認無」，把這條懸而未決的事項結案。
+      → **已確認無 115 年新樣題**，三點依據記在 §8，該條已結案。
 
 ## J. 全程紅線（違反就是做錯，不是風格問題）
 
