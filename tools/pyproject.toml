@@ -1,0 +1,11 @@
+[project]
+name = "ipas-quiz-tools"
+version = "0.1.0"
+description = "Extraction and build scripts for ipas-quiz question pool (dev-only, not shipped to end users)"
+requires-python = ">=3.12"
+dependencies = [
+    "pdfplumber",
+]
+
+[tool.uv]
+package = false
