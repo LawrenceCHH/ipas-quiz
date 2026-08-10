@@ -807,9 +807,9 @@ function renderHome() {
           <label>題目數量</label>
           <select id="round-size">
             <option value="5">5 題 (快速)</option>
-            <option value="10" selected>10 題 (標準)</option>
+            <option value="10">10 題 (標準)</option>
             <option value="15">15 題 (進階)</option>
-            <option value="20">20 題 (深度)</option>
+            <option value="20" selected>20 題 (深度)</option>
             <option value="999">全部 (該主題所有題)</option>
           </select>
         </div>
@@ -817,8 +817,8 @@ function renderHome() {
       <div class="field">
         <label>選項順序</label>
         <select id="shuffle-options">
-          <option value="original" selected>原順序 (與 PDF 一致)</option>
-          <option value="shuffle">隨機打亂 (避免靠位置記答案)</option>
+          <option value="original">原順序 (與 PDF 一致)</option>
+          <option value="shuffle" selected>隨機打亂 (避免靠位置記答案)</option>
         </select>
       </div>
       <button class="btn btn-primary" style="width:100%; padding:12px;" onclick="startRound()">開始作答 →</button>
