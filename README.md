@@ -27,6 +27,7 @@ No build step, no server required. State persists in `localStorage`.
 - **"💡 為什麼？" panel** — pre-generated explanation per question (why correct, why each wrong option, memory hook) + deep-link to study guide PDF at the right page
 - **Option shuffle mode** — randomize A/B/C/D order to prevent position-memorization; explanation auto-rewrites to match displayed order
 - **Round history + cumulative weak-topic tracking** — scoped per subject
+- **Optional cross-device cloud sync** — point the app at your own Google Apps Script Web App URL and round history syncs bidirectionally through a Google Sheet you own (see "雲端同步設定" below); off by default, purely local otherwise
 - **Keyboard shortcuts** — `A`/`B`/`C`/`D` (with `Cmd+C` etc. preserved), `Enter` to advance, `W` to toggle the why panel
 
 ## Project structure
@@ -117,7 +118,7 @@ Other scripts under `tools/`:
 Everything under `tools/` runs via `uv run --project tools python tools/...` — it's
 a dev-only toolchain for maintainers, not something needed to just run the quiz app.
 
-> Personal study notes (e.g. per-round score trackers) live under `notes/` locally, but `notes/` is gitignored so nothing personal lands in the public repo. Each visitor's quiz progress is kept in their own browser's `localStorage` — never sent anywhere.
+> Personal study notes (e.g. per-round score trackers) live under `notes/` locally, but `notes/` is gitignored so nothing personal lands in the public repo. Each visitor's quiz progress is kept in their own browser's `localStorage` by default — never sent anywhere unless the visitor opts into cloud sync (see below).
 
 ## Deploy to Vercel
 
@@ -129,6 +130,62 @@ gh repo create <name> --private --source=. --remote=origin --push
 ```
 
 Vercel auto-detects this as a static site. `index.html` is served at `/`. PDF deep-links use relative paths (`subjects/.../study-guide.pdf#page=N`) which work without modification.
+
+## 雲端同步設定（跨裝置，選用）
+
+預設情況下作答紀錄只存在單一瀏覽器的 `localStorage`。想在手機、電腦間同步歷史紀錄，
+可以用自己的 Google 試算表當免費後端（Google Apps Script），完全不需要自己架 server：
+
+1. 建一份新的 Google 試算表。
+2. 上方選單「擴充功能」→「Apps Script」，把預設的 `Code.gs` 內容整個換成：
+
+   ```js
+   function doGet(e) {
+     var sheet = SpreadsheetApp.getActiveSheet();
+     var values = sheet.getDataRange().getValues();
+     var rounds = [];
+     for (var i = 1; i < values.length; i++) {
+       var row = values[i];
+       if (!row[0]) continue;
+       rounds.push({
+         id: row[0], subject_code: row[1], scope: row[2],
+         shuffled: row[3] === true || row[3] === "TRUE",
+         started: row[4], completed: row[5],
+         responses: JSON.parse(row[6] || "[]")
+       });
+     }
+     return ContentService.createTextOutput(JSON.stringify({ rounds: rounds }))
+       .setMimeType(ContentService.MimeType.JSON);
+   }
+
+   function doPost(e) {
+     var data = JSON.parse(e.postData.contents);
+     var sheet = SpreadsheetApp.getActiveSheet();
+     var lastRow = sheet.getLastRow();
+     var ids = lastRow > 1 ? sheet.getRange(2, 1, lastRow - 1, 1).getValues().flat() : [];
+     if (ids.indexOf(data.id) === -1) {
+       sheet.appendRow([
+         data.id, data.subject_code, data.scope, data.shuffled,
+         data.started, data.completed, JSON.stringify(data.responses || [])
+       ]);
+     }
+     return ContentService.createTextOutput(JSON.stringify({ result: "success" }))
+       .setMimeType(ContentService.MimeType.JSON);
+   }
+   ```
+
+3. 部署：右上角「部署」→「新增部署」→ 齒輪圖示選「網頁應用程式」。
+   **執行身分**選「我」，**誰有存取權**選「所有人」，再點「部署」。
+   跳出授權視窗時點「授予存取權」；若出現「未驗證」警告，點「進階」→「前往...(不安全)」→「允許」。
+4. 複製部署完成後顯示的「網頁應用程式 URL」（`https://script.google.com/macros/s/.../exec`）。
+5. 回到本 app，開「歷史紀錄」頁 → 「雲端同步」卡片，貼上網址並按「儲存並同步」。
+6. 在其他裝置的瀏覽器貼上**同一組網址**，就會自動雙向同步（開頁時抓一次、每回合作答完寫回，用每回合的 `id` 去重，不會重複寫入）。
+
+> 每次修改 Apps Script 程式碼後，要重新「管理部署」→「編輯」→ 選「新版本」→ 儲存，修改才會生效。
+>
+> 這是選用功能，不設定網址就完全維持原本的純本機、無後端行為。同步的內容只有分數統計
+> （科目、主題、每題對錯與所選字母），**不含題目全文**——會存進你自己的 Google 試算表，
+> 不會經過任何第三方伺服器。
 
 ## Disclaimer
 
