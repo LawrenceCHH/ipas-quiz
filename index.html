@@ -643,6 +643,39 @@ function clearSyncUrl() {
   setSyncUrlValue("");
   render();
 }
+// Builds a one-tap setup link (?sync=<url>) so other devices don't have to
+// copy/paste the GAS URL by hand — opening the link auto-saves it (see
+// applySyncUrlFromQuery). The link itself carries the same access as the raw
+// URL, so treat it like a password: only share it to your own devices.
+function buildSyncLink() {
+  const url = getSyncUrl();
+  const base = location.href.split("?")[0].split("#")[0];
+  return base + "?sync=" + encodeURIComponent(url);
+}
+function copySyncLink() {
+  const url = getSyncUrl();
+  if (!url) { alert("請先儲存一組同步網址。"); return; }
+  const link = buildSyncLink();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(link).then(
+      () => setSyncStatus("已複製同步連結，貼到其他裝置的瀏覽器開啟一次即可"),
+      () => prompt("複製這個連結，在其他裝置的瀏覽器貼上開啟一次：", link)
+    );
+  } else {
+    prompt("複製這個連結，在其他裝置的瀏覽器貼上開啟一次：", link);
+  }
+}
+function applySyncUrlFromQuery() {
+  try {
+    const params = new URLSearchParams(location.search);
+    const url = params.get("sync");
+    if (!url) return;
+    setSyncUrlValue(url);
+    params.delete("sync");
+    const rest = params.toString();
+    history.replaceState(null, "", location.pathname + (rest ? "?" + rest : "") + location.hash);
+  } catch {}
+}
 
 // All getters accept an optional subjectFilter ("s1", "s2", "s3", or "all").
 function poolForSubject(subjectFilter) {
@@ -1124,14 +1157,14 @@ function renderSyncCard() {
   return `
     <div class="card">
       <h2>雲端同步</h2>
-      <p class="note">貼上你自己的 Google Apps Script Web App 網址，作答紀錄就會雙向同步到你的 Google 試算表（跨裝置共用）。設定步驟見 README「雲端同步設定」。留空 = 只存本機瀏覽器，不同步。</p>
+      <p class="note">貼上你自己的 Google Apps Script Web App 網址，作答紀錄就會雙向同步到你的 Google 試算表（跨裝置共用）。設定步驟見 README「雲端同步設定」。留空 = 只存本機瀏覽器，不同步。每台裝置只需設定一次；設好後可用下方「複製同步連結」給其他裝置一鍵套用，不用手動貼網址——但這組連結等於試算表的讀寫金鑰，請只傳給自己的裝置，不要公開分享。</p>
       <div class="field">
         <label>GAS Web App 網址</label>
         <input id="sync-url-input" type="text" placeholder="https://script.google.com/macros/s/.../exec" value="${escapeHtml(url)}" />
       </div>
       <div class="next-btn-row">
         <button class="btn btn-primary" onclick="saveSyncUrl()">儲存並同步</button>
-        ${url ? `<button class="btn" onclick="syncNow()">立即同步</button><button class="btn" onclick="clearSyncUrl()" style="color:var(--wrong);">停用同步</button>` : ""}
+        ${url ? `<button class="btn" onclick="syncNow()">立即同步</button><button class="btn" onclick="copySyncLink()">複製同步連結（給其他裝置）</button><button class="btn" onclick="clearSyncUrl()" style="color:var(--wrong);">停用同步</button>` : ""}
       </div>
       <p class="note" id="sync-status"></p>
     </div>
@@ -1408,6 +1441,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+applySyncUrlFromQuery();
 updateThemeButton();
 render();
 syncNow();
